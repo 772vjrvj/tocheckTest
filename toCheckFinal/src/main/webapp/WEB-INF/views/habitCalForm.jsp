@@ -71,6 +71,10 @@
 				$("select[name=intoper]").focus();
 				alert("인원을 입력하세요");
 				return false;
+			}else if($("select[name=recruit]").val()==0){
+				$("select[name=recruit]").focus();
+				alert("인원을 입력하세요");
+				return false;
 			}
 		});
 

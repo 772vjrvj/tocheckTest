@@ -222,7 +222,6 @@ input:checked + .slider:before {
 <body>
 
 <div id="container">
-<form action="insertCheck.do" method="post">
 	<input type="hidden" name="pKey" value="${pKey}"/>
 	<input type="hidden" name="id" value="${id}"/>
 	
@@ -259,18 +258,10 @@ input:checked + .slider:before {
 		<col width="188px">
 			<tr>
 				<td colspan="3" style="text-align: right;">
-					<input type="button" class="btn btn-info btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
-					<input type="submit" class="btn btn-info btn-xs" value="체크완료"/>
-					<input type="button" class="btn btn-info btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
-					<input type="button" class="btn btn-info btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
-					<div style="height: 5px;"></div>
+					<input type="button" class="btn btn-info btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${id}&role=${HcLoginDto.role}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
+					<div style="height: 5px;">
+					</div>
 					<jsp:useBean id="together" class="com.hk.toCheckFinal.utils.Util"/>
-					
-					<label class="switch">
-  						<input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
-  						<span class="slider round"></span>
-					</label>
-					<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>		
 				</td>
 			</tr>
 	</table>
@@ -331,7 +322,7 @@ input:checked + .slider:before {
 						<input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
 						
 						${Util.checked(chkss, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
-						${Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}
+						onclick='return(false)'
 						/></td>
 				    </c:otherwise>
 				</c:choose>
@@ -351,7 +342,6 @@ input:checked + .slider:before {
 		<br>			
 		</c:forEach>
 		</c:forEach>
-</form>
 </div>
 </body>
 </html>

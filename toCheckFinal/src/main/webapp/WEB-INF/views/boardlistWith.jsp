@@ -180,7 +180,7 @@ figure div:nth-child(3) {
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
-		<tr><td colspan="4"><h4>혼자 하기 목록</h4><button type="button" onclick="location.href='selectform.do?id=${id}&role=${role}'">이전페이지</button></td></tr>
+		<tr><td colspan="4"><h4>함께 하기 목록</h4><button type="button" onclick="location.href='selectform.do?id=${id}&role=${role}'">이전페이지</button></td></tr>
 <c:choose>
 	<c:when test="${fn:length(list) eq 0 }">
        	진행중이 리스트가 없습니다.
@@ -206,8 +206,9 @@ figure div:nth-child(3) {
 						<c:when test="${(status.count)%4 eq 1}">
 							<tr><td>
 							<div class="progress-fixed">
-							<div>ID: ${dto.id}</div>
-							<div>Term: ${dto.chkss}/${dto.term}</div>
+							<div>${dto.id}</div>
+							<div>모집현황: ${dto.intoper}/${dto.recruit}</div>
+							<div>기간: ${dto.chkss}/${dto.term}</div>
 							<div>획득포인트: ${dto.term * 100}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
@@ -223,8 +224,9 @@ figure div:nth-child(3) {
 						<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
 							<td>
 							<div class="progress-fixed">
-							<div>ID: ${dto.id}</div>
-							<div>Term: ${dto.chkss}/${dto.term}</div>
+							<div>${dto.id}</div>
+							<div>모집현황: ${dto.intoper}/${dto.recruit}</div>
+							<div>기간: ${dto.chkss}/${dto.term}</div>
 							<div>획득포인트: ${dto.term * 100}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
@@ -240,8 +242,9 @@ figure div:nth-child(3) {
 						<c:when test="${(status.count)%4 eq 0}">
 							<td>
 							<div class="progress-fixed">
-							<div>ID: ${dto.id}</div>
-							<div>Term: ${dto.chkss}/${dto.term}</div>
+							<div>${dto.id}</div>
+							<div>모집현황: ${dto.intoper}/${dto.recruit}</div>
+							<div>기간: ${dto.chkss}/${dto.term}</div>
 							<div>획득포인트: ${dto.term * 100}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>

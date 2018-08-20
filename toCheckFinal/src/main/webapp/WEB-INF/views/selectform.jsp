@@ -12,8 +12,9 @@
 ${id}님의 선택목록
 <br/>
 <br/>
-<button type="button" onclick="location.href='boardlist.do?id=${id}'">혼자 하기 목록</button>
-<button type="button" onclick="location.href=''">함께 하기 목록</button>
+<button type="button" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=1'">혼자 하기 목록</button>
+<button type="button" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=2'">함께 하기 목록</button>
+<button type="button" onclick="location.href='main.do?id=${id}&role=${role}'">이전페이지</button>
 
 
 </body>

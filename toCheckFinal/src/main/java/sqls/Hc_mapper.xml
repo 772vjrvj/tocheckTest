@@ -7,11 +7,8 @@
 
 		<select id="habitCalInsert" parameterType="HcDto">
 			INSERT INTO HCBOARD
-			VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N','1','1','0','0','0')
+			VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N',#{recruit},'1','0','0','0')
 		</select>
-		
-		
-		
 		<select id="getHabitCalList" parameterType="Map" resultType="HcDto">
 			SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
 			FROM HCBOARD WHERE PKEY=#{pKey}
@@ -74,6 +71,10 @@
 	
 		<select id="getAllHcList" resultType="HcDto">
 			SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS
-			FROM HCBOARD ORDER BY REGDATE DESC
+			FROM HCBOARD WHERE WITHH ='N'AND CALWITH ='Y' ORDER BY REGDATE DESC
+		</select> 
+		<select id="getAllHcListY" resultType="HcDto">
+			SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS
+			FROM HCBOARD WHERE WITHH ='Y' ORDER BY REGDATE DESC
 		</select> 
 	 </mapper>

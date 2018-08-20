@@ -193,23 +193,18 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 
 <c:set var="perplus" value="0.0"/><c:set var="totalper" value="0.0"/>
 
-<c:choose>
+	<c:choose>
     <c:when test="${fn:length(list) eq 0}">
-
-       진행중이 리스트가 없습니다.
+       	진행중이 리스트가 없습니다.
     </c:when>
     <c:otherwise>
     	<c:forEach var="dto" items="${list}" varStatus="status">
-		<c:choose>
-    	<c:when test="${dto.endList eq 'Y'}">
-    	
-    	</c:when>
-    	<c:otherwise>
-    	
-
-
-    	
-			<c:set var="per" value="0.0"/>
+			<c:choose>
+	    	<c:when test="${dto.endList eq 'Y'}">
+	    	
+	    	</c:when>
+	    	<c:otherwise>
+				<c:set var="per" value="0.0"/>
 				<c:choose>
 					<c:when test="${dto.chkss eq 0}">
 						
@@ -218,28 +213,23 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 						<c:set var="per" value="${(dto.chkss/dto.term)*100}"/>	
 					</c:otherwise>
 				</c:choose>
-
-
 				<c:set var="perplus" value="${perplus+per}"/>
-					<div class="progress-fixed">
-				  		<figure>
-				    		<div class="progress-fixed__bar${status.index}"></div>
-				    		<div class="progress-fixed__percent${status.index}"></div>
-				    		<div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">▷. ${dto.title}</a></div>	
-				  		</figure>
-					</div>
-					<input class="bar" type="hidden" onclick="BG.init(${per},${status.index})">
-					<br/>
-					<br/>
-		</c:otherwise>
-		</c:choose>
+				<div class="progress-fixed">
+			  		<figure>
+			    		<div class="progress-fixed__bar${status.index}"></div>
+			    		<div class="progress-fixed__percent${status.index}"></div>
+			    		<div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">▷. ${dto.title}</a></div>	
+			  		</figure>
+				</div>
+				<input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
+				<br/>
+				<br/>
+			</c:otherwise>
+			</c:choose>
 		</c:forEach>
-					<c:set var="totalper" value="${xsize eq 0? 0:perplus/xsize}"/>
-					
-
- 
+		<c:set var="totalper" value="${xsize eq 0? 0:perplus/xsize}"/>
     </c:otherwise>
-</c:choose>
+	</c:choose>
 
 	<br/>
 	<br/>
@@ -248,7 +238,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 	<div class="liquidGauge"><h5>전체달성률</h5></div>
 	<div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
 	<div class="liquidGauge">
-	<button type="button" class="btn btn-info btn-xs" onclick="location.href='selectform.do?id=${HcLoginDto.id}'">목록보기</button>
+	<button type="button" class="btn btn-info btn-xs" onclick="location.href='selectform.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">목록보기</button>
 	<button type="button" class="btn btn-info btn-xs" onclick="location.href='habitCalForm.do?id=${HcLoginDto.id}'">시작하기</button>
 	<button type="button" class="btn btn-info btn-xs" onclick="location.href='point.do?id=${HcLoginDto.id}'">포인트 사용</button></div>
 	<div class="liquidGauge"></div>

@@ -51,6 +51,11 @@ public class HcServiceImp implements IHcService {
 	}
 
 	@Override
+	public List<HcDto> getAllHcListY() {
+		return hcDao.getAllHcListY();
+	}
+	
+	@Override
 	public List<HcDto> searchContentId(String searchContent) {
 		return hcDao.searchContentId(searchContent);
 	}

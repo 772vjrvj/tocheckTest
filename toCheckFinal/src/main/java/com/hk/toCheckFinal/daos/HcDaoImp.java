@@ -39,6 +39,7 @@ public class HcDaoImp implements IHcDao {
 	public boolean updateCheck(HcDto dto) {
 		int count=0;
 		count=sqlSession.update(namespace+"updateCheck", dto);
+		System.out.println("dto.getCalWith():"+dto.getCalWith());
 		return count>0?true:false;		
 	}
 
@@ -83,6 +84,18 @@ public class HcDaoImp implements IHcDao {
 		return list;
 	}
 
+	public List<HcDto> getAllHcListY() {
+		List<HcDto>list=new ArrayList<HcDto>();
+
+		list=sqlSession.selectList(namespace+"getAllHcListY");
+		return list;
+	}	
+	
+	
+	
+	
+	
+	
 	@Override
 	public List<HcDto> searchContentId(String searchContent) {
 		List<HcDto>list=new ArrayList<HcDto>();

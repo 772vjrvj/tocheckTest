@@ -267,10 +267,11 @@ public class HomeController {
 	
 	
 		@RequestMapping(value = "/selectform.do", method = RequestMethod.GET)
-		public String selectform(String id, Locale locale, Model model) {
+		public String selectform(String id, String role, Locale locale, Model model) {
 			logger.info("함께 혼자 목록 {}.", locale);
 		
 			model.addAttribute("id", id);
+			model.addAttribute("role", role);
 			
 			return "selectform";
 		}			
@@ -295,7 +296,8 @@ public class HomeController {
 			
 			int term = Integer.parseInt(HcDto.getTerm());
 
-
+			System.out.println("HcDto.getRecruit():"+HcDto.getRecruit());
+			
 			if(HcDto.getRecruit()==1) {
 				HcDto.setWithh("N");
 				HcDto.setCalWith("N");
@@ -319,7 +321,7 @@ public class HomeController {
 		}					
 		
 		@RequestMapping(value = "/habitCalDetail.do", method = RequestMethod.GET)
-		public ModelAndView habitCalInsert(String id, String pKey,Locale locale) {
+		public ModelAndView habitCalDetail(String id, String pKey,Locale locale) {
 			logger.info("상세보기 {}.", locale);
 			
 			ModelAndView view = new ModelAndView();
@@ -377,9 +379,70 @@ public class HomeController {
 
 		}
 			
+
+		@RequestMapping(value = "/habitCalDetailView.do", method = RequestMethod.GET)
+		public ModelAndView habitCalDetailView(String id, String pKey,Locale locale) {
+			logger.info("상세보기 {}.", locale);
+			
+			ModelAndView view = new ModelAndView();
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			
+			HcDto dto = hcService.getHabitCalList(pKey);
+			HcLoginDto HcLoginDto= hcService.getUser(id);
+			System.out.println(dto);
+
+			String sYear=dto.getStDate().substring(0,4);
+			int stYear=Integer.parseInt(sYear);
+			
+			String sMonth=dto.getStDate().substring(4,6);
+			int stMonth=Integer.parseInt(sMonth);		
+			
+			String sDate=dto.getStDate().substring(6);
+			int stDate=Integer.parseInt(sDate);		
+
+			
+			
+			String eYear=dto.getEdDate().substring(0,4);
+			int edYear=Integer.parseInt(eYear);
+			
+			String eMonth=dto.getEdDate().substring(4,6);
+			int edMonth=Integer.parseInt(eMonth);
+			
+			String eDate=dto.getEdDate().substring(6);
+			int edDate=Integer.parseInt(eDate);				
+			
+			
+			int term=Integer.parseInt(dto.getTerm());
+
+					
+			
+			String []chkss=dto.getChks().split("/");
+			
+			map.put("stYear", stYear);	
+			map.put("stMonth", stMonth);	
+			map.put("stDate", stDate);	
+			map.put("edYear", edYear);	
+			map.put("edMonth", edMonth);	
+			map.put("edDate", edDate);	
+			map.put("term", term);			
+			
+			view.setViewName("habitCalDetailView");
+			view.addObject("id",id);
+			view.addObject("pKey",pKey);
+			
+			view.addObject("chkss",chkss);			
+			view.addObject("dto",dto);	
+			view.addObject("HcLoginDto",HcLoginDto);	
+			view.addObject("map",map);
+			
+			return view;			
+
+		}		
+		
+		
 		
 		@RequestMapping(value = "/habitCalDelete.do", method = RequestMethod.GET)
-		public String selectform(String pKey, String id, Locale locale, Model model) {
+		public String habitCalDelete(String pKey, String id, Locale locale, Model model) {
 			logger.info("삭제 하기 {}.", locale);
 		
 			HcDto dto = hcService.getHabitCalList(pKey);
@@ -411,15 +474,18 @@ public class HomeController {
 		
 		
 		@RequestMapping(value = "/insertCheck.do", method = RequestMethod.POST)
-		public String selectform(String pKey, String id, String[] chk, String switchCheck, Locale locale, Model model) {
+		public String insertCheck(String pKey, String id, String[] chk, String switchCheck, Locale locale, Model model) {
 			logger.info("체크 하기 {}.", locale);
 		
+			System.out.println("switchCheck:"+switchCheck);
 			HcLoginDto HcLoginDto= hcService.getUser(id);
 			String chks="";
 			int chkss=0;
 			if(switchCheck==null) {
 				switchCheck="N";
 				System.out.println(switchCheck);
+			}else {
+				switchCheck="Y";
 			}
 			
 
@@ -515,17 +581,24 @@ public class HomeController {
 
 		
 		@RequestMapping(value = "/boardlist.do", method = RequestMethod.GET)
-		public ModelAndView boardlist(String id, Locale locale, Model model) {
+		public ModelAndView boardlist(String id, String role,String with, Locale locale, Model model) {
 			logger.info("함께 혼자 목록 {}.", locale);
 			ModelAndView view = new ModelAndView();
 			
+			System.out.println("with:"+with);
+			if(with.equals("1")) {
+				List<HcDto> list=hcService.getAllHcList();				
+				view.addObject("list",list);
+				view.setViewName("boardlist");
+			}else {
+				List<HcDto> list=hcService.getAllHcListY();
+				view.addObject("list",list);
+				view.setViewName("boardlistWith");
+			}
 			
-			List<HcDto> list=hcService.getAllHcList();
 			
-			
-			view.setViewName("boardlist");
-			view.addObject("list",list);
 			view.addObject("id",id);
+			view.addObject("role",role);
 
 			return view;
 		}			
