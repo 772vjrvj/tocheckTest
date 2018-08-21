@@ -67,8 +67,7 @@
 		</select>
 		<select id="updateRoleUser" parameterType="Map">
 			UPDATE HCMEMBER SET ROLE=#{role}, ENABLED=#{enabled} WHERE ID=#{id}		
-		</select>
-	
+		</select>	
 		<select id="getAllHcList" resultType="HcDto">
 			SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS
 			FROM HCBOARD WHERE WITHH ='N'AND CALWITH ='Y' ORDER BY REGDATE DESC

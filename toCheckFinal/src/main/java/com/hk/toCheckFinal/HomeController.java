@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
+import org.eclipse.jdt.internal.compiler.parser.ParserBasicInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,21 +134,33 @@ public class HomeController {
 				view.addObject("id",id);
 				return view;
 			}else {
-				System.out.println("ddd12");
+				
 				List<HcDto> list=hcService.getAllList(id);
-				System.out.println(list);
-				
-				
+
+				double count=0;
 				int xsize=0;
-				for (int i = 0; i < list.size(); i++) {
-					HcDto dto=list.get(i);
-					if(dto.getEndList().toUpperCase().equals("N")){
-						++xsize;
+			
+				for (int k = 0; k < list.size(); k++) {
+					if(list.get(k).getEndList().toUpperCase().equals("N")) {
+					int term = Integer.parseInt(list.get(k).getTerm());
+					System.out.println("term:"+term);
+					System.out.println("list.get(k).getChkss():"+list.get(k).getChkss());
+					System.out.println("(list.get(k).getChkss()/term)*100:"+(list.get(k).getChkss()/term)*100);
+					count +=(list.get(k).getChkss()/(double)term)*100;
+					System.out.println("count:"+count);
+					++xsize;
 					}
+					
 				}
+				System.out.println("count:"+count);
+				System.out.println("xsize:"+xsize);
+				double sum=0;
+				sum=count/xsize;
+				
+				System.out.println("sum:"+sum);
 				
 				view.setViewName("usermain");
-				view.addObject("xsize",xsize);
+				view.addObject("sum",sum);
 				view.addObject("list",list);
 				view.addObject("HcLoginDto",HcLoginDto);
 				return view;

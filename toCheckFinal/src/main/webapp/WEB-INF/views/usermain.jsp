@@ -191,7 +191,12 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 <p style="color: #245682;text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트: ${HcLoginDto.ttpoint}</p>
 <br/>
 
-<c:set var="perplus" value="0.0"/><c:set var="totalper" value="0.0"/>
+	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#00bbdb', 1000)">
+	
+	<div class="liquidGauge"><h5>전체달성률</h5></div>
+	<div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
+	<div class="liquidGauge">
+<br/>
 
 	<c:choose>
     <c:when test="${fn:length(list) eq 0}">
@@ -213,7 +218,6 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 						<c:set var="per" value="${(dto.chkss/dto.term)*100}"/>	
 					</c:otherwise>
 				</c:choose>
-				<c:set var="perplus" value="${perplus+per}"/>
 				<div class="progress-fixed">
 			  		<figure>
 			    		<div class="progress-fixed__bar${status.index}"></div>
@@ -227,17 +231,13 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 			</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<c:set var="totalper" value="${xsize eq 0? 0:perplus/xsize}"/>
     </c:otherwise>
 	</c:choose>
 
+
 	<br/>
 	<br/>
-	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${totalper}, '#00bbdb', 1000)">
-	
-	<div class="liquidGauge"><h5>전체달성률</h5></div>
-	<div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
-	<div class="liquidGauge">
+
 	<button type="button" class="btn btn-info btn-xs" onclick="location.href='selectform.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">목록보기</button>
 	<button type="button" class="btn btn-info btn-xs" onclick="location.href='habitCalForm.do?id=${HcLoginDto.id}'">시작하기</button>
 	<button type="button" class="btn btn-info btn-xs" onclick="location.href='point.do?id=${HcLoginDto.id}'">포인트 사용</button></div>
