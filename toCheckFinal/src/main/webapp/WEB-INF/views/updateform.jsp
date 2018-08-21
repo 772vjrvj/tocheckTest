@@ -7,33 +7,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 </head>
 <jsp:include page="head.jsp"/>
 <style>
 	body{
 		margin: 50px 0;
 		}
-	
+	#container{
+		width: 600px;
+		margin: 0 auto;
+		margin-top: 140px;
+	}
 	td{
 		text-align: center;	
 		height:35px;
 		font-weight: bolder;
 	}
-	
+	th{
+		color: white;
+		text-align: center;	
+		width: 100px;
+		height:35px;
+	}
 	#firstTd{
 		text-align: center;	
 		height:35px;
 		font-weight: bolder;
 		color: #00bbdb;
 	}
-	
 	#secondTd{
 		text-align: center;	
 		height:35px;
@@ -46,47 +50,22 @@
 		height:35px;
 		font-weight: bolder;
 		color: #00bbdb;
-		background-color: #d9edf7;
 	}
-	
-
-	th{
-		color: white;
-		text-align: center;	
-		background-color: #00bbdb;
-		width: 100px;
-		height:35px;
-	}
-	
-
-	#container{
-		width: 700px;
-		margin: auto;
-	}
-	
-	
 	h4{	
 		text-align: center;
-		color: #00bbdb;
 		font-weight: bold;
 	}
-	
-	
 	table {
 		margin: auto;
 		border-collapse: collapse;
-		border: 3px solid white;
+		border: 1px solid white;
 		
 	}
-	
 </style>
-
 <body>
 <div id="container">
-
 <form action="updateform_after.do" method="post">
 	<input type="hidden" name="id" value="${HcLoginDto.id}"/>
-	
 	<table border="1">
 	<col width="100px">
 	<col width="600px" >

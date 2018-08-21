@@ -70,8 +70,6 @@ $(function() {
 
 
 
-
-
 <style type="text/css">
 th {
 	color: white;

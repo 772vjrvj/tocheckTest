@@ -35,8 +35,10 @@
 		font-weight: bold;
 	}
 	#container{
-		width: 606px;
-		margin: auto;
+		
+		width: 600px;
+		margin: 0 auto;
+		margin-top: 140px;
 	}
 	
 	table{

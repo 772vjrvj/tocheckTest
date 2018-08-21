@@ -17,34 +17,32 @@
 	body{
 		margin: 50px 0;
 		}
-	
+	#container{
+		width: 600px;
+		margin: 0 auto;
+		margin-top: 140px;
+	}
 	td{
 		text-align: center;	
 		height:35px;
 		font-weight: bolder;
 	}
-	
-	#firstTd{
-		text-align: center;	
-		height:35px;
-		font-weight: bolder;
-	}
-	
-	#secondTd{
-		text-align: center;	
-		height:35px;
-		font-weight: normal;
-	}
-
 	th{
 		text-align: center;	
 		width: 100px;
 		height:35px;
 	}
-	#container{
-		width: 700px;
-		margin: auto;
+	#firstTd{
+		text-align: center;	
+		height:35px;
+		font-weight: bolder;
 	}
+	#secondTd{
+		text-align: center;	
+		height:35px;
+		font-weight: normal;
+	}
+	
 	h4{	
 		text-align: center;
 		font-weight: bold;
@@ -54,7 +52,6 @@
 		border-collapse: collapse;
 		border: 1px solid white;
 	}
-	
 </style>
 <body>
 <div id="container">

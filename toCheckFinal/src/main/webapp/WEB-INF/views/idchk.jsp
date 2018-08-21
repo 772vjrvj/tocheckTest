@@ -7,7 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>아이디 중복체크</title>
-<jsp:include page="head.jsp"/>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -26,80 +25,52 @@
 		}
 		self.close();//자신의 창을 닫아준다.
 	}
-
 </script>
 <style type="text/css">
-
 	body{
+		background-color: #fd6c8b;
 		margin: 25px 0;
 		}
-		
 	td{
 		height: 30px;
 		text-align: center;		
 	}
-
 	th{
 		height: 30px;
-		color: #00bbdb;
 		text-align: center;		
 	}
-	
-
-
-
-	#calendartitle {
-		border: 1px solid #00bbdb;
-		border-collapse: collapse;
-	}
-	
-	
 	h3{	
 		text-align: center;
-		color: #00bbdb;
 		font-weight: bold;
 	}
-	
-	table {
-		margin: auto;
-		border: 3px solid white;
-	}
-	
 	#container{
 		width: 350px;
 		margin: auto;
 	}
-
-
 </style>
 </head>
 <body>
-
 <div id="container">
-<table id="calendartitle" border="1" style="border: 3px solid white;">
+<table id="calendartitle" border="1" style="border: 1px solid white;">
 <col width="100px"><col width="250px" >
 	<tr>
-		<td colspan="2" style="text-align: center;"><h3>Habit Check</h3></td>
+		<td colspan="2" style="text-align: center;"><h3>GET GOALS</h3></td>
 	</tr>	
 </table>
 
-
-<table id="calendartitle" border="1" style="border: 3px solid white;" >
+<table id="calendartitle" border="1" style="border: 1px solid white;" >
 <col width="150px"><col width="250px" >
 	<tr>
-		<th style="color:white; text-align:center; background-color: #00bbdb;" colspan="2">중복체크</th>
-	</tr>
-	<tr>
-		<th style="background-color: #d9edf7;" >아이디</th>
-		<td style="background-color: #d9edf7;">${map.id}</td>
+		<th>아이디</th>
+		<td>${map.id}</td>
 	</tr>
 	<tr>
 		<th>사용여부</th>
 		<td>${map.nycontent}</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align: right; background-color: #d9edf7;">
-			<button  class="btn btn-info btn-xs" onclick="confirm('${map.isS}')">확인</button>
+		<td colspan="2" style="text-align: center;">
+			<button id="butn" class="btn btn-default btn-xs" onclick="confirm('${map.isS}')">확인</button>
 		</td>
 	</tr>
 </table>

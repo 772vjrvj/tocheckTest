@@ -26,16 +26,10 @@
    <jsp:include page="head.jsp"/>
 <style type="text/css">
    #container{
-      width: 500px;
-      padding-top: 100px;   
-      margin: 0 auto 0 auto;
-   }
-   #calendartitle{
-      padding: 20px;
-      border-spacing: 50px 50px;
-   }
-   table{
-      border-spacing: 10px;
+      width: 400px;
+      height: 50%;
+      margin: 0 auto;
+      margin-top: 140px;   
    }
 </style>
 <script type="text/javascript">
@@ -55,9 +49,8 @@
       document.getElementsByName("id")[0].setAttribute('title', 'n');
       document.getElementsByName("id")[0].removeAttribute('readonly');
       document.getElementsByName("id")[0].focus();
-
    }
-
+   
    $(function() {
 
       $("form").submit(
@@ -72,9 +65,7 @@
                   alert("중복체크를 하세요");
                   return false;
                }
-
             });
-
 
       $("input[name]").not("[name=id]").focus(function() {
          var idTitle = document.getElementsByName("id")[0].title;
@@ -85,9 +76,6 @@
         	 
          }
       });
-
-
-
    });
 
    function pwCheckFunction() {
@@ -110,7 +98,7 @@
 <body>
    <div id="container">
       <form action="regist_after.do" method="post">
-         <table id="calendartitle" style="border: 3px solid white; border-spacing: 50px 50px">
+         <table id="calendartitle">
             <col width= 400px/>
             <tr>
                <th style="text-align: center;" colspan="3"><h1>회원 가입</h1></th>
