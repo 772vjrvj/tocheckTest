@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hk.toCheckFinal.dtos.HcDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
+import com.hk.toCheckFinal.dtos.HcWithDto;
 
 public interface IHcService {
 
@@ -13,6 +14,7 @@ public interface IHcService {
 	
 	public boolean updateCheck(HcDto dto);
 	
+	public boolean updateIntoper(HcDto dto);
 	
 	
 	public List<HcDto> getAllList(String id);
@@ -22,6 +24,12 @@ public interface IHcService {
 	public List<HcDto> getAllHcListY();
 	public List<HcDto> searchContentId(String searchContent);
 	public List<HcDto> searchContentTitle(String searchContent);
+	
+	
+	public boolean insertCalWith(HcWithDto HcWithDto);
+	public HcWithDto getCalWith(String id);
+	public boolean updateCalWith(HcWithDto HcWithDto);
+	
 	
 	
 	public HcLoginDto idChk(String id);

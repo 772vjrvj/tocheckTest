@@ -7,7 +7,7 @@
 
 		<select id="habitCalInsert" parameterType="HcDto">
 			INSERT INTO HCBOARD
-			VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N',#{recruit},'1','0','0','0')
+			VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N',#{recruit},'1','0','0',#{id})
 		</select>
 		<select id="getHabitCalList" parameterType="Map" resultType="HcDto">
 			SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
@@ -18,6 +18,29 @@
 			WHERE PKEY=#{pKey}
 		</select>
 		
+
+		<select id="updateIntoper" parameterType="HcDto">
+			UPDATE HCBOARD SET INTOPER=#{intoper}, IDLIST=#{idlist}
+			WHERE PKEY=#{pKey}
+		</select>
+
+
+		<select id="insertCalWith" parameterType="HcWithDto">
+			INSERT INTO HCWITHBOARD
+			VALUES (#{id},#{pKey})
+		</select>
+
+		<select id="getCalWith" parameterType="Map" resultType="HcWithDto">
+			SELECT ID, PKEY
+			FROM HCWITHBOARD WHERE ID=#{id}
+		</select>
+
+
+		<select id="updateCalWith" parameterType="HcWithDto" >
+			UPDATE HCWITHBOARD SET PKEY=#{pKey} WHERE ID=#{id}
+		</select>
+
+
 
 		<select id="habitCalDelete" parameterType="Map" >
 			DELETE HCBOARD

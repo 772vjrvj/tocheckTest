@@ -206,13 +206,13 @@ figure div:nth-child(3) {
 						<c:when test="${(status.count)%4 eq 1}">
 							<tr><td>
 							<div class="progress-fixed">
-							<div>ID: ${dto.id}</div>
-							<div>Term: ${dto.chkss}/${dto.term}</div>
+							<div>${dto.id}</div>
+							<div>기간: ${dto.chkss}/${dto.term}</div>
 							<div>획득포인트: ${dto.term * 100}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetailView.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">▷. ${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">▷. ${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>
@@ -223,13 +223,13 @@ figure div:nth-child(3) {
 						<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
 							<td>
 							<div class="progress-fixed">
-							<div>ID: ${dto.id}</div>
-							<div>Term: ${dto.chkss}/${dto.term}</div>
+							<div>${dto.id}</div>
+							<div>기간: ${dto.chkss}/${dto.term}</div>
 							<div>획득포인트: ${dto.term * 100}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetailView.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">▷. ${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">▷. ${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>	
@@ -240,13 +240,13 @@ figure div:nth-child(3) {
 						<c:when test="${(status.count)%4 eq 0}">
 							<td>
 							<div class="progress-fixed">
-							<div>ID: ${dto.id}</div>
-							<div>Term: ${dto.chkss}/${dto.term}</div>
+							<div>${dto.id}</div>
+							<div>기간: ${dto.chkss}/${dto.term}</div>
 							<div>획득포인트: ${dto.term * 100}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetailView.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">▷. ${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">▷. ${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>	

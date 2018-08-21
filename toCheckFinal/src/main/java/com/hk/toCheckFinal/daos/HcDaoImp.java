@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hk.toCheckFinal.dtos.HcDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
+import com.hk.toCheckFinal.dtos.HcWithDto;
 
 @Repository
 public class HcDaoImp implements IHcDao {
@@ -30,7 +31,6 @@ public class HcDaoImp implements IHcDao {
 
 	@Override
 	public HcDto getHabitCalList(String pKey) {
-
 		return sqlSession.selectOne(namespace+"getHabitCalList",pKey);
 
 	}
@@ -39,10 +39,36 @@ public class HcDaoImp implements IHcDao {
 	public boolean updateCheck(HcDto dto) {
 		int count=0;
 		count=sqlSession.update(namespace+"updateCheck", dto);
-		System.out.println("dto.getCalWith():"+dto.getCalWith());
 		return count>0?true:false;		
 	}
 
+	@Override
+	public boolean updateIntoper(HcDto dto) {
+		int count=0;
+		count=sqlSession.update(namespace+"updateIntoper", dto);
+		return count>0?true:false;		
+	}	
+
+	
+	
+	public boolean insertCalWith(HcWithDto HcWithDto) {
+		int count=0;
+		count=sqlSession.update(namespace+"insertCalWith", HcWithDto);
+		return count>0?true:false;				
+	}
+	
+	public HcWithDto getCalWith(String id){
+		return sqlSession.selectOne(namespace+"getCalWith",id);
+	}
+	
+	public boolean updateCalWith(HcWithDto HcWithDto) {
+		int count=0;
+		count=sqlSession.update(namespace+"updateCalWith", HcWithDto);
+		return count>0?true:false;				
+	}	
+	
+	
+	
 	@Override
 	public List<HcDto> getAllList(String id) {
 		List<HcDto>list=new ArrayList<HcDto>();
@@ -52,7 +78,6 @@ public class HcDaoImp implements IHcDao {
 		System.out.println(list);
 		return list;
 	}
-
 
 	@Override
 	public boolean habitCalDelete(String pKey) {

@@ -54,9 +54,19 @@ public class HcDto {
 
 
 
+	
+	
 
 
 
+
+
+	public HcDto(String pKey, int intoper, String idlist) {
+		super();
+		this.pKey = pKey;
+		this.intoper = intoper;
+		this.idlist = idlist;
+	}
 
 
 	public HcDto(String pKey, String chks, String calWith, int chkss) {
@@ -66,6 +76,7 @@ public class HcDto {
 		this.calWith = calWith;
 		this.chkss = chkss;
 	}
+
 
 
 	public String getpKey() {

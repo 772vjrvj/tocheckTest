@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hk.toCheckFinal.daos.IHcDao;
 import com.hk.toCheckFinal.dtos.HcDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
+import com.hk.toCheckFinal.dtos.HcWithDto;
 
 @Service
 public class HcServiceImp implements IHcService {
@@ -30,6 +31,29 @@ public class HcServiceImp implements IHcService {
 		return hcDao.updateCheck(dto);
 	}
 
+	@Override
+	public boolean updateIntoper(HcDto dto) {
+		return hcDao.updateIntoper(dto);
+	}	
+	
+
+	public boolean updateCalWith(HcWithDto HcWithDto) {
+		return hcDao.updateCalWith(HcWithDto);
+
+	}
+	
+	
+	
+	public boolean insertCalWith(HcWithDto HcWithDto) {
+		return hcDao.insertCalWith(HcWithDto);
+	}
+	
+	public HcWithDto getCalWith(String id){
+		return hcDao.getCalWith(id);
+	}
+	
+	
+	
 	@Override
 	public List<HcDto> getAllList(String id) {
 		return hcDao.getAllList(id);

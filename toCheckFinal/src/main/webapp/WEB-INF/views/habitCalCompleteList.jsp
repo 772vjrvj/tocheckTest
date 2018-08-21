@@ -191,12 +191,16 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 <p style="color: #245682;text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트: ${HcLoginDto.ttpoint}</p>
 <br/>
 
-<c:set var="perplus" value="0.0"/><c:set var="totalper" value="0.0"/>
+	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#00bbdb', 1000)">
+	
+	<div class="liquidGauge"><h5>전체달성률</h5></div>
+	<div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
+	<div class="liquidGauge">
+<br/>
 
-<c:choose>
+	<c:choose>
     <c:when test="${fn:length(list) eq 0}">
-
-       진행중이 리스트가 없습니다.
+	       진행중이 리스트가 없습니다.
     </c:when>
     <c:otherwise>
     	<c:forEach var="dto" items="${list}" varStatus="status">
@@ -205,10 +209,6 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
     	
     	</c:when>
     	<c:otherwise>
-    	
-
-
-    	
 			<c:set var="per" value="0.0"/>
 				<c:choose>
 					<c:when test="${dto.chkss eq 0}">
@@ -220,7 +220,6 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 				</c:choose>
 
 
-				<c:set var="perplus" value="${perplus+per}"/>
 					<div class="progress-fixed">
 				  		<figure>
 				    		<div class="progress-fixed__bar${status.index}"></div>
@@ -234,8 +233,8 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 		</c:otherwise>
 		</c:choose>
 		</c:forEach>
-					<c:set var="totalper" value="${xsize eq 0? 0:perplus/xsize}"/>
-					
+	<br/>
+	<br/>					
 
  
     </c:otherwise>
@@ -243,11 +242,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 
 	<br/>
 	<br/>
-	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${totalper}, '#00bbdb', 1000)">
-	
-	<div class="liquidGauge"><h5>전체달성률</h5></div>
-	<div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
-	<div class="liquidGauge">
+
 	<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'">이전페이지</button>
 	
 	</div>

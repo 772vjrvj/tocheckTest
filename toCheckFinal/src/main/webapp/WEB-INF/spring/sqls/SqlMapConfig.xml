@@ -9,6 +9,8 @@
 	<typeAliases>
 		<typeAlias type="com.hk.toCheckFinal.dtos.HcDto" alias="HcDto"/>
 		<typeAlias type="com.hk.toCheckFinal.dtos.HcLoginDto" alias="HcLoginDto"/>		
+		<typeAlias type="com.hk.toCheckFinal.dtos.HcWithDto" alias="HcWithDto"/>
+		
 	</typeAliases>
 	
 <!-- 쿼리를 작성할 xml파일 위치 설정	 -->

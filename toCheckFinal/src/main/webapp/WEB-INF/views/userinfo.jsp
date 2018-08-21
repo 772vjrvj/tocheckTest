@@ -14,98 +14,94 @@
 </head>
 <jsp:include page="head.jsp"/>
 <style>
-	body{
-		margin: 50px 0;
-		}
-	#container{
-		width: 600px;
-		margin: 0 auto;
-		margin-top: 140px;
-	}
-	td{
-		text-align: center;	
-		height:35px;
-		font-weight: bolder;
-	}
-	th{
-		text-align: center;	
-		width: 100px;
-		height:35px;
-	}
-	#firstTd{
-		text-align: center;	
-		height:35px;
-		font-weight: bolder;
-	}
-	#secondTd{
-		text-align: center;	
-		height:35px;
-		font-weight: normal;
-	}
-	
-	h4{	
-		text-align: center;
-		font-weight: bold;
-	}
-	table{
-		margin : auto;
-		border-collapse: collapse;
-		border: 1px solid white;
-	}
+   #container{
+      width: 600px;
+      margin: 0 auto;
+      margin-top: 140px;
+   }
+   td{
+      text-align: center;   
+      height:35px;
+      font-weight: bolder;
+   }
+   th{
+      text-align: center;   
+      width: 100px;
+      height:35px;
+   }
+   #firstTd{
+      text-align: center;   
+      height:35px;
+      font-weight: bolder;
+   }
+   #secondTd{
+      text-align: center;   
+      height:35px;
+      font-weight: normal;
+   }
+   
+   h4{   
+      text-align: center;
+      font-weight: bold;
+   }
+   table{
+      margin : auto;
+      border-collapse: collapse;
+      border: 1px solid white;
+   }
 </style>
 <body>
 <div id="container">
-	<table class="table" border="1">
-	<col width="100px">
-	<col width="600px" >
-		<tr>
-			<td colspan="2"><h4 style="text-align: center;">나의 정보</h4></td>
-		</tr>	
-	</table>
-	<table class="table" border="1">
-	<col width="100px">
-	<col width="182px">
-		<tr>
-			<th>목록</th>
-			<th style=" width: 600px; ">내용</th>
-		</tr>
-		<tr>
-			<td  id="firstTd">아이디</td>
-			<td  id="secondTd" >${HcLoginDto.id}</td>
-		</tr>
-		<tr>
-			<td id="firstTd">이름</td>
-			<td id="secondTd">${HcLoginDto.name}</td>
-		</tr>
-		<tr>
-			<td id="firstTd">주소</td>
-			<td id="secondTd">${HcLoginDto.address}</td>
-		</tr>
-		<tr>
-			<td id="firstTd">전화번호</td>
-			<td id="secondTd">${HcLoginDto.phone}</td>
-		</tr>
-		<tr>
-			<td  id="firstTd">이메일</td>
-			<td  id="secondTd">${HcLoginDto.email}</td>
-		</tr>
-		<tr>
-			<td id="firstTd">등급</td>
-			<td id="secondTd">일반회원</td>
-		</tr>
-		<tr>
-			<td id="firstTd">보유포인트</td>
-			<td id="secondTd">${HcLoginDto.ttpoint}</td>
-		</tr>
-		<tr>
-			<td colspan="2" style="text-align: right; ">
-				<button  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">수정</button>
-				<button  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">탈퇴</button>
-				<button  onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">메인</button>
-				<input type="button" value="완료된 리스트 보기" onclick="location.href='habitCalCompleteList.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">
-			</td>
-		</tr>
-	</table>
+   <table border="1">
+   <col width="600px" >
+      <tr>
+         <td><h4 style="text-align: center;">나의 정보</h4></td>
+      </tr>   
+   </table>
+   <table border="1">
+   <col width="100px">
+   <col width="500px">
+      <tr>
+         <th>목록</th>
+         <th>내용</th>
+      </tr>
+      <tr>
+         <td  id="firstTd">아이디</td>
+         <td  id="secondTd" >${HcLoginDto.id}</td>
+      </tr>
+      <tr>
+         <td id="firstTd">이름</td>
+         <td id="secondTd">${HcLoginDto.name}</td>
+      </tr>
+      <tr>
+         <td id="firstTd">주소</td>
+         <td id="secondTd">${HcLoginDto.address}</td>
+      </tr>
+      <tr>
+         <td id="firstTd">전화번호</td>
+         <td id="secondTd">${HcLoginDto.phone}</td>
+      </tr>
+      <tr>
+         <td  id="firstTd">이메일</td>
+         <td  id="secondTd">${HcLoginDto.email}</td>
+      </tr>
+      <tr>
+         <td id="firstTd">등급</td>
+         <td id="secondTd">일반회원</td>
+      </tr>
+      <tr>
+         <td id="firstTd">보유포인트</td>
+         <td id="secondTd">${HcLoginDto.ttpoint}</td>
+      </tr>
+      <tr>
+         <td colspan="2" style="text-align: right; ">
+            <button  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">수정</button>
+            <button  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">탈퇴</button>
+            <button  onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">메인</button>
+            <input type="button" value="완료된 리스트 보기" onclick="location.href='habitCalCompleteList.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">
+         </td>
+      </tr>
+   </table>
 </div>
 </body>
 </html>

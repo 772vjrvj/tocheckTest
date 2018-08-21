@@ -38,6 +38,14 @@ $(function(){
 	
 });
 
+	function myFunction1(){
+		alert("마감되었습니다.ㅠ");
+	}
+
+	
+	function myFunction2(){
+		location.href="promise.do?id=${loginId}&pKey=${dto.pKey}";
+	}
 
 </script>
 <style type="text/css">
@@ -126,6 +134,7 @@ margin: 25px 0px;
 	#calendar th{
 		width:80px;
 		background-color: #00bbdb;
+		text-align: center;
 		
 	}
 	
@@ -223,6 +232,7 @@ input:checked + .slider:before {
 
 <div id="container">
 <form action="insertCheck.do" method="post">
+<jsp:useBean id="together" class="com.hk.toCheckFinal.utils.Util"/>
 	<input type="hidden" name="pKey" value="${pKey}"/>
 	<input type="hidden" name="id" value="${id}"/>
 	
@@ -259,18 +269,58 @@ input:checked + .slider:before {
 		<col width="188px">
 			<tr>
 				<td colspan="3" style="text-align: right;">
-					<input type="button" class="btn btn-info btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
-					<input type="submit" class="btn btn-info btn-xs" value="체크완료"/>
-					<input type="button" class="btn btn-info btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
-					<input type="button" class="btn btn-info btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
-					<div style="height: 5px;"></div>
-					<jsp:useBean id="together" class="com.hk.toCheckFinal.utils.Util"/>
-					
-					<label class="switch">
-  						<input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
-  						<span class="slider round"></span>
-					</label>
-					<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>		
+					<c:choose>
+						<c:when test="${paramview eq '0'}">
+						
+							<input type="button" class="btn btn-info btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
+							<input type="submit" class="btn btn-info btn-xs" value="체크완료"/>
+							<input type="button" class="btn btn-info btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
+							<input type="button" class="btn btn-info btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
+								<div style="height: 5px;">
+								</div>	
+							<label class="switch">
+		  						<input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
+		  						<span class="slider round"></span>
+							</label>
+							<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>
+							<br/>
+						
+						</c:when>
+						<c:otherwise>
+							<input type="button" class="btn btn-info btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
+							<div style="height: 5px;">
+							</div>
+						</c:otherwise>
+					</c:choose>
+				
+					<c:choose>
+						<c:when test="${dto.withh eq 'N'}">
+						
+						</c:when>
+						<c:otherwise>
+								<c:choose>
+									<c:when test="${paramview eq 0}">
+									
+									
+									
+									</c:when>
+									<c:otherwise>
+									
+											<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
+											<input  type="button"  value="참가자보기" />
+											<input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
+											onclick=${dto.intoper eq dto.recruit ? "'myFunction1()'" : "'myFunction2()'"}/>
+											</div>			
+									
+									
+									</c:otherwise>
+								</c:choose>
+						
+						
+						
+						
+						</c:otherwise>
+					</c:choose>					
 				</td>
 			</tr>
 	</table>
@@ -331,7 +381,7 @@ input:checked + .slider:before {
 						<input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
 						
 						${Util.checked(chkss, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
-						${Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}
+						${paramview eq 0? Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+"")): "onclick='return(false)'" }
 						/></td>
 				    </c:otherwise>
 				</c:choose>

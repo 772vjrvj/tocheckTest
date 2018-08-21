@@ -7,13 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <jsp:include page="head.jsp"/>
+<style type="text/css">
+   #text{
+      width: 400px;
+      margin: 0 auto;
+      margin-top: 120px;
+      text-align: center;
+      font-size: 42px;
+      text-decoration: none;
+      color: black;
+   }
+   a:hover,a:link,a:visited {
+      text-decoration: none;
+      color: black;
+}
+</style>
 </head>
 <body>
-정관장을 구입하세요~!
-<br/>
-${loginId}님 정상적으로 로그아웃 되었습니다.<br/>
-<button type="button" onclick="location.href='index.jsp'">로그인 페이지로 가기</button>
-
-
+<div id="text"><a href="index.jsp">${loginId}님
+<br>
+정상적으로 로그아웃 되었습니다.</a></div>
 </body>
 </html>

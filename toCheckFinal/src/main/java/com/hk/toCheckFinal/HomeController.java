@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.eclipse.jdt.internal.compiler.parser.ParserBasicInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hk.toCheckFinal.dtos.HcDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
+import com.hk.toCheckFinal.dtos.HcWithDto;
 import com.hk.toCheckFinal.service.IHcService;
 import com.hk.toCheckFinal.utils.Util;
 
@@ -139,6 +139,7 @@ public class HomeController {
 
 				double count=0;
 				int xsize=0;
+				double sum=0;
 			
 				for (int k = 0; k < list.size(); k++) {
 					if(list.get(k).getEndList().toUpperCase().equals("N")) {
@@ -152,12 +153,14 @@ public class HomeController {
 					}
 					
 				}
-				System.out.println("count:"+count);
-				System.out.println("xsize:"+xsize);
-				double sum=0;
-				sum=count/xsize;
 				
-				System.out.println("sum:"+sum);
+				if(xsize==0) {
+					sum=0.0;
+				}else {
+					
+					sum=count/xsize;					
+				}
+
 				
 				view.setViewName("usermain");
 				view.addObject("sum",sum);
@@ -308,7 +311,6 @@ public class HomeController {
 			
 			int term = Integer.parseInt(HcDto.getTerm());
 
-			System.out.println("HcDto.getRecruit():"+HcDto.getRecruit());
 			
 			if(HcDto.getRecruit()==1) {
 				HcDto.setWithh("N");
@@ -324,7 +326,8 @@ public class HomeController {
 			boolean isS = hcService.habitCalInsert(HcDto);
 			
 			if(isS) {
-				return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey();
+				String paramview="0";
+				return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey()+"&paramview="+paramview;
 			}else {
 				model.addAttribute("msg","실패 했습니다.!");
 				return "error";
@@ -333,7 +336,7 @@ public class HomeController {
 		}					
 		
 		@RequestMapping(value = "/habitCalDetail.do", method = RequestMethod.GET)
-		public ModelAndView habitCalDetail(String id, String pKey,Locale locale) {
+		public ModelAndView habitCalDetail(String id, String pKey, String paramview, Locale locale) {
 			logger.info("상세보기 {}.", locale);
 			
 			ModelAndView view = new ModelAndView();
@@ -376,11 +379,13 @@ public class HomeController {
 			map.put("edYear", edYear);	
 			map.put("edMonth", edMonth);	
 			map.put("edDate", edDate);	
-			map.put("term", term);			
+			map.put("term", term);	
+			
 			
 			view.setViewName("habitCalDetail");
 			view.addObject("id",id);
 			view.addObject("pKey",pKey);
+			view.addObject("paramview",paramview);
 			
 			view.addObject("chkss",chkss);			
 			view.addObject("dto",dto);	
@@ -392,65 +397,6 @@ public class HomeController {
 		}
 			
 
-		@RequestMapping(value = "/habitCalDetailView.do", method = RequestMethod.GET)
-		public ModelAndView habitCalDetailView(String id, String pKey,Locale locale) {
-			logger.info("상세보기 {}.", locale);
-			
-			ModelAndView view = new ModelAndView();
-			Map<String, Integer> map = new HashMap<String, Integer>();
-			
-			HcDto dto = hcService.getHabitCalList(pKey);
-			HcLoginDto HcLoginDto= hcService.getUser(id);
-			System.out.println(dto);
-
-			String sYear=dto.getStDate().substring(0,4);
-			int stYear=Integer.parseInt(sYear);
-			
-			String sMonth=dto.getStDate().substring(4,6);
-			int stMonth=Integer.parseInt(sMonth);		
-			
-			String sDate=dto.getStDate().substring(6);
-			int stDate=Integer.parseInt(sDate);		
-
-			
-			
-			String eYear=dto.getEdDate().substring(0,4);
-			int edYear=Integer.parseInt(eYear);
-			
-			String eMonth=dto.getEdDate().substring(4,6);
-			int edMonth=Integer.parseInt(eMonth);
-			
-			String eDate=dto.getEdDate().substring(6);
-			int edDate=Integer.parseInt(eDate);				
-			
-			
-			int term=Integer.parseInt(dto.getTerm());
-
-					
-			
-			String []chkss=dto.getChks().split("/");
-			
-			map.put("stYear", stYear);	
-			map.put("stMonth", stMonth);	
-			map.put("stDate", stDate);	
-			map.put("edYear", edYear);	
-			map.put("edMonth", edMonth);	
-			map.put("edDate", edDate);	
-			map.put("term", term);			
-			
-			view.setViewName("habitCalDetailView");
-			view.addObject("id",id);
-			view.addObject("pKey",pKey);
-			
-			view.addObject("chkss",chkss);			
-			view.addObject("dto",dto);	
-			view.addObject("HcLoginDto",HcLoginDto);	
-			view.addObject("map",map);
-			
-			return view;			
-
-		}		
-		
 		
 		
 		@RequestMapping(value = "/habitCalDelete.do", method = RequestMethod.GET)
@@ -574,16 +520,35 @@ public class HomeController {
 					System.out.println(list);
 					
 					
+					double count=0;
 					int xsize=0;
-					for (int i = 0; i < list.size(); i++) {
-						HcDto dto=list.get(i);
-						if(dto.getEndList().toUpperCase().equals("Y")){
-							++xsize;
+					double sum=0;
+				
+					for (int k = 0; k < list.size(); k++) {
+						if(list.get(k).getEndList().toUpperCase().equals("Y")) {
+						int term = Integer.parseInt(list.get(k).getTerm());
+						System.out.println("term:"+term);
+						System.out.println("list.get(k).getChkss():"+list.get(k).getChkss());
+						System.out.println("(list.get(k).getChkss()/term)*100:"+(list.get(k).getChkss()/term)*100);
+						count +=(list.get(k).getChkss()/(double)term)*100;
+						System.out.println("count:"+count);
+						++xsize;
 						}
+						
+					}
+
+					if(xsize==0) {
+						sum=0.0;
+					}else {
+						
+						sum=count/xsize;					
 					}
 					
+					
+
+					
 					view.setViewName("habitCalCompleteList");
-					view.addObject("xsize",xsize);
+					view.addObject("sum",sum);
 					view.addObject("list",list);
 					view.addObject("HcLoginDto",HcLoginDto);
 					return view;
@@ -593,7 +558,7 @@ public class HomeController {
 
 		
 		@RequestMapping(value = "/boardlist.do", method = RequestMethod.GET)
-		public ModelAndView boardlist(String id, String role,String with, Locale locale, Model model) {
+		public ModelAndView boardlist(String id, String with, Locale locale, Model model) {
 			logger.info("함께 혼자 목록 {}.", locale);
 			ModelAndView view = new ModelAndView();
 			
@@ -608,13 +573,96 @@ public class HomeController {
 				view.setViewName("boardlistWith");
 			}
 			
+			HcLoginDto HcLoginDto= hcService.getUser(id);
 			
 			view.addObject("id",id);
-			view.addObject("role",role);
+			view.addObject("role",HcLoginDto.getRole());
 
 			return view;
 		}			
 		
+		
+		@RequestMapping(value = "/promise.do", method = RequestMethod.GET)
+		public String promise(String id, String pKey, Locale locale, Model model) {
+			System.out.println(id);
+			System.out.println(pKey);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", id);
+			map.put("pKey", pKey);
+			model.addAttribute("map", map);
+
+			return "promise";
+		}
+		
+		
+		@RequestMapping(value = "/promiseCheck.do", method = RequestMethod.POST)
+		public String promiseCheck(String id, String pKey, String promise, Locale locale, Model model) {
+			System.out.println(id);
+			System.out.println(pKey);
+			System.out.println(promise);
 			
+			if(promise.equals("on")) {
+				HcDto HcDto = hcService.getHabitCalList(pKey);
+				HcWithDto HcWithDto=hcService.getCalWith(id);
+				System.out.println(HcWithDto);
+				int intoper=HcDto.getIntoper();
+				String idlist=HcDto.getIdlist();
+				String WithGoalList;
+				
+				if(intoper>=HcDto.getRecruit()) {
+					model.addAttribute("msg","인원이 꽉찼습니다.");
+					return "error";
+				}else {
+					
+					++intoper;
+					idlist += "/"+id;
+					
+					if(HcWithDto.equals(null)) {
+						
+						boolean isS=hcService.insertCalWith(new HcWithDto(id, pKey));
+						
+						if(isS) {
+							System.out.println("값 입력 성공1");
+						}else {
+							System.out.println("값 입력 실패1");
+							model.addAttribute("msg","값 입력에 실패했습니다.");
+							return "error";							
+						}
+					
+					}else {
+						WithGoalList=HcWithDto.getWithGoalList()+"/"+pKey;
+					}
+					
+					boolean isS1=hcService.updateCalWith(new HcWithDto(id, pKey));
+					
+					boolean isS2=hcService.updateIntoper(new HcDto(pKey,intoper,idlist));
+										
+					
+					if(isS1==true && isS2==true) {
+						System.out.println("값 입력 성공2");
+						return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview=1";
+
+					}else {
+						System.out.println("값 입력 실패2");
+						model.addAttribute("msg","값 입력에 실패했습니다.2");
+						return "error";		
+					}
+					
+				}
+				
+				
+			}else {
+				model.addAttribute("msg","서약에 실패 했습니다.");
+				return "error";
+			}
+			
+			
+			
+			
+
+		}
+		
+		
+		
 	
 }
