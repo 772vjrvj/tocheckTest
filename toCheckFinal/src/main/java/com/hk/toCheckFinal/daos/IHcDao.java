@@ -4,6 +4,7 @@ package com.hk.toCheckFinal.daos;
 import java.util.List;
 
 import com.hk.toCheckFinal.dtos.HcDto;
+import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 
@@ -28,8 +29,10 @@ public interface IHcDao {
 	public HcWithDto getCalWith(String id);	
 	public boolean updateCalWith(HcWithDto HcWithDto);
 	
-	
-	
+	public boolean insertHcInChk(HcInChkDto HcInChkDto);
+	public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto);
+	public boolean updateHcInChk(HcInChkDto HcInChkDto);	
+	public boolean deleteHcInChk(String pKey);	
 	
 	public HcLoginDto idChk(String id);
 	public boolean insertUser(HcLoginDto dto);

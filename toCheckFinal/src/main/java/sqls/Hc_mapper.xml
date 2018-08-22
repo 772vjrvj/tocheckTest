@@ -27,17 +27,17 @@
 
 		<select id="insertCalWith" parameterType="HcWithDto">
 			INSERT INTO HCWITHBOARD
-			VALUES (#{id},#{pKey})
+			VALUES (#{id},#{withGoalList})
 		</select>
 
 		<select id="getCalWith" parameterType="Map" resultType="HcWithDto">
-			SELECT ID, PKEY
+			SELECT ID, WITHGOALLIST
 			FROM HCWITHBOARD WHERE ID=#{id}
 		</select>
 
 
 		<select id="updateCalWith" parameterType="HcWithDto" >
-			UPDATE HCWITHBOARD SET PKEY=#{pKey} WHERE ID=#{id}
+			UPDATE HCWITHBOARD SET WITHGOALLIST=#{withGoalList} WHERE ID=#{id}
 		</select>
 
 
@@ -60,6 +60,34 @@
 			SELECT ID
 			FROM HCMEMBER WHERE ID=#{id}	
 		</select>
+		
+		
+		
+		
+		<select id="insertHcInChk" parameterType="HcInChkDto">
+			INSERT INTO HCINCHKBOARD
+			VALUES (#{pKey},#{id},#{title},#{inChkDate},'/','/','/','/')
+<!-- 		VALUES (#{pKey},#{id},#{title},#{inChkDate},#{inChkPhoto},#{inChkTitle},#{inChkContent},#{inChkTime}) -->
+		</select>
+		
+		<select id="getHcInChk" parameterType="Map" resultType="HcInChkDto">
+			SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME
+			FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate}	
+		</select>		
+		
+		<select id="updateHcInChk" parameterType="HcInChkDto">
+			UPDATE HCINCHKBOARD SET INCHKTITLE=#{inChkTitle}, INCHKCONTENT=#{inChkContent}, INCHKPHOTO=#{inChkPhoto}, INCHKTIME=#{inChkTime}
+			WHERE Id=#{id} AND PKEY=#{pKey} AND INCHKDATE=#{inChkDate}
+		</select>		
+		
+		<select id="deleteHcInChk" parameterType="Map" >
+			DELETE HCINCHKBOARD
+			WHERE PKEY=#{pKey}
+		</select>
+
+
+
+		
 		
 <!-- insertUser -->
 		<select id="insertUser" parameterType="HcLoginDto">

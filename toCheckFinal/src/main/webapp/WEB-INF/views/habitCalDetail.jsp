@@ -34,19 +34,26 @@ $(function(){
     	}
 
     });
+    
+
+    $("#intoper").click(function(){
+        if($("#list").css("display") == "none"){
+            $("#list").show();
+        }else{
+            $("#list").hide();
+        }
+       });	
 
 	
 });
-
-	function myFunction1(){
-		alert("마감되었습니다.ㅠ");
-	}
 
 	
 	function myFunction2(){
 		location.href="promise.do?id=${loginId}&pKey=${dto.pKey}";
 	}
 
+	
+	
 </script>
 <style type="text/css">
 *{font-family: 'Roboto', sans-serif;}
@@ -95,7 +102,7 @@ $(function(){
   background: #9faab7;
 }
 .option-input:checked {
-  background: #00bbdb;
+  background: #fd6c8b;
 }
 .option-input:checked::before {
   height: 40px;
@@ -128,12 +135,12 @@ margin: 25px 0px;
 
 <style type="text/css">
 	#calendar{
-		border: 1px solid #00bbdb;
+		border: 1px solid #fd6c8b;
 		border-collapse: collapse;
 	}
 	#calendar th{
 		width:80px;
-		background-color: #00bbdb;
+		background-color: #fd6c8b;
 		text-align: center;
 		
 	}
@@ -145,6 +152,20 @@ margin: 25px 0px;
 		vertical-align: top;
 	}
 
+	#list{
+	width:180px;
+	height:100px;
+
+	text-align: left;
+	vertical-align: top;
+	background-color: pink;
+	position: absolute;
+	left:150px;
+	top:0px;
+	display: none;
+	
+	}
+
 	#container{
 	width: 600px;
 	margin: auto;
@@ -153,7 +174,7 @@ margin: 25px 0px;
 	
 	
 	#calendartitle {
-		border: 1px solid #00bbdb;
+		border: 1px solid #fd6c8b;
 		border-collapse: collapse;
 		height: 90px;
 		margin: auto;
@@ -204,11 +225,11 @@ margin: 25px 0px;
 }
 
 input:checked + .slider {
-  background-color: #00bbdb;
+  background-color: #fd6c8b;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #00bbdb;
+  box-shadow: 0 0 1px #fd6c8b;
 }
 
 input:checked + .slider:before {
@@ -244,15 +265,14 @@ input:checked + .slider:before {
 	<tr><th colspan="3" style="color:#245682; text-align: center; font-size: 20px;">${dto.title}</th></tr>
 	<tr><td style="color: white">&nbsp;</td></tr>
 	</table>	
-	
-	<table id="calendartitle" border="1" style="border: 3px solid #00bbdb;">
+	<table id="calendartitle" border="1" style="border: 3px solid #fd6c8b;">
 		<col width="188px">
 		<col width="188px">
 		<col width="188px">
 			<tr>
-				<th style="background-color:#00bbdb; color:white; text-align: center;">시작일</th>
-				<th style="background-color:#00bbdb; color:white; text-align: center;">종료일</th>
-				<th style="background-color:#00bbdb; color:white; text-align: center;">기간</th>
+				<th style="background-color:#fd6c8b; color:white; text-align: center;">시작일</th>
+				<th style="background-color:#fd6c8b; color:white; text-align: center;">종료일</th>
+				<th style="background-color:#fd6c8b; color:white; text-align: center;">기간</th>
 			</tr>
 			<tr>
 				<td style="color:#245682; text-align: center;">${map.stYear}년 ${map.stMonth}월 ${map.stDate}일</td>
@@ -263,6 +283,7 @@ input:checked + .slider:before {
 				<td colspan="3" style="color:#245682; text-align: center;">${dto.content}</td>				
 			</tr>
 	</table>
+	
 	<table id="calendartitle" style="border-collapse: collapse; border: white; height: 30px;">
 		<col width="188px">
 		<col width="188px">
@@ -298,27 +319,48 @@ input:checked + .slider:before {
 						
 						</c:when>
 						<c:otherwise>
-								<c:choose>
-									<c:when test="${paramview eq 0}">
+							<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
+							<input  type="button" id="intoper"  value="참가자보기" />
+							
+							<c:choose>
+								<c:when test="${paramview eq 0}">
 									
-									
-									
-									</c:when>
-									<c:otherwise>
-									
-											<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
-											<input  type="button"  value="참가자보기" />
-											<input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
-											onclick=${dto.intoper eq dto.recruit ? "'myFunction1()'" : "'myFunction2()'"}/>
-											</div>			
-									
-									
-									</c:otherwise>
-								</c:choose>
-						
-						
-						
-						
+								</c:when>
+								<c:otherwise>
+								
+										<c:choose>
+											<c:when test="${loginId eq dto.id}">
+												
+											</c:when>
+											<c:otherwise>   
+												<c:set var="sameValue" value="0"/>
+												<c:forEach var="idlist" items="${idlist}" varStatus="status">
+													<c:choose>
+														<c:when test="${idlist eq loginId}">
+															<c:set var="sameValue" value="1"/>
+														</c:when>
+														<c:otherwise>
+														
+														</c:otherwise>	
+													</c:choose>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${sameValue eq 0}">
+														<input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
+														${dto.intoper eq dto.recruit ? 'disabled':''}
+														onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"}/>													
+													</c:when>
+													<c:otherwise>
+														<input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참가중'}" 
+														disabled/>
+													</c:otherwise>
+												</c:choose>				
+											</c:otherwise>
+										</c:choose>
+							
+								</c:otherwise>
+							</c:choose>
+							</div>
 						</c:otherwise>
 					</c:choose>					
 				</td>
@@ -375,7 +417,7 @@ input:checked + .slider:before {
 				<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
 				<c:choose>
 				    <c:when test="${(i==map.stYear&&j==map.stMonth&&n<map.stDate)||(i==map.edYear&&j==map.edMonth&&n>map.edDate)}">
-				    	</td>
+				    	
 				    </c:when>
 					<c:otherwise>
 						<input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
@@ -384,15 +426,17 @@ input:checked + .slider:before {
 						${paramview eq 0? Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+"")): "onclick='return(false)'" }
 						/></td>
 				    </c:otherwise>
+				    
 				</c:choose>
 				<c:choose>
-<%-- 				<c:when test="${(dayOfWeek.calGet1(i,j,1)-1+n)%7 eq 0}"> --%>
 					<c:when test="${Util.trtd(dayOfWeek.calGet1(i,j,1),n)}">
 						</td><tr>
 					</c:when>
+					<c:otherwise>
+						</td>
+					</c:otherwise>
 				</c:choose>
 		</c:forEach>
-<%-- 	<c:forEach var = "m" begin = "0" end = "${(7-((dayOfWeek.calGet1(i,j,1)-1+lastDay.calGet2(i,j,1))%7))%7-1}"> --%>
 		<c:forEach var = "m" begin = "0" end = "${Util.blank(dayOfWeek.calGet1(i,j,1),lastDay.calGet2(i,j,1))}">
 		
 			<td>&nbsp;</td>
@@ -402,6 +446,19 @@ input:checked + .slider:before {
 		</c:forEach>
 		</c:forEach>
 </form>
+</div>
+<div id="list" >
+	<c:forEach var="idlist" items="${idlist}" varStatus="status">
+		<c:choose>
+			<c:when test="${status.index eq 0}">
+				<span style="color: red">▶</span>${idlist} 
+			</c:when>
+			<c:otherwise>
+				<span style="color: blue">▶</span>${idlist}
+			</c:otherwise>			
+		</c:choose>
+	<br/>
+	</c:forEach>
 </div>
 </body>
 </html>

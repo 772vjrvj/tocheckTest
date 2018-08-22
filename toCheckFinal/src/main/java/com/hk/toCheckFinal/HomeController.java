@@ -1,6 +1,7 @@
 package com.hk.toCheckFinal;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hk.toCheckFinal.dtos.HcDto;
+import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 import com.hk.toCheckFinal.service.IHcService;
@@ -325,7 +327,39 @@ public class HomeController {
 			
 			boolean isS = hcService.habitCalInsert(HcDto);
 			
+			
+			
 			if(isS) {
+				
+				
+				for (int i = 0; i < term; i++) {
+					
+					
+					int year1 = Integer.parseInt(year);
+					int month1 = Integer.parseInt(month);
+					int day1 = Integer.parseInt(date);
+					
+					
+					Calendar cal = Calendar.getInstance();
+					
+					cal.set(year1, month1-1, day1);
+					
+					cal.add(Calendar.DATE, i);
+					
+					SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+					String inChkDate =SimpleDateFormat.format(cal.getTime());
+					
+					System.out.println("inChkDate:"+inChkDate);
+					boolean isS1 = hcService.insertHcInChk(new HcInChkDto(pKey, HcDto.getId(),HcDto.getTitle(), inChkDate));
+					
+					
+					if(isS1) {
+						
+					}else {
+						model.addAttribute("msg","실패 했습니다.!");
+						return "error";
+					}
+				}
 				String paramview="0";
 				return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey()+"&paramview="+paramview;
 			}else {
@@ -372,6 +406,7 @@ public class HomeController {
 					
 			
 			String []chkss=dto.getChks().split("/");
+			String []idlist=dto.getIdlist().split("/");
 			
 			map.put("stYear", stYear);	
 			map.put("stMonth", stMonth);	
@@ -387,7 +422,8 @@ public class HomeController {
 			view.addObject("pKey",pKey);
 			view.addObject("paramview",paramview);
 			
-			view.addObject("chkss",chkss);			
+			view.addObject("chkss",chkss);		
+			view.addObject("idlist",idlist);					
 			view.addObject("dto",dto);	
 			view.addObject("HcLoginDto",HcLoginDto);	
 			view.addObject("map",map);
@@ -407,20 +443,16 @@ public class HomeController {
 			HcLoginDto HcLoginDto= hcService.getUser(id);
 			String nory=dto.getEndList();
 			boolean isS  = hcService.habitCalDelete(pKey);
-				
+			boolean isS1  = hcService.deleteHcInChk(pKey);	
 			
 			
-			if(isS){
+			if(isS == true && isS1==true){
 
 				if(nory.equals("N")){
-					
 					return "redirect:main.do?id="+HcLoginDto.getId()+"&role="+HcLoginDto.getRole();
-
 				}else{
 					return "redirect:habitCalCompleteList.do?id="+HcLoginDto.getId();
-
 				}
-						
 			}else{
 				model.addAttribute("msg","삭제에 실패 했습니다.");
 				return "error";
@@ -604,65 +636,55 @@ public class HomeController {
 			if(promise.equals("on")) {
 				HcDto HcDto = hcService.getHabitCalList(pKey);
 				HcWithDto HcWithDto=hcService.getCalWith(id);
-				System.out.println(HcWithDto);
+				
+				System.out.println("HcWithDto:"+HcWithDto);
 				int intoper=HcDto.getIntoper();
 				String idlist=HcDto.getIdlist();
-				String WithGoalList;
+				String withGoalList;
 				
 				if(intoper>=HcDto.getRecruit()) {
 					model.addAttribute("msg","인원이 꽉찼습니다.");
 					return "error";
 				}else {
-					
+					boolean isS;
+					boolean isS2;
 					++intoper;
 					idlist += "/"+id;
 					
-					if(HcWithDto.equals(null)) {
-						
-						boolean isS=hcService.insertCalWith(new HcWithDto(id, pKey));
-						
-						if(isS) {
-							System.out.println("값 입력 성공1");
-						}else {
-							System.out.println("값 입력 실패1");
-							model.addAttribute("msg","값 입력에 실패했습니다.");
-							return "error";							
-						}
-					
+					if(HcWithDto==null) {
+						withGoalList=pKey;
+						isS=hcService.insertCalWith(new HcWithDto(id, withGoalList));
 					}else {
-						WithGoalList=HcWithDto.getWithGoalList()+"/"+pKey;
+						withGoalList=HcWithDto.getWithGoalList()+"/"+pKey;
+						isS=hcService.updateCalWith(new HcWithDto(id, withGoalList));
+						System.out.println("withGoalList:"+withGoalList);
 					}
 					
-					boolean isS1=hcService.updateCalWith(new HcWithDto(id, pKey));
 					
-					boolean isS2=hcService.updateIntoper(new HcDto(pKey,intoper,idlist));
+					isS2=hcService.updateIntoper(new HcDto(pKey,intoper,idlist));
 										
 					
-					if(isS1==true && isS2==true) {
-						System.out.println("값 입력 성공2");
+					if(isS==true && isS2==true) {
+						System.out.println("값 입력 성공");
 						return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview=1";
 
 					}else {
-						System.out.println("값 입력 실패2");
+						System.out.println("값 입력 실패");
 						model.addAttribute("msg","값 입력에 실패했습니다.2");
 						return "error";		
 					}
 					
 				}
-				
-				
+								
 			}else {
 				model.addAttribute("msg","서약에 실패 했습니다.");
 				return "error";
 			}
 			
-			
-			
-			
 
 		}
 		
-		
+
 		
 	
 }

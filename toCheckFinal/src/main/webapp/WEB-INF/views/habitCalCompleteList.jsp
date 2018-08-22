@@ -32,7 +32,7 @@
 	h4{
 		text-align: center;
 		margin: 5px auto;
-		color: #00bbdb;
+		color: black;
 		font-weight: bold;
 		
 	}
@@ -40,7 +40,7 @@
 	h6,h5 {
 		text-align: center;
 		margin: 5px auto;
-		color: #00bbdb;
+		color: #fd6c8b;
 		font-weight: bold;
 		
 	}
@@ -78,7 +78,7 @@
 
 	/* 파란 게이지 막대 */
 	.progress-fixed div[class*=progress-fixed__bar] {
-		background: #00bbdb;
+		background: #fd6c8b;
 	}
 
 	/* 퍼센트 글씨 */
@@ -166,7 +166,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 	  
 	  var gauge = liquidFillGaugeDefaultSettings();
 	  gauge.circleColor = color;
-	  gauge.textColor = "#00bbdb";
+	  gauge.textColor = "#fd6c8b";
 	  gauge.waveTextColor = "#fff";
 	  gauge.waveColor = color;
 	  gauge.circleThickness = 0.1;
@@ -191,7 +191,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 <p style="color: #245682;text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트: ${HcLoginDto.ttpoint}</p>
 <br/>
 
-	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#00bbdb', 1000)">
+	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">
 	
 	<div class="liquidGauge"><h5>전체달성률</h5></div>
 	<div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>

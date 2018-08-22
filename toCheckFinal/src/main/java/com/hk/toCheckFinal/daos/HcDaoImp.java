@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.toCheckFinal.dtos.HcDto;
+import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 
@@ -53,6 +54,7 @@ public class HcDaoImp implements IHcDao {
 	
 	public boolean insertCalWith(HcWithDto HcWithDto) {
 		int count=0;
+		System.out.println(HcWithDto+"ss");
 		count=sqlSession.update(namespace+"insertCalWith", HcWithDto);
 		return count>0?true:false;				
 	}
@@ -108,7 +110,7 @@ public class HcDaoImp implements IHcDao {
 		list=sqlSession.selectList(namespace+"getAllHcList");
 		return list;
 	}
-
+	@Override
 	public List<HcDto> getAllHcListY() {
 		List<HcDto>list=new ArrayList<HcDto>();
 
@@ -117,10 +119,32 @@ public class HcDaoImp implements IHcDao {
 	}	
 	
 	
-	
-	
-	
-	
+
+	@Override
+	public boolean insertHcInChk(HcInChkDto HcInChkDto) {
+		int count = 0;
+		count=sqlSession.insert(namespace+"insertHcInChk", HcInChkDto);
+		return count>0?true:false;		
+	}
+	@Override
+	public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
+		List<HcInChkDto>list=new ArrayList<HcInChkDto>();
+		list=sqlSession.selectList(namespace+"getHcInChk",HcInChkDto);
+		return list;		
+	}
+	@Override
+	public boolean updateHcInChk(HcInChkDto HcInChkDto) {
+		int count = 0;
+		count=sqlSession.update(namespace+"updateHcInChk", HcInChkDto);
+		return count > 0 ? true : false;
+	}
+	@Override
+	public boolean deleteHcInChk(String pKey) {
+		int count = 0;
+		count=sqlSession.update(namespace+"deleteHcInChk", pKey);
+		return count > 0 ? true : false;
+	}
+
 	@Override
 	public List<HcDto> searchContentId(String searchContent) {
 		List<HcDto>list=new ArrayList<HcDto>();

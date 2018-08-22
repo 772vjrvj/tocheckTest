@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.toCheckFinal.daos.IHcDao;
 import com.hk.toCheckFinal.dtos.HcDto;
+import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 
@@ -36,6 +37,7 @@ public class HcServiceImp implements IHcService {
 		return hcDao.updateIntoper(dto);
 	}	
 	
+	@Override
 
 	public boolean updateCalWith(HcWithDto HcWithDto) {
 		return hcDao.updateCalWith(HcWithDto);
@@ -43,10 +45,12 @@ public class HcServiceImp implements IHcService {
 	}
 	
 	
+	@Override
 	
 	public boolean insertCalWith(HcWithDto HcWithDto) {
 		return hcDao.insertCalWith(HcWithDto);
 	}
+	@Override
 	
 	public HcWithDto getCalWith(String id){
 		return hcDao.getCalWith(id);
@@ -94,6 +98,33 @@ public class HcServiceImp implements IHcService {
 		return hcDao.idChk(id);
 	}
 
+	@Override
+	
+	public boolean insertHcInChk(HcInChkDto HcInChkDto) {
+		
+		return hcDao.insertHcInChk(HcInChkDto);
+	}
+	@Override
+	
+	public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
+		
+		return hcDao.getHcInChk(HcInChkDto);
+	}
+	@Override
+	
+	public boolean updateHcInChk(HcInChkDto HcInChkDto) {
+		
+		return hcDao.updateHcInChk(HcInChkDto);
+	}
+	
+	
+	public boolean deleteHcInChk(String pKey) {
+		return hcDao.deleteHcInChk(pKey);
+
+	}
+
+	
+	
 //insertUser	
 	@Override
 	public boolean insertUser(HcLoginDto dto) {
