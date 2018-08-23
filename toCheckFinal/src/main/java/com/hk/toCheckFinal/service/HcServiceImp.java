@@ -32,32 +32,25 @@ public class HcServiceImp implements IHcService {
       return hcDao.updateCheck(dto);
    }
 
-<<<<<<< HEAD
    @Override
    public boolean updateIntoper(HcDto dto) {
       return hcDao.updateIntoper(dto);
    }   
    
-=======
-	@Override
-	public boolean updateIntoper(HcDto dto) {
-		return hcDao.updateIntoper(dto);
-	}	
-	
-	@Override
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
+   @Override
 
    public boolean updateCalWith(HcWithDto HcWithDto) {
       return hcDao.updateCalWith(HcWithDto);
 
-<<<<<<< HEAD
    }
    
    
+   @Override
    
    public boolean insertCalWith(HcWithDto HcWithDto) {
       return hcDao.insertCalWith(HcWithDto);
    }
+   @Override
    
    public HcWithDto getCalWith(String id){
       return hcDao.getCalWith(id);
@@ -69,28 +62,6 @@ public class HcServiceImp implements IHcService {
    public List<HcDto> getAllList(String id) {
       return hcDao.getAllList(id);
    }
-=======
-	}
-	
-	
-	@Override
-	
-	public boolean insertCalWith(HcWithDto HcWithDto) {
-		return hcDao.insertCalWith(HcWithDto);
-	}
-	@Override
-	
-	public HcWithDto getCalWith(String id){
-		return hcDao.getCalWith(id);
-	}
-	
-	
-	
-	@Override
-	public List<HcDto> getAllList(String id) {
-		return hcDao.getAllList(id);
-	}
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
    @Override
    public boolean habitCalDelete(String pKey) {
@@ -127,46 +98,38 @@ public class HcServiceImp implements IHcService {
       return hcDao.idChk(id);
    }
 
-<<<<<<< HEAD
+   @Override
+   
+   public boolean insertHcInChk(HcInChkDto HcInChkDto) {
+      
+      return hcDao.insertHcInChk(HcInChkDto);
+   }
+   @Override
+   
+   public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
+      
+      return hcDao.getHcInChk(HcInChkDto);
+   }
+   @Override
+   
+   public boolean updateHcInChk(HcInChkDto HcInChkDto) {
+      
+      return hcDao.updateHcInChk(HcInChkDto);
+   }
+   
+   @Override   
+   public boolean deleteHcInChk(String pKey) {
+      return hcDao.deleteHcInChk(pKey);
+
+   }
+
+   
+   
 //insertUser   
    @Override
    public boolean insertUser(HcLoginDto dto) {
       return hcDao.insertUser(dto);
    }
-=======
-	@Override
-	
-	public boolean insertHcInChk(HcInChkDto HcInChkDto) {
-		
-		return hcDao.insertHcInChk(HcInChkDto);
-	}
-	@Override
-	
-	public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
-		
-		return hcDao.getHcInChk(HcInChkDto);
-	}
-	@Override
-	
-	public boolean updateHcInChk(HcInChkDto HcInChkDto) {
-		
-		return hcDao.updateHcInChk(HcInChkDto);
-	}
-	
-	
-	public boolean deleteHcInChk(String pKey) {
-		return hcDao.deleteHcInChk(pKey);
-
-	}
-
-	
-	
-//insertUser	
-	@Override
-	public boolean insertUser(HcLoginDto dto) {
-		return hcDao.insertUser(dto);
-	}
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
    
    @Override

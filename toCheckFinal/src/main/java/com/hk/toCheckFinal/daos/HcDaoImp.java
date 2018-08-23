@@ -50,9 +50,8 @@ public class HcDaoImp implements IHcDao {
       return count>0?true:false;      
    }   
 
-<<<<<<< HEAD
    
-   
+   @Override   
    public boolean insertCalWith(HcWithDto HcWithDto) {
       int count=0;
       System.out.println(HcWithDto+"ss");
@@ -60,10 +59,12 @@ public class HcDaoImp implements IHcDao {
       return count>0?true:false;            
    }
    
+   @Override   
    public HcWithDto getCalWith(String id){
       return sqlSession.selectOne(namespace+"getCalWith",id);
    }
    
+   @Override   
    public boolean updateCalWith(HcWithDto HcWithDto) {
       int count=0;
       count=sqlSession.update(namespace+"updateCalWith", HcWithDto);
@@ -81,38 +82,6 @@ public class HcDaoImp implements IHcDao {
       System.out.println(list);
       return list;
    }
-=======
-	
-	
-	public boolean insertCalWith(HcWithDto HcWithDto) {
-		int count=0;
-		System.out.println(HcWithDto+"ss");
-		count=sqlSession.update(namespace+"insertCalWith", HcWithDto);
-		return count>0?true:false;				
-	}
-	
-	public HcWithDto getCalWith(String id){
-		return sqlSession.selectOne(namespace+"getCalWith",id);
-	}
-	
-	public boolean updateCalWith(HcWithDto HcWithDto) {
-		int count=0;
-		count=sqlSession.update(namespace+"updateCalWith", HcWithDto);
-		return count>0?true:false;				
-	}	
-	
-	
-	
-	@Override
-	public List<HcDto> getAllList(String id) {
-		List<HcDto>list=new ArrayList<HcDto>();
-		System.out.println("ddd");
-		list=sqlSession.selectList(namespace+"getAllList",id);
-		
-		System.out.println(list);
-		return list;
-	}
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
    @Override
    public boolean habitCalDelete(String pKey) {
@@ -140,77 +109,50 @@ public class HcDaoImp implements IHcDao {
    public List<HcDto> getAllHcList() {
       List<HcDto>list=new ArrayList<HcDto>();
 
-<<<<<<< HEAD
       list=sqlSession.selectList(namespace+"getAllHcList");
       return list;
    }
-
+   @Override
    public List<HcDto> getAllHcListY() {
       List<HcDto>list=new ArrayList<HcDto>();
-=======
-		list=sqlSession.selectList(namespace+"getAllHcList");
-		return list;
-	}
-	@Override
-	public List<HcDto> getAllHcListY() {
-		List<HcDto>list=new ArrayList<HcDto>();
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
-<<<<<<< HEAD
       list=sqlSession.selectList(namespace+"getAllHcListY");
       return list;
    }   
    
    
-   
-   
-   
-   
+
+   @Override
+   public boolean insertHcInChk(HcInChkDto HcInChkDto) {
+      int count = 0;
+      count=sqlSession.insert(namespace+"insertHcInChk", HcInChkDto);
+      return count>0?true:false;      
+   }
+   @Override
+   public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
+      List<HcInChkDto>list=new ArrayList<HcInChkDto>();
+      list=sqlSession.selectList(namespace+"getHcInChk",HcInChkDto);
+      return list;      
+   }
+   @Override
+   public boolean updateHcInChk(HcInChkDto HcInChkDto) {
+      int count = 0;
+      count=sqlSession.update(namespace+"updateHcInChk", HcInChkDto);
+      return count > 0 ? true : false;
+   }
+   @Override
+   public boolean deleteHcInChk(String pKey) {
+      int count = 0;
+      count=sqlSession.update(namespace+"deleteHcInChk", pKey);
+      return count > 0 ? true : false;
+   }
+
    @Override
    public List<HcDto> searchContentId(String searchContent) {
       List<HcDto>list=new ArrayList<HcDto>();
       list=sqlSession.selectList(namespace+"searchContentId",searchContent);
       return list;
    }
-=======
-		list=sqlSession.selectList(namespace+"getAllHcListY");
-		return list;
-	}	
-	
-	
-
-	@Override
-	public boolean insertHcInChk(HcInChkDto HcInChkDto) {
-		int count = 0;
-		count=sqlSession.insert(namespace+"insertHcInChk", HcInChkDto);
-		return count>0?true:false;		
-	}
-	@Override
-	public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
-		List<HcInChkDto>list=new ArrayList<HcInChkDto>();
-		list=sqlSession.selectList(namespace+"getHcInChk",HcInChkDto);
-		return list;		
-	}
-	@Override
-	public boolean updateHcInChk(HcInChkDto HcInChkDto) {
-		int count = 0;
-		count=sqlSession.update(namespace+"updateHcInChk", HcInChkDto);
-		return count > 0 ? true : false;
-	}
-	@Override
-	public boolean deleteHcInChk(String pKey) {
-		int count = 0;
-		count=sqlSession.update(namespace+"deleteHcInChk", pKey);
-		return count > 0 ? true : false;
-	}
-
-	@Override
-	public List<HcDto> searchContentId(String searchContent) {
-		List<HcDto>list=new ArrayList<HcDto>();
-		list=sqlSession.selectList(namespace+"searchContentId",searchContent);
-		return list;
-	}
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
    @Override
    public List<HcDto> searchContentTitle(String searchContent) {
