@@ -153,17 +153,7 @@ margin: 25px 0px;
    }
 
    #list{
-   width:180px;
-   height:100px;
-
-   text-align: left;
-   vertical-align: top;
-   background-color: pink;
-   position: absolute;
-   left:150px;
-   top:0px;
    display: none;
-   
    }
 
    #container{
@@ -321,7 +311,19 @@ input:checked + .slider:before {
                   <c:otherwise>
                      <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
                      <input  type="button" id="intoper"  value="참가자보기" />
-                     
+	                     <p id="list" >
+						   <c:forEach var="idlist" items="${idlist}" varStatus="status">
+						      <c:choose>
+						         <c:when test="${status.index eq 0}">
+						            <span style="color: red">▶</span>${idlist} 
+						         </c:when>
+						         <c:otherwise>
+						            <span style="color: blue">▶</span>${idlist}
+						         </c:otherwise>         
+						      </c:choose>
+						   <br/>
+						   </c:forEach>
+						</p>
                      <c:choose>
                         <c:when test="${paramview eq 0}">
                            
@@ -446,19 +448,6 @@ input:checked + .slider:before {
       </c:forEach>
       </c:forEach>
 </form>
-</div>
-<div id="list" >
-   <c:forEach var="idlist" items="${idlist}" varStatus="status">
-      <c:choose>
-         <c:when test="${status.index eq 0}">
-            <span style="color: red">▶</span>${idlist} 
-         </c:when>
-         <c:otherwise>
-            <span style="color: blue">▶</span>${idlist}
-         </c:otherwise>         
-      </c:choose>
-   <br/>
-   </c:forEach>
 </div>
 </body>
 </html>
