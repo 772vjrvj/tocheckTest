@@ -25,23 +25,44 @@
       </select>
 
 
+<<<<<<< HEAD
       <select id="insertCalWith" parameterType="HcWithDto">
          INSERT INTO HCWITHBOARD
          VALUES (#{id},#{withGoalList})
       </select>
+=======
+		<select id="insertCalWith" parameterType="HcWithDto">
+			INSERT INTO HCWITHBOARD
+			VALUES (#{id},#{withGoalList})
+		</select>
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
+<<<<<<< HEAD
       <select id="getCalWith" parameterType="Map" resultType="HcWithDto">
          SELECT ID, PKEY
          FROM HCWITHBOARD WHERE ID=#{id}
       </select>
+=======
+		<select id="getCalWith" parameterType="Map" resultType="HcWithDto">
+			SELECT ID, WITHGOALLIST
+			FROM HCWITHBOARD WHERE ID=#{id}
+		</select>
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
 
+<<<<<<< HEAD
       <select id="updateCalWith" parameterType="HcWithDto" >
          UPDATE HCWITHBOARD SET PKEY=#{withGoalList} WHERE ID=#{id}
       </select>
+=======
+		<select id="updateCalWith" parameterType="HcWithDto" >
+			UPDATE HCWITHBOARD SET WITHGOALLIST=#{withGoalList} WHERE ID=#{id}
+		</select>
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
 
 
+<<<<<<< HEAD
       <select id="habitCalDelete" parameterType="Map" >
          DELETE HCBOARD
          WHERE PKEY=#{pKey}
@@ -61,6 +82,55 @@
          FROM HCMEMBER WHERE ID=#{id}   
       </select>
       
+=======
+		<select id="habitCalDelete" parameterType="Map" >
+			DELETE HCBOARD
+			WHERE PKEY=#{pKey}
+		</select>
+	
+	
+		<select id="updateEndList" parameterType="HcDto" >
+			UPDATE HCBOARD SET ENDLIST=#{endList} WHERE PKEY=#{pKey}
+		</select>
+		<select id="getAllList" parameterType="String" resultType="HcDto">
+			SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS
+			FROM HCBOARD WHERE ID=#{id}
+		</select>
+	
+		<select id="idChk" parameterType="map" resultType="HcLoginDto">
+			SELECT ID
+			FROM HCMEMBER WHERE ID=#{id}	
+		</select>
+		
+		
+		
+		
+		<select id="insertHcInChk" parameterType="HcInChkDto">
+			INSERT INTO HCINCHKBOARD
+			VALUES (#{pKey},#{id},#{title},#{inChkDate},'/','/','/','/')
+<!-- 		VALUES (#{pKey},#{id},#{title},#{inChkDate},#{inChkPhoto},#{inChkTitle},#{inChkContent},#{inChkTime}) -->
+		</select>
+		
+		<select id="getHcInChk" parameterType="Map" resultType="HcInChkDto">
+			SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME
+			FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate}	
+		</select>		
+		
+		<select id="updateHcInChk" parameterType="HcInChkDto">
+			UPDATE HCINCHKBOARD SET INCHKTITLE=#{inChkTitle}, INCHKCONTENT=#{inChkContent}, INCHKPHOTO=#{inChkPhoto}, INCHKTIME=#{inChkTime}
+			WHERE Id=#{id} AND PKEY=#{pKey} AND INCHKDATE=#{inChkDate}
+		</select>		
+		
+		<select id="deleteHcInChk" parameterType="Map" >
+			DELETE HCINCHKBOARD
+			WHERE PKEY=#{pKey}
+		</select>
+
+
+
+		
+		
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 <!-- insertUser -->
       <select id="insertUser" parameterType="HcLoginDto">
          INSERT INTO HCMEMBER VALUES

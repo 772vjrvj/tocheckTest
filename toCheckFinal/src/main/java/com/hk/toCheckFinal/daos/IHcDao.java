@@ -4,6 +4,7 @@ package com.hk.toCheckFinal.daos;
 import java.util.List;
 
 import com.hk.toCheckFinal.dtos.HcDto;
+import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 
@@ -24,6 +25,7 @@ public interface IHcDao {
    public List<HcDto> searchContentId(String searchContent);
    public List<HcDto> searchContentTitle(String searchContent);
 
+<<<<<<< HEAD
    public boolean insertCalWith(HcWithDto HcWithDto);
    public HcWithDto getCalWith(String id);   
    public boolean updateCalWith(HcWithDto HcWithDto);
@@ -41,3 +43,24 @@ public interface IHcDao {
    public boolean updateRoleUser(String id, String role,String enabled);
    
 }
+=======
+	public boolean insertCalWith(HcWithDto HcWithDto);
+	public HcWithDto getCalWith(String id);	
+	public boolean updateCalWith(HcWithDto HcWithDto);
+	
+	public boolean insertHcInChk(HcInChkDto HcInChkDto);
+	public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto);
+	public boolean updateHcInChk(HcInChkDto HcInChkDto);	
+	public boolean deleteHcInChk(String pKey);	
+	
+	public HcLoginDto idChk(String id);
+	public boolean insertUser(HcLoginDto dto);
+	public HcLoginDto getLogin(String id, String password);
+	public HcLoginDto getUser(String id);
+	public boolean updateUser(HcLoginDto dto);
+	public boolean deleUser(String id);
+	public List<HcLoginDto> getAllUser();
+	public boolean updateRoleUser(String id, String role,String enabled);
+	
+}
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git

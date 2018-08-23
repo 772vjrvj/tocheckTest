@@ -49,7 +49,6 @@ public class Util {
 
 		SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String edDate =SimpleDateFormat.format(cal.getTime());
-		System.out.println(edDate);
 
 		return edDate;
 	}
@@ -79,7 +78,6 @@ public class Util {
 				chechked="checked";
 			}
 		}
-		System.out.println(chechked);
 		
 		return chechked;
 	}

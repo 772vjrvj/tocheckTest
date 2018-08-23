@@ -1,6 +1,7 @@
 package com.hk.toCheckFinal;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hk.toCheckFinal.dtos.HcDto;
+import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 import com.hk.toCheckFinal.service.IHcService;
@@ -311,6 +313,7 @@ public class HomeController {
          
          int term = Integer.parseInt(HcDto.getTerm());
 
+<<<<<<< HEAD
          
          if(HcDto.getRecruit()==1) {
             HcDto.setWithh("N");
@@ -345,6 +348,74 @@ public class HomeController {
          HcDto dto = hcService.getHabitCalList(pKey);
          HcLoginDto HcLoginDto= hcService.getUser(id);
          System.out.println(dto);
+=======
+			
+			if(HcDto.getRecruit()==1) {
+				HcDto.setWithh("N");
+				HcDto.setCalWith("N");
+			}else {
+				HcDto.setWithh("Y");
+				HcDto.setCalWith("Y");
+			}
+			
+			System.out.println(HcDto);
+			System.out.println("wwwwww");
+			
+			boolean isS = hcService.habitCalInsert(HcDto);
+			
+			
+			
+			if(isS) {
+				
+				
+				for (int i = 0; i < term; i++) {
+					
+					
+					int year1 = Integer.parseInt(year);
+					int month1 = Integer.parseInt(month);
+					int day1 = Integer.parseInt(date);
+					
+					
+					Calendar cal = Calendar.getInstance();
+					
+					cal.set(year1, month1-1, day1);
+					
+					cal.add(Calendar.DATE, i);
+					
+					SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+					String inChkDate =SimpleDateFormat.format(cal.getTime());
+					
+					System.out.println("inChkDate:"+inChkDate);
+					boolean isS1 = hcService.insertHcInChk(new HcInChkDto(pKey, HcDto.getId(),HcDto.getTitle(), inChkDate));
+					
+					
+					if(isS1) {
+						
+					}else {
+						model.addAttribute("msg","실패 했습니다.!");
+						return "error";
+					}
+				}
+				String paramview="0";
+				return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey()+"&paramview="+paramview;
+			}else {
+				model.addAttribute("msg","실패 했습니다.!");
+				return "error";
+			}
+			
+		}					
+		
+		@RequestMapping(value = "/habitCalDetail.do", method = RequestMethod.GET)
+		public ModelAndView habitCalDetail(String id, String pKey, String paramview, Locale locale) {
+			logger.info("상세보기 {}.", locale);
+			
+			ModelAndView view = new ModelAndView();
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			
+			HcDto dto = hcService.getHabitCalList(pKey);
+			HcLoginDto HcLoginDto= hcService.getUser(id);
+			System.out.println(dto);
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
          String sYear=dto.getStDate().substring(0,4);
          int stYear=Integer.parseInt(sYear);
@@ -369,6 +440,7 @@ public class HomeController {
          
          int term=Integer.parseInt(dto.getTerm());
 
+<<<<<<< HEAD
                
          
          String []chkss=dto.getChks().split("/");
@@ -395,10 +467,39 @@ public class HomeController {
          view.addObject("map",map);
          
          return view;         
+=======
+					
+			
+			String []chkss=dto.getChks().split("/");
+			String []idlist=dto.getIdlist().split("/");
+			
+			map.put("stYear", stYear);	
+			map.put("stMonth", stMonth);	
+			map.put("stDate", stDate);	
+			map.put("edYear", edYear);	
+			map.put("edMonth", edMonth);	
+			map.put("edDate", edDate);	
+			map.put("term", term);	
+			
+			
+			view.setViewName("habitCalDetail");
+			view.addObject("id",id);
+			view.addObject("pKey",pKey);
+			view.addObject("paramview",paramview);
+			
+			view.addObject("chkss",chkss);		
+			view.addObject("idlist",idlist);					
+			view.addObject("dto",dto);	
+			view.addObject("HcLoginDto",HcLoginDto);	
+			view.addObject("map",map);
+			
+			return view;			
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
       }
          
 
+<<<<<<< HEAD
       
       
       @RequestMapping(value = "/habitCalDelete.do", method = RequestMethod.GET)
@@ -413,7 +514,24 @@ public class HomeController {
          
          
          if(isS){
+=======
+		
+		
+		@RequestMapping(value = "/habitCalDelete.do", method = RequestMethod.GET)
+		public String habitCalDelete(String pKey, String id, Locale locale, Model model) {
+			logger.info("삭제 하기 {}.", locale);
+		
+			HcDto dto = hcService.getHabitCalList(pKey);
+			HcLoginDto HcLoginDto= hcService.getUser(id);
+			String nory=dto.getEndList();
+			boolean isS  = hcService.habitCalDelete(pKey);
+			boolean isS1  = hcService.deleteHcInChk(pKey);	
+			
+			
+			if(isS == true && isS1==true){
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
+<<<<<<< HEAD
             if(nory.equals("N")){
                
                return "redirect:main.do?id="+HcLoginDto.getId()+"&role="+HcLoginDto.getRole();
@@ -448,6 +566,38 @@ public class HomeController {
             switchCheck="Y";
          }
          
+=======
+				if(nory.equals("N")){
+					return "redirect:main.do?id="+HcLoginDto.getId()+"&role="+HcLoginDto.getRole();
+				}else{
+					return "redirect:habitCalCompleteList.do?id="+HcLoginDto.getId();
+				}
+			}else{
+				model.addAttribute("msg","삭제에 실패 했습니다.");
+				return "error";
+			}
+			
+		}			
+		
+				
+		
+		
+		@RequestMapping(value = "/insertCheck.do", method = RequestMethod.POST)
+		public String insertCheck(String pKey, String id, String[] chk, String switchCheck, Locale locale, Model model) {
+			logger.info("체크 하기 {}.", locale);
+		
+			System.out.println("switchCheck:"+switchCheck);
+			HcLoginDto HcLoginDto= hcService.getUser(id);
+			String chks="";
+			int chkss=0;
+			if(switchCheck==null) {
+				switchCheck="N";
+				System.out.println(switchCheck);
+			}else {
+				switchCheck="Y";
+			}
+			
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
          if(chk==null) {
             chks="0";
@@ -539,6 +689,7 @@ public class HomeController {
                   
                }
 
+<<<<<<< HEAD
                if(xsize==0) {
                   sum=0.0;
                }else {
@@ -557,6 +708,22 @@ public class HomeController {
                
 
       }   
+=======
+					if(xsize==0) {
+						sum=0.0;
+					}else {
+						
+						sum=count/xsize;					
+					}
+								
+					view.setViewName("habitCalCompleteList");
+					view.addObject("sum",sum);
+					view.addObject("list",list);
+					view.addObject("HcLoginDto",HcLoginDto);
+					return view;
+					
+		}	
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
       
       @RequestMapping(value = "/boardlist.do", method = RequestMethod.GET)
@@ -593,6 +760,7 @@ public class HomeController {
          map.put("pKey", pKey);
          model.addAttribute("map", map);
 
+<<<<<<< HEAD
          return "promise";
       }
       
@@ -635,7 +803,54 @@ public class HomeController {
                if(isS==true && isS2==true) {
                   System.out.println("값 입력 성공");
                   return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview=1";
+=======
+			return "promise";
+		}
+		
+		
+		@RequestMapping(value = "/promiseCheck.do", method = RequestMethod.POST)
+		public String promiseCheck(String id, String pKey, String promise, Locale locale, Model model) {
+			System.out.println(id);
+			System.out.println(pKey);
+			System.out.println(promise);
+			
+			if(promise.equals("on")) {
+				HcDto HcDto = hcService.getHabitCalList(pKey);
+				HcWithDto HcWithDto=hcService.getCalWith(id);
+				
+				System.out.println("HcWithDto:"+HcWithDto);
+				int intoper=HcDto.getIntoper();
+				String idlist=HcDto.getIdlist();
+				String withGoalList;
+				
+				if(intoper>=HcDto.getRecruit()) {
+					model.addAttribute("msg","인원이 꽉찼습니다.");
+					return "error";
+				}else {
+					boolean isS;
+					boolean isS2;
+					++intoper;
+					idlist += "/"+id;
+					
+					if(HcWithDto==null) {
+						withGoalList=pKey;
+						isS=hcService.insertCalWith(new HcWithDto(id, withGoalList));
+					}else {
+						withGoalList=HcWithDto.getWithGoalList()+"/"+pKey;
+						isS=hcService.updateCalWith(new HcWithDto(id, withGoalList));
+						System.out.println("withGoalList:"+withGoalList);
+					}
+					
+					
+					isS2=hcService.updateIntoper(new HcDto(pKey,intoper,idlist));
+										
+					
+					if(isS==true && isS2==true) {
+						System.out.println("값 입력 성공");
+						return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview=1";
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
+<<<<<<< HEAD
                }else {
                   System.out.println("값 입력 실패");
                   model.addAttribute("msg","값 입력에 실패했습니다.2");
@@ -653,10 +868,32 @@ public class HomeController {
          
          
          
+=======
+					}else {
+						System.out.println("값 입력 실패");
+						model.addAttribute("msg","값 입력에 실패했습니다.2");
+						return "error";		
+					}
+					
+				}
+								
+			}else {
+				model.addAttribute("msg","서약에 실패 했습니다.");
+				return "error";
+			}
+			
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
+<<<<<<< HEAD
       }
       
       
       
    
 }
+=======
+		}
+
+	
+}
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git

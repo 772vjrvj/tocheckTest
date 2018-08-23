@@ -40,7 +40,11 @@
 	h6,h5 {
 		text-align: center;
 		margin: 5px auto;
+<<<<<<< HEAD
 		color: black;
+=======
+		color: #fd6c8b;
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 		font-weight: bold;
 		
 	}
