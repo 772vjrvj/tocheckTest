@@ -67,7 +67,7 @@
             <col width="400px">
             <col width="400px">
             <tr>
-               <td><input id="id" name="id" style="width: 400px;" value="" class="form-control" type="text"  placeholder="아이디를 입력해주세요."/></td>
+               <td><input id="id" name="id" style="width: 400px;" value="" class="form-control" type="text"  placeholder="아이디를 입력해주세요.a"/></td>
             </tr>
             <tr>
                <td><input class="form-control" type="password" name="password" placeholder="패스워드를 입력해주세요."/></td>
