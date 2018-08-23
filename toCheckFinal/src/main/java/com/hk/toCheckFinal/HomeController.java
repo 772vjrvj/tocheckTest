@@ -44,7 +44,7 @@ public class HomeController {
 
    @RequestMapping(value = "/regist.do", method = RequestMethod.GET)
    public String regist(Locale locale) {
-      logger.info("회원가입 33{}.", locale);
+      logger.info("회원가입 {}.", locale);
 
       return "regist";
    }   
