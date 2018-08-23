@@ -575,17 +575,13 @@ public class HomeController {
 						
 						sum=count/xsize;					
 					}
-					
-					
-
-					
+								
 					view.setViewName("habitCalCompleteList");
 					view.addObject("sum",sum);
 					view.addObject("list",list);
 					view.addObject("HcLoginDto",HcLoginDto);
 					return view;
 					
-
 		}	
 
 		
@@ -683,8 +679,6 @@ public class HomeController {
 			
 
 		}
-		
 
-		
 	
 }
