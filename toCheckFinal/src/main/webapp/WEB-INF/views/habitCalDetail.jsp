@@ -38,9 +38,9 @@ $(function(){
 
     $("#intoper").click(function(){
         if($("#list").css("display") == "none"){
-            $("#list").show();
+            $("#list").slideDown();
         }else{
-            $("#list").hide();
+            $("#list").slideUp();
         }
        });   
 
@@ -51,12 +51,8 @@ $(function(){
    function myFunction2(){
       location.href="promise.do?id=${loginId}&pKey=${dto.pKey}";
    }
-
-   
-   
 </script>
 <style type="text/css">
-*{font-family: 'Roboto', sans-serif;}
 
 @keyframes click-wave {
   0% {
@@ -153,13 +149,14 @@ margin: 25px 0px;
    }
 
    #list{
+   width: 564px;
    display: none;
+   text-align:left;
    }
 
    #container{
    width: 600px;
-   margin: auto;
-   left: 150px;   
+   margin: 0 auto;
    }
    
    
@@ -177,10 +174,6 @@ margin: 25px 0px;
    
    }
    
-   
-</style>
-
-<style>
 .switch {
   position: relative;
   display: inline-block;
@@ -283,10 +276,10 @@ input:checked + .slider:before {
                <c:choose>
                   <c:when test="${paramview eq '0'}">
                   
-                     <input type="button" class="btn btn-info btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
-                     <input type="submit" class="btn btn-info btn-xs" value="체크완료"/>
-                     <input type="button" class="btn btn-info btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
-                     <input type="button" class="btn btn-info btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
+                     <input type="button" class="btn btn-default btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
+                     <input type="submit" class="btn btn-default btn-xs" value="체크완료"/>
+                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
+                     <input type="button" class="btn btn-default btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
                         <div style="height: 5px;">
                         </div>   
                      <label class="switch">
@@ -298,7 +291,7 @@ input:checked + .slider:before {
                   
                   </c:when>
                   <c:otherwise>
-                     <input type="button" class="btn btn-info btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
+                     <input type="button" class="btn btn-default btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
                      <div style="height: 5px;">
                      </div>
                   </c:otherwise>
@@ -309,21 +302,10 @@ input:checked + .slider:before {
                   
                   </c:when>
                   <c:otherwise>
-                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
-                     <input  type="button" id="intoper"  value="참가자보기" />
-	                     <p id="list" >
-						   <c:forEach var="idlist" items="${idlist}" varStatus="status">
-						      <c:choose>
-						         <c:when test="${status.index eq 0}">
-						            <span style="color: red">▶</span>${idlist} 
-						         </c:when>
-						         <c:otherwise>
-						            <span style="color: blue">▶</span>${idlist}
-						         </c:otherwise>         
-						      </c:choose>
-						   <br/>
-						   </c:forEach>
-						</p>
+                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
+	                   
+                     	모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
+                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
                      <c:choose>
                         <c:when test="${paramview eq 0}">
                            
@@ -362,6 +344,18 @@ input:checked + .slider:before {
                      
                         </c:otherwise>
                      </c:choose>
+                       <p id="list" >
+						   <c:forEach var="idlist" items="${idlist}" varStatus="status">
+						      <c:choose>
+						         <c:when test="${status.index eq 0}">
+						            <span style="color: red">▶</span>${idlist} &nbsp;
+						         </c:when>
+						         <c:otherwise>
+						            <span style="color: blue">▶</span>${idlist} &nbsp;
+						         </c:otherwise>         
+						      </c:choose>
+						   </c:forEach>
+						</p>
                      </div>
                   </c:otherwise>
                </c:choose>               

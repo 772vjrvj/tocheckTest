@@ -95,22 +95,18 @@ h5 {
 	font-weight: bold;
 }
 
-body {
-	margin: 50px 0;
-}
-
 #container {
 	width: 1500px;
-	margin: auto;
+	margin:0 auto;
+	margin-top: 100px;
 }
-
+a:hover, a:visited, a:link{
+      color:black;
+      text-decoration:none;
+ }
 table {
 	margin: auto;
 	width: 1100px;
-}
-
-a {
-	text-decoration: none;
 }
 
 /* 게이지 막대 컨테이너 */
@@ -175,7 +171,7 @@ figure div:nth-child(3) {
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
-		<tr><td colspan="4"><h4>함께 하기 목록</h4><button type="button" onclick="location.href='selectform.do?id=${id}&role=${role}'">이전페이지</button></td></tr>
+		<tr><td colspan="4"><h1>함께 하기 목록</h1><button class="btn btn-default btn-xs" type="button" onclick="location.href='selectform.do?id=${id}&role=${role}'">이전페이지</button></td></tr>
 <c:choose>
 	<c:when test="${fn:length(list) eq 0 }">
        	진행중이 리스트가 없습니다.
@@ -208,7 +204,7 @@ figure div:nth-child(3) {
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">▷. ${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>
@@ -226,7 +222,7 @@ figure div:nth-child(3) {
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">▷. ${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>	
@@ -244,7 +240,7 @@ figure div:nth-child(3) {
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">▷. ${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>	

@@ -7,10 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <jsp:include page="head.jsp"/>
+<style type="text/css">
+	#container{
+		width: 600px;
+		margin: 0 auto;
+		margin-top: 140px;
+		text-align: center;
+	}
+</style>
 </head>
 <body>
-<h2>시스템오류입니다.:(내용:${msg})</h2>
-<h3>관리자에 문의하세요. 관리자:홍길동 000-111-2222</h3>
-<a href="index.jsp">메인으로 이동</a>
+<div id="container">
+	<h2>${msg}</h2>
+	<h3>문제가 계속 된다면 관리자에게 문의 주세요.</h3>
+	<h3>홍길동 Tel)010-1234-5678</h3>
+	<a href="index.jsp" style="font-size: 20px;">메인으로 이동</a>
+</div>
 </body>
 </html>

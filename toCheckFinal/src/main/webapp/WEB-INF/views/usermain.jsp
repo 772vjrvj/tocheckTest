@@ -28,11 +28,6 @@
    body {
       padding: 25px;
    }
-   
-   #title{
-      text-align: center;
-      
-   }
 
    h6,h5 {
       text-align: center;
@@ -110,7 +105,6 @@
    width: 400px;
    margin: 0 auto;
    margin-top: 120px;
-   
    }
 
 </style>
@@ -182,8 +176,8 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 
 
 <div id="container">
-<h1 id="title">${HcLoginDto.id}님 진행중인 체크 리스트</h1>
-<p style="color: black;text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트: ${HcLoginDto.ttpoint}</p>
+<h1 style="text-align: center;">${HcLoginDto.id}님 진행중인 체크 리스트</h1>
+<p style="color: #245682; text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트 : ${HcLoginDto.ttpoint}</p>
 <br/>
 
    <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">

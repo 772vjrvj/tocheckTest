@@ -15,40 +15,19 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
 
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <jsp:include page="head.jsp"/>
 <style type="text/css">
 	body {
 		padding: 25px;
 	}
 
-	h4{
-		text-align: center;
-		margin: 5px auto;
-		color: black;
-		font-weight: bold;
-		
-	}
-
 	h6,h5 {
 		text-align: center;
 		margin: 5px auto;
-<<<<<<< HEAD
 		color: black;
-=======
-		color: #fd6c8b;
->>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 		font-weight: bold;
-		
 	}
-
+	
 	a {
 		text-decoration:none;
 	}
@@ -97,6 +76,10 @@
 		text-shadow: 0 0 2px #000, 0 0 10px #000;
 	}
 
+	a:hover, a:visited, a:link{
+      color:black;
+      text-decoration:none;
+   	}
 
 	/*  ** 달성률 a태크  */
 	figure div:nth-child(3){
@@ -118,9 +101,11 @@
 
 	/* 	전체 박스 */
 	#container{
-	width: 250px;
-	margin: auto;
-	}
+   width: 400px;
+   margin: 0 auto;
+   margin-top: 120px;
+   }
+
 
 </style>
 
@@ -170,7 +155,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 	  
 	  var gauge = liquidFillGaugeDefaultSettings();
 	  gauge.circleColor = color;
-	  gauge.textColor = "#fd6c8b";
+	  gauge.textColor = "black";
 	  gauge.waveTextColor = "#fff";
 	  gauge.waveColor = color;
 	  gauge.circleThickness = 0.1;
@@ -191,8 +176,8 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 
 
 <div id="container">
-<h4>${HcLoginDto.id}님 완료된 체크 리스트</h4>
-<p style="color: #245682;text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트: ${HcLoginDto.ttpoint}</p>
+<h1 style="text-align: center;">${HcLoginDto.id}님 완료된 체크 리스트</h1>
+<p style="color: #245682; text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트: ${HcLoginDto.ttpoint}</p>
 <br/>
 
 	<input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">
@@ -228,7 +213,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 				  		<figure>
 				    		<div class="progress-fixed__bar${status.index}"></div>
 				    		<div class="progress-fixed__percent${status.index}"></div>
-				    		<div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">▷. ${dto.title}</a></div>	
+				    		<div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">&nbsp;${dto.title}</a></div>	
 				  		</figure>
 					</div>
 					<input class="bar" type="hidden" onclick="BG.init(${per},${status.index})">

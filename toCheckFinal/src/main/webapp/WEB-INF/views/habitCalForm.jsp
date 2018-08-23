@@ -35,7 +35,7 @@
       
       width: 600px;
       margin: 0 auto;
-      margin-top: 140px;
+      margin-top: 120px;
    }
    
    table{
@@ -273,10 +273,10 @@
       </tr>
       <tr>
          <td colspan="3" style="text-align: right;">
-            <input type="submit"  value="체크리스트 만들기"/>
-            <input type="button"  value="취소"
+            <input class="btn btn-default btn-xs" type="submit"  value="체크리스트 만들기"/>
+            <input class="btn btn-default btn-xs" type="button"  value="취소"
             onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'"/>
-            <input id="endInput1" type="hidden" onclick="endInput()">
+            <input class="btn btn-default btn-xs" id="endInput1" type="hidden" onclick="endInput()">
          </td>
       </tr>
    </table>

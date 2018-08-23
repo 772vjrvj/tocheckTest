@@ -10,10 +10,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Anton|Nanum+Gothic|Song+Myung" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 <style type="text/css">
       #backimg{
             content:"";
@@ -42,8 +42,19 @@
    	  	 opacity: 1.0;
    	  	 text-align: center;
    	   }
+   	   *{
+   	   	   	   font-family: 'Do Hyeon', serif;
+   	   }
 </style>
 <script type="text/javascript">
+	$(function(){
+		var id=document.getElementById("id").value;
+		if(id=="" || id==null){
+			document.getElementById("login").disabled='disabled';
+		} else {
+			document.getElementById("login").removeAttribute("disabled");
+		}
+	});
 </script>
 </head>
 <body>
@@ -56,7 +67,7 @@
             <col width="400px">
             <col width="400px">
             <tr>
-               <td><input id="id" style="width: 400px;" class="form-control" type="text" name="id" placeholder="아이디를 입력해주세요."/></td>
+               <td><input id="id" name="id" style="width: 400px;" value="" class="form-control" type="text"  placeholder="아이디를 입력해주세요."/></td>
             </tr>
             <tr>
                <td><input class="form-control" type="password" name="password" placeholder="패스워드를 입력해주세요."/></td>

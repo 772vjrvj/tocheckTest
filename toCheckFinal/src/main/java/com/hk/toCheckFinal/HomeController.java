@@ -112,7 +112,7 @@ public class HomeController {
          }
                
       }else{
-         model.addAttribute("msg","아이디와 패스워드를 확인하세요!아이디가 없거나 패스워드가 틀림");
+         model.addAttribute("msg","입력한 사용자 이름을 사용하는 계정을 찾을 수 없습니다. 사용자 이름을 확인하고 다시 시도하세요.");
          return "error";
       }
    }         

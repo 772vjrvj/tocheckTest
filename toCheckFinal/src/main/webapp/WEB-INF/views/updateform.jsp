@@ -16,7 +16,7 @@
    #container{
       width: 600px;
       margin: 0 auto;
-      margin-top: 140px;
+      margin-top: 120px;
    }
    td{
       text-align: center;   

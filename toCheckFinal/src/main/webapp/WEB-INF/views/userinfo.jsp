@@ -17,7 +17,7 @@
    #container{
       width: 600px;
       margin: 0 auto;
-      margin-top: 140px;
+      margin-top: 120px;
    }
    td{
       text-align: center;   
@@ -95,10 +95,10 @@
       </tr>
       <tr>
          <td colspan="2" style="text-align: right; ">
-            <button  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">수정</button>
-            <button  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">탈퇴</button>
-            <button  onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">메인</button>
-            <input type="button" value="완료된 리스트 보기" onclick="location.href='habitCalCompleteList.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">
+            <button  class="btn btn-default btn-xs"  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">수정</button>
+            <button  class="btn btn-default btn-xs"  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">탈퇴</button>
+            <button  class="btn btn-default btn-xs"  onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">메인</button>
+            <button class="btn btn-default btn-xs"onclick="location.href='habitCalCompleteList.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">완료한 리스트</button>
          </td>
       </tr>
    </table>
