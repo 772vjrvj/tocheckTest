@@ -20,18 +20,18 @@
 <script type="text/javascript">
 
 $(function(){
-	if($("#switchCheck").attr("checked")=="checked")	{
-		$("#switchText").css('color','black').text("공개");			
-	}else{
-		$("#switchText").css('color','red').text("비공개");			
-	}
-	
+   if($("#switchCheck").attr("checked")=="checked")   {
+      $("#switchText").css('color','black').text("공개");         
+   }else{
+      $("#switchText").css('color','red').text("비공개");         
+   }
+   
     $("#switchCheck").change(function(){
-    	if($("#switchCheck").is(":checked"))	{
-    		$("#switchText").css('color','black').text("공개");			
-    	}else{
-    		$("#switchText").css('color','red').text("비공개");			
-    	}
+       if($("#switchCheck").is(":checked"))   {
+          $("#switchText").css('color','black').text("공개");         
+       }else{
+          $("#switchText").css('color','red').text("비공개");         
+       }
 
     });
     
@@ -42,18 +42,18 @@ $(function(){
         }else{
             $("#list").hide();
         }
-       });	
+       });   
 
-	
+   
 });
 
-	
-	function myFunction2(){
-		location.href="promise.do?id=${loginId}&pKey=${dto.pKey}";
-	}
+   
+   function myFunction2(){
+      location.href="promise.do?id=${loginId}&pKey=${dto.pKey}";
+   }
 
-	
-	
+   
+   
 </script>
 <style type="text/css">
 *{font-family: 'Roboto', sans-serif;}
@@ -134,60 +134,60 @@ margin: 25px 0px;
 
 
 <style type="text/css">
-	#calendar{
-		border: 1px solid #fd6c8b;
-		border-collapse: collapse;
-	}
-	#calendar th{
-		width:80px;
-		background-color: #fd6c8b;
-		text-align: center;
-		
-	}
-	
-	#calendar td{
-		width:80px;
-		height:100px;
-		text-align: left;
-		vertical-align: top;
-	}
+   #calendar{
+      border: 1px solid #fd6c8b;
+      border-collapse: collapse;
+   }
+   #calendar th{
+      width:80px;
+      background-color: #fd6c8b;
+      text-align: center;
+      
+   }
+   
+   #calendar td{
+      width:80px;
+      height:100px;
+      text-align: left;
+      vertical-align: top;
+   }
 
-	#list{
-	width:180px;
-	height:100px;
+   #list{
+   width:180px;
+   height:100px;
 
-	text-align: left;
-	vertical-align: top;
-	background-color: pink;
-	position: absolute;
-	left:150px;
-	top:0px;
-	display: none;
-	
-	}
+   text-align: left;
+   vertical-align: top;
+   background-color: pink;
+   position: absolute;
+   left:150px;
+   top:0px;
+   display: none;
+   
+   }
 
-	#container{
-	width: 600px;
-	margin: auto;
-	left: 150px;	
-	}
-	
-	
-	#calendartitle {
-		border: 1px solid #fd6c8b;
-		border-collapse: collapse;
-		height: 90px;
-		margin: auto;
-		
-	}
-	
-	table{
-		margin: auto;
-		border-collapse: collapse;
-	
-	}
-	
-	
+   #container{
+   width: 600px;
+   margin: auto;
+   left: 150px;   
+   }
+   
+   
+   #calendartitle {
+      border: 1px solid #fd6c8b;
+      border-collapse: collapse;
+      height: 90px;
+      margin: auto;
+      
+   }
+   
+   table{
+      margin: auto;
+      border-collapse: collapse;
+   
+   }
+   
+   
 </style>
 
 <style>
@@ -254,211 +254,211 @@ input:checked + .slider:before {
 <div id="container">
 <form action="insertCheck.do" method="post">
 <jsp:useBean id="together" class="com.hk.toCheckFinal.utils.Util"/>
-	<input type="hidden" name="pKey" value="${pKey}"/>
-	<input type="hidden" name="id" value="${id}"/>
-	
-	
-	<table style="border-collapse: collapse; border: white">
-		<col width="188px">
-		<col width="188px">
-		<col width="188px">
-	<tr><th colspan="3" style="color:#245682; text-align: center; font-size: 20px;">${dto.title}</th></tr>
-	<tr><td style="color: white">&nbsp;</td></tr>
-	</table>	
-	<table id="calendartitle" border="1" style="border: 3px solid #fd6c8b;">
-		<col width="188px">
-		<col width="188px">
-		<col width="188px">
-			<tr>
-				<th style="background-color:#fd6c8b; color:white; text-align: center;">시작일</th>
-				<th style="background-color:#fd6c8b; color:white; text-align: center;">종료일</th>
-				<th style="background-color:#fd6c8b; color:white; text-align: center;">기간</th>
-			</tr>
-			<tr>
-				<td style="color:#245682; text-align: center;">${map.stYear}년 ${map.stMonth}월 ${map.stDate}일</td>
-				<td style="color:#245682; text-align: center;">${map.edYear}년 ${map.edMonth}월 ${map.edDate}일</td>
-				<td style="color:red; text-align: center;">${map.term}</td>
-			</tr>
-			<tr>
-				<td colspan="3" style="color:#245682; text-align: center;">${dto.content}</td>				
-			</tr>
-	</table>
-	
-	<table id="calendartitle" style="border-collapse: collapse; border: white; height: 30px;">
-		<col width="188px">
-		<col width="188px">
-		<col width="188px">
-			<tr>
-				<td colspan="3" style="text-align: right;">
-					<c:choose>
-						<c:when test="${paramview eq '0'}">
-						
-							<input type="button" class="btn btn-info btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
-							<input type="submit" class="btn btn-info btn-xs" value="체크완료"/>
-							<input type="button" class="btn btn-info btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
-							<input type="button" class="btn btn-info btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
-								<div style="height: 5px;">
-								</div>	
-							<label class="switch">
-		  						<input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
-		  						<span class="slider round"></span>
-							</label>
-							<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>
-							<br/>
-						
-						</c:when>
-						<c:otherwise>
-							<input type="button" class="btn btn-info btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
-							<div style="height: 5px;">
-							</div>
-						</c:otherwise>
-					</c:choose>
-				
-					<c:choose>
-						<c:when test="${dto.withh eq 'N'}">
-						
-						</c:when>
-						<c:otherwise>
-							<div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
-							<input  type="button" id="intoper"  value="참가자보기" />
-							
-							<c:choose>
-								<c:when test="${paramview eq 0}">
-									
-								</c:when>
-								<c:otherwise>
-								
-										<c:choose>
-											<c:when test="${loginId eq dto.id}">
-												
-											</c:when>
-											<c:otherwise>   
-												<c:set var="sameValue" value="0"/>
-												<c:forEach var="idlist" items="${idlist}" varStatus="status">
-													<c:choose>
-														<c:when test="${idlist eq loginId}">
-															<c:set var="sameValue" value="1"/>
-														</c:when>
-														<c:otherwise>
-														
-														</c:otherwise>	
-													</c:choose>
-												</c:forEach>
-												<c:choose>
-													<c:when test="${sameValue eq 0}">
-														<input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
-														${dto.intoper eq dto.recruit ? 'disabled':''}
-														onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"}/>													
-													</c:when>
-													<c:otherwise>
-														<input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참가중'}" 
-														disabled/>
-													</c:otherwise>
-												</c:choose>				
-											</c:otherwise>
-										</c:choose>
-							
-								</c:otherwise>
-							</c:choose>
-							</div>
-						</c:otherwise>
-					</c:choose>					
-				</td>
-			</tr>
-	</table>
-	<c:set var="i" value="0"/><c:set var="st" value="0"/><c:set var="ed" value="0"/>
-		<c:forEach var = "i" begin = "${map.stYear}" end = "${map.edYear}">	
-		
-			<table style="border-collapse: collapse; border: white">
-			<tr><td style="color: white">&nbsp;</td></tr>
-			</table>	
-			<table id="calendar" border="1">
-			<tr><th style="color: white; text-align: center;">${i}년</th></tr>
-			</table>				
-			
-			<c:choose>
-			    <c:when test="${map.stYear eq map.edYear}">
-					<c:set var="st" value="${map.stMonth}"/><c:set var="ed" value="${map.edMonth}"/>
-			    </c:when>
-		   		<c:otherwise>
-				<c:choose>
-				    <c:when test="${i eq map.stYear}">
-						<c:set var="st" value="${map.stMonth}"/><c:set var="ed" value="12"/>
-				    </c:when>					
-				    <c:when test="${i gt map.stYear and i lt map.edYear}">
-						<c:set var="st" value="1"/><c:set var="ed" value="12"/>
-				    </c:when>					
-				    <c:when test="${map.stYear eq map.edYear}">
-						<c:set var="st" value="1"/><c:set var="ed" value="${map.edMonth}"/>
-				    </c:when>					
+   <input type="hidden" name="pKey" value="${pKey}"/>
+   <input type="hidden" name="id" value="${id}"/>
+   
+   
+   <table style="border-collapse: collapse; border: white">
+      <col width="188px">
+      <col width="188px">
+      <col width="188px">
+   <tr><th colspan="3" style="color:#245682; text-align: center; font-size: 20px;">${dto.title}</th></tr>
+   <tr><td style="color: white">&nbsp;</td></tr>
+   </table>   
+   <table id="calendartitle" border="1" style="border: 3px solid #fd6c8b;">
+      <col width="188px">
+      <col width="188px">
+      <col width="188px">
+         <tr>
+            <th style="background-color:#fd6c8b; color:white; text-align: center;">시작일</th>
+            <th style="background-color:#fd6c8b; color:white; text-align: center;">종료일</th>
+            <th style="background-color:#fd6c8b; color:white; text-align: center;">기간</th>
+         </tr>
+         <tr>
+            <td style="color:#245682; text-align: center;">${map.stYear}년 ${map.stMonth}월 ${map.stDate}일</td>
+            <td style="color:#245682; text-align: center;">${map.edYear}년 ${map.edMonth}월 ${map.edDate}일</td>
+            <td style="color:red; text-align: center;">${map.term}</td>
+         </tr>
+         <tr>
+            <td colspan="3" style="color:#245682; text-align: center;">${dto.content}</td>            
+         </tr>
+   </table>
+   
+   <table id="calendartitle" style="border-collapse: collapse; border: white; height: 30px;">
+      <col width="188px">
+      <col width="188px">
+      <col width="188px">
+         <tr>
+            <td colspan="3" style="text-align: right;">
+               <c:choose>
+                  <c:when test="${paramview eq '0'}">
+                  
+                     <input type="button" class="btn btn-info btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
+                     <input type="submit" class="btn btn-info btn-xs" value="체크완료"/>
+                     <input type="button" class="btn btn-info btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
+                     <input type="button" class="btn btn-info btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
+                        <div style="height: 5px;">
+                        </div>   
+                     <label class="switch">
+                          <input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
+                          <span class="slider round"></span>
+                     </label>
+                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>
+                     <br/>
+                  
+                  </c:when>
+                  <c:otherwise>
+                     <input type="button" class="btn btn-info btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
+                     <div style="height: 5px;">
+                     </div>
+                  </c:otherwise>
+               </c:choose>
+            
+               <c:choose>
+                  <c:when test="${dto.withh eq 'N'}">
+                  
+                  </c:when>
+                  <c:otherwise>
+                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
+                     <input  type="button" id="intoper"  value="참가자보기" />
+                     
+                     <c:choose>
+                        <c:when test="${paramview eq 0}">
+                           
+                        </c:when>
+                        <c:otherwise>
+                        
+                              <c:choose>
+                                 <c:when test="${loginId eq dto.id}">
+                                    
+                                 </c:when>
+                                 <c:otherwise>   
+                                    <c:set var="sameValue" value="0"/>
+                                    <c:forEach var="idlist" items="${idlist}" varStatus="status">
+                                       <c:choose>
+                                          <c:when test="${idlist eq loginId}">
+                                             <c:set var="sameValue" value="1"/>
+                                          </c:when>
+                                          <c:otherwise>
+                                          
+                                          </c:otherwise>   
+                                       </c:choose>
+                                    </c:forEach>
+                                    <c:choose>
+                                       <c:when test="${sameValue eq 0}">
+                                          <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
+                                          ${dto.intoper eq dto.recruit ? 'disabled':''}
+                                          onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"}/>                                       
+                                       </c:when>
+                                       <c:otherwise>
+                                          <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참가중'}" 
+                                          disabled/>
+                                       </c:otherwise>
+                                    </c:choose>            
+                                 </c:otherwise>
+                              </c:choose>
+                     
+                        </c:otherwise>
+                     </c:choose>
+                     </div>
+                  </c:otherwise>
+               </c:choose>               
+            </td>
+         </tr>
+   </table>
+   <c:set var="i" value="0"/><c:set var="st" value="0"/><c:set var="ed" value="0"/>
+      <c:forEach var = "i" begin = "${map.stYear}" end = "${map.edYear}">   
+      
+         <table style="border-collapse: collapse; border: white">
+         <tr><td style="color: white">&nbsp;</td></tr>
+         </table>   
+         <table id="calendar" border="1">
+         <tr><th style="color: white; text-align: center;">${i}년</th></tr>
+         </table>            
+         
+         <c:choose>
+             <c:when test="${map.stYear eq map.edYear}">
+               <c:set var="st" value="${map.stMonth}"/><c:set var="ed" value="${map.edMonth}"/>
+             </c:when>
+               <c:otherwise>
+            <c:choose>
+                <c:when test="${i eq map.stYear}">
+                  <c:set var="st" value="${map.stMonth}"/><c:set var="ed" value="12"/>
+                </c:when>               
+                <c:when test="${i gt map.stYear and i lt map.edYear}">
+                  <c:set var="st" value="1"/><c:set var="ed" value="12"/>
+                </c:when>               
+                <c:when test="${map.stYear eq map.edYear}">
+                  <c:set var="st" value="1"/><c:set var="ed" value="${map.edMonth}"/>
+                </c:when>               
 
-				</c:choose>
-				</c:otherwise>
-			</c:choose>
+            </c:choose>
+            </c:otherwise>
+         </c:choose>
 
-		<c:forEach var = "j" begin = "${st}" end = "${ed}">
-			<table id="calendar" border="1" style="text-align: center;">
-							<caption style="font-weight:bolder; text-align: center; color:#245682;">${j}월</caption>
-			<tr style="color: white;">
-				<th >일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
-			</tr>
-			<tr>
-			
-			<jsp:useBean id="dayOfWeek" class="com.hk.toCheckFinal.utils.cal"/>
-			<jsp:useBean id="lastDay" class="com.hk.toCheckFinal.utils.cal"/>
-			<jsp:useBean id="Util" class="com.hk.toCheckFinal.utils.Util"/>
-			
-		<c:forEach var = "k" begin = "1" end = "${dayOfWeek.calGet1(i,j,1)-1}">
-			<td>&nbsp;</td>
-		</c:forEach>
+      <c:forEach var = "j" begin = "${st}" end = "${ed}">
+         <table id="calendar" border="1" style="text-align: center;">
+                     <caption style="font-weight:bolder; text-align: center; color:#245682;">${j}월</caption>
+         <tr style="color: white;">
+            <th >일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+         </tr>
+         <tr>
+         
+         <jsp:useBean id="dayOfWeek" class="com.hk.toCheckFinal.utils.cal"/>
+         <jsp:useBean id="lastDay" class="com.hk.toCheckFinal.utils.cal"/>
+         <jsp:useBean id="Util" class="com.hk.toCheckFinal.utils.Util"/>
+         
+      <c:forEach var = "k" begin = "1" end = "${dayOfWeek.calGet1(i,j,1)-1}">
+         <td>&nbsp;</td>
+      </c:forEach>
 
-		<c:forEach var = "n" begin = "1" end = "${lastDay.calGet2(i,j,1)}">
-			<td>
-				<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
-				<c:choose>
-				    <c:when test="${(i==map.stYear&&j==map.stMonth&&n<map.stDate)||(i==map.edYear&&j==map.edMonth&&n>map.edDate)}">
-				    	
-				    </c:when>
-					<c:otherwise>
-						<input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
-						
-						${Util.checked(chkss, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
-						${paramview eq 0? Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+"")): "onclick='return(false)'" }
-						/></td>
-				    </c:otherwise>
-				    
-				</c:choose>
-				<c:choose>
-					<c:when test="${Util.trtd(dayOfWeek.calGet1(i,j,1),n)}">
-						</td><tr>
-					</c:when>
-					<c:otherwise>
-						</td>
-					</c:otherwise>
-				</c:choose>
-		</c:forEach>
-		<c:forEach var = "m" begin = "0" end = "${Util.blank(dayOfWeek.calGet1(i,j,1),lastDay.calGet2(i,j,1))}">
-		
-			<td>&nbsp;</td>
-		</c:forEach>
-			</table>
-		<br>			
-		</c:forEach>
-		</c:forEach>
+      <c:forEach var = "n" begin = "1" end = "${lastDay.calGet2(i,j,1)}">
+         <td>
+            <p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
+            <c:choose>
+                <c:when test="${(i==map.stYear&&j==map.stMonth&&n<map.stDate)||(i==map.edYear&&j==map.edMonth&&n>map.edDate)}">
+                   
+                </c:when>
+               <c:otherwise>
+                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
+                  
+                  ${Util.checked(chkss, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
+                  ${paramview eq 0? Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+"")): "onclick='return(false)'" }
+                  /></td>
+                </c:otherwise>
+                
+            </c:choose>
+            <c:choose>
+               <c:when test="${Util.trtd(dayOfWeek.calGet1(i,j,1),n)}">
+                  </td><tr>
+               </c:when>
+               <c:otherwise>
+                  </td>
+               </c:otherwise>
+            </c:choose>
+      </c:forEach>
+      <c:forEach var = "m" begin = "0" end = "${Util.blank(dayOfWeek.calGet1(i,j,1),lastDay.calGet2(i,j,1))}">
+      
+         <td>&nbsp;</td>
+      </c:forEach>
+         </table>
+      <br>         
+      </c:forEach>
+      </c:forEach>
 </form>
 </div>
 <div id="list" >
-	<c:forEach var="idlist" items="${idlist}" varStatus="status">
-		<c:choose>
-			<c:when test="${status.index eq 0}">
-				<span style="color: red">▶</span>${idlist} 
-			</c:when>
-			<c:otherwise>
-				<span style="color: blue">▶</span>${idlist}
-			</c:otherwise>			
-		</c:choose>
-	<br/>
-	</c:forEach>
+   <c:forEach var="idlist" items="${idlist}" varStatus="status">
+      <c:choose>
+         <c:when test="${status.index eq 0}">
+            <span style="color: red">▶</span>${idlist} 
+         </c:when>
+         <c:otherwise>
+            <span style="color: blue">▶</span>${idlist}
+         </c:otherwise>         
+      </c:choose>
+   <br/>
+   </c:forEach>
 </div>
 </body>
 </html>

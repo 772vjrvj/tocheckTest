@@ -108,10 +108,7 @@ table {
 	margin: auto;
 	width: 1100px;
 }
-</style>
 
-
-<style type="text/css">
 a {
 	text-decoration: none;
 }

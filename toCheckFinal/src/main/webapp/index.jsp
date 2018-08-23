@@ -43,6 +43,8 @@
    	  	 text-align: center;
    	   }
 </style>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 <div id="backimg"></div>
@@ -54,7 +56,7 @@
             <col width="400px">
             <col width="400px">
             <tr>
-               <td><input style="width: 400px;" class="form-control" type="text" name="id" placeholder="아이디를 입력해주세요."/></td>
+               <td><input id="id" style="width: 400px;" class="form-control" type="text" name="id" placeholder="아이디를 입력해주세요."/></td>
             </tr>
             <tr>
                <td><input class="form-control" type="password" name="password" placeholder="패스워드를 입력해주세요."/></td>
@@ -64,7 +66,7 @@
             </tr>
             <tr>
                <td colspan="2">
-                  <input class="btn btn-default btn-xs" type="submit" value="로그인" /> 
+                  <input class="btn btn-default btn-xs" id="login" type="submit" value="로그인"/> 
                   <input class="btn btn-default btn-xs" type="button" value="회원가입" onclick="location.href='regist.do'" />
                </td>
             </tr>

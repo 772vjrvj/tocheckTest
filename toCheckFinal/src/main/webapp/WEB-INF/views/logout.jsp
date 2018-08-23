@@ -15,11 +15,9 @@
       text-align: center;
       font-size: 42px;
       text-decoration: none;
-      color: black;
    }
    a:hover,a:link,a:visited {
       text-decoration: none;
-      color: black;
 }
 </style>
 </head>
