@@ -85,7 +85,7 @@ td {
 
 h4 {
 	text-align: center;
-	color: #00bbdb;
+	color: black;
 	font-weight: bolder;
 }
 
@@ -108,10 +108,7 @@ table {
 	margin: auto;
 	width: 1100px;
 }
-</style>
 
-
-<style type="text/css">
 a {
 	text-decoration: none;
 }
@@ -145,7 +142,7 @@ figure div:nth-child(1) {
 
 /* 파란 게이지 막대 */
 .progress-fixed div[class*=progress-fixed__bar] {
-	background: #00bbdb;
+	background: #fd6c8b;
 }
 
 /* 퍼센트 글씨 */

@@ -107,8 +107,8 @@
       </tr>
       <tr>
          <td colspan="2" style="text-align: right;">
-            <input type="submit"  class="btn btn-info btn-xs"  value="수정완료">
-            <input type="button" class="btn btn-info btn-xs"  onclick="location.href='userinfo.do?id=${HcLoginDto.id}'" value="취소">
+            <input type="submit" class="btn btn-default btn-xs" value="수정완료">
+            <input type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'" value="취소">
          </tr>
    </table>
 </form>
