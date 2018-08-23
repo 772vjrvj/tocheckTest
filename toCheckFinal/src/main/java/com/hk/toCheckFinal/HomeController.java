@@ -45,7 +45,7 @@ public class HomeController {
 
    @RequestMapping(value = "/regist.do", method = RequestMethod.GET)
    public String regist(Locale locale) {
-      logger.info("회원가입 22{}.", locale);
+      logger.info("회원가입 {}.", locale);
 
       return "regist";
    }   
@@ -659,7 +659,47 @@ public class HomeController {
                
                
                isS2=hcService.updateIntoper(new HcDto(pKey,intoper,idlist));
-                              
+              
+               
+               
+               int term = Integer.parseInt(HcDto.getTerm());
+               
+               
+               for (int i = 0; i < term; i++) {
+                   boolean isS1;
+                  
+                   int year1= Integer.parseInt(HcDto.getStDate().substring(0, 4)); 
+                   System.out.println("year1:"+year1);
+                   int month1= Integer.parseInt(HcDto.getStDate().substring(4, 6));
+                   System.out.println("month1:"+month1);
+                   int day1= Integer.parseInt(HcDto.getStDate().substring(6)); 
+                   System.out.println("day1:"+day1);
+                   
+                   Calendar cal = Calendar.getInstance();
+                   
+                   cal.set(year1, month1-1, day1);
+                   
+                   cal.add(Calendar.DATE, i);
+                   
+                   SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+                   String inChkDate =SimpleDateFormat.format(cal.getTime());
+                   
+                   System.out.println("inChkDate:"+inChkDate);
+                   isS1 = hcService.insertHcInChk(new HcInChkDto(pKey, id, HcDto.getTitle(), inChkDate));
+                   
+                   
+                   if(isS1) {
+                      System.out.println("insertHcInChk에입 력성공");
+                   }else {
+                      model.addAttribute("msg","실패 했습니다.!");
+                      return "error";
+                   }
+                }               
+
+               
+               
+               
+               
                
                if(isS==true && isS2==true) {
                   System.out.println("값 입력 성공");
