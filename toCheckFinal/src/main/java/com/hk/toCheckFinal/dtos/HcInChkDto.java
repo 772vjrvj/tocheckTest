@@ -30,8 +30,17 @@ public class HcInChkDto {
 		this.inChkTime = inChkTime;
 	}
 
+
 	
 	
+	
+	public HcInChkDto(String pKey, String inChkDate) {
+		super();
+		this.pKey = pKey;
+		this.inChkDate = inChkDate;
+	}
+	
+
 	public HcInChkDto(String pKey, String id, String title, String inChkDate) {
 		super();
 		this.pKey = pKey;

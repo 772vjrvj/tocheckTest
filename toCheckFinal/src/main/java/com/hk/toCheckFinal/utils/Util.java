@@ -1,6 +1,7 @@
 package com.hk.toCheckFinal.utils;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -149,6 +150,28 @@ public class Util {
 		}
 		
 	}
+	
+	
+	public static long doDiffOfDate(String start, String  end) throws ParseException{
+	    String start1 = start;
+	    String end1 = end;
+	     
+	        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+	        Date beginDate = formatter.parse(start1);
+	        Date endDate = formatter.parse(end1);
+	         
+	        // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
+	        long diff = endDate.getTime() - beginDate.getTime();
+	        long diffDays = diff / (24 * 60 * 60 * 1000);
+	 
+	        System.out.println("날짜차이=" + diffDays);
+	         
+	        return diffDays;
+
+	}
+
+
+	
 	
 	
 	

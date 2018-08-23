@@ -1,8 +1,10 @@
 package com.hk.toCheckFinal;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -370,7 +372,7 @@ public class HomeController {
       }               
       
       @RequestMapping(value = "/habitCalDetail.do", method = RequestMethod.GET)
-      public ModelAndView habitCalDetail(String id, String pKey, String paramview, Locale locale) {
+      public ModelAndView habitCalDetail(String id, String pKey, String paramview, Locale locale) throws ParseException {
          logger.info("상세보기 {}.", locale);
          
          ModelAndView view = new ModelAndView();
@@ -379,28 +381,31 @@ public class HomeController {
          HcDto dto = hcService.getHabitCalList(pKey);
          HcLoginDto HcLoginDto= hcService.getUser(id);
          System.out.println(dto);
+         
+         
+         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+         Date currentTime = new Date ();
+         String today = SimpleDateFormat.format(currentTime);
+         int today1 = Integer.parseInt(today);
+         int StDate1 = Integer.parseInt(dto.getStDate());
+         
+         
 
+         //시작일
          String sYear=dto.getStDate().substring(0,4);
-         int stYear=Integer.parseInt(sYear);
-         
+         int stYear=Integer.parseInt(sYear);       
          String sMonth=dto.getStDate().substring(4,6);
-         int stMonth=Integer.parseInt(sMonth);      
-         
+         int stMonth=Integer.parseInt(sMonth);               
          String sDate=dto.getStDate().substring(6);
          int stDate=Integer.parseInt(sDate);      
 
-         
-         
+         //종료일
          String eYear=dto.getEdDate().substring(0,4);
-         int edYear=Integer.parseInt(eYear);
-         
+         int edYear=Integer.parseInt(eYear);        
          String eMonth=dto.getEdDate().substring(4,6);
-         int edMonth=Integer.parseInt(eMonth);
-         
+         int edMonth=Integer.parseInt(eMonth);        
          String eDate=dto.getEdDate().substring(6);
-         int edDate=Integer.parseInt(eDate);            
-         
-         
+         int edDate=Integer.parseInt(eDate);                    
          int term=Integer.parseInt(dto.getTerm());
 
                
@@ -416,19 +421,44 @@ public class HomeController {
          map.put("edDate", edDate);   
          map.put("term", term);   
          
-         
-         view.setViewName("habitCalDetail");
-         view.addObject("id",id);
-         view.addObject("pKey",pKey);
-         view.addObject("paramview",paramview);
-         
-         view.addObject("chkss",chkss);      
-         view.addObject("idlist",idlist);               
-         view.addObject("dto",dto);   
-         view.addObject("HcLoginDto",HcLoginDto);   
-         view.addObject("map",map);
-         
-         return view;         
+         if(today1 >= StDate1 && dto.getWithh().equals("Y")) {
+        	 
+        	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
+        	 
+             String Year1=today.substring(0,4);
+             String Month1=today.substring(4,6);
+             String Date1=today.substring(6);
+
+        	 view.setViewName("photoInChk");
+        	 List<HcInChkDto> list = hcService.getHcInChk(new HcInChkDto(pKey, today1+""));
+        	 view.addObject("list",list);
+        	 view.addObject("dto",dto);
+        	 view.addObject("HcLoginDto",HcLoginDto);   
+        	 view.addObject("paramview",paramview);
+        	 
+        	 view.addObject("Year1",Year1);
+        	 view.addObject("diffdays",diffdays);
+       	 
+        	 view.addObject("Month1",Month1);
+        	 view.addObject("Date1",Date1);
+      	 
+
+        	 return view;
+         }else{
+        	 
+        	 view.setViewName("habitCalDetail");
+        	 view.addObject("id",id);
+        	 view.addObject("pKey",pKey);
+        	 view.addObject("paramview",paramview);
+        	 
+        	 view.addObject("chkss",chkss);      
+        	 view.addObject("idlist",idlist);               
+        	 view.addObject("dto",dto);   
+        	 view.addObject("HcLoginDto",HcLoginDto);   
+        	 view.addObject("map",map);
+        	 
+        	 return view;         
+         }        
 
       }
          
@@ -697,9 +727,6 @@ public class HomeController {
 
                
                
-               
-               
-               
                if(isS==true && isS2==true) {
                   System.out.println("값 입력 성공");
                   return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview=1";
@@ -719,6 +746,20 @@ public class HomeController {
          
 
       }
-
+      
    
+          @RequestMapping(value = "/photoInChkContent.do", method = RequestMethod.GET)
+          public String promise(String id, String inChkDate, String pKey, Locale locale, Model model) {
+
+             Map<String, String> map = new HashMap<String, String>();
+             map.put("id", id);
+             map.put("inChkDate", inChkDate);
+             map.put("pKey", pKey);
+             model.addAttribute("map", map);
+
+             return "photoInChkContent";
+          }     
+      
+      
+      
 }
