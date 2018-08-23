@@ -169,12 +169,6 @@ public class Util {
 	        return diffDays;
 
 	}
-
-
-	
-	
-	
-	
 	
 	
 }
