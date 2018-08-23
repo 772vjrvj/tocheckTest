@@ -62,6 +62,8 @@
       </select>
       
       
+ 
+ 
       
       
       <select id="insertHcInChk" parameterType="HcInChkDto">
@@ -84,6 +86,8 @@
          DELETE HCINCHKBOARD
          WHERE PKEY=#{pKey}
       </select>
+
+
 
 
 

@@ -98,31 +98,30 @@ public class HcServiceImp implements IHcService {
       return hcDao.idChk(id);
    }
 
-   @Override
+
    
+   @Override
    public boolean insertHcInChk(HcInChkDto HcInChkDto) {
       
       return hcDao.insertHcInChk(HcInChkDto);
    }
    @Override
-   
    public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto){
       
       return hcDao.getHcInChk(HcInChkDto);
    }
    @Override
-   
    public boolean updateHcInChk(HcInChkDto HcInChkDto) {
       
       return hcDao.updateHcInChk(HcInChkDto);
    }
-   
    @Override   
    public boolean deleteHcInChk(String pKey) {
       return hcDao.deleteHcInChk(pKey);
 
    }
 
+ 
    
    
 //insertUser   
