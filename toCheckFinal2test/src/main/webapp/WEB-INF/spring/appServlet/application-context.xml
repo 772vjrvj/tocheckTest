@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- 	db.properties 파일 위치 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties/db.properties</value>
+			</list>
+		</property>
+	</bean>
+
+<!-- 	db.properties 정보를 통해 dataSource 객체 생성 -->
+	
+	
+	<bean id="datasource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="defaultAutoCommit" value="true"></property>
+	</bean>
+
+<!-- 	dataSource를 가지고 sqlSession객체생성 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="datasource"></property>
+		<property name="configLocation" value="WEB-INF/spring/sqls/SqlMapConfig.xml"></property>
+	</bean>
+	
+<!-- sqlSessionTemplate객체 생성	 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSession"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+
+<!-- transaction 처리를 위한 객체	 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+
+	
+<!-- 1방법 @transactional을 선언해서 사용 -->
+<!-- tx문법 위치 설정만 잘해주면 알아서 찾아서 해주겠다. Namespaces에서 설정 tx클릭 -->
+
+
+<!-- 2방법 -->
+<!-- 	<tx:advice transaction-manager="transactionManager" id="txAdvice"> -->
+<!-- 		<tx:attributes> -->
+<!-- 			<tx:method name="*Board" propagation="REQUIRED" -->
+<!-- 										rollback-for="Exception"/> -->
+<!-- 		</tx:attributes> -->
+<!-- 	</tx:advice> -->
+<!--  	namespace에서 aop --> 
+<!-- 	<aop:config> -->
+<!-- 	위치를 알려줘야해 어느 시점일지 servic--> 
+<!-- 		<aop:pointcut expression="execution(* com.Hc.service.HcServiceImp.*.*(..))" id="serviceTransaction"/> -->
+<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceTransaction"/> -->
+<!-- 	</aop:config> -->
+
+<!-- 	<bean class="com.hk.toCheckFinal.service.HcServiceImp" id="HcServiceImp"></bean> -->
+
+
+	
+	
+<!-- 	class SqlSessionFactoryBean{ -->
+<!-- 		public DataSource dataSource; -->
+		
+<!-- 		public DataSource setDataSource(DataSource datasource){ -->
+<!-- 			this.dataSource=datasource; -->
+<!-- 		} -->
+<!-- 	} -->
+<!-- ref가 참조 value에 위에 id datasource의 property를 넣음 -->
+
+	
+</beans>

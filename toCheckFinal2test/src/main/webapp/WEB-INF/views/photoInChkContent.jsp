@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>photoInChk</title>
 <jsp:include page="head.jsp"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <style type="text/css">
 th {
@@ -57,6 +58,28 @@ body {
       border-collapse: collapse;
    }
 </style>
+    <script type="text/javascript">
+        $(function() {
+            $("#imgInp").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+    </script>
+
 
 
 </head>
@@ -82,11 +105,11 @@ body {
 	   <input type="hidden" name="id" value="${HcLoginDto.id}"/>
 	   <input type="hidden" name="paramview" value="${paramview}"/>
 	   <input type="hidden" name="pKey" value="${dto.pKey}"/>
-	   <input type="hidden" name="photo" value="asdf"/>
 	   <table border="1">
 	      <col width="600px">
 	      <tr>
-	         <td colspan="3"><h4>인증 사진 올리기 <input class="btn btn-default btn-xs" type="button" name="photo1"  value="사진 찾기"/></h4>
+	         <td colspan="3"><h4>인증 사진 올리기 <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
+	         <img id="blah" src="#" alt="your image" /></h4>
 	         </td>
 	      </tr> 
 	   </table>
@@ -97,12 +120,12 @@ body {
 	      <col width="100px">
 	      <tr >
 	         <th>제목</th>
-	         <td colspan="3"><input class="contents" type="text" name="title" style="width: 490px;" required="required" autocomplete="off"/></td>
+	         <td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off"/></td>
 	
 	      </tr>
 	      <tr>
 	         <th>내용</th>
-	         <td colspan="2"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="content" required="required" autocomplete="off" ></textarea></td>
+	         <td colspan="2"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" ></textarea></td>
 	      </tr>
 	      <tr>
 	         <td colspan="3" style="text-align: right;">
