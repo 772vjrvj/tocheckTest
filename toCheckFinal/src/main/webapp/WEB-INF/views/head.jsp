@@ -16,7 +16,7 @@
 <style type="text/css">
 	  body{
 	  		position: absolute; 
-  	  		background: url("img/goal4.jpg") fixed center center;  
+  	  		background: url("img/head_back.jpg") fixed center center;  
   	  		background-size: cover; 
     		width: 100%; 
     		height: 100%; 

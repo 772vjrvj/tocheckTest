@@ -18,7 +18,7 @@
       #backimg{
             content:"";
   		   	position: absolute; 
-  	  		background: url("img/goal3.jpg") no-repeat center center;  
+  	  		background: url("img/index_back.jpg") no-repeat center center;  
   	  		background-size: cover; 
     		width: 100%; 
     		height: 100%; 
