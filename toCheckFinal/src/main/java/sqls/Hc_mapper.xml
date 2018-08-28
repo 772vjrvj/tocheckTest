@@ -76,22 +76,29 @@
          SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME
          FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate}   
       </select>      
-      
+
+	  <select id="getHcUserInChk" parameterType="Map" resultType="HcInChkDto">
+         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME
+         FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
+      </select>      
+
       <select id="updateHcInChk" parameterType="HcInChkDto">
          UPDATE HCINCHKBOARD SET INCHKTITLE=#{inChkTitle}, INCHKCONTENT=#{inChkContent}, INCHKPHOTO=#{inChkPhoto}, INCHKTIME=#{inChkTime}
          WHERE Id=#{id} AND PKEY=#{pKey} AND INCHKDATE=#{inChkDate}
       </select>      
       
       <select id="deleteHcInChk" parameterType="Map" >
-         DELETE HCINCHKBOARD
-         WHERE PKEY=#{pKey}
+         DELETE 
+         FROM HCINCHKBOARD WHERE PKEY=#{pKey}
       </select>
 
-
-
-
-
+	  <select id="deleteHcUserInChk" parameterType="HcInChkDto">
+         UPDATE HCINCHKBOARD SET INCHKTITLE='/', INCHKCONTENT='/', INCHKPHOTO='/', INCHKTIME='/'
+         WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
+      </select>      
       
+      
+
       
 <!-- insertUser -->
       <select id="insertUser" parameterType="HcLoginDto">

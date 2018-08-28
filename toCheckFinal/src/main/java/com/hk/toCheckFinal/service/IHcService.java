@@ -37,7 +37,9 @@ public interface IHcService {
    public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto);
    public boolean updateHcInChk(HcInChkDto HcInChkDto);   
    public boolean deleteHcInChk(String pKey);   
-   
+   public HcInChkDto getHcUserInChk(HcInChkDto HcInChkDto);
+   public boolean deleteHcUserInChk(HcInChkDto HcInChkDto);   
+
    
    
    

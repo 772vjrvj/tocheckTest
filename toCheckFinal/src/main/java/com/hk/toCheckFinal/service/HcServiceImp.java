@@ -120,7 +120,24 @@ public class HcServiceImp implements IHcService {
       return hcDao.deleteHcInChk(pKey);
 
    }
+   
+   
+   
 
+   @Override
+   public HcInChkDto getHcUserInChk(HcInChkDto HcInChkDto){
+      
+      return hcDao.getHcUserInChk(HcInChkDto);
+   }   
+   
+   @Override
+   public boolean deleteHcUserInChk(HcInChkDto HcInChkDto){
+      
+      return hcDao.deleteHcUserInChk(HcInChkDto);
+   }      
+   
+   
+   
  
    
    

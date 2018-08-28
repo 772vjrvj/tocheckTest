@@ -435,6 +435,7 @@ public class HomeController {
         	 view.addObject("dto",dto);
         	 view.addObject("HcLoginDto",HcLoginDto);   
         	 view.addObject("paramview",paramview);
+        	 System.out.println(paramview);
         	 
         	 view.addObject("Year1",Year1);
         	 view.addObject("diffdays",diffdays);
@@ -747,18 +748,141 @@ public class HomeController {
 
       }
       
-   
-          @RequestMapping(value = "/photoInChkContent.do", method = RequestMethod.GET)
-          public String promise(String id, String inChkDate, String pKey, Locale locale, Model model) {
+         
+      @RequestMapping(value = "/photoInChkContent.do", method = RequestMethod.GET)
+      public ModelAndView photoInChkContent(String crud, String id, String pKey, Locale locale, String paramview,  Model model) throws ParseException {
+          ModelAndView view = new ModelAndView();
+          Map<String, Integer> map = new HashMap<String, Integer>();
+          
+          HcDto dto = hcService.getHabitCalList(pKey);
+          HcLoginDto HcLoginDto= hcService.getUser(id);
+          System.out.println(dto);
+          
+          
+          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+          Date currentTime = new Date ();
+          String today = SimpleDateFormat.format(currentTime);
+          int today1 = Integer.parseInt(today);
+          int StDate1 = Integer.parseInt(dto.getStDate());
+          
+                      
+          int term=Integer.parseInt(dto.getTerm());
 
-             Map<String, String> map = new HashMap<String, String>();
-             map.put("id", id);
-             map.put("inChkDate", inChkDate);
-             map.put("pKey", pKey);
-             model.addAttribute("map", map);
+          map.put("term", term);   
+          
+         	 
+     	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
+     	 
+          String Year1=today.substring(0,4);
+          String Month1=today.substring(4,6);
+          String Date1=today.substring(6);
+          
+          view.addObject("dto",dto);
+          view.addObject("HcLoginDto",HcLoginDto);   
+          view.addObject("paramview",paramview);
+          
+          view.addObject("diffdays",diffdays);
 
-             return "photoInChkContent";
-          }     
+          view.addObject("Year1",Year1);          
+          view.addObject("Month1",Month1);
+          view.addObject("Date1",Date1);
+          
+          if(crud.equals("content")) {
+        	  
+        	  view.setViewName("photoInChkContent");
+        	  
+          }else if(crud.equals("update")) {
+        	  HcInChkDto HcInChkDto = hcService.getHcUserInChk(new HcInChkDto(pKey,today ,id));
+              view.addObject("HcInChkDto",HcInChkDto);                  	  
+        	  view.setViewName("photoInChkUpdate");
+          }
+          
+
+     	 return view;
+         
+
+      }
+      
+      @RequestMapping(value = "/photoInChkDelete.do", method = RequestMethod.GET)
+      public String photoInChkDelete(String id, String pKey, Locale locale, String paramview,  Model model){
+    	  
+
+          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+          Date currentTime = new Date ();
+          String today = SimpleDateFormat.format(currentTime);
+          
+          
+          boolean isS=hcService.deleteHcUserInChk(new HcInChkDto(pKey,today ,id));
+          
+          if(isS==true) {
+              System.out.println("삭제 성공");
+              return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview;
+
+           }else {
+              System.out.println("삭제 실패");
+              model.addAttribute("msg","값 삭제에 실패했습니다.");
+              return "error";      
+           }          
+          
+       }         
+      
+      @RequestMapping(value = "/photoInChkUpdate.do", method = RequestMethod.POST)
+      public String photoInChkUpdate(String id, String title,String content, String photo, String pKey, Locale locale, String paramview,  Model model){
+    	  
+
+          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+          Date currentTime = new Date ();
+          String today = SimpleDateFormat.format(currentTime);
+          String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
+
+          String HH=inTime.substring(0,4);
+          String mm=inTime.substring(4,6);
+          String tt=inTime.substring(6);
+          
+          boolean isS=hcService.updateHcInChk(new HcInChkDto(pKey,id ,today,photo,title,content,inTime));
+          if(isS==true) {
+              System.out.println("수정 성공");
+              return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview;
+
+           }else {
+              System.out.println("수정 실패");
+              model.addAttribute("msg","값 삭제에 실패했습니다.");
+              return "error";      
+           }          
+          
+       }         
+      
+      @RequestMapping(value = "/photoInChkInsert.do", method = RequestMethod.POST)
+      public String photoInChkInsert(String id, String title,String content, String photo, String pKey, Locale locale, String paramview,  Model model){
+    	  
+    	  System.out.println("photo:"+photo);
+    	  
+          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+          Date currentTime = new Date ();
+          String today = SimpleDateFormat.format(currentTime);
+          String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
+          System.out.println("inTime:"+inTime);
+
+          String HH=inTime.substring(0,4);
+          String mm=inTime.substring(4,6);
+          String tt=inTime.substring(6);
+          
+          
+          boolean isS=hcService.updateHcInChk(new HcInChkDto(pKey,id ,today,photo,title,content,inTime));
+          
+          if(isS==true) {
+              System.out.println("수정 성공");
+              return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview;
+
+           }else {
+              System.out.println("수정 실패");
+              model.addAttribute("msg","값 삭제에 실패했습니다.");
+              return "error";      
+           }          
+          
+       }          
+      
+      
       
       
       

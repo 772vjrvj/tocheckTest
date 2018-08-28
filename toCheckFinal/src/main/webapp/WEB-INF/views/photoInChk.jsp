@@ -101,8 +101,17 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq HcLoginDto.id }">
-							<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}'"/>							
+						<c:when test="${list.id eq loginId }">
+
+							<c:choose>		
+								<c:when test="${list.inChkTime eq '/'}">
+									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
+								</c:when>
+								<c:otherwise>
+									<input type="button"  value="수정하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=update'"/>
+								</c:otherwise>
+							</c:choose>			
+
 						</c:when>
 						<c:otherwise>
 							<div style="height: 25px;"></div>						
@@ -124,8 +133,15 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq HcLoginDto.id }">
-							<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}'"/>							
+						<c:when test="${list.id eq loginId }">
+							<c:choose>		
+								<c:when test="${list.inChkTime eq '/'}">
+									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
+								</c:when>
+								<c:otherwise>
+									<input type="button"  value="수정하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=update'"/>
+								</c:otherwise>
+							</c:choose>								
 						</c:when>
 						<c:otherwise>
 							<div style="height: 25px;"></div>						
@@ -147,8 +163,15 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq HcLoginDto.id }">
-							<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${HcLoginDto.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}'"/>							
+						<c:when test="${list.id eq loginId }">
+							<c:choose>		
+								<c:when test="${list.inChkTime eq '/'}">
+									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
+								</c:when>
+								<c:otherwise>
+									<input type="button"  value="수정하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=update'"/>
+								</c:otherwise>
+							</c:choose>							
 						</c:when>
 						<c:otherwise>
 							<div style="height: 25px;"></div>						

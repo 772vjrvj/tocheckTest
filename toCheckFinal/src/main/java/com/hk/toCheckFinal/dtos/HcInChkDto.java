@@ -17,12 +17,11 @@ public class HcInChkDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HcInChkDto(String pKey, String id, String title, String inChkDate, String inChkPhoto, String inChkTitle,
+	public HcInChkDto(String pKey, String id, String inChkDate, String inChkPhoto, String inChkTitle,
 			String inChkContent, String inChkTime) {
 		super();
 		this.pKey = pKey;
 		this.id = id;
-		this.title = title;
 		this.inChkDate = inChkDate;
 		this.inChkPhoto = inChkPhoto;
 		this.inChkTitle = inChkTitle;
@@ -30,17 +29,7 @@ public class HcInChkDto {
 		this.inChkTime = inChkTime;
 	}
 
-
 	
-	
-	
-	public HcInChkDto(String pKey, String inChkDate) {
-		super();
-		this.pKey = pKey;
-		this.inChkDate = inChkDate;
-	}
-	
-
 	public HcInChkDto(String pKey, String id, String title, String inChkDate) {
 		super();
 		this.pKey = pKey;
@@ -48,6 +37,25 @@ public class HcInChkDto {
 		this.title = title;
 		this.inChkDate = inChkDate;
 	}
+
+	public HcInChkDto(String pKey, String inChkDate) {
+		super();
+		this.pKey = pKey;
+		this.inChkDate = inChkDate;
+	}
+	
+
+	public HcInChkDto(String pKey, String inChkDate, String id) {
+		super();
+		this.pKey = pKey;
+		this.inChkDate = inChkDate;
+		this.id = id;
+	}
+	
+	
+
+
+	
 
 	public String getpKey() {
 		return pKey;
