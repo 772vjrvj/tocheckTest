@@ -135,6 +135,19 @@ public class HcDaoImp implements IHcDao {
       return list;      
    }
    @Override
+   public HcInChkDto getHcUserInChk(HcInChkDto HcInChkDto){
+      return sqlSession.selectOne(namespace+"getHcUserInChk",HcInChkDto);      
+   }   
+   
+   @Override
+   public boolean deleteHcUserInChk(HcInChkDto HcInChkDto){
+	   int count = 0;
+	   count=sqlSession.update(namespace+"deleteHcUserInChk",HcInChkDto); 
+	   return count>0?true:false;        
+   }      
+ 
+   
+   @Override
    public boolean updateHcInChk(HcInChkDto HcInChkDto) {
       int count = 0;
       count=sqlSession.update(namespace+"updateHcInChk", HcInChkDto);
@@ -146,6 +159,8 @@ public class HcDaoImp implements IHcDao {
       count=sqlSession.update(namespace+"deleteHcInChk", pKey);
       return count > 0 ? true : false;
    }
+   
+   
 
    @Override
    public List<HcDto> searchContentId(String searchContent) {

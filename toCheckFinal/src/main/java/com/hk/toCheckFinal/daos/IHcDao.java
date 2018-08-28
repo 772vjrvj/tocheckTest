@@ -33,6 +33,13 @@ public interface IHcDao {
    public List<HcInChkDto> getHcInChk(HcInChkDto HcInChkDto);
    public boolean updateHcInChk(HcInChkDto HcInChkDto);   
    public boolean deleteHcInChk(String pKey);   
+   public HcInChkDto getHcUserInChk(HcInChkDto HcInChkDto);
+   public boolean deleteHcUserInChk(HcInChkDto HcInChkDto);   
+
+   
+   
+   
+   
    
    public HcLoginDto idChk(String id);
    public boolean insertUser(HcLoginDto dto);
