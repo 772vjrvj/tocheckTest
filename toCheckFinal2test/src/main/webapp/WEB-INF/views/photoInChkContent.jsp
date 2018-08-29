@@ -109,7 +109,7 @@ body {
 	      <col width="600px">
 	      <tr>
 	         <td colspan="3"><h4>인증 사진 올리기 <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
-	         <img id="blah" src="#" alt="your image" /></h4>
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" /></h4>	         
 	         </td>
 	      </tr> 
 	   </table>

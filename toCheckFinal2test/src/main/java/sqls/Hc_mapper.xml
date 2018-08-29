@@ -68,17 +68,17 @@
       
       <select id="insertHcInChk" parameterType="HcInChkDto">
          INSERT INTO HCINCHKBOARD
-         VALUES (#{pKey},#{id},#{title},#{inChkDate},'/','/','/','/')
-<!--       VALUES (#{pKey},#{id},#{title},#{inChkDate},#{inChkPhoto},#{inChkTitle},#{inChkContent},#{inChkTime}) -->
+         VALUES (#{pKey},#{id},#{title},#{inChkDate},'/','/','/','/','/')
+<!--       VALUES (#{pKey},#{id},#{title},#{inChkDate},#{inChkPhoto},#{inChkTitle},#{inChkContent},#{inChkTime},#{inChkPhoto2}) -->
       </select>
       
       <select id="getHcInChk" parameterType="Map" resultType="HcInChkDto">
-         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME
+         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME, INCHKPHOTO2
          FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate}   
       </select>      
 
 	  <select id="getHcUserInChk" parameterType="Map" resultType="HcInChkDto">
-         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME
+         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME, INCHKPHOTO2
          FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
       </select>      
 
@@ -93,7 +93,7 @@
       </select>
 
 	  <select id="deleteHcUserInChk" parameterType="HcInChkDto">
-         UPDATE HCINCHKBOARD SET INCHKTITLE='/', INCHKCONTENT='/', INCHKPHOTO='/', INCHKTIME='/'
+         UPDATE HCINCHKBOARD SET INCHKTITLE='/', INCHKCONTENT='/', INCHKPHOTO='/', INCHKTIME='/' ,INCHKPHOTO2='/'
          WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
       </select>      
       

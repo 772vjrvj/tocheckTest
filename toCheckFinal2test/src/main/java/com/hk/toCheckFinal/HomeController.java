@@ -771,14 +771,12 @@ public void setServletContext(ServletContext servletContext) {
           HcLoginDto HcLoginDto= hcService.getUser(id);
           System.out.println(dto);
           
-          
           SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
           Date currentTime = new Date ();
           String today = SimpleDateFormat.format(currentTime);
           int today1 = Integer.parseInt(today);
           int StDate1 = Integer.parseInt(dto.getStDate());
-          
-                      
+                                
           int term=Integer.parseInt(dto.getTerm());
 
           map.put("term", term);   
@@ -799,14 +797,14 @@ public void setServletContext(ServletContext servletContext) {
           view.addObject("Year1",Year1);          
           view.addObject("Month1",Month1);
           view.addObject("Date1",Date1);
+          HcInChkDto HcInChkDto = hcService.getHcUserInChk(new HcInChkDto(pKey,today ,id));
+          view.addObject("HcInChkDto",HcInChkDto);                  	  
           
           if(crud.equals("content")) {
         	  
         	  view.setViewName("photoInChkContent");
         	  
           }else if(crud.equals("update")) {
-        	  HcInChkDto HcInChkDto = hcService.getHcUserInChk(new HcInChkDto(pKey,today ,id));
-              view.addObject("HcInChkDto",HcInChkDto);                  	  
         	  view.setViewName("photoInChkUpdate");
           }
           
@@ -865,7 +863,7 @@ public void setServletContext(ServletContext servletContext) {
           }
     	  HcInChkDto.setInChkTime(inTime);
     	  HcInChkDto.setInChkDate(today);
-          
+
           
           boolean isS=hcService.updateHcInChk(HcInChkDto);
           if(isS==true) {
@@ -896,22 +894,16 @@ public void setServletContext(ServletContext servletContext) {
     	  HcInChkDto.setInChkTime(inTime);
     	  HcInChkDto.setInChkDate(today);
           
-          MultipartFile f= HcInChkDto.getFile();
+          MultipartFile f = HcInChkDto.getFile();
           if(!f.isEmpty()) {//파일 업로드가 됐다면
         	  String orgname=f.getOriginalFilename();
-        	  String newname=inTime+orgname;
-        	 
+        	  String newname=HcInChkDto.getId()+today+orgname;
         	  String path=servletContext.getRealPath("/resources");
-        	 
-        	  System.out.println("path:"+path);
-//        	  File file=new File(path+newname+File.separator);
-        	  File file=new File(path+"/"+newname);
+        	  System.out.println("path:"+path);          
+        	  File file=new File(path+File.separator+newname);
         	  HcInChkDto.setInChkPhoto(orgname);
         	  HcInChkDto.setInChkPhoto2(newname);
         	  f.transferTo(file);
-        	  
-        	 
-        	  System.out.println("f.getName():"+orgname);
           }
 
           boolean isS=hcService.updateHcInChk(HcInChkDto);

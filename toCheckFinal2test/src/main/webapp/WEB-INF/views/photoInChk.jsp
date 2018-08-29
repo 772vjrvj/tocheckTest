@@ -47,10 +47,17 @@ body {
 #photo{
 	display:inline-block;
 	width:150px;
-	height: 255px;
+	height: 200px;
 	background-color: white;
 	
 }
+
+#image_section{
+	width:100%;
+	height:100%;
+
+}
+
 
 table {
 	margin: auto;
@@ -89,8 +96,10 @@ table {
 			<c:choose>
 			<c:when test="${(status.count)%4 eq 1}">
 				<tr><td>
-					<div id="photo">사진</div>
-					<div>아아디: ${list.id}</div>
+							<div id="photo">
+							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
+							</div>
+							<div>아아디: ${list.id}</div>	
 					<c:choose>
 						<c:when test="${list.inChkTime eq '/'}">
 
@@ -112,15 +121,17 @@ table {
 							</c:choose>			
 						</c:when>
 						<c:otherwise>
-							<div style="height: 25px;"></div>						
+									<input type="button"  value="내용보기"  onclick="location.href='photoInChkContent.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
 						</c:otherwise>						
 					</c:choose>
 				</td>
 			</c:when>
 			<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
 				<td>
-					<div id="photo">사진</div>
-					<div>아아디: ${list.id}</div>				
+							<div id="photo">
+							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
+							</div>
+							<div>아아디: ${list.id}</div>	
 					<c:choose>
 						<c:when test="${list.inChkTime eq '/'}">
 
@@ -142,15 +153,17 @@ table {
 							</c:choose>								
 						</c:when>
 						<c:otherwise>
-							<div style="height: 25px;"></div>						
+									<input type="button"  value="내용보기"  onclick="location.href='photoInChkContent.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
 						</c:otherwise>				
 					</c:choose>				
 				</td>
 			</c:when>
 			<c:when test="${(status.count)%4 eq 0}">
-				<td>
-					<div id="photo">사진</div>
-					<div>아아디: ${list.id}</div>
+				<td><div id="photo">
+							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
+							</div>
+							<div>아아디: ${list.id}</div>	
+
 					<c:choose>
 						<c:when test="${list.inChkTime eq '/'}">
 
@@ -172,7 +185,7 @@ table {
 							</c:choose>							
 						</c:when>
 						<c:otherwise>
-							<div style="height: 25px;"></div>						
+									<input type="button"  value="내용보기"  onclick="location.href='photoInChkContent.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
 						</c:otherwise>					
 					</c:choose>				
 				</td><tr>

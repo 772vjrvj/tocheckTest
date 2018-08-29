@@ -105,11 +105,13 @@ body {
 	   <input type="hidden" name="id" value="${HcLoginDto.id}"/>
 	   <input type="hidden" name="paramview" value="${paramview}"/>
 	   <input type="hidden" name="pKey" value="${dto.pKey}"/>
+	   <input type="hidden" name="inChkPhoto" value="${HcInChkDto.inChkPhoto}"/>
+	   <input type="hidden" name="inChkPhoto2" value="${HcInChkDto.inChkPhoto2}"/>
 	   <table border="1">
 	      <col width="600px">
 	      <tr>
 	         <td colspan="3"><h4>인증 사진 올리기 <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
-	         <img id="blah" src="#" alt="your image" /></h4>
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" /></h4>	         
 	      </tr> 
 	   </table>
 	   
