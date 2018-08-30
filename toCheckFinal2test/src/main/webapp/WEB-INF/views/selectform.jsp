@@ -28,8 +28,8 @@
 <div style="text-align: center; font-size: 54px;">${id}님의 선택목록</div>
 <br/>
 <br/>
-<button type="button" class="butn" style="background-color: white;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=1'">혼자 하기 목록</button>
-<button type="button" class="butn" style="background-color: #fd6c8b;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=2'">함께 하기 목록</button>
+<button type="button" class="butn" style="background-color: white;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=N'">혼자 하기 목록</button>
+<button type="button" class="butn" style="background-color: #fd6c8b;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=Y'">함께 하기 목록</button>
 </div>
 <div style="text-align: center;">
 <button class="btn btn-default" type="button" onclick="location.href='main.do?id=${id}&role=${role}'">이전페이지</button>

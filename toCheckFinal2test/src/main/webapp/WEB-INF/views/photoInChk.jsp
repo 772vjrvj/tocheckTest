@@ -81,14 +81,14 @@ table {
 		<h4>${diffdays} 일째</h4>
 		<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
 		<c:choose>
-		<c:when test="${paramview eq '0'}">
-			<input type="button"  value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'"/>
-		</c:when>
-        <c:otherwise>
-           <input type="button"  value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
-        </c:otherwise>
+			<c:when test="${paramview eq '0'}">
+				<input type="button"  value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'"/>
+			</c:when>
+	        <c:otherwise>
+	           <input type="button"  value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh}'"/>
+	        </c:otherwise>
         </c:choose>		
-        <input type="button"  value="전체일정보기"/>
+        <input type="button"  value="전체일정보기" onclick="location.href='habitCalDetail.do?calString=b&pKey=${dto.pKey}&id=${dto.id}&paramview=${paramview}'"/> 
         <br/>
 		<br/>
 		</td></tr>
