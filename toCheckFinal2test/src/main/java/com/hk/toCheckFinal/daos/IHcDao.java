@@ -1,6 +1,5 @@
 package com.hk.toCheckFinal.daos;
 
-
 import java.util.List;
 
 import com.hk.toCheckFinal.dtos.HcDto;
@@ -9,7 +8,6 @@ import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.dtos.HcWithDto;
 
 public interface IHcDao {
-
    
    public boolean habitCalInsert(HcDto dto);
    
@@ -35,11 +33,6 @@ public interface IHcDao {
    public boolean deleteHcInChk(String pKey);   
    public HcInChkDto getHcUserInChk(HcInChkDto HcInChkDto);
    public boolean deleteHcUserInChk(HcInChkDto HcInChkDto);   
-
-   
-   
-   
-   
    
    public HcLoginDto idChk(String id);
    public boolean insertUser(HcLoginDto dto);
