@@ -108,9 +108,17 @@ body {
 	   <table border="1">
 	      <col width="600px">
 	      <tr>
-	         <td colspan="3"><h4>인증 사진 올리기 <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
-	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" /></h4>	         
-	         </td>
+	         <td colspan="3"><h4>인증 사진 올리기</h4>
+	         <c:choose>
+	         	<c:when test="${HcLoginDto.id eq loginId}">
+			         <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
+	         	</c:when>
+	         	<c:otherwise>
+	         	
+	         	</c:otherwise>
+	         
+	         </c:choose>
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" />         
 	      </tr> 
 	   </table>
 	   
@@ -119,17 +127,41 @@ body {
 	      <col width="400px">
 	      <col width="100px">
 	      <tr >
+	         <th>아이디</th>
+	         <td colspan="3">${HcLoginDto.id}</td>
+	      </tr>
+	      <tr >
 	         <th>제목</th>
-	         <td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off"/></td>
-	
+	         	<c:choose>
+	         		<c:when test="${HcLoginDto.id eq loginId }">
+	    		     	<td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off"/></td>
+	         		</c:when>
+	         		<c:otherwise>
+			          	<td colspan="3">${HcInChkDto.inChkTitle}</td>
+	         		</c:otherwise>
+	         	</c:choose>
 	      </tr>
 	      <tr>
 	         <th>내용</th>
-	         <td colspan="2"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" ></textarea></td>
+	         	<c:choose>
+	         		<c:when test="${HcLoginDto.id eq loginId }">	         
+	         			<td colspan="3"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" ></textarea></td>
+	         	    </c:when>
+	         		<c:otherwise>
+			          	<td colspan="3" >${HcInChkDto.inChkContent}</td>
+	         		</c:otherwise>	
+	         	</c:choose>         		
 	      </tr>
 	      <tr>
 	         <td colspan="3" style="text-align: right;">
-	            <input class="btn btn-default btn-xs" type="submit"  value="인증하기"/>
+	         	<c:choose>
+	            	<c:when test="${HcLoginDto.id eq loginId }">
+	            		<input class="btn btn-default btn-xs" type="submit"  value="인증하기"/>
+	            	</c:when>
+	            	<c:otherwise>
+	            	
+	            	</c:otherwise>
+	            </c:choose>
 	         </td>
 	      </tr>
 	   </table>

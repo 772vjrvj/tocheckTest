@@ -274,29 +274,46 @@ input:checked + .slider:before {
          <tr>
             <td colspan="3" style="text-align: right;">
                <c:choose>
-                  <c:when test="${paramview eq '0'}">
-                  
-                     <input type="button" class="btn btn-default btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
-                     <input type="submit" class="btn btn-default btn-xs" value="체크완료"/>
-                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
-                     <input type="button" class="btn btn-default btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
-                        <div style="height: 5px;">
-                        </div>   
-                     <label class="switch">
-                          <input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
-                          <span class="slider round"></span>
-                     </label>
-                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>
-                     <br/>
-                  
-                  </c:when>
-                  <c:otherwise>
-                     <input type="button" class="btn btn-default btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh eq 'Y'?'2':'1'}'"/>
-                     <div style="height: 5px;">
-                     </div>
-                  </c:otherwise>
+	              <c:when test="${dto.withh eq 'Y'}">
+                 	 <c:choose>
+		             		<c:when test="${today1 >= StDate1}">
+		   						 <input type="button" class="btn btn-default btn-xs" value="인증하기목록" onclick="location.href='habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=${paramview}'"/>        
+			                     <div style="height: 5px;">
+			                     </div>
+		             		</c:when>
+		             		<c:otherwise>	
+			                     <input type="button" class="btn btn-default btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh}'"/>
+			                     <div style="height: 5px;">
+			                     </div>
+		             		</c:otherwise>
+	             		</c:choose>	              
+	              </c:when>	
+	              <c:otherwise>
+		               <c:choose>             
+		                  <c:when test="${paramview eq '0'}">
+		                     <input type="button" class="btn btn-default btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
+		                     <input type="submit" class="btn btn-default btn-xs" value="체크완료"/>
+		                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
+		                     <input type="button" class="btn btn-default btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
+		                        <div style="height: 5px;">
+		                        </div>   
+		                     <label class="switch">
+		                          <input type="checkbox" ${dto.calWith eq 'Y' ? 'checked':''} id="switchCheck" name="switchCheck"   ${together.together(dto.withh)}>
+		                          <span class="slider round"></span>
+		                     </label>
+		                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="switchText"></div>
+		                     <br/>
+		                  </c:when>
+		                  <c:otherwise>
+			                     <input type="button" class="btn btn-default btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh}'"/>
+								 <div style="height: 5px;">
+			                     </div>
+		                  </c:otherwise>
+		               </c:choose>
+	              </c:otherwise>
                </c:choose>
-            
+              
+
                <c:choose>
                   <c:when test="${dto.withh eq 'N'}">
                   
@@ -304,7 +321,7 @@ input:checked + .slider:before {
                   <c:otherwise>
                      <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
 	                   
-                     	모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}
+                     	모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}</div>
                      <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
                      <c:choose>
                         <c:when test="${paramview eq 0}">
@@ -332,11 +349,18 @@ input:checked + .slider:before {
                                        <c:when test="${sameValue eq 0}">
                                           <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
                                           ${dto.intoper eq dto.recruit ? 'disabled':''}
-                                          onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"}/>                                       
+                                          onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"} />                                       
                                        </c:when>
                                        <c:otherwise>
-                                          <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참가중'}" 
-                                          disabled/>
+                                       	  <c:choose>
+	                                      	  	<c:when test="${today1 >= StDate1}">
+	                                      	  	
+	                                      	  	</c:when>
+	                                      	  	<c:otherwise>
+		                                          <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참가중'}" 
+		                                          disabled/>  	
+	                                      	  	</c:otherwise>
+                                       	  </c:choose>
                                        </c:otherwise>
                                     </c:choose>            
                                  </c:otherwise>
@@ -356,7 +380,7 @@ input:checked + .slider:before {
 						      </c:choose>
 						   </c:forEach>
 						</p>
-                     </div>
+                     
                   </c:otherwise>
                </c:choose>               
             </td>

@@ -376,7 +376,7 @@ public void setServletContext(ServletContext servletContext) {
                }
             }
             String paramview="0";
-            return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey()+"&paramview="+paramview;
+            return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey()+"&paramview="+paramview+"&calString=b";
          }else {
             model.addAttribute("msg","실패 했습니다.!");
             return "error";
@@ -385,9 +385,9 @@ public void setServletContext(ServletContext servletContext) {
       }               
       
       @RequestMapping(value = "/habitCalDetail.do", method = RequestMethod.GET)
-      public ModelAndView habitCalDetail(String id, String pKey, String paramview, Locale locale) throws ParseException {
+      public ModelAndView habitCalDetail(String calString,String id, String pKey, String paramview, Locale locale) throws ParseException {
          logger.info("상세보기 {}.", locale);
-         
+         System.err.println(calString);
          ModelAndView view = new ModelAndView();
          Map<String, Integer> map = new HashMap<String, Integer>();
          
@@ -433,8 +433,8 @@ public void setServletContext(ServletContext servletContext) {
          map.put("edMonth", edMonth);   
          map.put("edDate", edDate);   
          map.put("term", term);   
-         
-         if(today1 >= StDate1 && dto.getWithh().equals("Y")) {
+         System.out.println(dto.getWithh());
+         if(today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
         	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
         	 
@@ -460,6 +460,8 @@ public void setServletContext(ServletContext servletContext) {
         	 return view;
          }else{
         	 
+        	 view.addObject("today1",today1);        	 
+        	 view.addObject("StDate1",StDate1);
         	 view.setViewName("habitCalDetail");
         	 view.addObject("id",id);
         	 view.addObject("pKey",pKey);
@@ -635,14 +637,14 @@ public void setServletContext(ServletContext servletContext) {
          ModelAndView view = new ModelAndView();
          
          System.out.println("with:"+with);
-         if(with.equals("1")) {
-            List<HcDto> list=hcService.getAllHcList();            
-            view.addObject("list",list);
-            view.setViewName("boardlist");
+         if(with.equals("Y")) {
+        	 List<HcDto> list=hcService.getAllHcListY();
+        	 view.addObject("list",list);
+        	 view.setViewName("boardlistWith");
          }else {
-            List<HcDto> list=hcService.getAllHcListY();
-            view.addObject("list",list);
-            view.setViewName("boardlistWith");
+        	 List<HcDto> list=hcService.getAllHcList();            
+        	 view.addObject("list",list);
+        	 view.setViewName("boardlist");
          }
          
          HcLoginDto HcLoginDto= hcService.getUser(id);
@@ -827,7 +829,7 @@ public void setServletContext(ServletContext servletContext) {
           
           if(isS==true) {
               System.out.println("삭제 성공");
-              return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview;
+              return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview+"&calString=a";
 
            }else {
               System.out.println("삭제 실패");
@@ -846,9 +848,11 @@ public void setServletContext(ServletContext servletContext) {
           String today = SimpleDateFormat.format(currentTime);
           String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
 
-          String HH=inTime.substring(0,4);
-          String mm=inTime.substring(4,6);
-          String tt=inTime.substring(6);
+          String HH=inTime.substring(0,2)+"시";
+          String mm=inTime.substring(2,4)+"분";
+          String tt=inTime.substring(4,6)+"초";
+    	  HcInChkDto.setInChkTime(HH+mm+tt);
+    	  HcInChkDto.setInChkDate(today);
 
           MultipartFile f = HcInChkDto.getFile();
           if(!f.isEmpty()) {//파일 업로드가 됐다면
@@ -861,14 +865,12 @@ public void setServletContext(ServletContext servletContext) {
         	  HcInChkDto.setInChkPhoto2(newname);
         	  f.transferTo(file);
           }
-    	  HcInChkDto.setInChkTime(inTime);
-    	  HcInChkDto.setInChkDate(today);
 
           
           boolean isS=hcService.updateHcInChk(HcInChkDto);
           if(isS==true) {
               System.out.println("수정 성공");
-              return "redirect:habitCalDetail.do?id="+HcInChkDto.getId()+"&pKey="+HcInChkDto.getpKey()+"&paramview="+paramview;
+              return "redirect:habitCalDetail.do?id="+HcInChkDto.getId()+"&pKey="+HcInChkDto.getpKey()+"&paramview="+paramview+"&calString=a";
 
            }else {
               System.out.println("수정 실패");
@@ -888,10 +890,10 @@ public void setServletContext(ServletContext servletContext) {
           String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
           System.out.println("inTime:"+inTime);
 
-          String HH=inTime.substring(0,4);
-          String mm=inTime.substring(4,6);
-          String tt=inTime.substring(6);
-    	  HcInChkDto.setInChkTime(inTime);
+          String HH=inTime.substring(0,2)+"시";
+          String mm=inTime.substring(2,4)+"분";
+          String tt=inTime.substring(4,6)+"초";
+    	  HcInChkDto.setInChkTime(HH+mm+tt);
     	  HcInChkDto.setInChkDate(today);
           
           MultipartFile f = HcInChkDto.getFile();
@@ -911,7 +913,7 @@ public void setServletContext(ServletContext servletContext) {
           
           if(isS==true) {
               System.out.println("수정 성공");
-              return "redirect:habitCalDetail.do?id="+HcInChkDto.getId()+"&pKey="+HcInChkDto.getpKey()+"&paramview="+paramview;
+              return "redirect:habitCalDetail.do?id="+HcInChkDto.getId()+"&pKey="+HcInChkDto.getpKey()+"&paramview="+paramview+"&calString=a";
 
            }else {
               System.out.println("수정 실패");
