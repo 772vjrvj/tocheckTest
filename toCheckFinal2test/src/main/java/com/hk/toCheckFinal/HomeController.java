@@ -78,8 +78,8 @@ public void setServletContext(ServletContext servletContext) {
       }else {
          model.addAttribute("msg","회원가입에 실패 했습니다.!");
          return "error";
-      }      
-   }   
+      }
+   }
    
    
    @RequestMapping(value = "/idchk.do", method = RequestMethod.GET)
@@ -353,35 +353,44 @@ public void setServletContext(ServletContext servletContext) {
          
          if(isS) {
             
+        	 
+        	 if(HcDto.getWithh().equals("N")) {
+        		 
+        	 }else {
+        		 
+        		 for (int i = 0; i < term; i++) {
+        			 
+        			 
+        			 int year1 = Integer.parseInt(year);
+        			 int month1 = Integer.parseInt(month);
+        			 int day1 = Integer.parseInt(date);
+        			 
+        			 
+        			 Calendar cal = Calendar.getInstance();
+        			 
+        			 cal.set(year1, month1-1, day1);
+        			 
+        			 cal.add(Calendar.DATE, i);
+        			 
+        			 SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        			 String inChkDate =SimpleDateFormat.format(cal.getTime());
+        			 
+        			 System.out.println("inChkDate:"+inChkDate);
+        			 boolean isS1 = hcService.insertHcInChk(new HcInChkDto(pKey, HcDto.getId(),HcDto.getTitle(), inChkDate));
+        			 
+        			 
+        			 if(isS1) {
+        				 
+        			 }else {
+        				 model.addAttribute("msg","실패 했습니다.!");
+        				 return "error";
+        			 }
+        		 }
+        		 
+        	 }
+        	 
             
-            for (int i = 0; i < term; i++) {
-               
-               
-               int year1 = Integer.parseInt(year);
-               int month1 = Integer.parseInt(month);
-               int day1 = Integer.parseInt(date);
-               
-               
-               Calendar cal = Calendar.getInstance();
-               
-               cal.set(year1, month1-1, day1);
-               
-               cal.add(Calendar.DATE, i);
-               
-               SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-               String inChkDate =SimpleDateFormat.format(cal.getTime());
-               
-               System.out.println("inChkDate:"+inChkDate);
-               boolean isS1 = hcService.insertHcInChk(new HcInChkDto(pKey, HcDto.getId(),HcDto.getTitle(), inChkDate));
-               
-               
-               if(isS1) {
-                  
-               }else {
-                  model.addAttribute("msg","실패 했습니다.!");
-                  return "error";
-               }
-            }
+            
             String paramview="0";
             return "redirect:habitCalDetail.do?id="+HcDto.getId()+"&pKey="+HcDto.getpKey()+"&paramview="+paramview+"&calString=b";
          }else {
@@ -403,12 +412,13 @@ public void setServletContext(ServletContext servletContext) {
          System.out.println(dto);
          
          
+         
+         
          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
          Date currentTime = new Date ();
          String today = SimpleDateFormat.format(currentTime);
          int today1 = Integer.parseInt(today);
          int StDate1 = Integer.parseInt(dto.getStDate());
-         
          
 
          //시작일
@@ -430,7 +440,7 @@ public void setServletContext(ServletContext servletContext) {
 
                
          
-         String []chkss=dto.getChks().split("/");
+         String []chks=dto.getChks().split("/");
          String []idlist=dto.getIdlist().split("/");
          
          map.put("stYear", stYear);   
@@ -441,6 +451,15 @@ public void setServletContext(ServletContext servletContext) {
          map.put("edDate", edDate);   
          map.put("term", term);   
          System.out.println(dto.getWithh());
+         
+         
+         
+         
+         
+         
+         
+         
+         
          if(today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
         	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
@@ -474,7 +493,7 @@ public void setServletContext(ServletContext servletContext) {
         	 view.addObject("pKey",pKey);
         	 view.addObject("paramview",paramview);
         	 
-        	 view.addObject("chkss",chkss);      
+        	 view.addObject("chks",chks);      
         	 view.addObject("idlist",idlist);               
         	 view.addObject("dto",dto);   
         	 view.addObject("HcLoginDto",HcLoginDto);   
@@ -833,8 +852,48 @@ public void setServletContext(ServletContext servletContext) {
           
           
           boolean isS=hcService.deleteHcUserInChk(new HcInChkDto(pKey,today ,id));
+          HcDto HcDto =hcService.getHabitCalList(pKey);
           
           if(isS==true) {
+        	  
+
+        	  
+        	  
+        	  int count = 0;
+        	  List<HcInChkDto> list =hcService.getHcInChk(new HcInChkDto(pKey, today));
+        	  for (int i = 0; i < list.size(); i++) {
+  				if (list.get(i).getInChkPhoto().equals("/")) {
+  					
+  				}else {
+  					count++;					
+  				}
+        	  }
+        	  System.out.println("count:"+count);
+        	  System.out.println("(double)(count/list.size():딜리트"+(count/(double)list.size()));
+        	  
+        	  if( (count/(double)list.size()) >= 0.5) {
+
+
+        	  }else {
+        		  
+
+        		  String chks=HcDto.getChks().substring(0, HcDto.getChks().length()-8); 	  
+        		  int chkss=HcDto.getChkss()-1;
+        		  HcDto.setChks(chks);
+        		  HcDto.setChkss(chkss);
+        		  System.out.println("HcDto:딜리트"+HcDto);
+        		  boolean isS1=hcService.updateCheck(HcDto);
+
+        		  if(isS1==true) {
+        			  System.out.println("chks,chkss삭제성공");
+        		  }else {
+        			  System.out.println("chks,chkss삭제실패");
+        		  }
+        	  }
+        	  
+        	  
+        	  
+        	  
               System.out.println("삭제 성공");
               return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview+"&calString=a";
 
@@ -914,11 +973,45 @@ public void setServletContext(ServletContext servletContext) {
         	  HcInChkDto.setInChkPhoto2(newname);
         	  f.transferTo(file);
           }
-
+          
+          System.out.println(HcInChkDto);
           boolean isS=hcService.updateHcInChk(HcInChkDto);
           
           
           if(isS==true) {
+        	  int count = 0;
+        	  List<HcInChkDto> list =hcService.getHcInChk(new HcInChkDto(HcInChkDto.getpKey(), HcInChkDto.getInChkDate()));
+        	  for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getInChkPhoto().equals("/")) {
+				}else {
+					count++;					
+				}
+        	  }
+        	  System.out.println("count:"+count);
+        	  System.out.println("list.size():"+list.size());
+        	  System.out.println("(double)(count/list.size()):"+(count/(double)list.size()));
+        	  HcDto HcDto=hcService.getHabitCalList(HcInChkDto.getpKey());
+        	  
+        	  if( (count/(double)list.size()) >= 0.5) {
+        		  
+        		  String chks=(HcDto.getChks()+"/"+HcInChkDto.getInChkDate());
+        		  int chkss=HcDto.getChkss()+1;
+        		  HcDto.setChks(chks);
+        		  HcDto.setChkss(chkss);
+        		  boolean isS1=hcService.updateCheck(HcDto);
+
+        		  if(isS1==true) {
+        			  System.out.println("chks,chkss입력성공");
+        		  }else {
+        			  System.out.println("chks,chkss입력실패");
+        		  }
+        		  
+        		  
+        	  }else {
+        		  
+        	  }
+        	  
+        	  
               System.out.println("수정 성공");
               return "redirect:habitCalDetail.do?id="+HcInChkDto.getId()+"&pKey="+HcInChkDto.getpKey()+"&paramview="+paramview+"&calString=a";
 
