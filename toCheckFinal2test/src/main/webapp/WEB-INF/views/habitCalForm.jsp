@@ -195,6 +195,14 @@
              $('#endDate').text(edDate2);
       
    }
+   
+// icon 팝업창
+	function icon()
+		{
+			var popUrl = "popup.do";	//팝업창에 출력될 페이지 URL
+			var popOption = "width=600, height=600, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+			window.open(popUrl,"",popOption);
+		}
 </script>
 <body>
 <div id="container">
@@ -225,7 +233,8 @@
       <tr>
          <th>모션선택</th>
          <td colspan="2">
-            <input type="button"  name="photo" value="선택"/>
+            <button onclick="icon()">선택</button>
+            <img id="image" src="" width="100px" height="100px"/>
          </td>
       </tr>            
       <tr>

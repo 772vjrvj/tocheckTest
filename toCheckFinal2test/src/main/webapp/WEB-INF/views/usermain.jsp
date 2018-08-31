@@ -170,23 +170,17 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
    $("#totalper").trigger("click");
    });
 </script>
-
 </head>
 <body>
-
-
 <div id="container">
 <h1 style="text-align: center;">${HcLoginDto.id}님 진행중인 체크 리스트</h1>
 <p style="color: #245682; text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트 : ${HcLoginDto.ttpoint}</p>
 <br/>
-
    <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">
-   
    <div class="liquidGauge"><h5>전체달성률</h5></div>
    <div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
    <div class="liquidGauge">
 <br/>
-
    <c:choose>
     <c:when test="${fn:length(list) eq 0}">
           진행중이 리스트가 없습니다.
@@ -222,11 +216,8 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
       </c:forEach>
     </c:otherwise>
    </c:choose>
-
-
    <br/>
    <br/>
-
    <button type="button" class="btn btn-default btn-xs" onclick="location.href='selectform.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">목록보기</button>
    <button type="button" class="btn btn-default btn-xs" onclick="location.href='habitCalForm.do?id=${HcLoginDto.id}'">시작하기</button>
    <button type="button" class="btn btn-default btn-xs" onclick="location.href='point.do?id=${HcLoginDto.id}'">포인트 사용</button></div>

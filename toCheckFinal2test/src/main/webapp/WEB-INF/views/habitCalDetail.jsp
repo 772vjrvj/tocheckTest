@@ -61,6 +61,7 @@ $(function(){
     opacity: 0.35;
     position: relative;
   }
+  
   100% {
     height: 200px;
     width: 200px;

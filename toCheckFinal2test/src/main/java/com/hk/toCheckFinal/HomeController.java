@@ -103,6 +103,13 @@ public void setServletContext(ServletContext servletContext) {
       return "idchk";
    }      
    
+   @RequestMapping(value = "/popup.do", method = RequestMethod.GET)
+   public String popup(Locale locale,SessionStatus session) {
+	   logger.info("팝업창 띄우기 {}", locale);
+	   
+	   return "popup";
+   }      
+   
    
    @RequestMapping(value = "/login_after.do", method = RequestMethod.POST)
    public String login_after(HcLoginDto dto, Locale locale, Model model,SessionStatus session) {
