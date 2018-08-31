@@ -396,12 +396,13 @@ public void setServletContext(ServletContext servletContext) {
          System.out.println(dto);
          
          
+         
+         
          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
          Date currentTime = new Date ();
          String today = SimpleDateFormat.format(currentTime);
          int today1 = Integer.parseInt(today);
          int StDate1 = Integer.parseInt(dto.getStDate());
-         
          
 
          //시작일
@@ -423,7 +424,7 @@ public void setServletContext(ServletContext servletContext) {
 
                
          
-         String []chkss=dto.getChks().split("/");
+         String []chks=dto.getChks().split("/");
          String []idlist=dto.getIdlist().split("/");
          
          map.put("stYear", stYear);   
@@ -434,6 +435,15 @@ public void setServletContext(ServletContext servletContext) {
          map.put("edDate", edDate);   
          map.put("term", term);   
          System.out.println(dto.getWithh());
+         
+         
+         
+         
+         
+         
+         
+         
+         
          if(today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
         	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
@@ -467,7 +477,7 @@ public void setServletContext(ServletContext servletContext) {
         	 view.addObject("pKey",pKey);
         	 view.addObject("paramview",paramview);
         	 
-        	 view.addObject("chkss",chkss);      
+        	 view.addObject("chks",chks);      
         	 view.addObject("idlist",idlist);               
         	 view.addObject("dto",dto);   
         	 view.addObject("HcLoginDto",HcLoginDto);   
@@ -828,6 +838,35 @@ public void setServletContext(ServletContext servletContext) {
           boolean isS=hcService.deleteHcUserInChk(new HcInChkDto(pKey,today ,id));
           
           if(isS==true) {
+        	  
+        	  
+        	  int count = 0;
+        	  List<HcInChkDto> list =hcService.getHcInChk(new HcInChkDto(pKey, today));
+        	  for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getInChkPhoto() != "/") {
+					count++;
+				}
+        	  }
+        	  
+        	  if( (double)(count/list.size()) >= 0.5) {
+
+
+        	  }else {
+        		  
+        		  String chks=hcService.getHabitCalList(pKey).getChks().substring(0, hcService.getHabitCalList(pKey).getChks().length()-8);
+        		  
+
+        		  
+        		  int chkss=hcService.getHabitCalList(pKey).getChkss()-1;
+
+        		  
+        		  hcService.getHabitCalList(pKey).setChks(chks);
+        		  hcService.getHabitCalList(pKey).setChkss(chkss);
+        	  }
+        	  
+        	  
+        	  
+        	  
               System.out.println("삭제 성공");
               return "redirect:habitCalDetail.do?id="+id+"&pKey="+pKey+"&paramview="+paramview+"&calString=a";
 
@@ -907,11 +946,29 @@ public void setServletContext(ServletContext servletContext) {
         	  HcInChkDto.setInChkPhoto2(newname);
         	  f.transferTo(file);
           }
-
+          
+          System.out.println(HcInChkDto);
           boolean isS=hcService.updateHcInChk(HcInChkDto);
           
           
           if(isS==true) {
+        	  int count = 0;
+        	  List<HcInChkDto> list =hcService.getHcInChk(new HcInChkDto(HcInChkDto.getpKey(), HcInChkDto.getInChkDate()));
+        	  for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getInChkPhoto() != "/") {
+					count++;
+				}
+        	  }
+        	  
+        	  if( (double)(count/list.size()) >= 0.5) {
+        		  String chks=(hcService.getHabitCalList(HcInChkDto.getpKey()).getChks()+"/"+HcInChkDto.getInChkDate());
+        		  int chkss=hcService.getHabitCalList(HcInChkDto.getpKey()).getChkss()+1;
+        		  
+        		  hcService.getHabitCalList(HcInChkDto.getpKey()).setChks(chks);
+        		  hcService.getHabitCalList(HcInChkDto.getpKey()).setChkss(chkss);
+        	  }
+        	  
+        	  
               System.out.println("수정 성공");
               return "redirect:habitCalDetail.do?id="+HcInChkDto.getId()+"&pKey="+HcInChkDto.getpKey()+"&paramview="+paramview+"&calString=a";
 

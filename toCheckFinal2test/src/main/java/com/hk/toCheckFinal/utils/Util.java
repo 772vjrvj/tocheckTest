@@ -69,13 +69,13 @@ public class Util {
 	}
 	
 	
-	public static String checked(String[] chkss, String i, String j, String n) {
+	public static String checked(String[] chks, String i, String j, String n) {
 		String m=i+j+n;
 		System.out.println(m);
 		String chechked="";
 	
-		for(int p=0;p<chkss.length;p++){
-			if(m.equals(chkss[p])){
+		for(int p=0;p<chks.length;p++){
+			if(m.equals(chks[p])){
 				chechked="checked";
 			}
 		}

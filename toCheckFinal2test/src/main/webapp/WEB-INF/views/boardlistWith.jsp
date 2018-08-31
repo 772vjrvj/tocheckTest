@@ -62,14 +62,7 @@ $(function() {
 
 });
 
-
-
-
 </script>
-
-
-
-
 <style type="text/css">
 th {
 	color: white;

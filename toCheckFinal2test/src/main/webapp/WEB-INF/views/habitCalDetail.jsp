@@ -346,11 +346,11 @@ input:checked + .slider:before {
                                        </c:choose>
                                     </c:forEach>
                                     <c:choose>
-                                       <c:when test="${sameValue eq 0}">
-                                          <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
-                                          ${dto.intoper eq dto.recruit ? 'disabled':''}
-                                          onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"} />                                       
-                                       </c:when>
+	                                       <c:when test="${sameValue eq 0 && today1 < StDate1}">
+	                                          <input type="button"  value="${dto.intoper eq dto.recruit ? '마감':'참여하기'}" 
+	                                          ${dto.intoper eq dto.recruit ? 'disabled':''}
+	                                          onclick=${dto.intoper eq dto.recruit ? "" : "'myFunction2()'"} />                                       
+	                                       </c:when>
                                        <c:otherwise>
                                        	  <c:choose>
 	                                      	  	<c:when test="${today1 >= StDate1}">
@@ -442,8 +442,8 @@ input:checked + .slider:before {
                <c:otherwise>
                   <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
                   
-                  ${Util.checked(chkss, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
-                  ${paramview eq 0? Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+"")): "onclick='return(false)'" }
+                  ${Util.checked(chks, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
+                  ${dto.withh eq 'Y'?  "onclick='return(false)'": Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}
                   /></td>
                 </c:otherwise>
                 
