@@ -440,11 +440,21 @@ input:checked + .slider:before {
                    
                 </c:when>
                <c:otherwise>
-                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
-                  
-                  ${Util.checked(chks, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}  
-                  ${dto.withh eq 'Y'?  "onclick='return(false)'": Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}
-                  /></td>
+            		<c:choose>   
+            			<c:when test="${paramview eq 1}">		
+			                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
+			                  ${Util.checked(chks, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))} onclick='return(false)'
+			                  /></td>
+	                  	</c:when>
+	                  	<c:otherwise>
+			                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
+			                  ${Util.checked(chks, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))} 
+			                  ${dto.withh eq 'Y'?  "onclick='return(false)'": Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}
+			                  /></td>	                  	
+	                  	</c:otherwise>
+	                  
+	                  
+	                  </c:choose>
                 </c:otherwise>
                 
             </c:choose>
