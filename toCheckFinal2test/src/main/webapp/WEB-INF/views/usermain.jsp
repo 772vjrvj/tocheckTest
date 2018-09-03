@@ -24,10 +24,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <jsp:include page="head.jsp"/>
+
+
 <style type="text/css">
    body {
       padding: 25px;
    }
+   
+   
+   img{
+	width: 130px;
+	height: 130px;
+	
+}
 
    h6,h5 {
       text-align: center;
@@ -172,6 +181,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 </script>
 </head>
 <body>
+
 <div id="container">
 <h1 style="text-align: center;">${HcLoginDto.id}님 진행중인 체크 리스트</h1>
 <p style="color: #245682; text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트 : ${HcLoginDto.ttpoint}</p>
@@ -201,6 +211,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
                   <c:set var="per" value="${(dto.chkss/dto.term)*100}"/>   
                </c:otherwise>
             </c:choose>
+            <img alt="" src="${dto.photo}">
             <div class="progress-fixed">
                  <figure>
                    <div class="progress-fixed__bar${status.index}"></div>

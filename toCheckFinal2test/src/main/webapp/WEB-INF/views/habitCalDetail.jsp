@@ -131,6 +131,13 @@ margin: 25px 0px;
 
 
 <style type="text/css">
+	img{
+	width:250px;
+	height: 250px;
+
+	
+	}
+
    #calendar{
       border: 1px solid #fd6c8b;
       border-collapse: collapse;
@@ -278,22 +285,29 @@ input:checked + .slider:before {
 	              <c:when test="${dto.withh eq 'Y'}">
                  	 <c:choose>
 		             		<c:when test="${today1 >= StDate1}">
-		   						 <input type="button" class="btn btn-default btn-xs" value="인증하기목록" onclick="location.href='habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=${paramview}'"/>        
-			                     <div style="height: 5px;">
-			                     </div>
+
 		             		</c:when>
 		             		<c:otherwise>	
-			                     <input type="button" class="btn btn-default btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh}'"/>
-			                     <div style="height: 5px;">
-			                     </div>
+
 		             		</c:otherwise>
 	             		</c:choose>	              
 	              </c:when>	
 	              <c:otherwise>
 		               <c:choose>             
 		                  <c:when test="${paramview eq '0'}">
-		                     <input type="button" class="btn btn-default btn-xs" value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${id}&role=${HcLoginDto.role}'"/>
-		                     <input type="submit" class="btn btn-default btn-xs" value="체크완료"/>
+		                     <c:choose>
+		                     	<c:when test="${dto.endList eq 'N'}">
+		                     		<input type="submit" class="btn btn-default btn-xs" value="체크완료"/>
+		                     	
+		                     	</c:when>
+		                     	<c:otherwise>
+		                     	
+		                     	
+		                     	</c:otherwise>
+		                     
+		                     
+		                     </c:choose>
+		                     
 		                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
 		                     <input type="button" class="btn btn-default btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
 		                        <div style="height: 5px;">
@@ -306,13 +320,13 @@ input:checked + .slider:before {
 		                     <br/>
 		                  </c:when>
 		                  <c:otherwise>
-			                     <input type="button" class="btn btn-default btn-xs" value="이전페이지" onclick="location.href='boardlist.do?id=${loginId}&with=${dto.withh}'"/>
-								 <div style="height: 5px;">
-			                     </div>
+
 		                  </c:otherwise>
 		               </c:choose>
 	              </c:otherwise>
                </c:choose>
+               <img alt="이미지" src="${dto.photo}" >
+               
               
 
                <c:choose>
@@ -435,7 +449,7 @@ input:checked + .slider:before {
 
       <c:forEach var = "n" begin = "1" end = "${lastDay.calGet2(i,j,1)}">
          <td>
-            <p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
+            	<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
             <c:choose>
                 <c:when test="${(i==map.stYear&&j==map.stMonth&&n<map.stDate)||(i==map.edYear&&j==map.edMonth&&n>map.edDate)}">
                    
@@ -445,13 +459,17 @@ input:checked + .slider:before {
             			<c:when test="${paramview eq 1}">		
 			                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
 			                  ${Util.checked(chks, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))} onclick='return(false)'
-			                  /></td>
+			                  />
+			                  
+			                  </td>
 	                  	</c:when>
 	                  	<c:otherwise>
 			                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
 			                  ${Util.checked(chks, Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))} 
 			                  ${dto.withh eq 'Y'?  "onclick='return(false)'": Util.today(Util.substring(i),Util.isTwo(j+""),Util.isTwo(n+""))}
-			                  /></td>	                  	
+			                  />
+			                  
+			                  </td>	                  	
 	                  	</c:otherwise>
 	                  
 	                  

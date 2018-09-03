@@ -49,12 +49,12 @@ public class HomeController implements ServletContextAware {
    private IHcService hcService;
 
 
-private ServletContext servletContext;
-
-@Override
-public void setServletContext(ServletContext servletContext) {
-	this.servletContext=servletContext;
-}            
+	private ServletContext servletContext;
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext=servletContext;
+	}            
 
 
    @RequestMapping(value = "/regist.do", method = RequestMethod.GET)
@@ -165,6 +165,22 @@ public void setServletContext(ServletContext servletContext) {
             int xsize=0;
             double sum=0;
          
+            HcWithDto HcWithDto=hcService.getCalWith(id);
+            String []withGoalList=null;
+            
+            if(HcWithDto==null) {
+            	
+            }else {
+            	
+            	withGoalList=HcWithDto.getWithGoalList().split("/");
+            	
+            	for (int i = 0; i < withGoalList.length; i++) {
+            		list.add(hcService.getHabitCalList(withGoalList[i]));
+            	}
+            }
+            
+            
+            
             for (int k = 0; k < list.size(); k++) {
                if(list.get(k).getEndList().toUpperCase().equals("N")) {
                int term = Integer.parseInt(list.get(k).getTerm());
@@ -178,6 +194,8 @@ public void setServletContext(ServletContext servletContext) {
                
             }
             
+
+            
             if(xsize==0) {
                sum=0.0;
             }else {
@@ -185,10 +203,10 @@ public void setServletContext(ServletContext servletContext) {
                sum=count/xsize;               
             }
 
-            
             view.setViewName("usermain");
             view.addObject("sum",sum);
             view.addObject("list",list);
+
             view.addObject("HcLoginDto",HcLoginDto);
             return view;
             
@@ -318,7 +336,6 @@ public void setServletContext(ServletContext servletContext) {
       @RequestMapping(value = "/habitCalInsert.do", method = RequestMethod.POST)
       public String habitCalInsert(String year, String month, String date, HcDto HcDto, Locale locale, Model model) {
          logger.info("유저정보 {}.", locale);
-         
 
          String stDate = year+Util.isTwo(month)
                       +Util.isTwo(date);
@@ -327,6 +344,7 @@ public void setServletContext(ServletContext servletContext) {
          
          String pKey = Util.getPKey(HcDto.getId());
          System.out.println(pKey);
+         
          
          HcDto.setStDate(stDate);
          HcDto.setEdDate(edDate);
@@ -406,8 +424,11 @@ public void setServletContext(ServletContext servletContext) {
          System.err.println(calString);
          ModelAndView view = new ModelAndView();
          Map<String, Integer> map = new HashMap<String, Integer>();
-         
+         System.out.println("pKey:"+pKey);
+         System.out.println("pKey:"+pKey);
+
          HcDto dto = hcService.getHabitCalList(pKey);
+         
          HcLoginDto HcLoginDto= hcService.getUser(id);
          System.out.println(dto);
          
@@ -420,7 +441,6 @@ public void setServletContext(ServletContext servletContext) {
          int today1 = Integer.parseInt(today);
          int StDate1 = Integer.parseInt(dto.getStDate());
          
-
          //시작일
          String sYear=dto.getStDate().substring(0,4);
          int stYear=Integer.parseInt(sYear);       
@@ -515,10 +535,21 @@ public void setServletContext(ServletContext servletContext) {
          HcLoginDto HcLoginDto= hcService.getUser(id);
          String nory=dto.getEndList();
          boolean isS  = hcService.habitCalDelete(pKey);
-         boolean isS1  = hcService.deleteHcInChk(pKey);   
          
          
-         if(isS == true && isS1==true){
+         
+         if(dto.getWithh().equals("Y")){
+        	 boolean isS1  = hcService.deleteHcInChk(pKey);   
+        	 if(isS1==true) {
+        		 System.out.println("deleteHcInChk삭제 성공");
+        	 }else {
+        		 model.addAttribute("msg","삭제에 실패 했습니다.");
+                 return "error";
+        	 }
+        	 
+         }
+         
+         if(isS == true){
 
             if(nory.equals("N")){
                return "redirect:main.do?id="+HcLoginDto.getId()+"&role="+HcLoginDto.getRole();
@@ -949,13 +980,27 @@ public void setServletContext(ServletContext servletContext) {
       @RequestMapping(value = "/photoInChkInsert.do", method = RequestMethod.POST)
       public String photoInChkInsert(HcInChkDto HcInChkDto, Locale locale, String paramview,  Model model) throws Exception{
     	  
+    	  SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+    	  Date currentTime = new Date ();
+    	  String today = SimpleDateFormat.format(currentTime);
+    	  String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
+    	  System.out.println("inTime:"+inTime);
     	  
-          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-          Date currentTime = new Date ();
-          String today = SimpleDateFormat.format(currentTime);
-          String inTime   = new java.text.SimpleDateFormat("HHmmss").format(new java.util.Date());
-          System.out.println("inTime:"+inTime);
-
+    	  
+    	  
+          int beforeCount = 0;
+    	  List<HcInChkDto> beforeList =hcService.getHcInChk(new HcInChkDto(HcInChkDto.getpKey(), today));
+    	  for (int i = 0; i < beforeList.size(); i++) {
+			if (beforeList.get(i).getInChkPhoto().equals("/")) {
+			}else {
+				beforeCount++;					
+			}
+    	  }         
+             	  
+    	 
+    	  
+    	  
+          
           String HH=inTime.substring(0,2)+"시";
           String mm=inTime.substring(2,4)+"분";
           String tt=inTime.substring(4,6)+"초";
@@ -975,41 +1020,51 @@ public void setServletContext(ServletContext servletContext) {
           }
           
           System.out.println(HcInChkDto);
+
+          
           boolean isS=hcService.updateHcInChk(HcInChkDto);
           
           
           if(isS==true) {
-        	  int count = 0;
-        	  List<HcInChkDto> list =hcService.getHcInChk(new HcInChkDto(HcInChkDto.getpKey(), HcInChkDto.getInChkDate()));
-        	  for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getInChkPhoto().equals("/")) {
-				}else {
-					count++;					
-				}
-        	  }
-        	  System.out.println("count:"+count);
-        	  System.out.println("list.size():"+list.size());
-        	  System.out.println("(double)(count/list.size()):"+(count/(double)list.size()));
-        	  HcDto HcDto=hcService.getHabitCalList(HcInChkDto.getpKey());
         	  
-        	  if( (count/(double)list.size()) >= 0.5) {
-        		  
-        		  String chks=(HcDto.getChks()+"/"+HcInChkDto.getInChkDate());
-        		  int chkss=HcDto.getChkss()+1;
-        		  HcDto.setChks(chks);
-        		  HcDto.setChkss(chkss);
-        		  boolean isS1=hcService.updateCheck(HcDto);
-
-        		  if(isS1==true) {
-        			  System.out.println("chks,chkss입력성공");
-        		  }else {
-        			  System.out.println("chks,chkss입력실패");
-        		  }
-        		  
+        	  if((beforeCount/(double)beforeList.size()) >= 0.5) {
         		  
         	  }else {
         		  
+	        		  int count = 0;
+	        		  List<HcInChkDto> list =hcService.getHcInChk(new HcInChkDto(HcInChkDto.getpKey(), HcInChkDto.getInChkDate()));
+	        		  for (int i = 0; i < list.size(); i++) {
+	        			  if (list.get(i).getInChkPhoto().equals("/")) {
+	        			  }else {
+	        				  count++;					
+	        			  }
+	        		  }
+	        		  System.out.println("count:"+count);
+	        		  System.out.println("list.size():"+list.size());
+	        		  System.out.println("(double)(count/list.size()):"+(count/(double)list.size()));
+	        		  HcDto HcDto=hcService.getHabitCalList(HcInChkDto.getpKey());
+	        		  
+	        		  if( (count/(double)list.size()) >= 0.5) {
+	        			  
+	        			  String chks=(HcDto.getChks()+"/"+HcInChkDto.getInChkDate());
+	        			  int chkss=HcDto.getChkss()+1;
+	        			  HcDto.setChks(chks);
+	        			  HcDto.setChkss(chkss);
+	        			  boolean isS1=hcService.updateCheck(HcDto);
+	        			  
+	        			  if(isS1==true) {
+	        				  System.out.println("chks,chkss입력성공");
+	        			  }else {
+	        				  System.out.println("chks,chkss입력실패");
+	        			  }
+	        			  
+	        		  }else {
+	        			  
+	        		  }
+        		  
         	  }
+        	  
+        	  
         	  
         	  
               System.out.println("수정 성공");
@@ -1023,11 +1078,5 @@ public void setServletContext(ServletContext servletContext) {
           
        }
 
-
-
-      
-      
-      
-      
       
 }

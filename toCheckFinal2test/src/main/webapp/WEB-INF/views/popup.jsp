@@ -11,15 +11,11 @@
 
 <title>Insert title here</title>
 <script type="text/javascript">
-	$('#00').click(function(){
-		var click_id=$(this).attr("src");
-// 		parent.opener.document.getElementById("image").src=document.getElementById(a).src;
-		alert("아이디 전달~!!!!!!!!!!!");
-		close();
-	});
+
 	
 	function ff(ts){
 		opener.document.getElementById("image").src=ts;
+		opener.document.getElementsByName("photo")[0].value=ts;
 		close();
 	}
 </script>

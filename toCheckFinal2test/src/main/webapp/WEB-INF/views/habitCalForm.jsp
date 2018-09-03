@@ -208,6 +208,7 @@
 <div id="container">
 <form action="habitCalInsert.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
+   <input type="hidden" name="photo" value=""/>
    <table border="1">
       <col width="600px">
       <tr>

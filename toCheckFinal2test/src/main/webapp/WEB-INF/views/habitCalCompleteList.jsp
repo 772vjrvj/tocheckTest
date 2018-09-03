@@ -213,7 +213,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 				  		<figure>
 				    		<div class="progress-fixed__bar${status.index}"></div>
 				    		<div class="progress-fixed__percent${status.index}"></div>
-				    		<div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}">&nbsp;${dto.title}</a></div>	
+				    		<div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;${dto.title}</a></div>	
 				  		</figure>
 					</div>
 					<input class="bar" type="hidden" onclick="BG.init(${per},${status.index})">
@@ -232,7 +232,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 	<br/>
 	<br/>
 
-	<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'">이전페이지</button>
+	<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'">나의 정보 보기</button>
 	
 	</div>
 	<div class="liquidGauge"></div>
