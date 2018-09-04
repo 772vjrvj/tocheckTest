@@ -27,12 +27,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <jsp:include page="head.jsp"/>
-
-
 <style>
-
-
-
 
 .carousel {
   height: 100%;
@@ -105,11 +100,6 @@
 
 
 <style type="text/css">
-   body {
-      padding: 25px;
-   }
-   
-   
    img{
 	width: 130px;
 	height: 130px;
@@ -184,8 +174,8 @@
    
    /*    공모양 전체 달성률  */
    svg.liquidGauge {
-      margin: auto; width: 300px;
-      height: 300px;
+      margin: auto; width: 180px;
+      height: 180px;
    }
 
    /*    전체 박스 */
@@ -309,7 +299,6 @@ carousel.css({
 <div id="container2">
 
 <div id="container">
-<h1 style="text-align: center;">${HcLoginDto.id}님 진행중인 체크 리스트</h1>
 <p style="color: #245682; text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트 : ${HcLoginDto.ttpoint}</p>
 <br/>
    <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">
@@ -329,7 +318,6 @@ carousel.css({
    <span>&nbsp;</span><button type="button" class="btn btn-default btn-xs" onclick="location.href='logout.do'">로그아웃</button></div>
    
 </div>
-
 
 <div class="container1">
 	<div class="carousel">
@@ -383,6 +371,7 @@ carousel.css({
 	</div>
 	<div class="next">Next</div>
 	<div class="prev">Prev</div>																				
+</div>
 </div>
 
 </body>

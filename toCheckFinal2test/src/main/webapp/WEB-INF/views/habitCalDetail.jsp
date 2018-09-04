@@ -132,10 +132,14 @@ margin: 25px 0px;
 
 <style type="text/css">
 	img{
-	width:250px;
-	height: 250px;
-
-	
+	top: 28%;
+	left:32%;
+	text-align: center;
+	width:700px;
+	height: 700px;
+	opacity: 0.4;
+	z-index: auto;
+	position: absolute;
 	}
 
    #calendar{
@@ -274,7 +278,7 @@ input:checked + .slider:before {
             <td colspan="3" style="color:#245682; text-align: center;">${dto.content}</td>            
          </tr>
    </table>
-   
+   <img alt="이미지" src="${dto.photo}" >
    <table id="calendartitle" style="border-collapse: collapse; border: white; height: 30px;">
       <col width="188px">
       <col width="188px">
@@ -325,7 +329,7 @@ input:checked + .slider:before {
 		               </c:choose>
 	              </c:otherwise>
                </c:choose>
-               <img alt="이미지" src="${dto.photo}" >
+             
                
               
 
