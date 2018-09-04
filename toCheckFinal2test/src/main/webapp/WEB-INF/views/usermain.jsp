@@ -161,7 +161,7 @@
       position: absolute;  
         top: -88px;  
         right: 10px;  
-      font-size: 15px;
+      font-size: 12px;
       font-weight: bold;
       font-family: sans-serif;
       color: #fff;
@@ -184,8 +184,8 @@
    
    /*    공모양 전체 달성률  */
    svg.liquidGauge {
-      margin: auto; width: 300px;
-      height: 300px;
+      margin: auto; width: 150px;
+      height: 150px;
    }
 
    /*    전체 박스 */
