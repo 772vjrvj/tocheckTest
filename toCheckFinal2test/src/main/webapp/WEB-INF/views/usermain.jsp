@@ -333,7 +333,12 @@ carousel.css({
 
 <div class="container1">
 	<div class="carousel">
-		
+		    <div class="item a0"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
+		    <div class="item a1"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
+		    <div class="item a2"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
+		    <div class="item a3"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
+		    <div class="item a4"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
+		    <div class="item a5"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
 		<c:choose>
 	    <c:when test="${fn:length(list) eq 0}">
 	          진행중이 리스트가 없습니다.
