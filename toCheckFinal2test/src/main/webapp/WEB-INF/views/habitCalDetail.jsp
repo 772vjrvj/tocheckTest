@@ -460,7 +460,7 @@ input:checked + .slider:before {
                 </c:when>
                <c:otherwise>
                
-                    <p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};"><input type="button" value="${n}" onclick="location.href='photoInChk.do?thisDate=${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}&pKey=${dto.pKey}&id=${dto.id}&paramview=0'"></p>
+                    <input type="button" value="${n}" onclick="location.href='photoInChk.do?thisDate=${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}&pKey=${dto.pKey}&id=${dto.id}&paramview=0'">
                
             		<c:choose>   
             			<c:when test="${paramview eq 1}">		
