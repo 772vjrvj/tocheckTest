@@ -38,7 +38,8 @@ import com.hk.toCheckFinal.utils.Util;
 /**
  * Handles requests for the application home page.
  */
-@SessionAttributes("loginId")
+@SessionAttributes({"loginId", "loginRole"})
+
 @Controller
 public class HomeController implements ServletContextAware {
    
@@ -117,9 +118,13 @@ public class HomeController implements ServletContextAware {
       System.out.println(dto);
       
 
-      model.addAttribute("loginId", dto.getId());
+      
       
       HcLoginDto HcLoginDto= hcService.getLogin(dto.getId(), dto.getPassword());
+      
+      model.addAttribute("loginId", HcLoginDto.getId());
+      model.addAttribute("loginRole", HcLoginDto.getRole());
+      
       
       
       if(HcLoginDto!=null){
@@ -471,14 +476,7 @@ public class HomeController implements ServletContextAware {
          map.put("edDate", edDate);   
          map.put("term", term);   
          System.out.println(dto.getWithh());
-         
-         
-         
-         
-         
-         
-         
-         
+          
          
          if(today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
@@ -525,6 +523,51 @@ public class HomeController implements ServletContextAware {
       }
          
 
+      
+      @RequestMapping(value = "/photoInChk.do", method = RequestMethod.GET)
+      public ModelAndView photoInChk(String id, String pKey, String paramview, String thisDate, Locale locale) throws ParseException {
+         logger.info("상세보기 {}.", locale);
+         ModelAndView view = new ModelAndView();
+
+         HcDto dto = hcService.getHabitCalList(pKey);
+         
+         HcLoginDto HcLoginDto= hcService.getUser(id);
+         System.out.println(dto);
+         
+         
+         
+         
+
+         int StDate1 = Integer.parseInt(dto.getStDate());
+         
+
+        	 long diffdays=Util.doDiffOfDate(StDate1+"",thisDate+"")+1;
+        	 
+             String Year1=thisDate.substring(0,4);
+             String Month1=thisDate.substring(4,6);
+             String Date1=thisDate.substring(6);
+
+        	 view.setViewName("photoInChk");
+        	 List<HcInChkDto> list = hcService.getHcInChk(new HcInChkDto(pKey, thisDate+""));
+        	 view.addObject("list",list);
+        	 view.addObject("dto",dto);
+        	 view.addObject("HcLoginDto",HcLoginDto);   
+        	 view.addObject("paramview",paramview);
+        	 System.out.println(paramview);
+        	 
+        	 view.addObject("Year1",Year1);
+        	 view.addObject("diffdays",diffdays);
+       	 
+        	 view.addObject("Month1",Month1);
+        	 view.addObject("Date1",Date1);
+      	 
+
+        	 return view;
+     
+
+      }
+     
+      
       
       
       @RequestMapping(value = "/habitCalDelete.do", method = RequestMethod.GET)

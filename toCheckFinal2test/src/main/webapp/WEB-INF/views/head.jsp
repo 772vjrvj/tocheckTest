@@ -43,7 +43,7 @@
 		}
 		
 		/* 버튼 테두리 */
-		a.animated-button {
+		#g.animated-button {
 			color: black;
 			cursor: pointer;
 			display: block;
@@ -53,35 +53,35 @@
 		}
 		
 		/* 마우스 올렸을때 글자 색 바뀌기..? */
-		 a.animated-button:hover { 
+		 #g.animated-button:hover { 
 		 	color: #000 !important; 
 		 	background-color: transparent; 
 		 	text-shadow: ntwo; 
 		 } 
 		/* 무슨 설정인지는 잘 모르겠는데 이걸 설정 해줘야 밑에 효과가 적용이 되요!*/
-		 a.animated-button.thar-one:hover:before {
+		 #g.animated-button.thar-one:hover:before {
 			bottom: 0%;
 			top: auto;
 			height: 100%;
 		}
-		 a.animated-button:hover.thar-two:before { 
+		 #g.animated-button:hover.thar-two:before { 
 		 	top: 0%; 
 			bottom: auto; 
 		 	height: 100%; 
 		 } 
-		 a.animated-button.thar-three:hover:before {
+		 #g.animated-button.thar-three:hover:before {
 			left: 0%;
 			right: auto;
 			width: 100%;
 		}
 		
-		a.animated-button.thar-four:hover:before {
+		#g.animated-button.thar-four:hover:before {
 			right: 0%;
 			left: auto;
 			width: 100%;
 		}
 		 /*  마우스 올렸을때 버튼 색 효과 (하->상) */
-		 a.animated-button.thar-one:before {
+		 #g.animated-button.thar-one:before {
 			display: block;
 			position: absolute;
 			left: 0px;
@@ -95,7 +95,7 @@
 			transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 		}
 		/*  마우스 올렸을때 버튼 색 효과 (상->하) */
-		 a.animated-button.thar-two:before { 
+		 #g.animated-button.thar-two:before { 
 		 	display: block; 
 		 	position: absolute; 
 		 	left: 0px; 
@@ -109,7 +109,7 @@
 		 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; 
 		 } 
 		 /*  마우스 올렸을때 버튼 색 효과 (좌->우) */
-		 a.animated-button.thar-three:before {
+		 #g.animated-button.thar-three:before {
 			display: block;
 			position: absolute;
 			top: 0px;
@@ -124,7 +124,7 @@
 		0s;
 		}
 		 /*  마우스 올렸을때 버튼 색 효과 (우->좌) */
-		a.animated-button.thar-four:before {
+		#g.animated-button.thar-four:before {
 			display: block;
 			position: absolute;
 			top: 0px;
@@ -143,10 +143,10 @@
 <body>
 <div class="navi">
   <div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a href="usermain.do?id=${loginId}" class="btn btn-sm animated-button thar-one">나의 목표</a> </div>
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a href="habitCalForm.do?id=${loginId}" class="btn btn-sm animated-button thar-two">시작하기</a> </div>
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a href="selectform.do?id=${loginId}&role=${HcLoginDto.role}" class="btn btn-sm animated-button thar-three">목록보기</a></div>
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a href="point.do?id=${loginId}" class="btn btn-sm animated-button thar-four">포인트사용</a> </div>
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="usermain.do?id=${loginId}" class="btn btn-sm animated-button thar-one">나의 목표</a> </div>
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="habitCalForm.do?id=${loginId}" class="btn btn-sm animated-button thar-two">시작하기</a> </div>
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="selectform.do?id=${loginId}&role=${HcLoginDto.role}" class="btn btn-sm animated-button thar-three">목록보기</a></div>
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="point.do?id=${loginId}" class="btn btn-sm animated-button thar-four">포인트사용</a> </div>
   </div>
 </div>
 </body>

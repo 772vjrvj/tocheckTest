@@ -151,7 +151,7 @@
       position: absolute;  
         top: -88px;  
         right: 10px;  
-      font-size: 15px;
+      font-size: 12px;
       font-weight: bold;
       font-family: sans-serif;
       color: #fff;

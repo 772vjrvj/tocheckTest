@@ -453,12 +453,14 @@ input:checked + .slider:before {
 
       <c:forEach var = "n" begin = "1" end = "${lastDay.calGet2(i,j,1)}">
          <td>
-            	<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
             <c:choose>
                 <c:when test="${(i==map.stYear&&j==map.stMonth&&n<map.stDate)||(i==map.edYear&&j==map.edMonth&&n>map.edDate)}">
+	            	<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
                    
                 </c:when>
                <c:otherwise>
+               		<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};"><a href="photoInChk.do?thisDate=${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}&pKey=${dto.pKey}&id=${dto.id}&paramview=0">${n}</a></p>
+               
             		<c:choose>   
             			<c:when test="${paramview eq 1}">		
 			                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
@@ -477,7 +479,7 @@ input:checked + .slider:before {
 	                  	</c:otherwise>
 	                  
 	                  
-	                  </c:choose>
+	                 </c:choose>
                 </c:otherwise>
                 
             </c:choose>
