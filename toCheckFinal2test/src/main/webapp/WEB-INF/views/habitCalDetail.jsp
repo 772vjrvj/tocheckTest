@@ -138,7 +138,7 @@ margin: 25px 0px;
 	width:700px;
 	height: 700px;
 	opacity: 0.4;
-	z-index: auto;
+	z-index: -5;
 	position: absolute;
 	}
 
