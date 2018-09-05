@@ -15,10 +15,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style type="text/css">
-      #backimg{
+      body{
             content:"";
   		   	position: absolute; 
-  	  		background: url("img/index_back.jpg") no-repeat center center;  
+  	  		background: url("img/index_back.jpg") fixed no-repeat center center;  
   	  		background-size: cover; 
     		width: 100%; 
     		height: 100%; 
@@ -36,7 +36,7 @@
    	     margin-top: 120px;
    	   }
    	   h1{
-   	     margin-top: 140px;
+   	     margin-top: 100px;
    	  	 font-family: 'Anton', sans-serif;
    	  	 font-size: 140px;
    	  	 opacity: 1.0;
@@ -45,6 +45,7 @@
    	   *{
    	   	   	   font-family: 'Do Hyeon', serif;
    	   }
+   	   
 </style>
 <script type="text/javascript">
 	$(function(){
