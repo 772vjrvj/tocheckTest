@@ -351,7 +351,7 @@ carousel.css({
 	            <div class="item a${status.index}">
 	            
 		            <img alt="" src="${dto.photo}">
-		            <br>        
+		            <div>  </div>
 		            <div class="progress-fixed">
 		                 <figure>
 		                   <div class="progress-fixed__bar${status.index}"></div>
