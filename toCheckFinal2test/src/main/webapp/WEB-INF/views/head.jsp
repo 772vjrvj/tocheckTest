@@ -143,7 +143,7 @@
 <body>
 <div class="navi">
   <div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="usermain.do?id=${loginId}" class="btn btn-sm animated-button thar-one">나의 목표</a> </div>
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="main.do?id=${loginId}&role=${loginRole}" class="btn btn-sm animated-button thar-one">나의 목표</a> </div>
     <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="habitCalForm.do?id=${loginId}" class="btn btn-sm animated-button thar-two">시작하기</a> </div>
     <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="selectform.do?id=${loginId}&role=${HcLoginDto.role}" class="btn btn-sm animated-button thar-three">목록보기</a></div>
     <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="point.do?id=${loginId}" class="btn btn-sm animated-button thar-four">포인트사용</a> </div>

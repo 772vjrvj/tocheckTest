@@ -96,7 +96,6 @@ body {
 			<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
 			<h4>${diffdays} 일째</h4>
 			<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
-	           <input type="button"  value="이전페이지" onclick="location.href='habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1'"/>        
 	        <br/>
 			<br/>
 			</td></tr>
@@ -110,7 +109,7 @@ body {
 	      <tr>
 	         <td colspan="3"><h4>인증 사진 올리기</h4>
 	         <c:choose>
-	         	<c:when test="${HcLoginDto.id eq loginId}">
+	         	<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
 			         <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
 	         	</c:when>
 	         	<c:otherwise>
@@ -133,7 +132,7 @@ body {
 	      <tr >
 	         <th>제목</th>
 	         	<c:choose>
-	         		<c:when test="${HcLoginDto.id eq loginId }">
+	         		<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
 	    		     	<td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off"/></td>
 	         		</c:when>
 	         		<c:otherwise>
@@ -144,7 +143,7 @@ body {
 	      <tr>
 	         <th>내용</th>
 	         	<c:choose>
-	         		<c:when test="${HcLoginDto.id eq loginId }">	         
+	         		<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">	         
 	         			<td colspan="3"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" ></textarea></td>
 	         	    </c:when>
 	         		<c:otherwise>
@@ -155,7 +154,7 @@ body {
 	      <tr>
 	         <td colspan="3" style="text-align: right;">
 	         	<c:choose>
-	            	<c:when test="${HcLoginDto.id eq loginId }">
+	            	<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
 	            		<input class="btn btn-default btn-xs" type="submit"  value="인증하기"/>
 	            	</c:when>
 	            	<c:otherwise>

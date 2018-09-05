@@ -110,7 +110,7 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq loginId }">
+						<c:when test="${list.id eq loginId && thisDate eq today}">
 							<c:choose>		
 								<c:when test="${list.inChkTime eq '/'}">
 									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
@@ -142,7 +142,7 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq loginId }">
+						<c:when test="${list.id eq loginId && thisDate eq today}">
 							<c:choose>		
 								<c:when test="${list.inChkTime eq '/'}">
 									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
@@ -174,9 +174,10 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq loginId }">
+						<c:when test="${list.id eq loginId && thisDate eq today}">
 							<c:choose>		
 								<c:when test="${list.inChkTime eq '/'}">
+								
 									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
 								</c:when>
 								<c:otherwise>

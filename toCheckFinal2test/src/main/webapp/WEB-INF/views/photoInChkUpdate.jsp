@@ -96,7 +96,6 @@ body {
 		<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
 		<h4>${diffdays} 일째</h4>
 		<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
-           <input type="button"  value="이전페이지" onclick="location.href='habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=${paramview}'"/>        
         <br/>
 		<br/>
 		</td></tr>

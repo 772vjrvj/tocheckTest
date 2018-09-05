@@ -476,7 +476,8 @@ public class HomeController implements ServletContextAware {
          map.put("edDate", edDate);   
          map.put("term", term);   
          System.out.println(dto.getWithh());
-          
+         
+         String thisDate = today;
          
          if(today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
@@ -496,11 +497,12 @@ public class HomeController implements ServletContextAware {
         	 
         	 view.addObject("Year1",Year1);
         	 view.addObject("diffdays",diffdays);
-       	 
+        	 view.addObject("today",today);
+        	 view.addObject("thisDate",thisDate);
         	 view.addObject("Month1",Month1);
         	 view.addObject("Date1",Date1);
-      	 
-
+	      	 
+        	 
         	 return view;
          }else{
         	 
@@ -524,49 +526,7 @@ public class HomeController implements ServletContextAware {
          
 
       
-      @RequestMapping(value = "/photoInChk.do", method = RequestMethod.GET)
-      public ModelAndView photoInChk(String id, String pKey, String paramview, String thisDate, Locale locale) throws ParseException {
-         logger.info("상세보기 {}.", locale);
-         ModelAndView view = new ModelAndView();
 
-         HcDto dto = hcService.getHabitCalList(pKey);
-         
-         HcLoginDto HcLoginDto= hcService.getUser(id);
-         System.out.println(dto);
-         
-         
-         
-         
-
-         int StDate1 = Integer.parseInt(dto.getStDate());
-         
-
-        	 long diffdays=Util.doDiffOfDate(StDate1+"",thisDate+"")+1;
-        	 
-             String Year1=thisDate.substring(0,4);
-             String Month1=thisDate.substring(4,6);
-             String Date1=thisDate.substring(6);
-
-        	 view.setViewName("photoInChk");
-        	 List<HcInChkDto> list = hcService.getHcInChk(new HcInChkDto(pKey, thisDate+""));
-        	 view.addObject("list",list);
-        	 view.addObject("dto",dto);
-        	 view.addObject("HcLoginDto",HcLoginDto);   
-        	 view.addObject("paramview",paramview);
-        	 System.out.println(paramview);
-        	 
-        	 view.addObject("Year1",Year1);
-        	 view.addObject("diffdays",diffdays);
-       	 
-        	 view.addObject("Month1",Month1);
-        	 view.addObject("Date1",Date1);
-      	 
-
-        	 return view;
-     
-
-      }
-     
       
       
       
@@ -865,9 +825,8 @@ public class HomeController implements ServletContextAware {
       
          
       @RequestMapping(value = "/photoInChkContent.do", method = RequestMethod.GET)
-      public ModelAndView photoInChkContent(String crud, String id, String pKey, Locale locale, String paramview,  Model model) throws ParseException {
+      public ModelAndView photoInChkContent(String inChkDate,String crud, String id, String pKey, Locale locale, String paramview,  Model model) throws ParseException {
           ModelAndView view = new ModelAndView();
-          Map<String, Integer> map = new HashMap<String, Integer>();
           
           HcDto dto = hcService.getHabitCalList(pKey);
           HcLoginDto HcLoginDto= hcService.getUser(id);
@@ -876,30 +835,30 @@ public class HomeController implements ServletContextAware {
           SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
           Date currentTime = new Date ();
           String today = SimpleDateFormat.format(currentTime);
-          int today1 = Integer.parseInt(today);
-          int StDate1 = Integer.parseInt(dto.getStDate());
-                                
-          int term=Integer.parseInt(dto.getTerm());
-
-          map.put("term", term);   
           
-         	 
-     	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
-     	 
-          String Year1=today.substring(0,4);
-          String Month1=today.substring(4,6);
-          String Date1=today.substring(6);
+          int inChkDate1 = Integer.parseInt(inChkDate);
+          
+          int StDate1 = Integer.parseInt(dto.getStDate());
+          long diffdays;                  
+
+          
+      	  diffdays=Util.doDiffOfDate(StDate1+"",inChkDate1+"")+1;
+        	  
+	      String Year1=inChkDate.substring(0,4);
+	      String Month1=inChkDate.substring(4,6);
+	      String Date1=inChkDate.substring(6);                   
           
           view.addObject("dto",dto);
           view.addObject("HcLoginDto",HcLoginDto);   
           view.addObject("paramview",paramview);
           
           view.addObject("diffdays",diffdays);
-
+          view.addObject("inChkDate",inChkDate);  
+          view.addObject("today",today);  
           view.addObject("Year1",Year1);          
           view.addObject("Month1",Month1);
           view.addObject("Date1",Date1);
-          HcInChkDto HcInChkDto = hcService.getHcUserInChk(new HcInChkDto(pKey,today ,id));
+          HcInChkDto HcInChkDto = hcService.getHcUserInChk(new HcInChkDto(pKey,inChkDate ,id));
           view.addObject("HcInChkDto",HcInChkDto);                  	  
           
           if(crud.equals("content")) {
@@ -915,6 +874,58 @@ public class HomeController implements ServletContextAware {
          
 
       }
+      
+     
+      @RequestMapping(value = "/photoInChk.do", method = RequestMethod.GET)
+      public ModelAndView photoInChk(String id, String pKey, String paramview, String thisDate, Locale locale) throws ParseException {
+         logger.info("상세보기 {}.", locale);
+         ModelAndView view = new ModelAndView();
+
+         HcDto dto = hcService.getHabitCalList(pKey);
+         
+         HcLoginDto HcLoginDto= hcService.getUser(id);
+         System.out.println(dto);
+         
+         
+         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+         Date currentTime = new Date ();
+         String today = SimpleDateFormat.format(currentTime);
+         
+         
+
+         int StDate1 = Integer.parseInt(dto.getStDate());
+         
+
+        	 long diffdays=Util.doDiffOfDate(StDate1+"",thisDate+"")+1;
+        	 
+             String Year1=thisDate.substring(0,4);
+             String Month1=thisDate.substring(4,6);
+             String Date1=thisDate.substring(6);
+
+        	 view.setViewName("photoInChk");
+        	 List<HcInChkDto> list = hcService.getHcInChk(new HcInChkDto(pKey, thisDate+""));
+        	 view.addObject("list",list);
+        	 view.addObject("dto",dto);
+        	 view.addObject("HcLoginDto",HcLoginDto);   
+        	 view.addObject("paramview",paramview);
+        	 System.out.println(paramview);
+        	 
+        	 view.addObject("thisDate",thisDate);
+        	 view.addObject("today",today);
+        	 view.addObject("Year1",Year1);
+        	 view.addObject("diffdays",diffdays);
+       	 
+        	 view.addObject("Month1",Month1);
+        	 view.addObject("Date1",Date1);
+      	 
+
+        	 return view;
+     
+
+      }
+           
+      
+      
       
       @RequestMapping(value = "/photoInChkDelete.do", method = RequestMethod.GET)
       public String photoInChkDelete(String id, String pKey, Locale locale, String paramview,  Model model){
@@ -945,7 +956,7 @@ public class HomeController implements ServletContextAware {
         	  System.out.println("count:"+count);
         	  System.out.println("(double)(count/list.size():딜리트"+(count/(double)list.size()));
         	  
-        	  if( (count/(double)list.size()) >= 0.5) {
+        	  if( (count/(double)list.size()) >= 0.7) {
 
 
         	  }else {
@@ -1070,7 +1081,7 @@ public class HomeController implements ServletContextAware {
           
           if(isS==true) {
         	  
-        	  if((beforeCount/(double)beforeList.size()) >= 0.5) {
+        	  if((beforeCount/(double)beforeList.size()) >= 0.7) {
         		  
         	  }else {
         		  
@@ -1087,7 +1098,7 @@ public class HomeController implements ServletContextAware {
 	        		  System.out.println("(double)(count/list.size()):"+(count/(double)list.size()));
 	        		  HcDto HcDto=hcService.getHabitCalList(HcInChkDto.getpKey());
 	        		  
-	        		  if( (count/(double)list.size()) >= 0.5) {
+	        		  if( (count/(double)list.size()) >= 0.7) {
 	        			  
 	        			  String chks=(HcDto.getChks()+"/"+HcInChkDto.getInChkDate());
 	        			  int chkss=HcDto.getChkss()+1;
