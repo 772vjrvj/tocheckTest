@@ -13,6 +13,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style>
    #container{
       width: 600px;

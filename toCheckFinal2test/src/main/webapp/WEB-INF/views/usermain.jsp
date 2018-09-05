@@ -27,8 +27,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style>
-
+h5{
+	font-size: 32px;
+}
 .carousel {
   height: 100%;
   width: 100%;
@@ -36,8 +39,20 @@
   transform-style: preserve-3d;
   transition: transform 1s;
 }
-
 .item {
+  display: block;
+  position: absolute;
+  background: white;
+  width: 250px;
+  height: 200px;
+  line-height: 200px;
+  font-size: 5em;
+  text-align: center;
+  color: #FFF;
+/*   opacity: 0.9; */
+  border-radius: 10px;
+}
+.item1 {
   display: block;
   position: absolute;
   background: white;
@@ -53,45 +68,40 @@
 
 .a0 {
   transform: rotateY(0deg) translateZ(250px);
-  background: #fd6c8b;
+  background: white;
 }
 .a1 {
   transform: rotateY(60deg) translateZ(250px);
-  background: #fd6c8b;
+  background: white;
 }
 .a2 {
   transform: rotateY(120deg) translateZ(250px);
-  background: #fd6c8b;
+  background: white;
 }
 .a3 {
   transform: rotateY(180deg) translateZ(250px);
-  background: #fd6c8b;
+  background: white;
 }
 .a4 {
   transform: rotateY(240deg) translateZ(250px);
-  background: #fd6c8b;
+  background: white;
 } 
 .a5 {
   transform: rotateY(300deg) translateZ(250px);
-  background: #fd6c8b;
+  background: white;
 }
 
 .next, .prev {
-  color: #444;
+  font-size:32px;
   position: absolute;
   top: 100px;
   padding: 1em 2em;
   cursor: pointer;
-  background: #CCC;
-  border-radius: 5px;
-  border-top: 1px solid #FFF;
-  box-shadow: 0 5px 0 #999;
   transition: box-shadow 0.1s, top 0.1s;
 }
 .next:hover, .prev:hover { color: #000; }
 .next:active, .prev:active {
   top: 104px;
-  box-shadow: 0 1px 0 #999;
 }
 .next { right: -300px; }
 .prev { left: -300px; }
@@ -111,10 +121,6 @@
       margin: 5px auto;
       color: black;
       font-weight: bold;
-   }
-   a:hover, a:visited, a:link{
-      color:black;
-      text-decoration:none;
    }
 
    /* 게이지 막대 컨테이너 */
@@ -190,10 +196,7 @@
    width: 1400px;
 	margin: 50px auto ;
    }
-
-
 	.container1,#container{display: inline-block;}
-	
 	.container1 {
 	  width: 250px;
 	  height: 200px;
@@ -202,7 +205,13 @@
 	   top:-100px; 
 	   left: 250px; 
 	}
-
+	
+	#gtitle{
+		font-size: 20px;
+	}
+	.pertitle{
+		magrin:0;
+	}
 </style>
 
 
@@ -299,26 +308,18 @@ carousel.css({
 <div id="container2">
 
 <div id="container">
-<p style="color: #245682; text-align: right; font-weight: bolder; font-size: 15px;" >보유포인트 : ${HcLoginDto.ttpoint}</p>
 <br/>
    <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">
-   <div class="liquidGauge"><h5>전체달성률</h5></div>
    <div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>
    <div class="liquidGauge">
 <br/>
-
+   <div class="liquidGauge"><h5>Total Progress</h5></div>
    <br/>
    <br/>
-   <button type="button" class="btn btn-default btn-xs" onclick="location.href='selectform.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">목록보기</button>
-   <button type="button" class="btn btn-default btn-xs" onclick="location.href='habitCalForm.do?id=${HcLoginDto.id}'">시작하기</button>
-   <button type="button" class="btn btn-default btn-xs" onclick="location.href='point.do?id=${HcLoginDto.id}'">포인트 사용</button></div>
+   </div>
    <div class="liquidGauge"></div>
    <br/>
-   <div class="liquidGauge"><button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'">나의 정보 보기</button>
-   <span>&nbsp;</span><button type="button" class="btn btn-default btn-xs" onclick="location.href='logout.do'">로그아웃</button></div>
-   
 </div>
-
 <div class="container1">
 	<div class="carousel">
 		    <div class="item a0"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
@@ -349,19 +350,17 @@ carousel.css({
 	            </c:choose>
 	            
 	            <div class="item a${status.index}">
-	            
 		            <img alt="" src="${dto.photo}">
-		            <div>  </div>
 		            <div class="progress-fixed">
 		                 <figure>
 		                   <div class="progress-fixed__bar${status.index}"></div>
 		                   <div class="progress-fixed__percent${status.index}"></div>
-		                   <div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;${dto.title}</a></div>   
+		                   <div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a id="gtitle" href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;${dto.title}</a></div>   
 		                 </figure>
 		            </div>
+		            <div></div>
 		            <input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
 		        </div>    
-		            
 	         </c:otherwise>
 	         </c:choose>
 	      </c:forEach>
@@ -369,10 +368,9 @@ carousel.css({
 	   </c:choose>
 	
 	</div>
-	<div class="next">Next</div>
-	<div class="prev">Prev</div>																				
+	<div class="next">></div>
+	<div class="prev"><</div>																				
 </div>
 </div>
-
 </body>
 </html>

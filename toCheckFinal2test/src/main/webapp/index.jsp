@@ -23,7 +23,6 @@
     		width: 100%; 
     		height: 100%; 
     		z-index: -1;
-    		opacity: 0.7;
     		top:0;
     		left:0;
    	   }
@@ -33,10 +32,10 @@
    	   }
    	   table{
    	   	 position:absolute;
-   	     margin-top: 120px;
+   	     margin-top: 80px;
    	   }
    	   h1{
-   	     margin-top: 100px;
+   	     margin-top: 140px;
    	  	 font-family: 'Anton', sans-serif;
    	  	 font-size: 140px;
    	  	 opacity: 1.0;

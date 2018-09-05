@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style type="text/css">
    #container{
       text-align: center;
@@ -25,11 +26,10 @@
 </head>
 <body>
 <div id="container">
-<div style="text-align: center; font-size: 54px;">${id}님의 선택목록</div>
 <br/>
 <br/>
-<button type="button" class="butn" style="background-color: white;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=N'">혼자 하기 목록</button>
-<button type="button" class="butn" style="background-color: #fd6c8b;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=Y'">함께 하기 목록</button>
+<button type="button" class="butn" style="background-color: white;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=N'">Alone</button>
+<button type="button" class="butn" style="background-color: #fd6c8b;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=Y'">With</button>
 </div>
 <div style="text-align: center;">
 </div>

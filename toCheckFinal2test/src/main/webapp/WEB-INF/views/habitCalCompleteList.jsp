@@ -14,7 +14,7 @@
 <script type="text/javascript" src="//bl.ocks.org/brattonc/raw/5e5ce9beee483220e2f6/e92e678341ca79fef669ec9bdbc7553845966222/liquidFillGauge.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
-
+<jsp:include page="style.jsp"/>
 <jsp:include page="head.jsp"/>
 <style type="text/css">
 	body {

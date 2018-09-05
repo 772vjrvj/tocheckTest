@@ -14,140 +14,103 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style type="text/css">
-	  body{
-	  
-     		padding: 25px 300px 25px 300px ;
-	  		position: absolute; 
-  	  		background: url("img/head_back.jpg") fixed center center;  
-  	  		background-size: cover; 
-    		width: 100%; 
-    		height: 100%; 
-    		z-index: -1;
-    		top:0;
-    		left:0;
-	  }
-   	   *{
-	   	   font-family: 'Do Hyeon', serif;
-   	   }
-	
-			/* 폰트,버튼 위치 */
-		@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css); 
+
+		a:hover, a:visited, a:link{
+	      color: black;
+	      text-decoration: none;
+	   }
+	   
+		a.menu-link {
+  	    float: right;
+		    display: block;
+		    padding: 1em;
+		}
+		nav[role=navigation] {
+			clear: both;
+			-webkit-transition: all 0.3s ease-out;  
+			-moz-transition: all 0.3s ease-out;
+			-ms-transition: all 0.3s ease-out;
+			-o-transition: all 0.3s ease-out;
+			transition: all 0.3s ease-out;
+		}
+		.js nav[role=navigation] {
+			overflow: hidden;
+			max-height: 0;
+		}
+		nav[role=navigation].active {
+			max-height: 15em;
+		}
+		nav[role=navigation] ul {
+			margin: 0;
+			padding: 0;
+			border-top: 1px solid #808080;
+		}
+		nav[role=navigation] li a {
+			display: block;
+			padding: 0.8em;
+			border-bottom: 1px solid #808080;
+		}
 		
-		/* 배경색, 폰트색 */
+		@media screen and (min-width: 48.25em) {
+			a.menu-link {
+			   display: none;
+			}
+			.js nav[role=navigation] {
+				max-height: none;
+			}
+			nav[role=navigation] ul {
+				margin: 0 0 0 -0.25em;
+				border: 0;
+			}
 			
-		/* thar 폰트변경 */
-		h2 {
-			color: #BDC3C7;
-		  text-transform: uppercase;
-		  letter-spacing: 1px;
+			nav[role=navigation]  li {
+				display: inline-block;
+				margin: 0 0.25em;
+			}
+			nav[role=navigation] li a {
+				border: 0;
+			}
 		}
-		
-		/* 버튼 테두리 */
-		#g.animated-button {
-			color: black;
-			cursor: pointer;
-			display: block;
-			position: relative;
-			border: 2px solid #fd6c8b;
-			transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+		#navi{
+			text-align: center;
 		}
-		
-		/* 마우스 올렸을때 글자 색 바뀌기..? */
-		 #g.animated-button:hover { 
-		 	color: #000 !important; 
-		 	background-color: transparent; 
-		 	text-shadow: ntwo; 
-		 } 
-		/* 무슨 설정인지는 잘 모르겠는데 이걸 설정 해줘야 밑에 효과가 적용이 되요!*/
-		 #g.animated-button.thar-one:hover:before {
-			bottom: 0%;
-			top: auto;
-			height: 100%;
+		li{
+			font-size: 30px;
 		}
-		 #g.animated-button:hover.thar-two:before { 
-		 	top: 0%; 
-			bottom: auto; 
-		 	height: 100%; 
-		 } 
-		 #g.animated-button.thar-three:hover:before {
-			left: 0%;
-			right: auto;
-			width: 100%;
-		}
-		
-		#g.animated-button.thar-four:hover:before {
-			right: 0%;
-			left: auto;
-			width: 100%;
-		}
-		 /*  마우스 올렸을때 버튼 색 효과 (하->상) */
-		 #g.animated-button.thar-one:before {
-			display: block;
+		.myinfo{
 			position: absolute;
-			left: 0px;
-			top: 0px;
-			height: 0px;
-			width: 100%;
-			z-index: -1;
-			content: '';
-			color: #000 !important;
-			background: #fd6c8b;
-			transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-		}
-		/*  마우스 올렸을때 버튼 색 효과 (상->하) */
-		 #g.animated-button.thar-two:before { 
-		 	display: block; 
-		 	position: absolute; 
-		 	left: 0px; 
-		 	bottom: 0px; 
-			height: 0px; 
-			width: 100%; 
-		 	z-index: -1; 
-		 	content: ''; 
-		 	color: #000 !important; 
-		 	background: #fd6c8b; 
-		 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; 
-		 } 
-		 /*  마우스 올렸을때 버튼 색 효과 (좌->우) */
-		 #g.animated-button.thar-three:before {
-			display: block;
-			position: absolute;
-			top: 0px;
-			right: 0px;
-			height: 100%;
-			width: 0px;
-			z-index: -1;
-			content: '';
-			color: #000 !important;
-			background: #fd6c8b;
-			transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-		0s;
-		}
-		 /*  마우스 올렸을때 버튼 색 효과 (우->좌) */
-		#g.animated-button.thar-four:before {
-			display: block;
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			height: 100%;
-			width: 0px;
-			z-index: -1;
-			content: '';
-			color: #000 !important;
-			background: #fd6c8b;
-			transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-		0s;
+			right:30px;
+			top: 10px;
 		}
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+	  $('body').addClass('js');
+	  var $menu = $('#menu'),
+	    $menulink = $('.menu-link');
+	  
+	$menulink.click(function() {
+	  $menulink.toggleClass('active');
+	  $menu.toggleClass('active');
+	  return false;
+	});});
+</script>
 </head>
 <body>
-<div class="navi">
-  <div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="usermain.do?id=${loginId}" class="btn btn-sm animated-button thar-one">나의 목표</a> </div>
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="habitCalForm.do?id=${loginId}" class="btn btn-sm animated-button thar-two">시작하기</a> </div>
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="selectform.do?id=${loginId}&role=${HcLoginDto.role}" class="btn btn-sm animated-button thar-three">목록보기</a></div>
-    <div class="col-md-3 col-sm-3 col-xs-6"> <a id="g" href="point.do?id=${loginId}" class="btn btn-sm animated-button thar-four">포인트사용</a> </div>
-  </div>
-</div>
+  <div id="navi" class="pattern">
+		<nav id="menu" role="navigation">
+			<ul>
+				<li><a href="main.do?id=${loginId}&role=${loginRole}">Home</a></li>
+				<li><a href="habitCalForm.do?id=${loginId}">Start</a></li>
+				<li><a href="selectform.do?id=${loginId}&role=${HcLoginDto.role}">List</a></li>
+				<li><a href="point.do?id=${loginId}">Point</a></li>
+			</ul>
+		</nav>
+		<div class="myinfo">
+		<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'">나의 정보 보기</button>
+   		<span>&nbsp;</span><button type="button" class="btn btn-default btn-xs" onclick="location.href='logout.do'">로그아웃</button>
+   		</div>
+	</div>
+	
 </body>
 </html>

@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style type="text/css">
 	#container{
 		width: 400px;

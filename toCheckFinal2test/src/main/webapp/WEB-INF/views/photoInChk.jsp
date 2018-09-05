@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>photoInChk</title>
 <jsp:include page="head.jsp"/>
-
+<jsp:include page="style.jsp"/>
 <style type="text/css">
 th {
 	color: white;
@@ -36,19 +36,18 @@ h5 {
 }
 
 body {
-	margin: 50px 0;
+	margin: 0 auto 0 auto;
 }
 
 #container {
-	width: 1500px;
+	width: 1200px;
 	margin: auto;
 }
 
 #photo{
 	display:inline-block;
-	width:150px;
-	height: 200px;
-	background-color: white;
+	width:300px;
+	height:300px;
 	
 }
 
@@ -75,7 +74,6 @@ table {
 		<col width="180px">
 		<col width="180px">
 		<tr><td colspan="4">
-		<h3>인증 하기 목록</h3>
 		<h4>${dto.title}</h4>
 		<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
 		<h4>${diffdays} 일째</h4>
@@ -110,7 +108,7 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq loginId }">
+						<c:when test="${list.id eq loginId && thisDate eq today}">
 							<c:choose>		
 								<c:when test="${list.inChkTime eq '/'}">
 									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
@@ -131,7 +129,7 @@ table {
 							<div id="photo">
 							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
 							</div>
-							<div>아아디: ${list.id}</div>	
+							<div>아이디: ${list.id}</div>	
 					<c:choose>
 						<c:when test="${list.inChkTime eq '/'}">
 
@@ -142,7 +140,7 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq loginId }">
+						<c:when test="${list.id eq loginId && thisDate eq today}">
 							<c:choose>		
 								<c:when test="${list.inChkTime eq '/'}">
 									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
@@ -174,9 +172,10 @@ table {
 						</c:otherwise>				
 					</c:choose>
 					<c:choose>
-						<c:when test="${list.id eq loginId }">
+						<c:when test="${list.id eq loginId && thisDate eq today}">
 							<c:choose>		
 								<c:when test="${list.inChkTime eq '/'}">
+								
 									<input type="button"  value="인증하기"  onclick="location.href='photoInChkContent.do?id=${loginId}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&paramview=${paramview}&crud=content'"/>
 								</c:when>
 								<c:otherwise>

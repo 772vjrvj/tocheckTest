@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>상세보기</title>
+<jsp:include page="style.jsp"/>
 <jsp:include page="head.jsp"/>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -459,9 +460,14 @@ input:checked + .slider:before {
                    
                 </c:when>
                <c:otherwise>
-               
-                    <input type="button" value="${n}" onclick="location.href='photoInChk.do?thisDate=${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}&pKey=${dto.pKey}&id=${dto.id}&paramview=0'">
-               
+               		<c:choose>
+               			<c:when test="${dto.withh eq 'N'}">
+               				<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};">${n}</p>
+               			</c:when>
+               			<c:otherwise>
+	                   		<p class="countview" style="color:${Util.fontColor(dayOfWeek.calGet1(i,j,1), n)};"><input type="button" value="${n}" onclick="location.href='photoInChk.do?thisDate=${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}&pKey=${dto.pKey}&id=${dto.id}&paramview=0'"></p>
+	               		</c:otherwise>
+	               	</c:choose> 
             		<c:choose>   
             			<c:when test="${paramview eq 1}">		
 			                  <input  class="option-input checkbox" type="checkbox" name="chk" value='${Util.substring(i)}${Util.isTwo(j+"")}${Util.isTwo(n+"")}'
@@ -478,8 +484,6 @@ input:checked + .slider:before {
 			                  
 			                  </td>	                  	
 	                  	</c:otherwise>
-	                  
-	                  
 	                 </c:choose>
                 </c:otherwise>
                 

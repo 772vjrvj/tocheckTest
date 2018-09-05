@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style>
    #container{
       width: 600px;

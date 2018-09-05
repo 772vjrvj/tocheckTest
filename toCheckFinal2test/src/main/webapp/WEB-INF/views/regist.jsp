@@ -23,7 +23,7 @@
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript"
    src="http://code.jquery.com/jquery-latest.js"></script>
-   <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style type="text/css">
    #container{
       width: 400px;

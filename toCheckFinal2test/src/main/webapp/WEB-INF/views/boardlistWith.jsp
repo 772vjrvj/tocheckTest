@@ -9,25 +9,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>boardlist</title>
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <script type="text/javascript"
 	src="//bl.ocks.org/brattonc/raw/5e5ce9beee483220e2f6/e92e678341ca79fef669ec9bdbc7553845966222/liquidFillGauge.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
-
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
-
 <script type="text/javascript">
 var BG = {}; // BAR GRAPH window object
 
@@ -67,8 +54,6 @@ $(function() {
 	img{
 	width:130px;
 	height: 130px;
-
-	
 	}
 
 th {
@@ -96,19 +81,15 @@ h5 {
 }
 
 #container {
-	width: 1500px;
-	margin:0 auto;
+	width: 1200px;
+	margin:0 auto 0 auto;
 	margin-top: 100px;
 }
-a:hover, a:visited, a:link{
-      color:black;
-      text-decoration:none;
- }
-table {
-	margin: auto;
-	width: 1100px;
-}
 
+table {
+	width: 1200px;
+}
+/* =========================================================================================================================================================================== */
 /* 게이지 막대 컨테이너 */
 figure {
 	position: relative;

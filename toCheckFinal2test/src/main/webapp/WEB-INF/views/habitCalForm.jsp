@@ -7,12 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>목표 시작하기</title>
-<jsp:include page="head.jsp"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
+<jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <style type="text/css">
    #calendar{
       border: 1px solid #00bbdb;
@@ -32,25 +33,26 @@
       font-weight: bold;
    }
    #container{
-      
-      width: 600px;
-      margin: 0 auto;
+      width: 1200px;
+      margin: 0 auto 0 auto;
       margin-top: 120px;
    }
    
    table{
+   	  font-size:18px;
+   	  border: none;
       margin: auto;
-      border-collapse: collapse;
-      border: 1px solid white;
    }
-   
-/*    select[name=date] > option {display: none;} */
    
 </style>
 <script type="text/javascript">
-
+		$("#imagebut").click(function (){
+			$("#image").attr({
+			'width':'100px',	
+			'height':'100px'});
+		})
+		
    $(document).ready(function() {
-      
       $("form").submit(function(){
          if($("select[name=month]").val()==0){
             alert("월을 입력하세요");
@@ -75,7 +77,7 @@
             alert("인원을 입력하세요");
             return false;
          }
-      });
+        
 
       $("select[name=year]").change(function(){
          $("select[name=month]").val("0");
@@ -209,35 +211,28 @@
 <form action="habitCalInsert.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
    <input type="hidden" name="photo" value=""/>
-   <table border="1">
-      <col width="600px">
-      <tr>
-         <td colspan="3"><h4>${HcLoginDto.id}의 목표 만들기</h4><p style="text-align: right; font-weight:bold;" >보유 포인트 : ${HcLoginDto.ttpoint}&nbsp;</p></td>
-      </tr>   
-   </table>
-   
-   <table border="1">
-      <col width="100px">
+   <table >
       <col width="400px">
-      <col width="100px">
+      <col width="1000px">
       <tr>
          <th>목표제목</th>
-         <td><input class="contents" type="text" name="title" style="width: 200px;" required="required" autocomplete="off"/></td>
-         <th>인원
+         <td><input class="contents" type="text" name="title" style="width: 500px;" required="required" autocomplete="off"/> 
+         	인원
          <select name="recruit">
                <c:forEach var = "i" begin = "0" end = "100">
                   <option value="${i}" >${i eq 0 ? "선택":i}</option>
          </c:forEach>
-         </select>명
-         </th>
+         </select>명</td>
       </tr>
+      
       <tr>
          <th>모션선택</th>
          <td colspan="2">
-            <button onclick="icon()">선택</button>
-            <img id="image" src="" width="100px" height="100px"/>
+            <button id="imagebut" onclick="icon()">선택</button>
+            <img id="image" src="" width="0" height="0" />
          </td>
-      </tr>            
+      </tr> 
+                 
       <tr>
          <th>시작일</th>
          <td colspan="2">
@@ -258,6 +253,7 @@
             </select>일  
          </td>
       </tr>
+      
       <tr>
          <th>기간</th>
          <td colspan="2">
@@ -269,6 +265,7 @@
             <span style="text-align: right; color: red;" id="usePoint"></span>
          </td>
       </tr>
+      
       <tr>
          <th>종료일</th>
          <td colspan="2" id="endDate"></td>
@@ -279,8 +276,9 @@
 <!--       </tr> -->
       <tr>
          <th>계획</th>
-         <td colspan="2"><textarea class="contents"  rows="5" cols="55" name="content" required="required" autocomplete="off" ></textarea></td>
+         <td colspan="2"><textarea class="contents"  rows="5" cols="60" name="content" required="required" autocomplete="off" ></textarea></td>
       </tr>
+      
       <tr>
          <td colspan="3" style="text-align: right;">
             <input class="btn btn-default btn-xs" type="submit"  value="체크리스트 만들기"/>

@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>boardlist</title>
 <jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 <script type="text/javascript"
 	src="//bl.ocks.org/brattonc/raw/5e5ce9beee483220e2f6/e92e678341ca79fef669ec9bdbc7553845966222/liquidFillGauge.js"></script>
 <script type="text/javascript"
@@ -89,14 +90,13 @@ h5 {
 }
 
 #container {
-	width: 1500px;
+	width: 1200px;
 	margin:0 auto;
 	margin-top: 100px;
 }
 
 table {
-	margin: auto;
-	width: 1100px;
+	width: 1200px;
 }
 
 img{
@@ -174,7 +174,7 @@ figure div:nth-child(3) {
 </head>
 <body>
 	<div id="container">
-		<table>
+		<table style=" align-content: center;">
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
