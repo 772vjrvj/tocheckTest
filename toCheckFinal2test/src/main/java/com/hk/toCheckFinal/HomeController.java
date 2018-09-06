@@ -118,14 +118,13 @@ public class HomeController implements ServletContextAware {
       System.out.println(dto);
       
 
-      
-      
       HcLoginDto HcLoginDto= hcService.getLogin(dto.getId(), dto.getPassword());
       
       
       
       
       if(HcLoginDto!=null){
+    	  
     	  model.addAttribute("loginId", HcLoginDto.getId());
     	  model.addAttribute("loginRole", HcLoginDto.getRole());
 
@@ -150,11 +149,14 @@ public class HomeController implements ServletContextAware {
    @RequestMapping(value = "/main.do", method = RequestMethod.GET)
    public ModelAndView main(String id, String role, Locale locale,SessionStatus session) {
       logger.info("메인페이지 확인 {}.", locale);   
-      System.out.println(id);
-      System.out.println(role);
+
       ModelAndView view = new ModelAndView();
       System.out.println(session.isComplete());
-
+      
+      SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+      Date currentTime = new Date ();
+      String today = SimpleDateFormat.format(currentTime);
+      int today1 = Integer.parseInt(today);
          
          HcLoginDto HcLoginDto= hcService.getUser(id);
          
@@ -166,52 +168,63 @@ public class HomeController implements ServletContextAware {
             
             List<HcDto> list=hcService.getAllList(id);
 
-            double count=0;
-            int xsize=0;
-            double sum=0;
-         
-            HcWithDto HcWithDto=hcService.getCalWith(id);
-            String []withGoalList=null;
+            for (int k = 0; k < list.size(); k++) {
+            	
+            	if(Integer.parseInt(list.get(k).getEdDate()) < today1) {
+            		list.get(k).setEndList("Y");
+            		
+            		boolean isS=hcService.updateEndList(list.get(k));
+            		if(isS==true) {
+            			System.out.println("endList변경 성공");
+            		}else {
+            			System.out.println("endList변경 실패");
+            		}
+            	}else {
+            		
+            	}
+            	
+            }
             
-            if(HcWithDto==null) {
+            List<HcDto> list1=hcService.getAllList(id);
+            
+            List<HcWithDto> list2=hcService.getCalWith(id);
+            System.out.println("list2:"+list2);
+            
+            if(list2==null) {
             	
             }else {
             	
-            	withGoalList=HcWithDto.getWithGoalList().split("/");
-            	
-            	for (int i = 0; i < withGoalList.length; i++) {
-            		list.add(hcService.getHabitCalList(withGoalList[i]));
+            	for (int i = 0; i < list2.size(); i++) {
+       
+            		HcDto HcDto=hcService.getHabitCalList(list2.get(i).getWithGoalList());
+            		if(Integer.parseInt(HcDto.getEdDate()) >= today1) {
+            			list1.add(HcDto);
+            		}else {
+            			
+            		}
             	}
             }
             
+            double count=0;
+            double sum=0;            
             
-            
-            for (int k = 0; k < list.size(); k++) {
-               if(list.get(k).getEndList().toUpperCase().equals("N")) {
-               int term = Integer.parseInt(list.get(k).getTerm());
-               System.out.println("term:"+term);
-               System.out.println("list.get(k).getChkss():"+list.get(k).getChkss());
-               System.out.println("(list.get(k).getChkss()/term)*100:"+(list.get(k).getChkss()/term)*100);
-               count +=(list.get(k).getChkss()/(double)term)*100;
-               System.out.println("count:"+count);
-               ++xsize;
-               }
-               
-            }
-            
+            for (int m = 0; m < list1.size(); m++) {
+            	int term = Integer.parseInt(list1.get(m).getTerm());
+            	count +=(list1.get(m).getChkss()/(double)term)*100;
+            }            
 
-            
-            if(xsize==0) {
+            System.out.println("list;"+list1);
+ 
+            if(list1.size()==0||count==0) {
                sum=0.0;
             }else {
                
-               sum=count/xsize;               
+               sum=count/list1.size();               
             }
 
             view.setViewName("usermain");
             view.addObject("sum",sum);
-            view.addObject("list",list);
-
+            view.addObject("list1",list1);
             view.addObject("HcLoginDto",HcLoginDto);
             return view;
             
@@ -445,6 +458,7 @@ public class HomeController implements ServletContextAware {
          String today = SimpleDateFormat.format(currentTime);
          int today1 = Integer.parseInt(today);
          int StDate1 = Integer.parseInt(dto.getStDate());
+         int edDate1 = Integer.parseInt(dto.getEdDate());
          
          //시작일
          String sYear=dto.getStDate().substring(0,4);
@@ -479,7 +493,7 @@ public class HomeController implements ServletContextAware {
          
          String thisDate = today;
          
-         if(today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
+         if(today1 <= edDate1 && today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
         	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
         	 
@@ -646,47 +660,58 @@ public class HomeController implements ServletContextAware {
       
       
       @RequestMapping(value = "/habitCalCompleteList.do", method = RequestMethod.GET)
-      public ModelAndView main(String id, Locale locale) {
+      public ModelAndView habitCalCompleteList(String id, Locale locale) {
+          logger.info("완료 리스트 목록 {}.", locale);
+          ModelAndView view = new ModelAndView();
+          
+          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+          Date currentTime = new Date ();
+          String today = SimpleDateFormat.format(currentTime);
+          int today1 = Integer.parseInt(today);
+                         
+          List<HcDto> list=hcService.getAllList(id);
 
-         ModelAndView view = new ModelAndView();
+          for (int k = 0; k < list.size(); k++) {
+          	
+          	if(Integer.parseInt(list.get(k).getEdDate()) < today1) {
+          		list.get(k).setEndList("Y");
+          		
+          		boolean isS=hcService.updateEndList(list.get(k));
+          		if(isS==true) {
+          			System.out.println("endList변경 성공");
+          		}else {
+          			System.out.println("endList변경 실패");
+          		}
+          	}else {
+          		
+          	}
+          	
+          }
+          
+          List<HcDto> list1=hcService.getAllListEndY(id);
+          
+          List<HcWithDto> list2=hcService.getCalWith(id);
+          System.out.println("list2111:"+list2);
+          
+          if(list2==null) {
+          	
+          }else {
+          	
+          	for (int i = 0; i < list2.size(); i++) {
+     
+          		HcDto HcDto=hcService.getHabitCalList(list2.get(i).getWithGoalList());
+          		if(Integer.parseInt(HcDto.getEdDate()) < today1) {
+          			list1.add(HcDto);
+          		}else {
+          			
+          		}
+          	}
+          }
+          System.out.println("list1111:"+list1);
+         view.addObject("list1",list1);
+         view.setViewName("habitCalCompleteList");
 
-            
-            HcLoginDto HcLoginDto= hcService.getUser(id);
-            
-
-               List<HcDto> list=hcService.getAllList(id);
-               System.out.println(list);
-               
-               
-               double count=0;
-               int xsize=0;
-               double sum=0;
-            
-               for (int k = 0; k < list.size(); k++) {
-                  if(list.get(k).getEndList().toUpperCase().equals("Y")) {
-                  int term = Integer.parseInt(list.get(k).getTerm());
-                  System.out.println("term:"+term);
-                  System.out.println("list.get(k).getChkss():"+list.get(k).getChkss());
-                  System.out.println("(list.get(k).getChkss()/term)*100:"+(list.get(k).getChkss()/term)*100);
-                  count +=(list.get(k).getChkss()/(double)term)*100;
-                  System.out.println("count:"+count);
-                  ++xsize;
-                  }
-                  
-               }
-
-               if(xsize==0) {
-                  sum=0.0;
-               }else {
-                  
-                  sum=count/xsize;               
-               }
-                        
-               view.setViewName("habitCalCompleteList");
-               view.addObject("sum",sum);
-               view.addObject("list",list);
-               view.addObject("HcLoginDto",HcLoginDto);
-               return view;
+         return view;
                
       }   
 
@@ -706,11 +731,7 @@ public class HomeController implements ServletContextAware {
         	 view.addObject("list",list);
         	 view.setViewName("boardlist");
          }
-         
-         HcLoginDto HcLoginDto= hcService.getUser(id);
-         
-         view.addObject("id",id);
-         view.addObject("role",HcLoginDto.getRole());
+
 
          return view;
       }         
@@ -718,8 +739,7 @@ public class HomeController implements ServletContextAware {
       
       @RequestMapping(value = "/promise.do", method = RequestMethod.GET)
       public String promise(String id, String pKey, Locale locale, Model model) {
-         System.out.println(id);
-         System.out.println(pKey);
+
          Map<String, String> map = new HashMap<String, String>();
          map.put("id", id);
          map.put("pKey", pKey);
@@ -731,18 +751,12 @@ public class HomeController implements ServletContextAware {
       
       @RequestMapping(value = "/promiseCheck.do", method = RequestMethod.POST)
       public String promiseCheck(String id, String pKey, String promise, Locale locale, Model model) {
-         System.out.println(id);
-         System.out.println(pKey);
-         System.out.println(promise);
          
          if(promise.equals("on")) {
             HcDto HcDto = hcService.getHabitCalList(pKey);
-            HcWithDto HcWithDto=hcService.getCalWith(id);
             
-            System.out.println("HcWithDto:"+HcWithDto);
             int intoper=HcDto.getIntoper();
             String idlist=HcDto.getIdlist();
-            String withGoalList;
             
             if(intoper>=HcDto.getRecruit()) {
                model.addAttribute("msg","인원이 꽉찼습니다.");
@@ -753,45 +767,31 @@ public class HomeController implements ServletContextAware {
                ++intoper;
                idlist += "/"+id;
                
-               if(HcWithDto==null) {
-                  withGoalList=pKey;
-                  isS=hcService.insertCalWith(new HcWithDto(id, withGoalList));
-               }else {
-                  withGoalList=HcWithDto.getWithGoalList()+"/"+pKey;
-                  isS=hcService.updateCalWith(new HcWithDto(id, withGoalList));
-                  System.out.println("withGoalList:"+withGoalList);
-               }
-               
-               
+               isS=hcService.insertCalWith(new HcWithDto(id, pKey));
+        
                isS2=hcService.updateIntoper(new HcDto(pKey,intoper,idlist));
-              
-               
-               
+                   
                int term = Integer.parseInt(HcDto.getTerm());
                
                
+               boolean isS1;
+               
+               int year1= Integer.parseInt(HcDto.getStDate().substring(0, 4)); 
+               int month1= Integer.parseInt(HcDto.getStDate().substring(4, 6));
+               int day1= Integer.parseInt(HcDto.getStDate().substring(6)); 
+               
+               Calendar cal = Calendar.getInstance();
+               
+               cal.set(year1, month1-1, day1);
+               
                for (int i = 0; i < term; i++) {
-                   boolean isS1;
-                  
-                   int year1= Integer.parseInt(HcDto.getStDate().substring(0, 4)); 
-                   System.out.println("year1:"+year1);
-                   int month1= Integer.parseInt(HcDto.getStDate().substring(4, 6));
-                   System.out.println("month1:"+month1);
-                   int day1= Integer.parseInt(HcDto.getStDate().substring(6)); 
-                   System.out.println("day1:"+day1);
-                   
-                   Calendar cal = Calendar.getInstance();
-                   
-                   cal.set(year1, month1-1, day1);
                    
                    cal.add(Calendar.DATE, i);
                    
                    SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyyMMdd");
                    String inChkDate =SimpleDateFormat.format(cal.getTime());
                    
-                   System.out.println("inChkDate:"+inChkDate);
                    isS1 = hcService.insertHcInChk(new HcInChkDto(pKey, id, HcDto.getTitle(), inChkDate));
-                   
                    
                    if(isS1) {
                       System.out.println("insertHcInChk에입 력성공");

@@ -5,25 +5,47 @@
 
    <mapper namespace="com.hk.toCheckFinal">
 
-      <insert id="habitCalInsert" parameterType="HcDto">
-         INSERT INTO HCBOARD
-         VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N',#{recruit},'1','0',#{photo},#{id})
-      </insert>
+      
+      
+      <select id="getAllList" parameterType="String" resultType="HcDto">
+         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO
+         FROM HCBOARD WHERE ID=#{id} AND ENDLIST='N'
+      </select>      
+	  <select id="getAllHcList" resultType="HcDto">
+         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO
+         FROM HCBOARD WHERE WITHH ='N' AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+      <select id="getAllHcListY" resultType="HcDto">
+         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO
+         FROM HCBOARD WHERE WITHH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select>
       <select id="getHabitCalList" parameterType="Map" resultType="HcDto">
          SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
          FROM HCBOARD WHERE PKEY=#{pKey}
       </select>
+      
+      <select id="getAllListEndY" parameterType="String" resultType="HcDto">
+         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
+         FROM HCBOARD WHERE ID=#{id} AND ENDLIST='Y'
+      </select>
+
+
+      
+      <insert id="habitCalInsert" parameterType="HcDto">
+         INSERT INTO HCBOARD
+         VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N',#{recruit},'1','0',#{photo},#{id})
+      </insert>
       <update id="updateCheck" parameterType="HcDto">
          UPDATE HCBOARD SET CHKS=#{chks}, CALWITH=#{calWith} ,CHKSS=#{chkss}
          WHERE PKEY=#{pKey}
-      </update>
-      
-
+      </update>      
       <update id="updateIntoper" parameterType="HcDto">
          UPDATE HCBOARD SET INTOPER=#{intoper}, IDLIST=#{idlist}
          WHERE PKEY=#{pKey}
       </update>
-
+      <update id="updateEndList" parameterType="HcDto" >
+         UPDATE HCBOARD SET ENDLIST=#{endList} WHERE PKEY=#{pKey}
+      </update>
 
 
 
@@ -54,16 +76,7 @@
          DELETE HCBOARD
          WHERE PKEY=#{pKey}
       </delete>
-   
-   
-      <update id="updateEndList" parameterType="HcDto" >
-         UPDATE HCBOARD SET ENDLIST=#{endList} WHERE PKEY=#{pKey}
-      </update>
-      <select id="getAllList" parameterType="String" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO
-         FROM HCBOARD WHERE ID=#{id}
-      </select>
-   
+
       <select id="idChk" parameterType="map" resultType="HcLoginDto">
          SELECT ID
          FROM HCMEMBER WHERE ID=#{id}   
@@ -103,13 +116,6 @@
       
 
 
-
-
-
-
-
-
-
       
 <!-- insertUser -->
       <insert id="insertUser" parameterType="HcLoginDto">
@@ -141,12 +147,5 @@
       <update id="updateRoleUser" parameterType="Map">
          UPDATE HCMEMBER SET ROLE=#{role}, ENABLED=#{enabled} WHERE ID=#{id}      
       </update>   
-      <select id="getAllHcList" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO
-         FROM HCBOARD WHERE WITHH ='N' AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
-      </select> 
-      <select id="getAllHcListY" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO
-         FROM HCBOARD WHERE WITHH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
-      </select> 
+
     </mapper>

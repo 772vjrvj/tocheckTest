@@ -46,13 +46,9 @@
    
 </style>
 <script type="text/javascript">
-		$("#imagebut").click(function (){
-			$("#image").attr({
-			'width':'100px',	
-			'height':'100px'});
-		})
-		
+
    $(document).ready(function() {
+      
       $("form").submit(function(){
          if($("select[name=month]").val()==0){
             alert("월을 입력하세요");
@@ -77,7 +73,7 @@
             alert("인원을 입력하세요");
             return false;
          }
-        
+      });
 
       $("select[name=year]").change(function(){
          $("select[name=month]").val("0");
@@ -199,12 +195,12 @@
    }
    
 // icon 팝업창
-	function icon()
-		{
-			var popUrl = "popup.do";	//팝업창에 출력될 페이지 URL
-			var popOption = "width=600, height=600, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-			window.open(popUrl,"",popOption);
-		}
+   function icon()
+      {
+         var popUrl = "popup.do";   //팝업창에 출력될 페이지 URL
+         var popOption = "width=600, height=600, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+         window.open(popUrl,"",popOption);
+      }
 </script>
 <body>
 <div id="container">
@@ -228,8 +224,8 @@
       <tr>
          <th>모션선택</th>
          <td colspan="2">
-            <button id="imagebut" onclick="icon()">선택</button>
-            <img id="image" src="" width="0" height="0" />
+            <button onclick="icon()">선택</button>
+            <img id="image" src="" width="200px" height="200px"/>
          </td>
       </tr> 
                  

@@ -19,6 +19,8 @@ public interface IHcService {
    
    
    public List<HcDto> getAllList(String id);
+   public List<HcDto> getAllListEndY(String id);
+   
    public boolean habitCalDelete(String pKey);
    public boolean updateEndList(HcDto dto);
    public List<HcDto> getAllHcList();
@@ -28,7 +30,7 @@ public interface IHcService {
    
    
    public boolean insertCalWith(HcWithDto HcWithDto);
-   public HcWithDto getCalWith(String id);
+   public List<HcWithDto> getCalWith(String id);
    public boolean updateCalWith(HcWithDto HcWithDto);
    
    

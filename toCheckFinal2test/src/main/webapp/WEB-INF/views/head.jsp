@@ -107,10 +107,9 @@ $(document).ready(function() {
 			</ul>
 		</nav>
 		<div class="myinfo">
-		<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'">나의 정보 보기</button>
+		<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${loginId}'">나의 정보 보기</button>
    		<span>&nbsp;</span><button type="button" class="btn btn-default btn-xs" onclick="location.href='logout.do'">로그아웃</button>
    		</div>
 	</div>
-	
 </body>
 </html>
