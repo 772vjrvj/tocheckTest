@@ -313,7 +313,6 @@ input:checked + .slider:before {
 		                     </c:choose>
 		                     
 		                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
-		                     <input type="button" class="btn btn-default btn-xs" value="${dto.endList eq 'N' ? '체크리스트 종료':'체크리스트 복원'}"onclick="location.href='updateEndList.do?pKey=${pKey}&id=${id}&endList=${dto.endList}'"/>
 		                        <div style="height: 5px;">
 		                        </div>   
 		                     <label class="switch">

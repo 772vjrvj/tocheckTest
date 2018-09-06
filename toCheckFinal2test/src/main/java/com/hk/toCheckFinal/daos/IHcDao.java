@@ -16,6 +16,8 @@ public interface IHcDao {
    public boolean updateIntoper(HcDto dto);
 
    public List<HcDto> getAllList(String id);
+   public List<HcDto> getAllListEndY(String id);
+   
    public boolean habitCalDelete(String pKey);
    public boolean updateEndList(HcDto dto);
    public List<HcDto> getAllHcList();
@@ -24,7 +26,7 @@ public interface IHcDao {
    public List<HcDto> searchContentTitle(String searchContent);
 
    public boolean insertCalWith(HcWithDto HcWithDto);
-   public HcWithDto getCalWith(String id);   
+   public List<HcWithDto> getCalWith(String id);   
    public boolean updateCalWith(HcWithDto HcWithDto);
    
    public boolean insertHcInChk(HcInChkDto HcInChkDto);

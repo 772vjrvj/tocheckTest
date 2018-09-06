@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -328,16 +327,14 @@ carousel.css({
 		    <div class="item a4"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
 		    <div class="item a5"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
 		<c:choose>
-	    <c:when test="${fn:length(list) eq 0}">
+	    <c:when test="${fn:length(list1) eq 0}">
 	          진행중이 리스트가 없습니다.
 	    </c:when>
 	    <c:otherwise>
-	       <c:forEach var="dto" items="${list}" varStatus="status">
-	         <c:choose>
-	          <c:when test="${dto.endList eq 'Y'}">
-	          
-	          </c:when>
-	          <c:otherwise>
+	       <c:forEach var="dto" items="${list1}" varStatus="status">
+	       
+	       
+
 	            <c:set var="per" value="0.0"/>
 	            <c:choose>
 	               <c:when test="${dto.chkss eq 0}">
@@ -362,8 +359,8 @@ carousel.css({
 		            <input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
 		        </div>    
 		            
-	         </c:otherwise>
-	         </c:choose>
+	         
+	         
 	      </c:forEach>
 	    </c:otherwise>
 	   </c:choose>

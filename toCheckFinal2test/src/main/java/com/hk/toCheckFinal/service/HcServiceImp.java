@@ -52,7 +52,7 @@ public class HcServiceImp implements IHcService {
    }
    @Override
    
-   public HcWithDto getCalWith(String id){
+   public List<HcWithDto> getCalWith(String id){
       return hcDao.getCalWith(id);
    }
    
@@ -62,7 +62,15 @@ public class HcServiceImp implements IHcService {
    public List<HcDto> getAllList(String id) {
       return hcDao.getAllList(id);
    }
-
+   
+   
+   @Override
+   public List<HcDto> getAllListEndY(String id) {
+      return hcDao.getAllListEndY(id);
+   }
+   
+   
+   
    @Override
    public boolean habitCalDelete(String pKey) {
       return hcDao.habitCalDelete(pKey);

@@ -32,6 +32,7 @@ public class HcDaoImp implements IHcDao {
 
    @Override
    public HcDto getHabitCalList(String pKey) {
+	   
       return sqlSession.selectOne(namespace+"getHabitCalList",pKey);
 
    }
@@ -60,7 +61,7 @@ public class HcDaoImp implements IHcDao {
    }
    
    @Override   
-   public HcWithDto getCalWith(String id){
+   public List<HcWithDto> getCalWith(String id){
       return sqlSession.selectOne(namespace+"getCalWith",id);
    }
    
@@ -82,6 +83,18 @@ public class HcDaoImp implements IHcDao {
       System.out.println(list);
       return list;
    }
+   
+   @Override
+   public List<HcDto> getAllListEndY(String id) {
+      List<HcDto>list=new ArrayList<HcDto>();
+      System.out.println("getAllListEndY");
+      list=sqlSession.selectList(namespace+"getAllListEndY",id);
+      
+      System.out.println(list);
+      return list;
+   }   
+   
+   
 
    @Override
    public boolean habitCalDelete(String pKey) {
@@ -94,14 +107,7 @@ public class HcDaoImp implements IHcDao {
    @Override
    public boolean updateEndList(HcDto dto) {
       int count=0;
-      Map<String, String> map = new HashMap<String, String>();
-
-      if(dto.getEndList().equals("N")) {               
-         dto.setEndList("Y");
-      }else {
-         dto.setEndList("N");
-      }
-         count=sqlSession.update(namespace+"updateEndList", dto);
+      count=sqlSession.update(namespace+"updateEndList", dto);
       return count>0?true:false;
    }
 
