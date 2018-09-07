@@ -8,15 +8,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>사용자메인</title>
-
-
 <script type="text/javascript" src="//bl.ocks.org/brattonc/raw/5e5ce9beee483220e2f6/e92e678341ca79fef669ec9bdbc7553845966222/liquidFillGauge.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
-
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -24,12 +20,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
+
 <style>
 h5{
-	font-size: 32px;
+   font-size: 32px;
 }
 .carousel {
   height: 100%;
@@ -39,20 +35,7 @@ h5{
   transition: transform 1s;
 }
 .item {
-  display: block;
-  position: absolute;
-  background: white;
-  width: 250px;
-  height: 200px;
-  line-height: 200px;
-  font-size: 5em;
-  text-align: center;
-  color: #FFF;
-/*   opacity: 0.9; */
-  border-radius: 10px;
-}
-.item1 {
-  display: block;
+  display: inline-block;
   position: absolute;
   background: white;
   width: 250px;
@@ -106,14 +89,14 @@ h5{
 .prev { left: -300px; }
 
 </style>
-
-
 <style type="text/css">
+	#gtitle{
+		font-size: 20px;
+	}
    img{
-	width: 130px;
-	height: 130px;
-	
-}
+   width: 130px;
+   height: 130px;
+	}
 
    h6,h5 {
       text-align: center;
@@ -187,29 +170,23 @@ h5{
    #container{
    width: 500px;
    margin-top: 120px;
-   
 /*    float: left; */
    }
-
    #container2{
    width: 1400px;
-	margin: 50px auto ;
+   margin: 50px auto ;
    }
-	.container1,#container{display: inline-block;}
-	.container1 {
-	  width: 250px;
-	  height: 200px;
-	  position: relative;
-	  perspective: 1000px;
-	   top:-100px; 
-	   left: 250px; 
-	}
-	
-	#gtitle{
-		font-size: 20px;
-	}
-	.pertitle{
-		magrin:0;
+   .container1,#container{display: inline-block;}
+   .container1 {
+     width: 250px;
+     height: 200px;
+     position: relative;
+     perspective: 1000px;
+      top:-100px; 
+      left: 250px; 
+   }
+	#bobox{
+		height:100px;
 	}
 </style>
 
@@ -281,7 +258,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 var carousel ;
 currdeg  = 0;
 $(function () {
-	carousel=$(".carousel");
+   carousel=$(".carousel");
 $(".next").on("click", { d: "n" }, rotate);
 $(".prev").on("click", { d: "p" }, rotate);
 });
@@ -303,9 +280,7 @@ carousel.css({
 
 </script>
 
-
 <div id="container2">
-
 <div id="container">
 <br/>
    <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#fd6c8b', 1000)">
@@ -313,58 +288,55 @@ carousel.css({
    <div class="liquidGauge">
 <br/>
    <div class="liquidGauge"><h5>Total Progress</h5></div>
-   <br/>
-   <br/>
    </div>
    <div class="liquidGauge"></div>
    <br/>
 </div>
 <div class="container1">
-	<div class="carousel">
-		    <div class="item a0"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a1"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a2"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a3"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a4"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a5"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		<c:choose>
-	    <c:when test="${fn:length(list1) eq 0}">
-	          진행중이 리스트가 없습니다.
-	    </c:when>
-	    <c:otherwise>
-	       <c:forEach var="dto" items="${list1}" varStatus="status">
-	       
-	       
+   <div class="carousel">
+          <div class="item a0"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a1"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a2"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a3"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a4"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a5"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+      <c:choose>
+       <c:when test="${fn:length(list1) eq 0}">
+             
+       </c:when>
+       <c:otherwise>
+          <c:forEach var="dto" items="${list1}" varStatus="status">
 
-	            <c:set var="per" value="0.0"/>
-	            <c:choose>
-	               <c:when test="${dto.chkss eq 0}">
-	                  
-	               </c:when>
-	               <c:otherwise>
-	                  <c:set var="per" value="${(dto.chkss/dto.term)*100}"/>   
-	               </c:otherwise>
-	            </c:choose>
-	            
-	            <div class="item a${status.index}">
-		            <img alt="" src="${dto.photo}">
-		            <div class="progress-fixed">
-		                 <figure>
-		                   <div class="progress-fixed__bar${status.index}"></div>
-		                   <div class="progress-fixed__percent${status.index}"></div>
-		                   <div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a id="gtitle" href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;${dto.title}</a></div>   
-		                 </figure>
-		            </div>
-		            <div></div>
-		            <input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
-		        </div>    
-	      </c:forEach>
-	    </c:otherwise>
-	   </c:choose>
-	
-	</div>
-	<div class="next">></div>
-	<div class="prev"><</div>																				
+               <c:set var="per" value="0.0"/>
+               <c:choose>
+                  <c:when test="${dto.chkss eq 0}">
+                     
+                  </c:when>
+                  <c:otherwise>
+                     <c:set var="per" value="${(dto.chkss/dto.term)*100}"/>   
+                  </c:otherwise>
+               </c:choose>
+               
+               <div class="item a${status.index}">
+                  <a style="display: block;" href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">
+                  <img style="text-align: center;" src="${dto.photo}">
+                  </a>
+                      <span style="display:block; height:10px; text-align:center; font-weight: bold; font-size: 12px; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'}">
+                  		${dto.withh eq 'Y' ? '함께':'혼자'}<a style="display:inline;" id="gtitle" href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;&nbsp;${dto.title}</a></span>      
+                  	<div class="progress-fixed">
+                       <figure>
+                         <div class="progress-fixed__bar${status.index}"></div>
+                         <div class="progress-fixed__percent${status.index}"></div>
+                       </figure>
+                  	</div>
+                  <input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
+                  </div>
+         </c:forEach>
+       </c:otherwise>
+      </c:choose>
+   </div>
+   <div class="next">></div>
+   <div class="prev"><</div>                                                            
 </div>
 </div>
 </body>

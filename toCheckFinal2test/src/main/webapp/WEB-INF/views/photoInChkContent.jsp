@@ -37,13 +37,10 @@ h5 {
 	font-weight: bold;
 }
 
-body {
-	margin: 50px 0;
-}
-
 #container {
-	width: 1500px;
-	margin: auto;
+	width: 1200px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 #photo{
@@ -55,8 +52,13 @@ body {
 }
 
    table{
-      margin: auto;
+      margin: 0 auto;
       border-collapse: collapse;
+      border: solid 1px white;
+   }
+   #info{
+	margin-top: 60px;
+	margin-bottom: 60px;
    }
 </style>
     <script type="text/javascript">
@@ -77,30 +79,16 @@ body {
               reader.readAsDataURL(input.files[0]);
             }
         }
-
-
     </script>
-
-
-
 </head>
 <body>
 	<div id="container">
-		<table>
-			<col width="180px">
-			<col width="180px">
-			<col width="180px">
-			<col width="180px">
-			<tr><td colspan="4">
-			<h3>개인 인증 하기</h3>
+	<div id="info">
 			<h4>${dto.title}</h4>
 			<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
 			<h4>${diffdays} 일째</h4>
 			<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
-	        <br/>
-			<br/>
-			</td></tr>
-		</table>
+	</div>
 	<form action="photoInChkInsert.do" method="post" enctype="multipart/form-data">
 	   <input type="hidden" name="id" value="${HcLoginDto.id}"/>
 	   <input type="hidden" name="paramview" value="${paramview}"/>
@@ -111,14 +99,14 @@ body {
 	         <td colspan="3"><h4>인증 사진 올리기</h4>
 	         <c:choose>
 	         	<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
-			         <input  type="file" name="file" id="imgInp"  value="사진 찾기"/>
+			         <input type="file" name="file" id="imgInp"  value="사진 찾기"/>
 	         	</c:when>
 	         	<c:otherwise>
 	         	
 	         	</c:otherwise>
 	         
 	         </c:choose>
-	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" />         
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" />         
 	      </tr> 
 	   </table>
 	   

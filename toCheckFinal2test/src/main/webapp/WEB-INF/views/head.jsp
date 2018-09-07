@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon|Gothic+A1|Nanum+Gothic|Song+Myung" rel="stylesheet">
-<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><title>Insert title here</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -79,8 +78,11 @@
 		}
 		.myinfo{
 			position: absolute;
-			right:30px;
-			top: 10px;
+			right:500px;
+			top: 100px;
+		}
+		#navi{
+			font-family: 'Raleway', sans-serif;
 		}
 </style>
 <script type="text/javascript">

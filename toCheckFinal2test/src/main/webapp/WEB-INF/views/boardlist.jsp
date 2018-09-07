@@ -139,11 +139,12 @@ figure div:nth-child(1) {
 	position: relative;
 	height: 25px;
 	border-radius: 6px;
+
 }
 
 /* 파란 게이지 막대 */
 .progress-fixed div[class*=progress-fixed__bar] {
-	background: #fd6c8b;
+	background: #0000d8;
 }
 a:hover, a:visited, a:link{
       color:black;

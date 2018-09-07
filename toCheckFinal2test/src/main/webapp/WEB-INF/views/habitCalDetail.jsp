@@ -122,16 +122,7 @@ $(function(){
   position: relative;
   z-index: 100;
 }
-
-
-body{
-margin: 25px 0px;
-}
-
-</style>
-
-
-<style type="text/css">
+/* ========================================================================================= */
 	img{
 	top: 28%;
 	left:32%;
@@ -155,7 +146,7 @@ margin: 25px 0px;
    }
    
    #calendar td{
-      width:80px;
+      width:100px;
       height:100px;
       text-align: left;
       vertical-align: top;
@@ -168,8 +159,8 @@ margin: 25px 0px;
    }
 
    #container{
-   width: 600px;
-   margin: 0 auto;
+   width: 800px;
+   margin: 0 auto 0 auto;
    }
    
    
@@ -184,7 +175,7 @@ margin: 25px 0px;
    table{
       margin: auto;
       border-collapse: collapse;
-   
+      border-radius: 30px;
    }
    
 .switch {

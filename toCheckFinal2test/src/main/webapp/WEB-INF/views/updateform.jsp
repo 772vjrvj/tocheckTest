@@ -46,9 +46,10 @@
       height:35px;
       font-weight: bolder;
    }
-   h4{   
+   h2{   
       text-align: center;
       font-weight: bold;
+      margin-bottom: 30px;
    }
    table {
       margin: auto;
@@ -64,12 +65,7 @@
 <div id="container">
 <form action="updateform_after.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
-   <table border="1">
-   <col width="600px" >
-      <tr>
-         <td><h4 style="text-align: center;">나의 정보 수정</h4></td>
-      </tr>   
-   </table>
+         <h2 style="text-align: center;">나의 정보 수정</h2>
    <table border="1">
    <col width="100px">
    <col width="500px" >

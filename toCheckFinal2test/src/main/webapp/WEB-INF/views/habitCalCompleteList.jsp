@@ -13,13 +13,6 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
-<jsp:include page="style.jsp"/>
-<jsp:include page="head.jsp"/>
-<style type="text/css">
-	body {
-		padding: 25px;
-	}
-
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -29,8 +22,8 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
+<jsp:include page="style.jsp"/>
+<jsp:include page="head.jsp"/>
 
 <script type="text/javascript">
 var BG = {}; // BAR GRAPH window object
@@ -68,6 +61,9 @@ $(function() {
 
 </script>
 <style type="text/css">
+	body {
+		padding: 25px;
+	}
 th {
 	color: white;
 	text-align: center;

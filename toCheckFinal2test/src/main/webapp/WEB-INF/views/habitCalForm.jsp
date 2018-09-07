@@ -33,15 +33,15 @@
       font-weight: bold;
    }
    #container{
-      width: 1200px;
+      width: 800px;
       margin: 0 auto 0 auto;
       margin-top: 120px;
    }
    
    table{
-   	  font-size:18px;
-   	  border: none;
+   	  border: 1px solid white;
       margin: auto;
+      border-radius: 30px;
    }
    
 </style>
@@ -207,18 +207,19 @@
 <form action="habitCalInsert.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
    <input type="hidden" name="photo" value=""/>
-   <table >
+   <table border="1">
+      <col width="100px">
       <col width="400px">
-      <col width="1000px">
+      <col width="100px">
       <tr>
          <th>목표제목</th>
-         <td><input class="contents" type="text" name="title" style="width: 500px;" required="required" autocomplete="off"/> 
-         	인원
+         <td><input class="contents" type="text" name="title" style="width: 400px;" required="required" autocomplete="off"/></td> 
+         <th>인원
          <select name="recruit">
                <c:forEach var = "i" begin = "0" end = "100">
                   <option value="${i}" >${i eq 0 ? "선택":i}</option>
          </c:forEach>
-         </select>명</td>
+         </select>명</th>
       </tr>
       
       <tr>

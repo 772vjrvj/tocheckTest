@@ -59,25 +59,31 @@ body {
 
 
 table {
-	margin: auto;
+	margin: 0 auto;
 	width: 1100px;
 }
+#info{
+	margin-top: 60px;
+	margin-bottom: 60px;
+   }
 </style>
 
 
 </head>
 <body>
 	<div id="container">
+	<div id="info">
+		<h4>${dto.title}</h4>
+		<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
+		<h4>${diffdays} 일째</h4>
+		<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
+	</div>
 		<table>
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
 		<tr><td colspan="4">
-		<h4>${dto.title}</h4>
-		<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
-		<h4>${diffdays} 일째</h4>
-		<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
 		<c:choose>
 			<c:when test="${paramview eq '0'}">
 				<input type="button"  value="메인" onclick="location.href='${dto.endList eq 'N' ? 'main':'habitCalCompleteList'}.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'"/>
@@ -95,7 +101,7 @@ table {
 			<c:when test="${(status.count)%4 eq 1}">
 				<tr><td>
 							<div id="photo">
-							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
+							<img id="image_section" src="resources/${list.inChkPhoto2}"/>
 							</div>
 							<div>아아디: ${list.id}</div>	
 					<c:choose>
@@ -127,7 +133,7 @@ table {
 			<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
 				<td>
 							<div id="photo">
-							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
+							<img id="image_section" src="resources/${list.inChkPhoto2}"/>
 							</div>
 							<div>아이디: ${list.id}</div>	
 					<c:choose>
@@ -158,7 +164,7 @@ table {
 			</c:when>
 			<c:when test="${(status.count)%4 eq 0}">
 				<td><div id="photo">
-							<img id="image_section" src="resources/${list.inChkPhoto2}" alt="your image" />
+							<img id="image_section" src="resources/${list.inChkPhoto2}"/>
 							</div>
 							<div>아아디: ${list.id}</div>	
 
