@@ -69,6 +69,10 @@ public class HcServiceImp implements IHcService {
       return hcDao.getAllListEndY(id);
    }
    
+   @Override
+   public List<HcDto> getAllListEvery(){
+	   return hcDao.getAllListEvery();
+   }
    
    
    @Override

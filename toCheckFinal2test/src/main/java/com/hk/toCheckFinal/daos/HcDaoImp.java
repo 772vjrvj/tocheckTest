@@ -62,7 +62,7 @@ public class HcDaoImp implements IHcDao {
    
    @Override   
    public List<HcWithDto> getCalWith(String id){
-      return sqlSession.selectOne(namespace+"getCalWith",id);
+      return sqlSession.selectList(namespace+"getCalWith",id);
    }
    
    @Override   
@@ -77,12 +77,26 @@ public class HcDaoImp implements IHcDao {
    @Override
    public List<HcDto> getAllList(String id) {
       List<HcDto>list=new ArrayList<HcDto>();
-      System.out.println("ddd");
+      System.out.println("getAllList");
       list=sqlSession.selectList(namespace+"getAllList",id);
       
       System.out.println(list);
       return list;
    }
+   
+   @Override
+   public List<HcDto> getAllListEvery() {
+      List<HcDto>list=new ArrayList<HcDto>();
+      System.out.println("getAllListEvery");
+      list=sqlSession.selectList(namespace+"getAllListEvery");
+      
+      System.out.println(list);
+      return list;
+   }   
+   
+   
+   
+   
    
    @Override
    public List<HcDto> getAllListEndY(String id) {

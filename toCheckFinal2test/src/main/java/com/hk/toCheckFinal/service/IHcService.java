@@ -17,7 +17,7 @@ public interface IHcService {
    
    public boolean updateIntoper(HcDto dto);
    
-   
+   public List<HcDto> getAllListEvery();
    public List<HcDto> getAllList(String id);
    public List<HcDto> getAllListEndY(String id);
    

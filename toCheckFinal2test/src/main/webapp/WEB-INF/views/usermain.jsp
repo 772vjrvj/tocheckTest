@@ -96,7 +96,12 @@ h5{
    img{
    width: 130px;
    height: 130px;
+<<<<<<< HEAD
 	}
+=======
+   
+}
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 
    h6,h5 {
       text-align: center;
@@ -185,9 +190,19 @@ h5{
       top:-100px; 
       left: 250px; 
    }
+<<<<<<< HEAD
 	#bobox{
 		height:100px;
 	}
+=======
+   
+   #gtitle{
+      font-size: 20px;
+   }
+   .pertitle{
+      magrin:0;
+   }
+>>>>>>> branch 'master' of https://github.com/772vjrvj/tochecktest.git
 </style>
 
 
@@ -306,7 +321,6 @@ carousel.css({
        </c:when>
        <c:otherwise>
           <c:forEach var="dto" items="${list1}" varStatus="status">
-
                <c:set var="per" value="0.0"/>
                <c:choose>
                   <c:when test="${dto.chkss eq 0}">

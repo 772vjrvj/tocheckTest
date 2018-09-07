@@ -45,6 +45,8 @@ $(function(){
         }
        });   
 
+
+    
    
 });
 
@@ -279,14 +281,7 @@ input:checked + .slider:before {
             <td colspan="3" style="text-align: right;">
                <c:choose>
 	              <c:when test="${dto.withh eq 'Y'}">
-                 	 <c:choose>
-		             		<c:when test="${today1 >= StDate1}">
-
-		             		</c:when>
-		             		<c:otherwise>	
-
-		             		</c:otherwise>
-	             		</c:choose>	              
+          
 	              </c:when>	
 	              <c:otherwise>
 		               <c:choose>             
@@ -315,7 +310,10 @@ input:checked + .slider:before {
 		                     <br/>
 		                  </c:when>
 		                  <c:otherwise>
-
+							
+							<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${id}'"/>
+							
+							
 		                  </c:otherwise>
 		               </c:choose>
 	              </c:otherwise>
@@ -331,7 +329,7 @@ input:checked + .slider:before {
                   <c:otherwise>
                      <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
 	                   
-                     	모집현황:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}</div>
+                     	모집인원:<span style=" color: red;">${dto.intoper}</span>/${dto.recruit}</div>
                      <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
                      <c:choose>
                         <c:when test="${paramview eq 0}">

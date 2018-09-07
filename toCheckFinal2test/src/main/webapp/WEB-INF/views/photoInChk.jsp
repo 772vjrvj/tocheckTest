@@ -8,8 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>photoInChk</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
+
 <style type="text/css">
 th {
 	color: white;
@@ -68,13 +70,27 @@ table {
    }
 </style>
 
+<script type="text/javascript">
+
+</script>
 
 </head>
 <body>
 	<div id="container">
 	<div id="info">
+		<input id="diff" type="hidden" value="${diffdays}"/>
 		<h4>${dto.title}</h4>
 		<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
+
+		
+		<c:choose>
+			<c:when test="${diffdays==dto.term}">
+					<h4 style="color: red">마지막 날</h4>
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+		
 		<h4>${diffdays} 일째</h4>
 		<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
 	</div>

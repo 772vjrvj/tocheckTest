@@ -22,8 +22,6 @@
 </style>
 </head>
 <body>
-<div id="text"><a href="index.jsp">${loginId}님
-<br>
-정상적으로 로그아웃 되었습니다.</a></div>
+<div id="text"><a href="index.jsp">정상적으로 로그아웃 되었습니다.</a></div>
 </body>
 </html>
