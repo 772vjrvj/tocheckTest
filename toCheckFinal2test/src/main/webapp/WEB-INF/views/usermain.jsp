@@ -8,6 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>사용자메인</title>
+<jsp:include page="head.jsp"/>
+<jsp:include page="style.jsp"/>
 
 
 <script type="text/javascript" src="//bl.ocks.org/brattonc/raw/5e5ce9beee483220e2f6/e92e678341ca79fef669ec9bdbc7553845966222/liquidFillGauge.js"></script>
@@ -25,11 +27,9 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<jsp:include page="head.jsp"/>
-<jsp:include page="style.jsp"/>
 <style>
 h5{
-	font-size: 32px;
+   font-size: 32px;
 }
 .carousel {
   height: 100%;
@@ -110,9 +110,9 @@ h5{
 
 <style type="text/css">
    img{
-	width: 130px;
-	height: 130px;
-	
+   width: 130px;
+   height: 130px;
+   
 }
 
    h6,h5 {
@@ -193,24 +193,24 @@ h5{
 
    #container2{
    width: 1400px;
-	margin: 50px auto ;
+   margin: 50px auto ;
    }
-	.container1,#container{display: inline-block;}
-	.container1 {
-	  width: 250px;
-	  height: 200px;
-	  position: relative;
-	  perspective: 1000px;
-	   top:-100px; 
-	   left: 250px; 
-	}
-	
-	#gtitle{
-		font-size: 20px;
-	}
-	.pertitle{
-		magrin:0;
-	}
+   .container1,#container{display: inline-block;}
+   .container1 {
+     width: 250px;
+     height: 200px;
+     position: relative;
+     perspective: 1000px;
+      top:-100px; 
+      left: 250px; 
+   }
+   
+   #gtitle{
+      font-size: 20px;
+   }
+   .pertitle{
+      magrin:0;
+   }
 </style>
 
 
@@ -281,7 +281,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 var carousel ;
 currdeg  = 0;
 $(function () {
-	carousel=$(".carousel");
+   carousel=$(".carousel");
 $(".next").on("click", { d: "n" }, rotate);
 $(".prev").on("click", { d: "p" }, rotate);
 });
@@ -320,51 +320,51 @@ carousel.css({
    <br/>
 </div>
 <div class="container1">
-	<div class="carousel">
-		    <div class="item a0"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a1"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a2"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a3"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a4"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		    <div class="item a5"><a href="habitCalForm.do?id=${HcLoginDto.id}">+</a></div>
-		<c:choose>
-	    <c:when test="${fn:length(list1) eq 0}">
-	          진행중이 리스트가 없습니다.
-	    </c:when>
-	    <c:otherwise>
-	       <c:forEach var="dto" items="${list1}" varStatus="status">
-	       
-	       
+   <div class="carousel">
+          <div class="item a0"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a1"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a2"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a3"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a4"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+          <div class="item a5"><a href="habitCalForm.do?id=${loginId}">+</a></div>
+      <c:choose>
+       <c:when test="${fn:length(list1) eq 0}">
+             
+       </c:when>
+       <c:otherwise>
+          <c:forEach var="dto" items="${list1}" varStatus="status">
+          
+          
 
-	            <c:set var="per" value="0.0"/>
-	            <c:choose>
-	               <c:when test="${dto.chkss eq 0}">
-	                  
-	               </c:when>
-	               <c:otherwise>
-	                  <c:set var="per" value="${(dto.chkss/dto.term)*100}"/>   
-	               </c:otherwise>
-	            </c:choose>
-	            
-	            <div class="item a${status.index}">
-		            <img alt="" src="${dto.photo}">
-		            <div class="progress-fixed">
-		                 <figure>
-		                   <div class="progress-fixed__bar${status.index}"></div>
-		                   <div class="progress-fixed__percent${status.index}"></div>
-		                   <div class="pertitle"><p style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</p><a id="gtitle" href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;${dto.title}</a></div>   
-		                 </figure>
-		            </div>
-		            <div></div>
-		            <input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
-		        </div>    
-	      </c:forEach>
-	    </c:otherwise>
-	   </c:choose>
-	
-	</div>
-	<div class="next">></div>
-	<div class="prev"><</div>																				
+               <c:set var="per" value="0.0"/>
+               <c:choose>
+                  <c:when test="${dto.chkss eq 0}">
+                     
+                  </c:when>
+                  <c:otherwise>
+                     <c:set var="per" value="${(dto.chkss/dto.term)*100}"/>   
+                  </c:otherwise>
+               </c:choose>
+               
+               <div class="item a${status.index}">
+                  <a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0"><img alt="" src="${dto.photo}" ><span style="display:inline-block; ${dto.withh eq 'Y' ? 'color: blue;':'color: red;'} text-align: left; font-weight: bolder; font-size: 11px;" >${dto.withh eq 'Y' ? '함께':'혼자'}</span><a id="gtitle" href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=0">&nbsp;${dto.title}</a></a>
+                            
+                  <div class="progress-fixed">
+                       <figure>
+                         <div class="progress-fixed__bar${status.index}"></div>
+                         <div class="progress-fixed__percent${status.index}"></div>
+                       </figure>
+                  </div>
+                  <div></div>
+                  <input class="bar" type="hidden"  onclick="BG.init(${per},${status.index})"/>
+              </div>    
+         </c:forEach>
+       </c:otherwise>
+      </c:choose>
+   
+   </div>
+   <div class="next">></div>
+   <div class="prev"><</div>                                                            
 </div>
 </div>
 </body>

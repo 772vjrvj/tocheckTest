@@ -166,7 +166,7 @@ public class HomeController implements ServletContextAware {
             return view;
          }else {
             
-            List<HcDto> list=hcService.getAllList(id);
+            List<HcDto> list=hcService.getAllListEvery();
 
             for (int k = 0; k < list.size(); k++) {
             	
@@ -184,6 +184,8 @@ public class HomeController implements ServletContextAware {
             	}
             	
             }
+            
+            
             
             List<HcDto> list1=hcService.getAllList(id);
             
@@ -334,7 +336,9 @@ public class HomeController implements ServletContextAware {
    @RequestMapping(value = "/logout.do", method = RequestMethod.GET)
    public String point(Locale locale, Model model, SessionStatus session) {
       logger.info("로그아웃 {}.", locale);
-      session.setComplete();
+	  model.addAttribute("loginId", "0");
+	  model.addAttribute("loginRole", "0");
+	  
       
       return "logout";
    }      
@@ -493,9 +497,10 @@ public class HomeController implements ServletContextAware {
          
          String thisDate = today;
          
+         long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
+         
          if(today1 <= edDate1 && today1 >= StDate1 && dto.getWithh().equals("Y") && calString.equals("a")) {
         	 
-        	 long diffdays=Util.doDiffOfDate(StDate1+"",today1+"")+1;
         	 
              String Year1=today.substring(0,4);
              String Month1=today.substring(4,6);
@@ -526,7 +531,7 @@ public class HomeController implements ServletContextAware {
         	 view.addObject("id",id);
         	 view.addObject("pKey",pKey);
         	 view.addObject("paramview",paramview);
-        	 
+        	 view.addObject("diffdays",diffdays);
         	 view.addObject("chks",chks);      
         	 view.addObject("idlist",idlist);               
         	 view.addObject("dto",dto);   
@@ -691,7 +696,6 @@ public class HomeController implements ServletContextAware {
           List<HcDto> list1=hcService.getAllListEndY(id);
           
           List<HcWithDto> list2=hcService.getCalWith(id);
-          System.out.println("list2111:"+list2);
           
           if(list2==null) {
           	
@@ -707,7 +711,6 @@ public class HomeController implements ServletContextAware {
           		}
           	}
           }
-          System.out.println("list1111:"+list1);
          view.addObject("list1",list1);
          view.setViewName("habitCalCompleteList");
 

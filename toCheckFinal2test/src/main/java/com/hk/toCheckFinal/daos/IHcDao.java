@@ -17,6 +17,9 @@ public interface IHcDao {
 
    public List<HcDto> getAllList(String id);
    public List<HcDto> getAllListEndY(String id);
+   public List<HcDto> getAllListEvery();
+   
+   
    
    public boolean habitCalDelete(String pKey);
    public boolean updateEndList(HcDto dto);

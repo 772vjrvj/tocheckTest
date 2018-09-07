@@ -64,15 +64,36 @@
             $("select[name=term]").focus();
             alert("기간을 입력하세요");
             return false;
-         }else if($("select[name=intoper]").val()==0){
-            $("select[name=intoper]").focus();
-            alert("인원을 입력하세요");
-            return false;
          }else if($("select[name=recruit]").val()==0){
             $("select[name=recruit]").focus();
             alert("인원을 입력하세요");
             return false;
+         }else if($("img").attr("src")==""){
+             alert("사진을 넣으세요");
+             return false;
+         }else if($("select[name=recruit]").val()==1){
+        	 
+  			if ($("select[name=date]").val() < ${map.date}) {
+				alert("오늘 이전의 날은 입력할 수 없습니다.");
+	            $("select[name=date]").focus();
+	            return false;
+			}else{
+				
+			}
+			
+        	 
+         }else if($("select[name=recruit]").val()>=2){
+			if ($("select[name=date]").val()<=${map.date}) {
+				alert("2인 이상의 함께 하기는 현재날짜 다음날 부터 가능합니다.");
+	            $("select[name=date]").focus();
+	            return false;
+			}else{
+				
+			}
          }
+         
+         
+
       });
 
       $("select[name=year]").change(function(){
@@ -224,7 +245,7 @@
       <tr>
          <th>모션선택</th>
          <td colspan="2">
-            <button onclick="icon()">선택</button>
+            <button type="button" id ="button" onclick="icon()">선택</button>
             <img id="image" src="" width="200px" height="200px"/>
          </td>
       </tr> 
@@ -238,7 +259,7 @@
                </c:forEach>
             </select>년
             <select name="month">
-               <c:forEach var = "i" begin = "0" end = "12">
+               <c:forEach var = "i" begin = "${map.month}" end = "12">
                   <option value="${i}" ${map.month eq i ? "selected":""} >${i eq 0 ? "선택":i}</option>
                </c:forEach>
             </select>월
