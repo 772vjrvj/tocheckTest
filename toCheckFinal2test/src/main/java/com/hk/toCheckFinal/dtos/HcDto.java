@@ -18,8 +18,8 @@ public class HcDto {
 	private String photo; //사진이름
 	private String host; //방장이름
 	private String hcDelete; //삭제여부
-	private int chkCount; //삭제여부
-	private String sort; //삭제여부
+	private int chkCount; //체크 갯수 세기
+	private String sort; //좀전에 봤던게 main에 나오게 하도록 하기 위한 순서
 	
 	public HcDto() {
 		super();

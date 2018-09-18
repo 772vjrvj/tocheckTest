@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
 <!DOCTYPE html">
@@ -42,7 +44,7 @@
       <tr>
          <td>질문</td>
          
-         <td><input class="form-control" type="text" name="question" value="${dto_find.question}" readonly="readonly"/></td>
+         <td><input class="form-control" type="text" name="question" value="${dto_find}" readonly="readonly"/></td>
       </tr>
       <tr>
          <td>답변</td>

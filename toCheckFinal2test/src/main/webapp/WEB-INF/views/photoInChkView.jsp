@@ -78,6 +78,8 @@ body {
 		<div id="container">
 		<div id="tit">
 		<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}. ${map.ToMonth1}. ${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})
+		<br/>
+		<input type="button"class="btn btn-default btn-xs"  value="Calendar" onclick="location.href='habitCalWithDetailView2.do?pKey=${dto.pKey}&id=${dto.id}'"/>
 		</div>		
 			<table style=" align-content: center;">
 			<tr><td colspan="4">	

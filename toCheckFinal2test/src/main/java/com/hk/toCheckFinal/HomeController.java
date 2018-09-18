@@ -34,6 +34,7 @@ import com.hk.toCheckFinal.dtos.HcInChkDto;
 import com.hk.toCheckFinal.dtos.HcLoginDto;
 import com.hk.toCheckFinal.service.IHcService;
 import com.hk.toCheckFinal.utils.Util;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 
 /**
@@ -1177,13 +1178,10 @@ public class HomeController implements ServletContextAware {
        }
     
     @RequestMapping(value = "/findId_after.do", method = RequestMethod.POST)
-    public String findId(HttpServletRequest httpServletRequest,Locale locale,Model model) {
+    public String findId(String name, String phone,Locale locale,Model model) {
        logger.info("아이디 찾기 {}.", locale);
        
-       String name = httpServletRequest.getParameter("name");
-       String phone = httpServletRequest.getParameter("phone");
-       
-       if(hcService.findId(name, phone)==null) {
+       if(hcService.findId(name, phone).equals(null)) {
           System.out.println("아이디 찾기 실패");
            model.addAttribute("msg","이름과 번호가 일치하지 않습니다.");
            return "error";   
@@ -1203,11 +1201,9 @@ public class HomeController implements ServletContextAware {
        }
     //비밀번호 찾기 전 본인확인 및 아이디가 일치하는 질문 출력 답변 입력
     @RequestMapping(value = "/findPw.do", method = RequestMethod.POST)
-    public String findPw(HttpServletRequest httpServletRequest,Locale locale,Model model) {
+    public String findPw(String id, String phone,Locale locale,Model model) {
        logger.info("비밀번호 찾기 질문 {}.", locale);
        
-       String id = httpServletRequest.getParameter("id");
-       String phone = httpServletRequest.getParameter("phone");
        //아이디, 번호 일치 검사
        if(hcService.findPw(id, phone)==null) {
           System.out.println("비밀번호찾기 본인인증 실패");
@@ -1216,8 +1212,10 @@ public class HomeController implements ServletContextAware {
        }else {
           HcLoginDto dto = hcService.findPw(id, phone);
           //아이디에 맞는 질문 출력
-          HcLoginDto dto_find=hcService.findPw_find(id);
-          model.addAttribute("dto_find",dto_find);
+          System.out.println("dto.getId():"+dto.getId());
+          HcLoginDto dto_find=hcService.findPw_find(dto.getId());
+          System.out.println("dto_find"+dto_find);
+          model.addAttribute("dto_find",dto_find.getQuestion());
           return "findPw";
        }
     }

@@ -48,7 +48,7 @@
          <td><input class="form-control" type="text" name="name"/></td>
       </tr>
       <tr>
-         <td>번호를 입력해주세요</td>
+         <td>전화번호를 입력해주세요</td>
       </tr>
       <tr>
          <td><input class="form-control" type="tel" name="phone"/></td>

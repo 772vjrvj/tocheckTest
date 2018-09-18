@@ -68,13 +68,6 @@
 		UPDATE HCBOARD SET CHKCOUNT=#{chkCount} WHERE PKEY=#{pKey}
 		</update>
 		
-		
-		<!-- 		회원가입 -->
-		<insert id="insertUser" parameterType="HcLoginDto">
-        INSERT INTO HCMEMBER VALUES
-        (HCMEMBER_SEQ.NEXTVAL,#{id},#{name},#{password},#{address},#{phone},#{email},'Y','USER',1000,'0')   
-		</insert>
-
 		<!-- 		ID체크 -->
 		<select id="idChk" parameterType="map" resultType="HcLoginDto">
 		SELECT ID
@@ -87,11 +80,6 @@
 		FROM HCMEMBER WHERE ID=#{id} AND PASSWORD=#{password} AND ENABLED = 'Y'   
 		</select>		
 				
-		<!-- 		유저 정보 얻기 -->
-		<select id="getUser" parameterType="String" resultType="HcLoginDto">
-		SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE, TTPOINT, TDPOINT
-		FROM HCMEMBER WHERE ID=#{value} AND ENABLED='Y'
-		</select>		
 
 		<!-- 		기간이 종료되지 않은 모든 유저들의 리스트  -->
 		<select id="getAllListEvery" resultType="HcDto">
@@ -110,11 +98,6 @@
 		FROM HCBOARD WHERE ID=#{id} AND ENDLIST='N' AND HCDELETE='N' ORDER BY SORT DESC
 		</select>      
       	
-      	<!--       	유저 정보 변경 -->
-		<update id="updateUser" parameterType="HcLoginDto">
-		UPDATE HCMEMBER SET ADDRESS=#{address}, PHONE=#{phone}, EMAIL=#{email}
-		WHERE Id=#{id}
-		</update>
 
 		<!-- 		탈퇴하기 -->
 		<update id="deleUser" parameterType="String">
@@ -266,16 +249,11 @@
       WHERE Id=#{id}
       </update>  
       
-      <!--          유저 정보 변경 -->
-      <update id="updateUser" parameterType="HcLoginDto">
-      UPDATE HCMEMBER SET ADDRESS=#{address}, PHONE=#{phone}, EMAIL=#{email}, QUESTION=#{question}, ANSWER=#{answer}
-      WHERE Id=#{id}
-      </update>
       
       <!--       유저 정보 얻기 -->
       <select id="getUser" parameterType="String" resultType="HcLoginDto">
       SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE, QUESTION, ANSWER
-      FROM HCMEMBER WHERE ID=#{value} AND ENABLED='Y'
+      FROM HCMEMBER WHERE ID=#{id} AND ENABLED='Y'
       </select> 
 
     </mapper>
