@@ -35,7 +35,33 @@
 	
 	   
 	function myFunction2(){
-		location.href="promise.do?id=${loginId}&pKey=${dto.pKey}&hostId=${dto.id}";
+		
+		$.ajax({
+			url:"ajaxCheck.do",   //url:"employee_servlet.do?fname=", 원래는 이런식인데 date로 
+			method:"get",
+			data:"id=${loginId}",
+			async:false,
+			dataType:"json",
+			success:function(obj){//obj{"lists":[EmpDto,EmpDto,EmpDto,EmpDto,...]}
+
+				var count=obj["count"]//[EmpDto,EmpDto,EmpDto,EmpDto,...]
+				if(count>=6){
+					alert("습관갯수가 현재 꽉 찼습니다. 종료후 만들어주세요");
+				    location.href = "habitCalWithDetailView.do?id=${dto.id}&pKey=${dto.pKey}"
+				    	
+				}else{
+					location.href="promise.do?id=${loginId}&pKey=${dto.pKey}&hostId=${dto.id}";
+	
+				}
+
+			},
+			error:function(){
+				alert("서버통신실패~~");
+			}
+		});		
+		
+		
+		
 	}
 	
 

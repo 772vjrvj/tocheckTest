@@ -24,6 +24,13 @@ public class HcServiceImp implements IHcService {
 		return hcDao.habitCalInsert(dto);
 	}
 
+	//sort업데이트 방금 본걸 main에서 맨 앞화면으로 보려고
+	@Override
+	public boolean updateSort(String sort, String pKey) {
+		return hcDao.updateSort(sort,pKey);
+	}
+	
+	
 	//참가자 인원 받기
 	@Override
 	public int habitCalIntoPerCount(String intoper) {

@@ -163,7 +163,7 @@ public class Util {
 	}		
 	
 	
-	//오늘날짜 YYYY,MM,DD 식으로 각각구하기 그리고 기간도 구하기
+	//YYYY,MM,DD 식으로 각각구하기 
 	public static Map<String, Integer> TodayYYMMDD2 (String thisDate){
 	Map<String, Integer> map = new HashMap<String, Integer>();
 	

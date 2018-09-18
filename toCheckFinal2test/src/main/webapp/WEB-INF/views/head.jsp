@@ -110,7 +110,11 @@ $(document).ready(function() {
 	  $menu.toggleClass('active');
 	  return false;
 	});});
-	
+
+
+function search(){
+	alert("서버통신실패~~");
+}
 
 </script>
 </head>
@@ -125,7 +129,7 @@ $(document).ready(function() {
 					<ul>
 						<li><a href="main.do?id=${loginId}&role=${loginRole}">Home </a></li>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<li><a href="habitCalForm.do?id=${loginId}"> Start </a></li>
+						<li><a href="habitCalForm.do?id=${loginId}" onclick="search()"> Start </a></li>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<li><a href="selectform.do"> List </a></li>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

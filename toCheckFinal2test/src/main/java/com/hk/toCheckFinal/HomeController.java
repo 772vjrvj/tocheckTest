@@ -19,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.ServletContextAware;
@@ -158,6 +160,7 @@ public class HomeController implements ServletContextAware {
 
 		HcLoginDto HcLoginDto= hcService.getUser(id);
         
+		
 		//운영자 페이지로
 		if(role.toUpperCase().equals("ADMIN")) {
 			view.setViewName("home");
@@ -532,7 +535,28 @@ public class HomeController implements ServletContextAware {
 	@RequestMapping(value = "/habitCalDetail.do", method = RequestMethod.GET)
 	public String habitCalDetail(String id, String pKey, Locale locale) throws ParseException {
 		logger.info("habitCalDetail {}.", locale);
-
+		
+		List<HcDto> list1=hcService.getAllList(id);
+		
+		for (int i = 0; i < list1.size(); i++) {
+			if(list1.get(i).getpKey().equals(pKey)) {
+				boolean isS1=hcService.updateSort("1", list1.get(i).getpKey());
+				if(isS1==true) {
+					System.out.println("updateSort변경 성공");
+				}else {
+					System.out.println("updateSort변경 실패");
+				}
+			}else {
+				boolean isS2=hcService.updateSort("0", list1.get(i).getpKey());
+				if(isS2==true) {
+					System.out.println("updateSort변경 성공");
+				}else {
+					System.out.println("updateSort변경 실패");
+				}
+			}
+		}
+		
+		
 		HcDto dto = hcService.getHabitCalListOne(pKey,id);
 		if(dto.getWithh().equals("N")) {
 			return "redirect:habitCalAloneDetail.do?id="+id+"&pKey="+pKey;
@@ -1130,5 +1154,18 @@ public class HomeController implements ServletContextAware {
         	  return "error";           
           }          
       }
+      
+      
+
+      @ResponseBody
+      @RequestMapping(value = "/ajaxCheck.do", method = RequestMethod.GET)
+      public Map<String, Integer> ajaxCheck(String id, Locale locale, Model model){   
+    	  List<HcDto> list1=hcService.getAllList(id);
+    	  Map<String, Integer> map = new HashMap<String, Integer>();
+    	  map.put("count", list1.size());   
+
+          return map;    	  
+      }
+      
       
 	}

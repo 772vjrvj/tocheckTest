@@ -29,6 +29,18 @@ public class HcDaoImp implements IHcDao {
 		return count>0?true:false;
 	}
 
+	//sort업데이트 방금 본걸 main에서 맨 앞화면으로 보려고
+	public boolean updateSort(String sort, String pKey) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put( "sort", sort );
+		map.put( "pKey", pKey );
+		int count=0;
+		count =sqlSession.update(namespace+"updateSort", map);
+		return count>0?true:false;		
+	}
+	
+	
+	
 	//참가하기 인원 받기
 	@Override
 	public int habitCalIntoPerCount(String intoper) {

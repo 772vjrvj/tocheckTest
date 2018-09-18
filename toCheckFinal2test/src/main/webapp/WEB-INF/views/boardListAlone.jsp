@@ -28,7 +28,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 
-
 <script type="text/javascript">
 var BG = {}; // BAR GRAPH window object
 
@@ -190,6 +189,9 @@ figure div:nth-child(3) {
 </script>
 </head>
 <body>
+	<jsp:useBean id="Cal" class="com.hk.toCheckFinal.utils.cal"/>
+	 <jsp:useBean id="Util" class="com.hk.toCheckFinal.utils.Util"/>
+
 	<div id="container">
 		<table style=" align-content: center;">
 		<col width="180px">
@@ -219,7 +221,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkCount}/${dto.term}</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}기간: ${dto.chkCount}/${dto.term}</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -236,7 +238,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkCount}/${dto.term}</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}기간: ${dto.chkCount}/${dto.term}</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -253,7 +255,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkCount}/${dto.term}</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}기간: ${dto.chkCount}/${dto.term}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>

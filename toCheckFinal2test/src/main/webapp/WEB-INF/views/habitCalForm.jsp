@@ -52,10 +52,34 @@
      border: solid 1px #a9a9a9;
    }
 </style>
+
+
+
 <script type="text/javascript">
 
    $(document).ready(function() {
-      
+
+		$.ajax({
+			url:"ajaxCheck.do",   //url:"employee_servlet.do?fname=", 원래는 이런식인데 date로 
+			method:"get",
+			data:"id=${loginId}",
+			async:false,
+			dataType:"json",
+			success:function(obj){//obj{"lists":[EmpDto,EmpDto,EmpDto,EmpDto,...]}
+
+				var count=obj["count"]//[EmpDto,EmpDto,EmpDto,EmpDto,...]
+				if(count>=6){
+					alert("습관갯수가 현재 꽉 찼습니다. 종료후 만들어주세요");
+				    location.href = "main.do?id=${loginId}&role=${loginRole}"
+				}
+
+			},
+			error:function(){
+				alert("서버통신실패~~");
+			}
+		});		
+	   
+	   
       $("form").submit(function(){
          if($("select[name=month]").val()==0){
             alert("월을 입력하세요");
@@ -200,6 +224,8 @@
             pointInput($(this).val());
          }
       });
+      
+      
    });
 
 //    function pointInput(termVal){
@@ -229,6 +255,11 @@
          var popOption = "width=600, height=600, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
          window.open(popUrl,"",popOption);
       }
+      
+      
+      
+      
+      
 </script>
 <body>
 <div id="container">

@@ -18,6 +18,137 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <jsp:include page="style.jsp"/>
 <jsp:include page="head.jsp"/>
+<style type="text/css">
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
+.snip1273 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  float: left;
+  margin: 10px 1%;
+  min-width: 310px -60px;
+  max-width: 310px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  background-color: #000000;
+  font-size: 16px;
+}
+.snip1273 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+.snip1273 img {
+  position: relative;
+  max-width: 100%;
+  vertical-align: top;
+}
+.snip1273 figcaption {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  padding: 20px 30px;
+}
+.snip1273 figcaption:before,
+.snip1273 figcaption:after {
+  width: 1px;
+  height: 0;
+}
+.snip1273 figcaption:before {
+  right: 0;
+  top: 0;
+}
+.snip1273 figcaption:after {
+  left: 0;
+  bottom: 0;
+}
+.snip1273 h3,
+.snip1273 p {
+  line-height: 1.5em;
+}
+.snip1273 h3 {
+  margin: 0 0 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.snip1273 p {
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 0 0 15px;
+}
+.snip1273 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+.snip1273:before,
+.snip1273:after,
+.snip1273 figcaption:before,
+.snip1273 figcaption:after {
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+  z-index: 1;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  opacity: 0.8;
+}
+.snip1273:before,
+.snip1273:after {
+  height: 1px;
+  width: 0%;
+}
+.snip1273:before {
+  top: 0;
+  left: 0;
+}
+.snip1273:after {
+  bottom: 0;
+  right: 0;
+}
+.snip1273:hover img,
+.snip1273.hover img {
+  opacity: 0.4;
+}
+.snip1273:hover figcaption,
+.snip1273.hover figcaption {
+  opacity: 1;
+}
+.snip1273:hover figcaption:before,
+.snip1273.hover figcaption:before,
+.snip1273:hover figcaption:after,
+.snip1273.hover figcaption:after {
+  height: 100%;
+}
+.snip1273:hover:before,
+.snip1273.hover:before,
+.snip1273:hover:after,
+.snip1273.hover:after {
+  width: 100%;
+}
+.snip1273:hover:before,
+.snip1273.hover:before,
+.snip1273:hover:after,
+.snip1273.hover:after,
+.snip1273:hover figcaption:before,
+.snip1273.hover figcaption:before,
+.snip1273:hover figcaption:after,
+.snip1273.hover figcaption:after {
+  opacity: 0.1;
+}
+
+</style>
+
+</style>
 <style>
 h5{
    font-size: 32px;
@@ -78,7 +209,7 @@ h5{
 	  line-height: 250px;
 	  font-size: 5em;
 	  text-align: center;
-	  color: #FFF;
+	  color: black;
 	  opacity: 0.95;
 	  border-radius: 10px;
 	}
@@ -143,6 +274,14 @@ h5{
 	});
 	}
 </script>
+<script type="text/javascript">
+/* Demo purposes only */
+$(".hover").mouseleave(
+  function () {
+    $(this).removeClass("hover");
+  }
+);
+</script>
 </head>
 <body>
 <div class="container">
@@ -159,10 +298,26 @@ h5{
        </c:when>
        <c:otherwise>
           <c:forEach var="dto" items="${list1}" varStatus="status">
-               <div class="item a${status.index}">
-                  <a style="display: block;" href="habitCalDetail.do?pKey=${dto.pKey}&id=${loginId}">
-                  <img id="motion" style="text-align: center;" src="${dto.photo}"></a>
-                  </div>
+               
+	         <div class="item a${status.index}">
+	         
+				<figure class="snip1273" style="margin-top: 20px;">
+	                  <img id="motion" style="text-align: center;" src="${dto.photo}">
+	                  <figcaption style="margin-top: 60px;">
+	                      <a style="display: block;" href="habitCalDetail.do?pKey=${dto.pKey}&id=${loginId}">
+	                      <h5 style="font-size: 30px;">${dto.title}</h5>
+	                      <c:choose>
+	                      <c:when test="${dto.withh eq 'Y'}">
+	                      <p style="color: red; font-size: 30px;">With</p>
+	                      </c:when>
+	                      <c:otherwise>
+	                      <p style="color: blue; font-size: 30px;">Alone</p>
+	                      </c:otherwise>
+	                      </c:choose>
+	                      </a>
+	                  </figcaption>
+				</figure>
+	         </div>
          </c:forEach>
        </c:otherwise>
       </c:choose>

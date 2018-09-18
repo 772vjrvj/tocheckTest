@@ -14,7 +14,10 @@ public interface IHcService {
 	
 	//참가자 인원세기
 	public int habitCalIntoPerCount(String intoper);
-   
+
+	//sort업데이트 방금 본걸 main에서 맨 앞화면으로 보려고
+	public boolean updateSort(String sort, String pKey);
+
 	
     //체크 값 입력
 	public boolean habitCalInsertChk(String pKey,String chk);
