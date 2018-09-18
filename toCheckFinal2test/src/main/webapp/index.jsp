@@ -83,6 +83,8 @@
                <td colspan="2">
                   <input style="margin-left: 140px;" class="btn btn-default btn-xs" id="login" type="submit" value="Login"/> 
                   <input class="btn btn-default btn-xs" type="button" value="Sign up" onclick="location.href='regist.do'" />
+                  <input class="btn btn-default btn-xs" type="button" value="아이디 찾기" onclick="location.href='findId.do'" />
+                  <input class="btn btn-default btn-xs" type="button" value="비밀번호 찾기" onclick="location.href='findPw_identi.do'" />
                </td>
             </tr>
          </table>

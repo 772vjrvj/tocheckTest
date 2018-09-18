@@ -119,4 +119,16 @@ public interface IHcDao {
    public List<HcLoginDto> getAllUser();
    public boolean updateRoleUser(String id, String role,String enabled);
    
+ //아이디 찾기
+   public HcLoginDto findId(String name, String phone);
+      
+   //비밀번호찾기 본인인증하기
+   public HcLoginDto findPw(String id, String phone);
+   
+   //비밀번호 찾기 아이디에 맞는 질문 출력해주기
+   public HcLoginDto findPw_find(String id);
+      
+   //비밀번호 찾기 질문에 맞는 답변을 입력하면 비밀번호 출력해주기
+   public HcLoginDto findPw_After(String question, String answer);
+   
 }

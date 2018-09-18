@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1167,5 +1168,75 @@ public class HomeController implements ServletContextAware {
           return map;    	  
       }
       
-      
+//    아이디 찾기
+    @RequestMapping(value = "/findId.do", method = RequestMethod.GET)
+    public String findId(Locale locale) {
+          logger.info("아이디찾기 {}.", locale);
+
+          return "findId";
+       }
+    
+    @RequestMapping(value = "/findId_after.do", method = RequestMethod.POST)
+    public String findId(HttpServletRequest httpServletRequest,Locale locale,Model model) {
+       logger.info("아이디 찾기 {}.", locale);
+       
+       String name = httpServletRequest.getParameter("name");
+       String phone = httpServletRequest.getParameter("phone");
+       
+       if(hcService.findId(name, phone)==null) {
+          System.out.println("아이디 찾기 실패");
+           model.addAttribute("msg","이름과 번호가 일치하지 않습니다.");
+           return "error";   
+       }else {
+          HcLoginDto dto = hcService.findId(name, phone);
+          model.addAttribute("dto",dto);
+       return "findIdAfter";
+       }
+    }
+    
+//    비밀번호찾기
+    //본인확인 화면 이동
+    @RequestMapping(value = "/findPw_identi.do", method = RequestMethod.GET)
+    public String findPw(Locale locale) {
+          logger.info("본인확인 {}.", locale);
+          return "findPwIdenti";
+       }
+    //비밀번호 찾기 전 본인확인 및 아이디가 일치하는 질문 출력 답변 입력
+    @RequestMapping(value = "/findPw.do", method = RequestMethod.POST)
+    public String findPw(HttpServletRequest httpServletRequest,Locale locale,Model model) {
+       logger.info("비밀번호 찾기 질문 {}.", locale);
+       
+       String id = httpServletRequest.getParameter("id");
+       String phone = httpServletRequest.getParameter("phone");
+       //아이디, 번호 일치 검사
+       if(hcService.findPw(id, phone)==null) {
+          System.out.println("비밀번호찾기 본인인증 실패");
+          model.addAttribute("msg","아이디와 번호를 다시 확인해주세요.");
+          return "error";
+       }else {
+          HcLoginDto dto = hcService.findPw(id, phone);
+          //아이디에 맞는 질문 출력
+          HcLoginDto dto_find=hcService.findPw_find(id);
+          model.addAttribute("dto_find",dto_find);
+          return "findPw";
+       }
+    }
+    
+    //입력한 답변이 질문과 일치 하는지 검사하고 일치하면 비밀번호 출력
+    @RequestMapping(value = "/findPw_After.do", method = RequestMethod.POST)
+    public String findPw_After(HttpServletRequest httpServletRequest,Locale locale,Model model) {
+       logger.info("비밀번호 찾기 {}.", locale);
+       String question = httpServletRequest.getParameter("question");
+       String answer = httpServletRequest.getParameter("answer");
+       //답변 일치 검사
+       if(hcService.findPw_After(question,answer)==null) {
+          System.out.println("답변 불일치");
+          model.addAttribute("msg","답변을 확인해주세요");
+          return "error";
+       }else {
+          HcLoginDto dto = hcService.findPw_After(question,answer);
+          model.addAttribute("dto",dto);
+          return "findPwAfter";
+       }
+    }
 	}

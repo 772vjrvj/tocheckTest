@@ -248,8 +248,8 @@
 	            <th style="background-color:#000000; color:white; text-align: center;">Term</th>
 	         </tr>
 	         <tr>
-	            <td style="color:#245682; text-align: center;">${map.stYear}년  ${map.stMonth}월  ${map.stDate}일</td>
-	            <td style="color:#245682; text-align: center;">${map.edYear}년  ${map.edMonth}월 ${map.edDate}일</td>
+	            <td style="color:#245682; text-align: center;">${map.stYear}/  ${map.stMonth}/  ${map.stDate}</td>
+	            <td style="color:#245682; text-align: center;">${map.edYear}/  ${map.edMonth}/  ${map.edDate}</td>
 	            <td style="color:red; text-align: center;">${map.term}</td>
 	         </tr>
 	         <tr>
@@ -263,8 +263,8 @@
 	      <col width="188px">
 	         <tr>
 	            <td colspan="3" style="text-align: right;">
-                	<input type="submit" class="btn btn-default btn-xs" value="체크완료"/>
-                    <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDeleteAlone.do?pKey=${dto.pKey}&id=${dto.id}&which=main'"/>
+                	<input type="submit" class="btn btn-default btn-xs" value="Chcek Complete"/>
+                    <input type="button" class="btn btn-default btn-xs" value="Delete" onclick="location.href='habitCalDeleteAlone.do?pKey=${dto.pKey}&id=${dto.id}&which=main'"/>
                     <div style="height: 5px;">
                     </div>   
                     <label class="switch">

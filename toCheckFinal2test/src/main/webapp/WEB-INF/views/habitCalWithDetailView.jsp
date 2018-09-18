@@ -8,8 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>상세보기</title>
-<jsp:include page="style.jsp"/>
-<jsp:include page="head.jsp"/>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -77,6 +75,7 @@
 	    width: 40px;
 	    opacity: 0.35;
 	    position: relative;
+
 	  }
 	  
 	  100% {
@@ -195,7 +194,8 @@
 	   
 
 	</style>
-	
+	<jsp:include page="style.jsp"/>
+<jsp:include page="head.jsp"/>
 	</head>
 	<body>
 	
@@ -223,8 +223,8 @@
 	            <th style="background-color:#000000; color:white; text-align: center;">Term</th>
 	         </tr>
 	         <tr>
-	            <td style="color:#245682; text-align: center;">${map.stYear}년 ${map.stMonth}월 ${map.stDate}일</td>
-	            <td style="color:#245682; text-align: center;">${map.edYear}년 ${map.edMonth}월 ${map.edDate}일</td>
+	            <td style="color:#245682; text-align: center;">${map.stYear}/  ${map.stMonth}/  ${map.stDate}</td>
+	            <td style="color:#245682; text-align: center;">${map.edYear}/  ${map.edMonth}/  ${map.edDate}</td>
 	            <td style="color:red; text-align: center;">${map.term}</td>
 	         </tr>
 	         <tr>
@@ -241,12 +241,12 @@
 
 	                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
 	                     D-day <span style=" color: red;">${diffdays}</span>&nbsp;&nbsp;Recruit : <span style=" color: red;">${intoPer}</span>/${dto.recruit}</div>
-	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
+	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="Participant" />
 	                              <c:choose>
 	                                 <c:when test="${loginId eq dto.id}">
-						                 <input type="button" class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? '마감':'모집중'}" 
+						                 <input type="button" class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? 'Complete':'Recruit'}" 
 						                 disabled/>  
-						                 <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDeleteWithAll.do?pKey=${dto.pKey}&id=${loginId}&which=boardListWith'"/>	                        
+						                 <input type="button" class="btn btn-default btn-xs" value="Delete" onclick="location.href='habitCalDeleteWithAll.do?pKey=${dto.pKey}&id=${loginId}&which=boardListWith'"/>	                        
 	                                 </c:when>
 	                                 <c:otherwise>   
 	                                    <c:set var="sameValue" value="0"/>

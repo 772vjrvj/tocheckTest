@@ -223,6 +223,59 @@
 		
 		<update id="updateRoleUser" parameterType="Map">
 		UPDATE HCMEMBER SET ROLE=#{role}, ENABLED=#{enabled} WHERE ID=#{id}      
-		</update>   
+		</update>
+		<!-- 아이디 찾기 -->
+      <select id="findId" parameterType="Map" resultType="HcLoginDto">
+         SELECT ID FROM HCMEMBER 
+         WHERE NAME=#{name} AND PHONE=#{phone}
+      </select>
+      
+      
+      
+      <!-- 비밀번호찾기 본인인증       -->
+      <select id="findPw" parameterType="Map" resultType="HcLoginDto">
+         SELECT ID FROM HCMEMBER 
+         WHERE ID=#{id} AND PHONE=#{phone}
+      </select>
+      
+      
+      
+      <!-- 비밀번호찾기 아이디에 맞는 질문 출력하기       -->
+      <select id="findPw_find" parameterType="String" resultType="HcLoginDto">
+         SELECT QUESTION FROM HCMEMBER 
+         WHERE ID=#{id} 
+      </select>
+      
+      
+      
+      <!-- 비밀번호 찾기 질문에 맞는 답변인지 검사해서 비밀번호 출력해주기       -->
+      <select id="findPw_After" parameterType="Map" resultType="HcLoginDto">
+         SELECT PASSWORD FROM HCMEMBER 
+         WHERE QUESTION=#{question} AND ANSWER=#{answer} 
+      </select> 
+      
+      <!--       회원가입 -->
+      <insert id="insertUser" parameterType="HcLoginDto">
+        INSERT INTO HCMEMBER VALUES
+        (HCMEMBER_SEQ.NEXTVAL,#{id},#{name},#{password},#{address},#{phone},#{email},'Y','USER',#{question},#{answer})   
+      </insert>
+      
+      <!--          유저 정보 변경 -->
+      <update id="updateUser" parameterType="HcLoginDto">
+      UPDATE HCMEMBER SET ADDRESS=#{address}, PHONE=#{phone}, EMAIL=#{email}, QUESTION=#{question}, ANSWER=#{answer}
+      WHERE Id=#{id}
+      </update>  
+      
+      <!--          유저 정보 변경 -->
+      <update id="updateUser" parameterType="HcLoginDto">
+      UPDATE HCMEMBER SET ADDRESS=#{address}, PHONE=#{phone}, EMAIL=#{email}, QUESTION=#{question}, ANSWER=#{answer}
+      WHERE Id=#{id}
+      </update>
+      
+      <!--       유저 정보 얻기 -->
+      <select id="getUser" parameterType="String" resultType="HcLoginDto">
+      SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE, QUESTION, ANSWER
+      FROM HCMEMBER WHERE ID=#{value} AND ENABLED='Y'
+      </select> 
 
     </mapper>

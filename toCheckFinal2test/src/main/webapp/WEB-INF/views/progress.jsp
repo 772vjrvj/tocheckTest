@@ -72,7 +72,7 @@
    }
    /* 파란 게이지 막대 */
    .progress-fixed div[class*=progress-fixed__bar] {
-      background: #a1a1a1;
+      background: black;
    }
 
    /* 퍼센트 글씨 */
@@ -188,7 +188,7 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 
 <div id="container">
 
-   <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, '#a1a1a1', 1000)">
+   <input id="totalper" type="hidden"  onclick="loadLiquidGauge('liquidGaugeWater', ${sum}, 'black', 1000)">
    
    <div class="liquidGauge"><h3>Total Progress</h3></div>
    <div class="liquidGauge"><svg class="liquidGauge" id="liquidGaugeWater"></svg></div>

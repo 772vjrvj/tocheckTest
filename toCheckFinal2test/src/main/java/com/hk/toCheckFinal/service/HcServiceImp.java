@@ -269,5 +269,28 @@ public class HcServiceImp implements IHcService {
    public boolean updateRoleUser(String id, String role, String enabled) {
       return hcDao.updateRoleUser(id, role, enabled);
    }
+   
+   //아이디 찾기 
+   @Override
+   public HcLoginDto findId(String name, String phone) {
+      return hcDao.findId(name, phone);
+   }
+   
+   //비밀번호찾기 본인인증
+   @Override
+   public HcLoginDto findPw(String id, String phone) {
+      return hcDao.findPw(id, phone);
+   }
+   
+   //비밀번호 찾기 아이디에 맞는 질문 가저오기
+   @Override
+   public HcLoginDto findPw_find(String id) {
+      return hcDao.findPw_find(id);
+   }
+   //비밀번호찾기 질문에 일치하는 답변이지 검사해서 비밀번호 출력하기
+   @Override
+   public HcLoginDto findPw_After(String question,String answer) {
+      return hcDao.findPw_After(question, answer);
+   }
 
 }

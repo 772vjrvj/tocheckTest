@@ -361,5 +361,39 @@ public class HcDaoImp implements IHcDao {
       return count > 0 ? true : false;
    }
 
+ //아이디 찾기 
+   @Override
+   public HcLoginDto findId(String name,String phone) {
+      Map<String, String>map= new HashMap<String, String>();
+         map.put("name", name);
+         map.put("phone", phone);
+         
+         return sqlSession.selectOne(namespace+"findId",map);
+   }
    
+   //비밀번호찾기 아이디와 핸드폰 번호로 본인인증
+   @Override
+   public HcLoginDto findPw(String id,String phone) {
+      Map<String, String>map= new HashMap<String, String>();
+         map.put("id", id);
+         map.put("phone", phone);
+         
+         return sqlSession.selectOne(namespace+"findPw",map);
+   }
+   
+   //비밀번호 찾기 아이디에 맞는 질문 찾기
+   @Override
+   public HcLoginDto findPw_find(String id) {
+      return sqlSession.selectOne(namespace+"findPw_find",id);
+   }
+   
+   //비밀번호찾기 질문에 맞는 답변인지 검사하고  비밀번호 출력해주기
+   @Override
+   public HcLoginDto findPw_After(String question, String answer) {
+      Map<String, String> map = new HashMap<String, String>();
+         map.put("question", question);
+         map.put("answer", answer);
+         
+      return sqlSession.selectOne(namespace+"findPw_After",map);
+   }
 }

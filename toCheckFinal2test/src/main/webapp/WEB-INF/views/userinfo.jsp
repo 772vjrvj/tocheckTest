@@ -92,6 +92,14 @@
          <td id="secondTd">일반회원</td>
       </tr>
       <tr>
+         <td id="firstTd">Question</td>
+         <td id="secondTd">${HcLoginDto.question}</td>
+      </tr>
+      <tr>
+         <td id="firstTd">Answer</td>
+         <td id="secondTd">${HcLoginDto.answer}</td>
+      </tr>
+      <tr>
          <td colspan="2" style="text-align: right; ">
             <button  class="btn btn-default btn-xs"  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">Update</button>
             <button  class="btn btn-default btn-xs"  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">Delete</button>

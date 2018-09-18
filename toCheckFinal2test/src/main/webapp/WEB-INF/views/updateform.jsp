@@ -103,6 +103,14 @@
          <td id="secondTd">일반회원</td>
       </tr>
       <tr>
+         <td id="firstTd">Question</td>
+         <td id="secondTd"><input class="box" type="text" style="text-align:center;" name="question" value="${HcLoginDto.question}"/></td>
+      </tr>
+      <tr>
+         <td id="firstTd">Answer</td>
+         <td id="secondTd"><input class="box" type="text" style="text-align:center;" name="answer" value="${HcLoginDto.answer}"/></td>
+      </tr>
+      <tr>
          <td colspan="2" style="text-align: right;">
             <input type="submit" class="btn btn-default btn-xs" value="Complete">
             <input type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'" value="Cancel">

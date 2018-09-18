@@ -190,8 +190,8 @@
 	            <th style="background-color:#000000; color:white; text-align: center;">Term</th>
 	         </tr>
 	         <tr>
-	            <td style="color:#245682; text-align: center;">${map.stYear}년 ${map.stMonth}월 ${map.stDate}일</td>
-	            <td style="color:#245682; text-align: center;">${map.edYear}년 ${map.edMonth}월 ${map.edDate}일</td>
+	            <td style="color:#245682; text-align: center;">${map.stYear}/  ${map.stMonth}/  ${map.stDate}</td>
+	            <td style="color:#245682; text-align: center;">${map.edYear}/  ${map.edMonth}/ ${map.edDate}</td>
 	            <td style="color:red; text-align: center;">${map.term}</td>
 	         </tr>
 	         <tr>
@@ -211,10 +211,10 @@
 	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
 	                      <c:choose>
 	                        <c:when test="${dto.host eq 'N'}">
-	                          <input type="button" class="btn btn-default btn-xs" value="취소" onclick="location.href='habitCalDeleteWith.do?pKey=${dto.pKey}&id=${loginId}&which=main'"/>
+	                          <input type="button" class="btn btn-default btn-xs" value="Delete" onclick="location.href='habitCalDeleteWith.do?pKey=${dto.pKey}&id=${loginId}&which=main'"/>
 	                        </c:when>
 	                        <c:otherwise>
-								<input type="button"  class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? '마감':'모집중'}" 
+								<input type="button"  class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? 'Complete':'Recruit'}" 
 							 	disabled/>  
 			                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDeleteWithAll.do?pKey=${dto.pKey}&id=${loginId}&which=main'"/>	                        
 	                        </c:otherwise>

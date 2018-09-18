@@ -144,6 +144,16 @@
                   class="box" type="email" name="email" required="required"
                   autocomplete="off" /></td>
             </tr>
+             <tr>
+               <td><input class="form-control" placeholder="비밀번호 찾기시 사용할 질문"
+                  class="box" type="text" name="question" required="required"
+                  autocomplete="off" /></td>
+            </tr>
+            <tr>
+               <td><input class="form-control" placeholder="비밀번호 찾기시 사용할 답변"
+                  class="box" type="text" name="answer" required="required"
+                  autocomplete="off" /></td>
+            </tr>
             <tr>
                <td colspan="2">
                   <input class="btn btn-default btn-xs" type="submit" value="Complet"> 
