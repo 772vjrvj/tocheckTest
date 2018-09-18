@@ -8,8 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>상세보기</title>
-<jsp:include page="style.jsp"/>
-<jsp:include page="head.jsp"/>
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -164,6 +163,8 @@
 	</style>
 	
 	</head>
+	<jsp:include page="style.jsp"/>
+	<jsp:include page="head.jsp"/>
 	<body>
 	
 	<div id="container">

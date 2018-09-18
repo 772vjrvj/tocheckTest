@@ -8,8 +8,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
 <title>Insert title here</title>
+<style type="text/css">
+	table{
+   	  border-top: 1px solid #c0c0c0;
+      margin: auto;
+   }
+   th{
+      border-bottom: 1px solid #c0c0c0;
+      width:80px;
+      height:35px;
+      text-align: center;
+      padding-top:5px;
+      padding-bottom:5px;
+   }
+   td{
+      border-bottom: 1px solid #c0c0c0;
+      height: 32px;
+      text-align: left;
+      padding-top: 5px;
+      padding-bottom: 5px;
+   }
+</style>
 <script type="text/javascript">
 	function ff(ts){
 		opener.document.getElementById("image").src=ts;

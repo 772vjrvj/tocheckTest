@@ -37,13 +37,24 @@
     	top:0;
     	left:0;
 	}
+	table{
+	  font-weight:bold;
+   	  border-top: 1px solid #c0c0c0;
+      margin: auto;
+   	}
 	td{
+		border-bottom: 1px solid #c0c0c0;
 		height: 30px;
-		text-align: center;		
+		text-align: center;
+		padding-top: 5px;
+      	padding-bottom: 5px;	
 		}
 	th{
+	 	border-bottom: 1px solid #c0c0c0;
 		height: 30px;
-		text-align: center;		
+		text-align: center;
+		padding-top:5px;
+      	padding-bottom:5px;		
 	}
 	h3{	
 		text-align: center;
@@ -56,18 +67,15 @@
 	*{
 			font-family: 'Playfair Display', serif;
 		 }
+ 	#calendartitle{
+ 		margin-top: 50px;
+ 	}
 </style>
 </head>
 <body>
 <div id="container">
-<table id="calendartitle" border="1" style="border: 1px solid white;">
-<col width="100px"><col width="250px" >
-	<tr>
-		<td colspan="2" style="text-align: center;"><h3>GET GOALS</h3></td>
-	</tr>	
-</table>
-
-<table id="calendartitle" border="1" style="border: 1px solid white;" >
+<h3>GET GOALS</h3>
+<table id="calendartitle">
 <col width="150px"><col width="250px" >
 	<tr>
 		<th>아이디</th>
