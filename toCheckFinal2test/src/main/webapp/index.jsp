@@ -81,8 +81,8 @@
             </tr>
             <tr>
                <td colspan="2">
-                  <input style="margin-left: 140px;" class="btn btn-default btn-xs" id="login" type="submit" value="로그인"/> 
-                  <input class="btn btn-default btn-xs" type="button" value="회원가입" onclick="location.href='regist.do'" />
+                  <input style="margin-left: 140px;" class="btn btn-default btn-xs" id="login" type="submit" value="Login"/> 
+                  <input class="btn btn-default btn-xs" type="button" value="Sign up" onclick="location.href='regist.do'" />
                </td>
             </tr>
          </table>

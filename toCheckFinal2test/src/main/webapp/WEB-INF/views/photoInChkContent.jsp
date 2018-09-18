@@ -57,12 +57,10 @@ h5 {
 	height: 255px;
 	background-color: white;
 }
-#titsu{
-	margin-top: 30px;
-}
 #tit{
+	margin-top: 40px;
 	font-size: 24px;
-
+	text-align: center;
 }
 </style>
 
@@ -93,11 +91,9 @@ h5 {
 </head>
 <body>
 	<div id="container">
-	<table id="titsu">
-		<tr>
-		<td id=tit><span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})</td>
-		</tr>
-	</table>
+	<div id="tit">
+	<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})
+	</div>
 	   <br/>
 	   <input type="hidden" name="id" value="${HcInChkDto.id}"/>
 	   <input type="hidden" name="pKey" value="${HcInChkDto.pKey}"/>
@@ -109,7 +105,7 @@ h5 {
 	      <col width="100px">
 	      <tr>
 	         <td colspan="3">
-	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" />         
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" width="100%" height="400px" />         
 	      </tr> 
 	      <tr >
 	         <th>ID</th>

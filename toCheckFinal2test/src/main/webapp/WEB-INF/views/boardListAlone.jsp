@@ -66,7 +66,7 @@ $(function() {
 </script>
 <style type="text/css">
 th {
-	color: white;
+	color: #f7bbf7;
 	text-align: center;
 	height: 35px;
 }
@@ -147,7 +147,7 @@ figure div:nth-child(1) {
 
 /* 파란 게이지 막대 */
 .progress-fixed div[class*=progress-fixed__bar] {
-	background: white;
+	background: #a1a1a1;
 /* 	바뀜 */
 	
 }
@@ -218,7 +218,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkCount}/${dto.term}</div>
+							<div>${dto.stDate}(${dto.chkCount}/${dto.term})</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -235,7 +235,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkCount}/${dto.term}</div>
+							<div>${dto.chkCount}/${dto.term}</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>

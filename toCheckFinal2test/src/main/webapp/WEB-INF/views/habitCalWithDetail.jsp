@@ -68,7 +68,7 @@
 	  height: 40px;
 	  width: 40px;
 	  transition: all 0.15s ease-out 0s;
-	  background: #cbd1d8;
+	  background: white;
 	  border: none;
 	  color: #fff;
 	  cursor: pointer;
@@ -82,7 +82,7 @@
 	  background: #9faab7;
 	}
 	.option-input:checked {
-	  background: #a8a8a8;
+	  background: #000000;
 	}
 	.option-input:checked::before {
 	  height: 40px;
@@ -98,7 +98,7 @@
 	  -webkit-animation: click-wave 0.65s;
 	  -moz-animation: click-wave 0.65s;
 	  animation: click-wave 0.65s;
-	  background: #a8a8a8;
+	  background: #000000;
 	  content: '';
 	  display: block;
 	  position: relative;
@@ -116,12 +116,12 @@
 		}
 	
 	   #calendar{
-	      border: 1px solid #a8a8a8;
+	      border: 1px solid #000000;
 	      border-collapse: collapse;
 	   }
 	   #calendar th{
 	      width:80px;
-	      background-color: #a8a8a8;
+	      background-color: #000000;
 	      text-align: center;
 	      
 	   }
@@ -146,7 +146,7 @@
 	   
 	   
 	   #calendartitle {
-	      border: 1px solid #a8a8a8;
+	      border: 1px solid #000000;
 	      border-collapse: collapse;
 	      height: 90px;
 	      margin: auto;
@@ -180,14 +180,14 @@
 		<tr><th colspan="3" style="color:#245682; text-align: center; font-size: 20px;">${dto.title}</th></tr>
 		<tr><td style="color: white">&nbsp;</td></tr>
 	   </table>   
-	   <table id="calendartitle" border="1" style="border: 3px solid #a8a8a8;">
+	   <table id="calendartitle" border="1" style="border: 3px solid #000000;">
 	      <col width="188px">
 	      <col width="188px">
 	      <col width="188px">
 	         <tr>
-	            <th style="background-color:#a8a8a8; color:white; text-align: center;">시작일</th>
-	            <th style="background-color:#a8a8a8; color:white; text-align: center;">종료일</th>
-	            <th style="background-color:#a8a8a8; color:white; text-align: center;">기간</th>
+	            <th style="background-color:#000000; color:white; text-align: center;">Start</th>
+	            <th style="background-color:#000000; color:white; text-align: center;">Finish</th>
+	            <th style="background-color:#000000; color:white; text-align: center;">Term</th>
 	         </tr>
 	         <tr>
 	            <td style="color:#245682; text-align: center;">${map.stYear}년 ${map.stMonth}월 ${map.stDate}일</td>
@@ -207,7 +207,7 @@
 	            <td colspan="3" style="text-align: right;">
 
 	                     <div style="font-size: 16px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
-	                     D-day:<span style=" color: red;">${diffdays}</span>&nbsp;&nbsp;모집인원:<span style=" color: red;">${intoPer}</span>/${dto.recruit}</div>
+	                     D-day <span style=" color: red;">${diffdays}</span>&nbsp;&nbsp;Recruit : <span style=" color: red;">${intoPer}</span>/${dto.recruit}</div>
 	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
 	                      <c:choose>
 	                        <c:when test="${dto.host eq 'N'}">
@@ -242,7 +242,7 @@
 	         <tr><td style="color: white">&nbsp;</td></tr>
 	         </table>   
 	         <table id="calendar" border="1">
-	         <tr><th style="color: white; text-align: center;">${i}년</th></tr>
+	         <tr><th style="color: white; text-align: center;">${i}</th></tr>
 	         </table>            
 	         
 	         <c:choose>
@@ -267,9 +267,9 @@
 	
 	      <c:forEach var = "j" begin = "${st}" end = "${ed}">
 	         <table id="calendar" border="1" style="text-align: center;">
-	                     <caption style="font-weight:bolder; text-align: center; color:#245682;">${j}월</caption>
+	                     <caption style="font-weight:bolder; text-align: center; color:#245682;">${j} Month</caption>
 	         <tr style="color: white;">
-	            <th >일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+	            <th >Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
 	         </tr>
 	         <tr>
 	         

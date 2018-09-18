@@ -63,29 +63,21 @@ body {
 	height:200px;
 	border: solid 1px #a9a9a9;
 }
-
-   #titsu{
-	margin-top: 30px;
-}
 #tit{
+	margin-top: 40px;
 	font-size: 24px;
+	text-align: center;
 
 }
 </style>
-
-
-
 </head>
 <body>
 		<div id="container">
-	<table id="titsu">
-		<tr>
-		<td id=tit><span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}.${map.ToMonth1}.${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})</td>
-		</tr>
-        	<tr><td><input type="button"class="btn btn-default btn-xs"  value="Calendar" onclick="location.href='habitCalWithDetailView2.do?pKey=${dto.pKey}&id=${dto.id}'"/></td></tr>
-	</table>
+		<div id="tit"> 
+		<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}. ${map.ToMonth1}. ${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})<br/>
+		<input type="button"class="btn btn-default btn-xs"  value="Calendar" onclick="location.href='habitCalWithDetailView2.do?pKey=${dto.pKey}&id=${dto.id}'"/>
+		</div>
 			<table>
-
 			<tr><td>	
 	        
 	        <br/>
@@ -104,14 +96,6 @@ body {
 							</c:otherwise>
 						</c:choose>
 								<div>ID: ${list.id}</div>	
-						<c:choose>
-							<c:when test="${list.inChkTime eq '/'}">
-	
-							</c:when>
-							<c:otherwise>
-								<div>Title: ${list.inChkTitle}</div>
-							</c:otherwise>				
-						</c:choose>
 						<c:choose>
 							<c:when test="${list.id eq loginId}">
 								<c:choose>		
@@ -141,14 +125,6 @@ body {
 						</c:choose>
 								<div>ID: ${list.id}</div>	
 						<c:choose>
-							<c:when test="${list.inChkTime eq '/'}">
-	
-							</c:when>
-							<c:otherwise>
-								<div>Title: ${list.inChkTitle}</div>
-							</c:otherwise>				
-						</c:choose>
-						<c:choose>
 							<c:when test="${list.id eq loginId}">
 								<c:choose>		
 									<c:when test="${list.inChkTime eq '/'}">
@@ -176,15 +152,6 @@ body {
 							</c:otherwise>
 						</c:choose>
 								<div>ID: ${list.id}</div>	
-	
-						<c:choose>
-							<c:when test="${list.inChkTime eq '/'}">
-	
-							</c:when>
-							<c:otherwise>
-								<div>Title: ${list.inChkTitle}</div>
-							</c:otherwise>				
-						</c:choose>
 						<c:choose>
 							<c:when test="${list.id eq loginId}">
 								<c:choose>		

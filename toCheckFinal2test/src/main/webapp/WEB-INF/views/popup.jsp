@@ -11,11 +11,11 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table{
-   	  border-top: 1px solid #c0c0c0;
+   	  border: 1px solid #c0c0c0;
       margin: auto;
    }
-   th{
-      border-bottom: 1px solid #c0c0c0;
+   tr{
+      border: 1px solid #c0c0c0;
       width:80px;
       height:35px;
       text-align: center;
@@ -23,12 +23,19 @@
       padding-bottom:5px;
    }
    td{
-      border-bottom: 1px solid #c0c0c0;
+   	  border: 1px solid #c0c0c0;
       height: 32px;
-      text-align: left;
+      text-align: left;s
       padding-top: 5px;
       padding-bottom: 5px;
    }
+    body{
+	  	position: absolute; 
+   	  	background: url("img/background.jpg") fixed center center;   
+   	  	background-size: cover;  
+    	width: 100%; 
+    	height: 100%; 
+	}
 </style>
 <script type="text/javascript">
 	function ff(ts){
@@ -39,7 +46,7 @@
 </script>
 </head>
 <body>
-<table border="1">
+<table>
 	<c:forEach var="i" begin="1" end="25" step="1">
 	<c:choose>
 	<c:when test="${i%5 eq 1}">
