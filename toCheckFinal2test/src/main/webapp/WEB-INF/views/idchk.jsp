@@ -28,13 +28,19 @@
 </script>
 <style type="text/css">
 	body{
-		background-color: #fd6c8b;
-		margin: 25px 0;
-		}
+		position: absolute; 
+   	  	background: url("img/background.jpg") fixed center center;   
+   	  	background-size: cover;  
+    	width: 100%; 
+    	height: 100%; 
+    	z-index: -1;
+    	top:0;
+    	left:0;
+	}
 	td{
 		height: 30px;
 		text-align: center;		
-	}
+		}
 	th{
 		height: 30px;
 		text-align: center;		
@@ -47,6 +53,9 @@
 		width: 350px;
 		margin: auto;
 	}
+	*{
+			font-family: 'Playfair Display', serif;
+		 }
 </style>
 </head>
 <body>

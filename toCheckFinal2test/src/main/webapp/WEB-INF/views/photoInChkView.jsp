@@ -82,11 +82,13 @@ body {
 		<tr>
 		<td id=tit><span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}.${map.ToMonth1}.${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})</td>
 		</tr>
-        	<tr><td><input type="button"class="btn btn-default btn-xs"  value="Calendar" onclick="location.href='habitCalWithDetailView2.do?pKey=${dto.pKey}&id=${dto.id}'"/></td></tr>
+		<tr><td><input type="button"class="btn btn-default btn-xs"  value="Calendar" onclick="location.href='habitCalWithDetailView2.do?pKey=${dto.pKey}&id=${dto.id}'"/></td></tr>
+		
 	</table>
-			<table>
-
-			<tr><td>	
+			<table style=" align-content: center;">
+			<tr><td colspan="4">	
+	       <br/>
+	       <input type="button" class="btn btn-default btn-xs" value="With" onclick="location.href='boardListWith.do'"/> 
 	        
 	        <br/>
 			<br/>
@@ -112,21 +114,8 @@ body {
 								<div>Title: ${list.inChkTitle}</div>
 							</c:otherwise>				
 						</c:choose>
-						<c:choose>
-							<c:when test="${list.id eq loginId}">
-								<c:choose>		
-									<c:when test="${list.inChkTime eq '/'}">
-										<input type="button" class="btn btn-default btn-xs" value="Check"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=insert'"/>
-									</c:when>
-									<c:otherwise>
-										<input type="button" class="btn btn-default btn-xs" value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=content'"/>
-									</c:otherwise>
-								</c:choose>			
-							</c:when>
-							<c:otherwise>
-										<input type="button" class="btn btn-default btn-xs" value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=content'"/>
-							</c:otherwise>						
-						</c:choose>
+							<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=contentView'"/>
+
 					</td>
 				</c:when>
 				<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
@@ -148,21 +137,8 @@ body {
 								<div>Title: ${list.inChkTitle}</div>
 							</c:otherwise>				
 						</c:choose>
-						<c:choose>
-							<c:when test="${list.id eq loginId}">
-								<c:choose>		
-									<c:when test="${list.inChkTime eq '/'}">
-										<input type="button" class="btn btn-default btn-xs" value="Check"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=insert'"/>
-									</c:when>
-									<c:otherwise>
-										<input type="button"class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=content'"/>
-									</c:otherwise>
-								</c:choose>			
-							</c:when>
-							<c:otherwise>
-										<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=content'"/>
-							</c:otherwise>						
-						</c:choose>
+							<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=contentView'"/>
+
 					</td>
 				</c:when>
 				<c:when test="${(status.count)%4 eq 0}">
@@ -185,21 +161,8 @@ body {
 								<div>Title: ${list.inChkTitle}</div>
 							</c:otherwise>				
 						</c:choose>
-						<c:choose>
-							<c:when test="${list.id eq loginId}">
-								<c:choose>		
-									<c:when test="${list.inChkTime eq '/'}">
-										<input type="button" class="btn btn-default btn-xs"  value="Check"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=insert'"/>
-									</c:when>
-									<c:otherwise>
-										<input type="button" class="btn btn-default btn-xs" value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=content'"/>
-									</c:otherwise>
-								</c:choose>			
-							</c:when>
-							<c:otherwise>
-										<input type="button" class="btn btn-default btn-xs" value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=content'"/>
-							</c:otherwise>						
-						</c:choose>
+
+							<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=contentView'"/>
 					</td><tr>
 				</c:when>
 				</c:choose>	

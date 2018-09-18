@@ -11,8 +11,6 @@
 
 <title>Insert title here</title>
 <script type="text/javascript">
-
-	
 	function ff(ts){
 		opener.document.getElementById("image").src=ts;
 		opener.document.getElementsByName("photo")[0].value=ts;

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>회원가입 폼</title>
+<title>userinfo</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -18,17 +18,27 @@
    #container{
       width: 600px;
       margin: 0 auto;
-      margin-top: 120px;
+      margin-top: 60px;
    }
-   td{
-      text-align: center;   
-      height:35px;
-      font-weight: bolder;
+   table{
+      margin : auto;
+      border-top: 1px solid #c0c0c0;
    }
    th{
+      border-bottom: 1px solid #c0c0c0;
       text-align: center;   
       width: 100px;
       height:35px;
+      padding-top:10px;
+      padding-bottom:10px;
+   }
+   td{
+  	  border-bottom: 1px solid #c0c0c0;
+      text-align: center;   
+      height:35px;
+      font-weight: bolder;
+      padding-top:10px;
+      padding-bottom:10px;
    }
    #firstTd{
       text-align: center;   
@@ -46,16 +56,11 @@
       font-weight: bold;
       margin-bottom: 30px;
    }
-   table{
-      margin : auto;
-      border-collapse: collapse;
-      border: 1px solid white;
-   }
 </style>
 <body>
 <div id="container">
          <h2 style="text-align: center;">나의 정보</h2>
-   <table border="1">
+   <table>
    <col width="100px">
    <col width="500px">
       <tr>
@@ -101,4 +106,5 @@
    </table>
 </div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>

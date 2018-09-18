@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>boardlist</title>
+<title>boardListAlone</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <script type="text/javascript"
@@ -97,6 +97,9 @@ h5 {
 
 table {
 	width: 1200px;
+	
+	text-align: center;
+	/* 	바뀜 */
 }
 
 img{
@@ -144,7 +147,9 @@ figure div:nth-child(1) {
 
 /* 파란 게이지 막대 */
 .progress-fixed div[class*=progress-fixed__bar] {
-	background: #0000d8;
+	background: white;
+/* 	바뀜 */
+	
 }
 a:hover, a:visited, a:link{
       color:black;
@@ -168,7 +173,18 @@ figure div:nth-child(3) {
 	font-size: 15px;
 	color: black;
 	font-weight: bold;
+
+
 }
+
+#ifnull{
+	width:1500px;
+	text-align: center;
+	font-size: large;
+	font-weight: bold;
+}
+/* 바뀜 */
+
 </style>
 <script type="text/javascript">
 </script>
@@ -180,100 +196,92 @@ figure div:nth-child(3) {
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
-<c:choose>
-	<c:when test="${fn:length(list) eq 0 }">
-       	진행중이 리스트가 없습니다.
-	</c:when>
-	<c:otherwise>
-		<c:forEach var="dto" items="${list}" varStatus="status">
 			<c:choose>
-				<c:when test="${dto.endList eq 'Y'}">
-				
-				</c:when>
-				<c:otherwise>
+			<c:when test="${fn:length(list) eq 0 }">
+       			<div id="ifnull">진행중이 리스트가 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="dto" items="${list}" varStatus="status">
 					<c:set var="per" value="0.0"/>
+					
 					<c:choose>
-						<c:when test="${dto.chkss eq 0}">
+					<c:when test="${dto.chkCount eq 0}">
 						
-						</c:when>
-						<c:otherwise>
-							<c:set var="per" value="${(dto.chkss/dto.term)*100}"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="per" value="${(dto.chkCount/dto.term)*100}"/>
 						
-						</c:otherwise>
+					</c:otherwise>
 					</c:choose>	
 					<c:choose>
-						<c:when test="${(status.count)%4 eq 1}">
-							<tr><td>
+					<c:when test="${(status.count)%4 eq 1}">
+						<tr><td>
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkss}/${dto.term}</div>
-							<div>획득포인트: ${dto.term * 100}</div>
-						  		<figure>
-						    		<div class="progress-fixed__bar${status.count}"></div>
-						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">${dto.title}</a></div>	
-						  		</figure>
+							<div>기간: ${dto.chkCount}/${dto.term}</div>
+					  		<figure>
+					    		<div class="progress-fixed__bar${status.count}"></div>
+					    		<div class="progress-fixed__percent${status.count}"></div>
+						    		<div class="pertitle"><a href="habitCalWithDetailView.do?pKey=${dto.pKey}&id=${dto.id}">${dto.title}</a></div>	
+					  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>
 							<br/>
 							<br/>
 							</td>
-						</c:when>
-						<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
+					</c:when>
+					<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
 							<td>
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkss}/${dto.term}</div>
-							<div>획득포인트: ${dto.term * 100}</div>
-						  		<figure>
-						    		<div class="progress-fixed__bar${status.count}"></div>
-						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">${dto.title}</a></div>	
-						  		</figure>
+							<div>기간: ${dto.chkCount}/${dto.term}</div>
+					  		<figure>
+					    		<div class="progress-fixed__bar${status.count}"></div>
+					    		<div class="progress-fixed__percent${status.count}"></div>
+						    		<div class="pertitle"><a href="habitCalWithDetailView.do?pKey=${dto.pKey}&id=${dto.id}">${dto.title}</a></div>	
+					  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>	
 							<br/>
 							<br/>				
 							</td>						
-						</c:when>
-						<c:when test="${(status.count)%4 eq 0}">
+					</c:when>
+					<c:when test="${(status.count)%4 eq 0}">
 							<td>
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>기간: ${dto.chkss}/${dto.term}</div>
-							<div>획득포인트: ${dto.term * 100}</div>
+							<div>기간: ${dto.chkCount}/${dto.term}</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
-						    		<div class="pertitle"><a href="habitCalDetail.do?calString=a&pKey=${dto.pKey}&id=${dto.id}&paramview=1">${dto.title}</a></div>	
+						    		<div class="pertitle"><a href="habitCalWithDetailView.do?pKey=${dto.pKey}&id=${dto.id}">${dto.title}</a></div>	
 						  		</figure>
 							</div>
 							<input class="bar" type="hidden"  onclick="BG.init(${per},${status.count})"/>	
 							<br/>
 							<br/>
 							</td><tr>						
-						</c:when>
-					
-					</c:choose>							
-				</c:otherwise>
+					</c:when>
+					</c:choose>	
+				</c:forEach>						
+			</c:otherwise>
 			</c:choose>
-		</c:forEach>
-		<c:forEach var = "m" begin = "1" end = "${(4-(fn:length(list))%4)%4}">
-			<c:choose>
-			<c:when test="${m eq  (4-(fn:length(list))%4)%4}">
-			<td>&nbsp;</td></tr>
-			</c:when>
-			<c:otherwise>
-			<td>&nbsp;</td>
-			</c:otherwise>				
-			</c:choose>
-		</c:forEach>	
-	</c:otherwise>
-</c:choose>
-</table>
+
+			<c:forEach var = "m" begin = "1" end = "${(4-(fn:length(list1))%4)%4}">
+				<c:choose>
+				<c:when test="${m eq  (4-(fn:length(list1))%4)%4}">
+					<td>&nbsp;</td></tr>
+				</c:when>
+				<c:otherwise>
+					<td>&nbsp;</td>
+				</c:otherwise>				
+				</c:choose>
+			</c:forEach>	
+		</table>
 	</div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>

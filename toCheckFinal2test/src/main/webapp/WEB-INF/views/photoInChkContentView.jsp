@@ -98,11 +98,10 @@ h5 {
 		<td id=tit><span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})</td>
 		</tr>
 	</table>
-	<form action="photoInChkUpdate.do" method="post" enctype="multipart/form-data">
 	   <br/>
-	   <input type="hidden" name="id" value="${dto.id}"/>
-	   <input type="hidden" name="pKey" value="${dto.pKey}"/>
-		<input type="hidden" name="inChkPhoto2" value="${HcInChkDto.inChkPhoto2}"/>
+	   <input type="hidden" name="id" value="${HcInChkDto.id}"/>
+	   <input type="hidden" name="pKey" value="${HcInChkDto.pKey}"/>
+		
 	   
 	   <table>
 	      <col width="100px">
@@ -110,7 +109,6 @@ h5 {
 	      <col width="100px">
 	      <tr>
 	         <td colspan="3">
-			    <label  for="imgInp" style="">fileupload</label><input style="text-align: center; display: none;"type="file" name="file" id="imgInp" title=" "  value="사진 찾기"/>
 	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" />         
 	      </tr> 
 	      <tr >
@@ -119,20 +117,14 @@ h5 {
 	      </tr>
 	      <tr >
 	         <th>Title</th>
-	         <td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off" value="${HcInChkDto.inChkTitle}"/></td>
+	         <td colspan="3">${HcInChkDto.inChkTitle}</td>
 	
 	      </tr>
 	      <tr>
 	         <th>Content</th>
-	         <td colspan="3"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" >${HcInChkDto.inChkContent}</textarea></td>
-	      </tr>
-	      <tr>
-	         <td colspan="3" style="text-align: right;">
-	            <input class="btn btn-default btn-xs" type="button"  value="Delete" onclick="location.href='photoInChkDelete.do?pKey=${HcInChkDto.pKey}&id=${HcInChkDto.id}'"/><input class="btn btn-default btn-xs" type="submit"  value="Complete"/>
-	         </td>
+	         <td colspan="3">${HcInChkDto.inChkContent}</td>
 	      </tr>
 	   </table>
-	</form>
 	</div>
 </body>
 </html>

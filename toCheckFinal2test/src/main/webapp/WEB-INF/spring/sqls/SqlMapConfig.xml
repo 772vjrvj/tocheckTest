@@ -9,7 +9,7 @@
 	<typeAliases>
 		<typeAlias type="com.hk.toCheckFinal.dtos.HcDto" alias="HcDto"/>
 		<typeAlias type="com.hk.toCheckFinal.dtos.HcLoginDto" alias="HcLoginDto"/>		
-		<typeAlias type="com.hk.toCheckFinal.dtos.HcWithDto" alias="HcWithDto"/>
+		<typeAlias type="com.hk.toCheckFinal.dtos.HcChkDto" alias="HcChkDto"/>
 		<typeAlias type="com.hk.toCheckFinal.dtos.HcInChkDto" alias="HcInChkDto"/>		
 	</typeAliases>
 	

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입 폼</title>
+<title>regist</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -29,7 +29,13 @@
       width: 400px;
       height: 50%;
       margin: 0 auto;
-      margin-top: 140px;   
+      margin-top: 160px;   
+   }
+   #title{
+   	 text-align: center;
+   }
+   table{
+   	 margin-top: 50px;
    }
 </style>
 <script type="text/javascript">
@@ -97,12 +103,10 @@
 </head>
 <body>
    <div id="container">
+	  <h1 id="title">회원 가입</h1>
       <form action="regist_after.do" method="post">
          <table id="calendartitle">
             <col width= 400px/>
-            <tr>
-               <th style="text-align: center;" colspan="3"><h1>회원 가입</h1></th>
-            </tr>
             <tr>
                <td><input width="200px;" class="form-control" class="box" placeholder="아이디" width="300px"
                   id="id" type="text" name="id" title="n" required="required"
@@ -151,4 +155,5 @@
       </form>
    </div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>style</title>
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Raleway" rel="stylesheet"><!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -17,11 +18,10 @@
 	      text-decoration: none;
 	   }
 	  body{
-	  
      		padding: 25px 300px 25px 300px ;
 	  		position: absolute; 
-  	  		background: url("img/head_back.jpg") fixed center center;  
-  	  		background-size: cover; 
+   	  		background: url("img/background.jpg") fixed center center;   
+   	  		background-size: cover;  
     		width: 100%; 
     		height: 100%; 
     		z-index: -1;
@@ -29,8 +29,8 @@
     		left:0;
 	  }
 	  
-   	   body{
-		font-family: 'Raleway', sans-serif;   	  
+   	   *{
+			font-family: 'Playfair Display', serif;
 		 }
 </style>
 </head>

@@ -15,18 +15,24 @@
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <style type="text/css">
-   #calendar{
-      border: 1px solid #00bbdb;
-      border-collapse: collapse;
+   table{
+   	  border-top: 1px solid #c0c0c0;
+      margin: auto;
    }
    th{
+      border-bottom: 1px solid #c0c0c0;
       width:80px;
       height:35px;
       text-align: center;
+      padding-top:5px;
+      padding-bottom:5px;
    }
    td{
+      border-bottom: 1px solid #c0c0c0;
       height: 32px;
       text-align: left;
+      padding-top: 5px;
+      padding-bottom: 5px;
    }
    h4{   
       text-align: center;
@@ -35,15 +41,16 @@
    #container{
       width: 800px;
       margin: 0 auto 0 auto;
-      margin-top: 120px;
+      margin-top: 60px;
    }
-   
-   table{
-   	  border: 1px solid white;
-      margin: auto;
-      border-radius: 30px;
+   h2{   
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 30px;
    }
-   
+   img{
+     border: solid 1px #a9a9a9;
+   }
 </style>
 <script type="text/javascript">
 
@@ -195,12 +202,12 @@
       });
    });
 
-   function pointInput(termVal){
+//    function pointInput(termVal){
       
-      var usepoint=termVal*100;
+//       var usepoint=termVal*100;
       
-      $('#usePoint').text("※ "+usepoint+"포인트가 차감됩니다.");      
-   }
+//       $('#usePoint').text("※ "+usepoint+"포인트가 차감됩니다.");      
+//    }
 
    function endInput(termVal){
       
@@ -225,10 +232,11 @@
 </script>
 <body>
 <div id="container">
+<h2 style="text-align: center;">나의 목표</h2>
 <form action="habitCalInsert.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
    <input type="hidden" name="photo" value=""/>
-   <table border="1">
+   <table>
       <col width="100px">
       <col width="400px">
       <col width="100px">
@@ -240,14 +248,14 @@
                <c:forEach var = "i" begin = "0" end = "100">
                   <option value="${i}" >${i eq 0 ? "선택":i}</option>
          </c:forEach>
-         </select>명</th>
+         </select></th>
       </tr>
       
       <tr>
          <th>모션선택</th>
          <td colspan="2">
             <button type="button" id ="button" onclick="icon()">선택</button>
-            <img id="image" src="" width="200px" height="200px"/>
+            <img id="image" src="img/white.png" width="200px" height="200px "/>
          </td>
       </tr> 
                  
@@ -260,7 +268,7 @@
                </c:forEach>
             </select>년
             <select name="month">
-               <c:forEach var = "i" begin = "${map.month}" end = "12">
+               <c:forEach var = "i" begin = "0" end = "12">
                   <option value="${i}" ${map.month eq i ? "selected":""} >${i eq 0 ? "선택":i}</option>
                </c:forEach>
             </select>월
@@ -309,4 +317,5 @@
 </form>
 </div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>
