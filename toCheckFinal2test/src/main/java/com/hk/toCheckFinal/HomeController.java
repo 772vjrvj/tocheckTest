@@ -231,6 +231,7 @@ public class HomeController implements ServletContextAware {
 		view.addObject("sum",sum);		
         view.addObject("list1",list1);
         view.addObject("HcLoginDto",HcLoginDto);
+        view.setViewName("progress");
         return view;		
 		
 	   }    
