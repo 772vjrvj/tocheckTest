@@ -103,7 +103,7 @@
 </head>
 <body>
    <div id="container">
-	  <h1 id="title">회원 가입</h1>
+	  <h1 id="title">Sign Up</h1>
       <form action="regist_after.do" method="post">
          <table id="calendartitle">
             <col width= 400px/>
@@ -111,7 +111,7 @@
                <td><input width="200px;" class="form-control" class="box" placeholder="아이디" width="300px"
                   id="id" type="text" name="id" title="n" required="required"
                   autocomplete="off" />
-                  <input class="btn btn-default btn-xs" type="button" value="아이디 중복체크" onclick="idChk()" /> 
+                  <input class="btn btn-default btn-xs" type="button" value="Id-Chk" onclick="idChk()" /> 
                </td>
             </tr>
             <tr>
@@ -146,8 +146,8 @@
             </tr>
             <tr>
                <td colspan="2">
-                  <input class="btn btn-default btn-xs" type="submit" value="가입"> 
-                  <input class="btn btn-default btn-xs" type="button" value="취소" onclick="location.href='index.jsp'"> 
+                  <input class="btn btn-default btn-xs" type="submit" value="Complet"> 
+                  <input class="btn btn-default btn-xs" type="button" value="Cancel" onclick="location.href='index.jsp'"> 
                   &nbsp;
                </td>
             </tr>

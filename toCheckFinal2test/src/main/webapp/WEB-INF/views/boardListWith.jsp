@@ -147,7 +147,7 @@ figure div:nth-child(1) {
 
 /* 파란 게이지 막대 */
 .progress-fixed div[class*=progress-fixed__bar] {
-	background: white;
+	background: black;
 /* 	바뀜 */
 	
 }
@@ -178,7 +178,6 @@ figure div:nth-child(3) {
 }
 
 #ifnull{
-	width:1500px;
 	text-align: center;
 	font-size: large;
 	font-weight: bold;

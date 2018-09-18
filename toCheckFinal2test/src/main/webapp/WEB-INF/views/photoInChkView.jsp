@@ -64,12 +64,10 @@ body {
 	border: solid 1px #a9a9a9;
 }
 
-   #titsu{
-	margin-top: 30px;
-}
 #tit{
+	margin-top: 40px;
 	font-size: 24px;
-
+	text-align: center;
 }
 </style>
 
@@ -78,18 +76,12 @@ body {
 </head>
 <body>
 		<div id="container">
-	<table id="titsu">
-		<tr>
-		<td id=tit><span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}.${map.ToMonth1}.${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})</td>
-		</tr>
-		<tr><td><input type="button"class="btn btn-default btn-xs"  value="Calendar" onclick="location.href='habitCalWithDetailView2.do?pKey=${dto.pKey}&id=${dto.id}'"/></td></tr>
-		
-	</table>
+		<div id="tit">
+		<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}. ${map.ToMonth1}. ${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})
+		</div>		
 			<table style=" align-content: center;">
 			<tr><td colspan="4">	
 	       <br/>
-	       <input type="button" class="btn btn-default btn-xs" value="With" onclick="location.href='boardListWith.do'"/> 
-	        
 	        <br/>
 			<br/>
 			</td></tr>
@@ -106,14 +98,6 @@ body {
 							</c:otherwise>
 						</c:choose>
 								<div>ID: ${list.id}</div>	
-						<c:choose>
-							<c:when test="${list.inChkTime eq '/'}">
-	
-							</c:when>
-							<c:otherwise>
-								<div>Title: ${list.inChkTitle}</div>
-							</c:otherwise>				
-						</c:choose>
 							<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=contentView'"/>
 
 					</td>
@@ -129,14 +113,6 @@ body {
 							</c:otherwise>
 						</c:choose>
 								<div>ID: ${list.id}</div>	
-						<c:choose>
-							<c:when test="${list.inChkTime eq '/'}">
-	
-							</c:when>
-							<c:otherwise>
-								<div>Title: ${list.inChkTitle}</div>
-							</c:otherwise>				
-						</c:choose>
 							<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=contentView'"/>
 
 					</td>
@@ -152,16 +128,6 @@ body {
 							</c:otherwise>
 						</c:choose>
 								<div>ID: ${list.id}</div>	
-	
-						<c:choose>
-							<c:when test="${list.inChkTime eq '/'}">
-	
-							</c:when>
-							<c:otherwise>
-								<div>Title: ${list.inChkTitle}</div>
-							</c:otherwise>				
-						</c:choose>
-
 							<input type="button" class="btn btn-default btn-xs"  value="Contents"  onclick="location.href='photoInChkCrud.do?id=${list.id}&inChkDate=${list.inChkDate}&pKey=${list.pKey}&crud=contentView'"/>
 					</td><tr>
 				</c:when>

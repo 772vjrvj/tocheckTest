@@ -8,8 +8,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
 <title>Insert title here</title>
+<style type="text/css">
+	table{
+   	  border: 1px solid #c0c0c0;
+      margin: auto;
+   }
+   tr{
+      border: 1px solid #c0c0c0;
+      width:80px;
+      height:35px;
+      text-align: center;
+      padding-top:5px;
+      padding-bottom:5px;
+   }
+   td{
+   	  border: 1px solid #c0c0c0;
+      height: 32px;
+      text-align: left;s
+      padding-top: 5px;
+      padding-bottom: 5px;
+   }
+    body{
+	  	position: absolute; 
+   	  	background: url("img/background.jpg") fixed center center;   
+   	  	background-size: cover;  
+    	width: 100%; 
+    	height: 100%; 
+	}
+</style>
 <script type="text/javascript">
 	function ff(ts){
 		opener.document.getElementById("image").src=ts;
@@ -19,7 +46,7 @@
 </script>
 </head>
 <body>
-<table border="1">
+<table>
 	<c:forEach var="i" begin="1" end="25" step="1">
 	<c:choose>
 	<c:when test="${i%5 eq 1}">

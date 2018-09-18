@@ -249,7 +249,7 @@ public class Util {
         String strToday = sdf.format(c1.getTime());
 
 		if(m.equals(strToday)) {
-			return "style=\"background-color: #e0e0e0\"" ;
+			return "style=\"background-color: #000000\"" ;
 		}else {
 			disabled="onclick='return(false)'";
 			return disabled;			

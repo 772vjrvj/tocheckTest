@@ -69,47 +69,43 @@
 <div id="container">
 <form action="updateform_after.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
-         <h2 style="text-align: center;">나의 정보 수정</h2>
+         <h2 style="text-align: center;">My Info Update</h2>
    <table>
    <col width="100px">
    <col width="500px" >
       <tr>
-         <th>목록</th>
-         <th style="width: 400px;">내용</th>
+         <th>&nbsp;</th>
+         <th>Content</th>
       </tr>
       <tr>
-         <td id="firstTd">아이디</td>
+         <td id="firstTd">Id</td>
          <td id="secondTd" >${HcLoginDto.id}</td>
       </tr>
       <tr>
-         <td id="firstTd">이름</td>
+         <td id="firstTd">Name</td>
          <td id="secondTd">${HcLoginDto.name}</td>
       </tr>
       <tr>
-         <td id="firstTd">주소</td>
+         <td id="firstTd">Address</td>
          <td id="secondTd"><input class="box" type="text" style="text-align:center;"  name="address" value="${HcLoginDto.address}"/></td>
       </tr>
       <tr>
-         <td id="firstTd">전화번호</td>
+         <td id="firstTd">Tel</td>
          <td id="secondTd"><input class="box" type="tel" style="background-color:white; text-align:center;" name="phone" value="${HcLoginDto.phone}"/></td>
       </tr>
       <tr>
-         <td id="firstTd">이메일</td>
+         <td id="firstTd">E-mail</td>
          <td id="secondTd"><input class="box" type="email" style="text-align:center;" name="email" value="${HcLoginDto.email}"/></td>
          
       </tr>
       <tr>
-         <td id="firstTd">등급</td>
+         <td id="firstTd">Role</td>
          <td id="secondTd">일반회원</td>
       </tr>
       <tr>
-         <td id="firstTd">보유포인트</td>
-         <td id="secondTd">${HcLoginDto.ttpoint}</td>
-      </tr>
-      <tr>
          <td colspan="2" style="text-align: right;">
-            <input type="submit" class="btn btn-default btn-xs" value="수정완료">
-            <input type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'" value="취소">
+            <input type="submit" class="btn btn-default btn-xs" value="Complete">
+            <input type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${HcLoginDto.id}'" value="Cancel">
          </tr>
    </table>
 </form>

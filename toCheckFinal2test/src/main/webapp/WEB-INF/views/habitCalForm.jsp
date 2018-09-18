@@ -263,7 +263,7 @@
 </script>
 <body>
 <div id="container">
-<h2 style="text-align: center;">나의 목표</h2>
+<h2 style="text-align: center;">My Goal</h2>
 <form action="habitCalInsert.do" method="post">
    <input type="hidden" name="id" value="${HcLoginDto.id}"/>
    <input type="hidden" name="photo" value=""/>
@@ -272,18 +272,18 @@
       <col width="400px">
       <col width="100px">
       <tr>
-         <th>목표제목</th>
+         <th>Title</th>
          <td><input class="contents" type="text" name="title" style="width: 400px;" required="required" autocomplete="off"/></td> 
-         <th>인원
+         <th>Personnel
          <select name="recruit">
                <c:forEach var = "i" begin = "0" end = "100">
-                  <option value="${i}" >${i eq 0 ? "선택":i}</option>
+                  <option value="${i}" >${i eq 0 ? "Select":i}</option>
          </c:forEach>
          </select></th>
       </tr>
       
       <tr>
-         <th>모션선택</th>
+         <th>Imotion</th>
          <td colspan="2">
             <button type="button" id ="button" onclick="icon()">선택</button>
             <img id="image" src="img/white.png" width="200px" height="200px "/>
@@ -291,40 +291,40 @@
       </tr> 
                  
       <tr>
-         <th>시작일</th>
+         <th>Stday</th>
          <td colspan="2">
             <select name="year">
                <c:forEach var = "i" begin = "${map.year}" end = "${map.year+5}">
                   <option value="${i}" ${map.year eq i ? "selected":""} >${i}</option>
                </c:forEach>
-            </select>년
+            </select> Y /
             <select name="month">
                <c:forEach var = "i" begin = "0" end = "12">
-                  <option value="${i}" ${map.month eq i ? "selected":""} >${i eq 0 ? "선택":i}</option>
+                  <option value="${i}" ${map.month eq i ? "selected":""} >${i eq 0 ? "Select":i}</option>
                </c:forEach>
-            </select>월
+            </select> M /
             <select name="date">
                <c:forEach var = "i" begin = "0" end = "${map.lastDay}">
-                  <option value="${i}" ${map.date eq i ? "selected":""} >${i eq 0 ? "선택":i}</option>
+                  <option value="${i}" ${map.date eq i ? "selected":""} >${i eq 0 ? "Select":i}</option>
                </c:forEach>
-            </select>일  
+            </select> D  
          </td>
       </tr>
       
       <tr>
-         <th>기간</th>
+         <th>Term</th>
          <td colspan="2">
             <select name="term">
                <c:forEach var = "i" begin = "0" end = "365">
-                  <option value="${i}" >${i eq 0 ? "선택":i}</option>
+                  <option value="${i}" >${i eq 0 ? "Selcet":i}</option>
                </c:forEach>
-            </select>일 &nbsp;&nbsp;
+            </select> D &nbsp;&nbsp;
             <span style="text-align: right; color: red;" id="usePoint"></span>
          </td>
       </tr>
       
       <tr>
-         <th>종료일</th>
+         <th>Fnday</th>
          <td colspan="2" id="endDate"></td>
       </tr>
 <!--       <tr> -->
@@ -332,14 +332,14 @@
 <!--          <td colspan="2" id="usePoint"></td> -->
 <!--       </tr> -->
       <tr>
-         <th>계획</th>
+         <th>Content</th>
          <td colspan="2"><textarea class="contents"  rows="5" cols="60" name="content" required="required" autocomplete="off" ></textarea></td>
       </tr>
       
       <tr>
          <td colspan="3" style="text-align: right;">
-            <input class="btn btn-default btn-xs" type="submit"  value="체크리스트 만들기"/>
-            <input class="btn btn-default btn-xs" type="button"  value="취소"
+            <input class="btn btn-default btn-xs" type="submit"  value="Mack Goal"/>
+            <input class="btn btn-default btn-xs" type="button"  value="Cancel"
             onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'"/>
             <input class="btn btn-default btn-xs" id="endInput1" type="hidden" onclick="endInput()">
          </td>

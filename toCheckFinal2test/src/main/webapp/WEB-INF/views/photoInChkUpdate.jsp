@@ -57,12 +57,10 @@ h5 {
 	height: 255px;
 	background-color: white;
 }
-#titsu{
-	margin-top: 30px;
-}
 #tit{
+	margin-top: 40px;
 	font-size: 24px;
-
+	text-align: center;
 }
 </style>
 
@@ -93,11 +91,9 @@ h5 {
 </head>
 <body>
 	<div id="container">
-	<table id="titsu">
-		<tr>
-		<td id=tit><span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})</td>
-		</tr>
-	</table>
+	<div id="tit">
+	<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})
+	</div>
 	<form action="photoInChkUpdate.do" method="post" enctype="multipart/form-data">
 	   <br/>
 	   <input type="hidden" name="id" value="${dto.id}"/>
@@ -111,7 +107,7 @@ h5 {
 	      <tr>
 	         <td colspan="3">
 			    <label  for="imgInp" style="">fileupload</label><input style="text-align: center; display: none;"type="file" name="file" id="imgInp" title=" "  value="사진 찾기"/>
-	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" />         
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" width="100%" height="400px"/>         
 	      </tr> 
 	      <tr >
 	         <th>ID</th>

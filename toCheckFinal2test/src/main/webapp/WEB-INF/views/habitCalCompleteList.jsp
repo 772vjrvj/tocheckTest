@@ -178,7 +178,6 @@ figure div:nth-child(3) {
 }
 
 #ifnull{
-	width:1500px;
 	text-align: center;
 	font-size: large;
 	font-weight: bold;
