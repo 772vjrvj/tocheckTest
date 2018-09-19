@@ -53,7 +53,7 @@
       </tr>
       <tr>
          
-         <td><input class="btn btn-default btn-xs" type="submit" value="본인확인"/></td>
+         <td><input class="btn btn-default btn-xs" type="submit" value="Complete"/></td>
       </tr>
    </table>
 </form>

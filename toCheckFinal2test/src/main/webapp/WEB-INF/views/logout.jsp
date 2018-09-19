@@ -23,7 +23,8 @@
 </style>
 </head>
 <body>
-<div id="text"><a href="index.jsp">정상적으로 로그아웃 되었습니다.</a></div>
+<div id="text"><a href="index.jsp">
+You have been successfully logged out.</a></div>
 <jsp:include page="foot.jsp"/>
 </body>
 </html>

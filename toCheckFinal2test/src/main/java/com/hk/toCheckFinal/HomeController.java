@@ -1311,6 +1311,15 @@ public class HomeController implements ServletContextAware {
 	       ModelAndView view = new ModelAndView();
 	       
 	      	 List<HcDto> list=hcService.boardlistWithRanking();
+	      	
+	      	 for (int i = 0; i < list.size(); i++) {
+	      		if(list.get(i).getEdDate().substring(0, 6)==today.substring(0, 6)) {
+	      			
+	      		}else {
+	      			list.remove(i);
+	      		}
+			}
+	      	 
 	      	 view.addObject("list",list);
 	      	 view.setViewName("boardlistWithRanking");
 

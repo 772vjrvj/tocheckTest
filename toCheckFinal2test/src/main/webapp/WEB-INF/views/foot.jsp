@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 <title>Insert title here</title>
 <style type="text/css">
 

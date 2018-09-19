@@ -23,7 +23,6 @@
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript"
    src="http://code.jquery.com/jquery-latest.js"></script>
-<jsp:include page="style.jsp"/>
 <style type="text/css">
    #container{
       width: 400px;
@@ -101,6 +100,7 @@
    }
 </script>
 </head>
+<jsp:include page="style.jsp"/>
 <body>
    <div id="container">
 	  <h1 id="title">Sign Up</h1>
@@ -108,49 +108,49 @@
          <table id="calendartitle">
             <col width= 400px/>
             <tr>
-               <td><input width="200px;" class="form-control" class="box" placeholder="아이디" width="300px"
+               <td><input width="200px;" class="form-control" class="box" placeholder="Input Id" width="300px"
                   id="id" type="text" name="id" title="n" required="required"
                   autocomplete="off" />
                   <input class="btn btn-default btn-xs" type="button" value="Id-Chk" onclick="idChk()" /> 
                </td>
             </tr>
             <tr>
-               <td><input class="form-control" class="box" placeholder="비밀번호"
+               <td><input class="form-control" class="box" placeholder="Input Password"
                   type="password" name="password" required="required"
                   onblur="pwCheckFunction()" /></td>
             </tr>
             <tr>
                <td>
                <input class="form-control" class="box"
-                  placeholder="비밀번호 확인" type="password" name="pwCheck"
+                  placeholder="Password Check" type="password" name="pwCheck"
                   required="required" onblur="pwCheckFunction()" />
                   <div style="display: inline-block; font-size: 12px;"
                      id="pwCheckText"></div></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="이름" class="box"
+               <td><input class="form-control" placeholder="Input Name" class="box"
                   type="text" name="name" required="required" autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="주소" class="box"
+               <td><input class="form-control" placeholder="Input Address" class="box"
                   type="text" name="address" required="required" autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="전화번호" class="box"
+               <td><input class="form-control" placeholder="Input Tel" class="box"
                   type="tel" name="phone" required="required" autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="E-mail"
+               <td><input class="form-control" placeholder="Input E-Mail"
                   class="box" type="email" name="email" required="required"
                   autocomplete="off" /></td>
             </tr>
              <tr>
-               <td><input class="form-control" placeholder="비밀번호 찾기시 사용할 질문"
+               <td><input class="form-control" placeholder="Find Password Question"
                   class="box" type="text" name="question" required="required"
                   autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="비밀번호 찾기시 사용할 답변"
+               <td><input class="form-control" placeholder="Find Password Answer"
                   class="box" type="text" name="answer" required="required"
                   autocomplete="off" /></td>
             </tr>

@@ -262,12 +262,12 @@
 	                                    </c:forEach>
 	                                    <c:choose>
 		                                       <c:when test="${sameValue eq 0}">
-		                                          <input type="button" class="btn btn-default btn-xs"  value="${intoPer eq dto.recruit ? '마감':'참여하기'}" 
+		                                          <input type="button" class="btn btn-default btn-xs"  value="${intoPer eq dto.recruit ? 'Complete':'Join'}" 
 		                                          ${intoPer eq dto.recruit ? 'disabled':''}
 		                                          onclick=${intoPer eq dto.recruit ? "" : "'myFunction2()'"} />                                       
 		                                       	</c:when>
 	                                       		<c:otherwise>
-	                                       			<input type="button" class="btn btn-default btn-xs" value="취소" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${loginId}&which=boardListWith'"/>
+	                                       			<input type="button" class="btn btn-default btn-xs" value="Cancel" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${loginId}&which=boardListWith'"/>
 	                                       		</c:otherwise>
 	                                    </c:choose>            
 	                                 </c:otherwise>
