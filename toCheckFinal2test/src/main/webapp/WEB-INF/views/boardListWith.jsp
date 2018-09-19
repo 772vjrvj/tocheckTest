@@ -182,6 +182,10 @@ figure div:nth-child(3) {
 	font-size: large;
 	font-weight: bold;
 }
+.redcol{
+	color: red;
+}
+
 /* 바뀜 */
 
 </style>
@@ -220,7 +224,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(<span class="redcol">${dto.chkCount}</span>/${dto.term})</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -237,7 +241,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(<span class="redcol">${dto.chkCount}</span>/${dto.term})</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -254,7 +258,7 @@ figure div:nth-child(3) {
 							<div class="progress-fixed">
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(<span class="redcol">${dto.chkCount}</span>/${dto.term})</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
