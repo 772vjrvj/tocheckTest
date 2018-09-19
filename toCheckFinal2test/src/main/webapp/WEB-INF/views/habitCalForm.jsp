@@ -285,7 +285,7 @@
       <tr>
          <th>Imotion</th>
          <td colspan="2">
-            <button type="button" id ="button" onclick="icon()">선택</button>
+            <button class="btn btn-default btn-xs" type="button" id ="button" onclick="icon()"><label  for="image" style="">File Upload</label></button>
             <img id="image" src="img/white.png" width="200px" height="200px "/>
          </td>
       </tr> 

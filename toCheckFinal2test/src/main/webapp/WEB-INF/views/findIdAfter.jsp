@@ -15,16 +15,42 @@
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
-<jsp:include page="style.jsp"/>
 <style type="text/css">
-   
+    table{
+        border-top: 1px solid #c0c0c0;
+        margin: auto;
+        margin-top: 100px;
+   }
+   th{
+      border-bottom: 1px solid #c0c0c0;
+      width:80px;
+      height:35px;
+      text-align: center;
+      padding-top:5px;
+      padding-bottom:5px;
+   }
+   td{
+      border-bottom: 1px solid #c0c0c0;
+      height: 32px;
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+   }
 </style>
+<jsp:include page="style.jsp"/>
 <body>
 <div id="container">
-<p id="content">회원님의 아이디는  ${dto.id} 입니다.</p>
-<input class="btn btn-default btn-xs" type="button" value="확인" onclick="Chk()"/>
+<table>
+	<tr>
+		<td>
+			<h2 id="content">회원님의 아이디는  ${dto.id} 입니다.</h2><br/>
+			<input class="btn btn-default btn-xs" type="button" value="확인" onclick="Chk()"/>
+			<br/>
+			&nbsp;
+		</td>
+	</tr>
+</table>
 </div>
-
 </body>
 <jsp:include page="foot.jsp"/>
 <script type="text/javascript">

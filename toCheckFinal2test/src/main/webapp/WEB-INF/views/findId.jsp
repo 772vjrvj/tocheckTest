@@ -17,7 +17,8 @@
 <style type="text/css">
    table{
         border-top: 1px solid #c0c0c0;
-      margin: auto;
+        margin: auto;
+        margin-top: 100px;
    }
    th{
       border-bottom: 1px solid #c0c0c0;
@@ -39,22 +40,16 @@
 <form action = "findId_after.do" method="post">
    <table id="findId">
       <tr>
-         <td><h2>아이디 찾기</h2></td>
+         <td><h2>Find Id</h2></td>
       </tr>
       <tr>
-         <td>이름을 입력해주세요</td>
+         <td><input class="form-control" type="text" name="name" placeholder="이름을 입력해주세요." /></td>
       </tr>
       <tr>
-         <td><input class="form-control" type="text" name="name"/></td>
+         <td><input class="form-control" type="tel" name="phone" placeholder="전화번호를 입력해주세요."/></td>
       </tr>
       <tr>
-         <td>전화번호를 입력해주세요</td>
-      </tr>
-      <tr>
-         <td><input class="form-control" type="tel" name="phone"/></td>
-      </tr>
-      <tr>
-         <td><input class="btn btn-default btn-xs" type="submit" value="아이디 찾기"/></td>
+         <td><input class="btn btn-default btn-xs" type="submit" value="아이디 찾기"  /></td>
       </tr>
    </table>
 </form>

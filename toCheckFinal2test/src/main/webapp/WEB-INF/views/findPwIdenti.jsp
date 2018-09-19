@@ -15,7 +15,8 @@
 <style type="text/css">
    table{
         border-top: 1px solid #c0c0c0;
-      margin: auto;
+        margin: auto;
+        margin-top: 100px;
    }
    th{
       border-bottom: 1px solid #c0c0c0;
@@ -36,17 +37,14 @@
 <body>
 <form action = "findPw.do" method="post">
    <table id="findPw">
-      <tr>
-         <td>아이디를 입력해주세요</td>
+   	  <tr>
+         <td><h2>Find Password</h2></td>
       </tr>
       <tr>
-         <td><input class="form-control" type="text" name="id"/></td>
+         <td><input class="form-control" type="text" name="id" placeholder="아이디를 입력해주세요."/></td>
       </tr>
       <tr>
-         <td>전화번호를 입력해주세요</td>
-      </tr>
-      <tr>
-         <td><input class="form-control" type="tel" name="phone"/></td>
+         <td><input class="form-control" type="tel" name="phone" placeholder="전화번호를 입력해주세요."/></td>
       </tr>
       <tr>
          <td><input class="btn btn-default btn-xs" type="submit" value="본인확인"/></td>

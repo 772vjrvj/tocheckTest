@@ -19,7 +19,8 @@
 <style type="text/css">
    table{
         border-top: 1px solid #c0c0c0;
-      margin: auto;
+        margin: auto;
+        margin-top: 100px;
    }
    th{
       border-bottom: 1px solid #c0c0c0;

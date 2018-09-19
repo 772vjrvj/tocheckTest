@@ -103,7 +103,7 @@ h5 {
 				<col width="100px">
 				<tr>
 					<td colspan="3">
-								<input style="text-align: center;" type="file" name="file"
+								<label  for="imgInp" style="">File Upload</label><input style="text-align: center;" type="file" name="file"
 								
 									id="imgInp" value="사진 찾기" />
 								<img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image"  width="100%" height="400px" /> 
