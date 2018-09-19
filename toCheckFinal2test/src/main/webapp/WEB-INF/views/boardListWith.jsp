@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>boardListAlone</title>
+<title>boardListWith</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <script type="text/javascript"
@@ -26,9 +26,75 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function(){
+    $("select[name=select1]").change(function(){
+    	$("input[name=input2]").val("");
 
+		if($("select[name=select1]").val()=='Start'){
+			
+		    $('#datepicker').datepicker({
+		        //달력 나오게하는 방법 설정  -> button, text, both
 
+		        
+// 		        showOn:"both",
+		        //버튼에 나올 텍스트 설정
+		        buttonText:"Cal",
+		        //년도랑 월 설정하는 select 박스 표시 여부 설정
+		        changeYear:true,
+		        changeMonth:true,
+		        //날짜 표시 형식설정
+		        dateFormat:"yymmdd",
+		        //달력에 요일 표시
+		        dayNamesMin: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'], 
+		        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+		     });
+		    $("input[name=input2]").attr("readonly",true);
 
+		    
+		 }else{
+			    $('#datepicker').datepicker("destroy"); 
+			    $("input[name=input2]").attr("readonly",false);
+		 }
+			
+    	$("input[name=input2]").focus();
+    	
+    	
+    });    	
+    	
+});
+
+</script>
+<script type="text/javascript">
+function search1(){
+	
+	if($("input[name=input2]").val()==null||$("input[name=input2]").val()==""){
+		
+        alert("값을 입력하세요");
+        $("input[name=input2]").focus();
+        return false;
+
+	}
+		if($("select[name=select1]").val()=="Term"){
+			if(isNaN($("input[name=input2]").val()) == true) {
+				alert("문자는 입력할 수 없습니다. 숫자를 입력하세요");
+				$("input[name=input2]").val("");
+		        $("input[name=input2]").focus();
+		        return false;
+			} else {
+
+			}
+		}	
+	
+	location.href = "search1.do?select1="+$("select[name=select1]").val()
+			+"&input2="+$("input[name=input2]").val()+"&withh=Y";
+}
+
+</script>
 <script type="text/javascript">
 var BG = {}; // BAR GRAPH window object
 
@@ -66,7 +132,7 @@ $(function() {
 </script>
 <style type="text/css">
 th {
-	color: white;
+	color: black;
 	text-align: center;
 	height: 35px;
 }
@@ -185,18 +251,33 @@ figure div:nth-child(3) {
 /* 바뀜 */
 
 </style>
-<script type="text/javascript">
-</script>
+
 </head>
 <body>
 <jsp:useBean id="Cal" class="com.hk.toCheckFinal.utils.cal"/>
 	 <jsp:useBean id="Util" class="com.hk.toCheckFinal.utils.Util"/>
+	 
 	<div id="container">
+		<div style="text-align: center;">
+			<select id="select1" name="select1">
+              <option value="ID" >ID</option>
+              <option value="Title">Title</option>
+              <option value="Term" >Term</option>
+              <option value="Start">StartDate</option>
+        	</select>	
+        	<input type="text" id="datepicker" name="input2" style="width: 200px;" autocomplete="off" />
+        	<input type="button" value="search" class="btn btn-default btn-xs" onclick="search1()"/>
+        	</div>
+        	<br/><br/><br/>
 		<table style=" align-content: center;">
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
 		<col width="180px">
+
+        	<br/>		
+
+		
 			<c:choose>
 			<c:when test="${fn:length(list) eq 0 }">
        			<div id="ifnull">진행중이 리스트가 없습니다.</div>

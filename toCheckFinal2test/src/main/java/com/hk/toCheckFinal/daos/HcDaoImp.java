@@ -389,11 +389,60 @@ public class HcDaoImp implements IHcDao {
    
    //비밀번호찾기 질문에 맞는 답변인지 검사하고  비밀번호 출력해주기
    @Override
-   public HcLoginDto findPw_After(String question, String answer) {
+   public HcLoginDto findPw_After(String answer,String withh) {
       Map<String, String> map = new HashMap<String, String>();
-         map.put("question", question);
          map.put("answer", answer);
-         
+         map.put("withh", withh);
       return sqlSession.selectOne(namespace+"findPw_After",map);
    }
+   
+   //아이디 검색
+   @Override
+   public List<HcDto> getSearchID(String searchId, String withh) {
+	      Map<String, String> map = new HashMap<String, String>();
+	         map.put("id", searchId);
+	         map.put("withh", withh);
+	         System.out.println("id:"+searchId+withh);
+
+	      return sqlSession.selectList(namespace+"getSearchID",map);
+   }
+   
+   //제목 검색
+   @Override
+   public List<HcDto> getSearchTitle(String searchTitle, String withh) {
+	      Map<String, String> map = new HashMap<String, String>();
+	         map.put("title", searchTitle);
+	         map.put("withh", withh);
+	         System.out.println("title:"+searchTitle+withh);
+	      return sqlSession.selectList(namespace+"getSearchTitle",map);
+   };
+   
+   //기간 검색
+   @Override
+   public List<HcDto> getSearchTerm(String searchTerm, String withh) {
+	      Map<String, String> map = new HashMap<String, String>();
+	         map.put("term", searchTerm);
+	         map.put("withh", withh);
+	         System.out.println("term:"+searchTerm+withh);
+	      return sqlSession.selectList(namespace+"getSearchTerm",map);
+   };
+
+   //시작일 검색
+   @Override
+   public List<HcDto> getSearchStartDate(String searchStartDate, String withh) {
+	      Map<String, String> map = new HashMap<String, String>();
+	         map.put("stDate", searchStartDate);
+	         map.put("withh", withh);
+	         System.out.println("term:"+searchStartDate+withh);
+	      return sqlSession.selectList(namespace+"getSearchStartDate",map);
+   };
+   
+
+	@Override
+	public List<HcDto> boardlistWithRanking() {
+		List<HcDto>list=new ArrayList<HcDto>();
+
+		list=sqlSession.selectList(namespace+"boardlistWithRanking");
+		return list;
+	} 
 }

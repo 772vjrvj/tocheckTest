@@ -36,6 +36,8 @@ import com.hk.toCheckFinal.service.IHcService;
 import com.hk.toCheckFinal.utils.Util;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
+import jdk.nashorn.internal.runtime.Undefined;
+
 
 /**
  * Handles requests for the application home page.
@@ -46,6 +48,9 @@ import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 public class HomeController implements ServletContextAware {
    
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+
+	private static final Object Undefined = null;
 
    
 	@Autowired
@@ -190,9 +195,19 @@ public class HomeController implements ServletContextAware {
             	}else {
             		
             	}
+				
+				if(list.get(k).getWithh()=="Y") {
+					if((double)hcService.habitCalIntoPerCount(list.get(k).getpKey())/list.get(k).getRecruit()<0.6) {
+						boolean isS  = hcService.habitCalDeleteAll(list.get(k).getpKey());
+						boolean isS1  = hcService.deleteHcInChkAll(list.get(k).getpKey()); 
+					}
+				}else {
+					
+				}
             	
             }
             
+			
 			//로그인 아이디의 리스트 가저오기
 			List<HcDto> list1=hcService.getAllList(id);
 
@@ -434,12 +449,12 @@ public class HomeController implements ServletContextAware {
 		logger.info("혼자하기 목록 {}.", locale);
 		ModelAndView view = new ModelAndView();
        
-      	 List<HcDto> list=hcService.getAllHcListAlone(); 
-      	 for (int i = 0; i < list.size(); i++) {
-      		System.out.println(list.get(i));
+      	 List<HcDto> list1=hcService.getAllHcListAlone(); 
+      	 for (int i = 0; i < list1.size(); i++) {
+      		System.out.println(list1.get(i));
       	 }
       	 
-      	 view.addObject("list",list);
+      	 view.addObject("list1",list1);
       	 view.setViewName("boardListAlone");
 
        return view;
@@ -626,14 +641,18 @@ public class HomeController implements ServletContextAware {
         
 		if(diffdays>=1 && diffdays<=Integer.parseInt(dto.getTerm())) {
         	  
-			Map<String, Integer> map= Util.TodayYYMMDD();
-			//인증하기 해당 날짜에 해당 목록
-			List<HcInChkDto> list = hcService.getHcInChk(new HcInChkDto(pKey, today1+""));
-			view.addObject("list",list);
-			view.addObject("diffdays",diffdays);
-			view.addObject("map",map);
-			view.addObject("dto",dto);
-			view.setViewName("photoInChk");
+			
+
+				Map<String, Integer> map= Util.TodayYYMMDD();
+				//인증하기 해당 날짜에 해당 목록
+				List<HcInChkDto> list = hcService.getHcInChk(new HcInChkDto(pKey, today1+""));
+				view.addObject("list",list);
+				view.addObject("diffdays",diffdays);
+				view.addObject("map",map);
+				view.addObject("dto",dto);
+				view.setViewName("photoInChk");
+
+			
         	 
 			return view;
 			
@@ -1237,4 +1256,66 @@ public class HomeController implements ServletContextAware {
           return "findPwAfter";
        }
     }
+    
+		//검색하기
+		@RequestMapping(value = "/search1.do", method = RequestMethod.GET)
+		public ModelAndView search1(String select1,String input2, String withh, Locale locale) {
+			logger.info("search1 {}.", locale);
+			ModelAndView view = new ModelAndView();
+			System.out.println("select1:"+select1);
+			System.out.println("input2:"+input2);
+
+			
+			if(select1.equals("ID")) {
+		    	List<HcDto> list1=hcService.getSearchID(input2,withh);
+				view.addObject("list1",list1);
+				if (withh=="Y") {
+					view.setViewName("boardListWith");						
+				} else {
+					view.setViewName("boardListAlone");
+				}
+
+			}else if(select1.equals("Title")) {
+				List<HcDto> list1=hcService.getSearchTitle(input2,withh);
+				view.addObject("list1",list1);
+				if (withh=="Y") {
+					view.setViewName("boardListWith");						
+				} else {
+					view.setViewName("boardListAlone");
+				}
+			}else if(select1.equals("Term")) {
+				List<HcDto> list1=hcService.getSearchTerm(input2,withh);
+				view.addObject("list1",list1);
+				if (withh=="Y") {
+					view.setViewName("boardListWith");						
+				} else {
+					view.setViewName("boardListAlone");
+				}
+			}else if(select1.equals("Start")) {
+				List<HcDto> list1=hcService.getSearchStartDate(input2,withh);
+				view.addObject("list1",list1);
+				if (withh=="Y") {
+					view.setViewName("boardListWith");						
+				} else {
+					view.setViewName("boardListAlone");
+				}
+			}
+			
+			return view;
+		}
+		
+		//랭킹보기
+	    @RequestMapping(value = "/boardlistWithRanking.do", method = RequestMethod.GET)
+	    public ModelAndView boardlistWithRanking(Locale locale, Model model) {
+	       logger.info("boardlistWithRanking {}.", locale);
+	       ModelAndView view = new ModelAndView();
+	       
+	      	 List<HcDto> list=hcService.boardlistWithRanking();
+	      	 view.addObject("list",list);
+	      	 view.setViewName("boardlistWithRanking");
+
+	       return view;
+	    } 			
+		
+    
 	}

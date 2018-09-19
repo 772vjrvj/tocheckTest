@@ -292,5 +292,32 @@ public class HcServiceImp implements IHcService {
    public HcLoginDto findPw_After(String question,String answer) {
       return hcDao.findPw_After(question, answer);
    }
+   
+   
+   //아이디 검색
+   public List<HcDto> getSearchID(String searchId, String withh){
+	   return hcDao.getSearchID(searchId,withh);
+   }
+   
+   //제목 검색
+   public List<HcDto> getSearchTitle(String searchTitle, String withh){
+	   return hcDao.getSearchTitle(searchTitle,withh);
+   }
+   
+   //기간 검색
+   public List<HcDto> getSearchTerm(String searchTerm, String withh){
+	   return hcDao.getSearchTerm(searchTerm,withh);
+   }
+
+   //시작일 검색
+   public List<HcDto> getSearchStartDate(String searchStartDate, String withh){
+	   return hcDao.getSearchStartDate(searchStartDate,withh);
+   }
+   
+	//랭킹
+	public List<HcDto> boardlistWithRanking(){
+		   return hcDao.boardlistWithRanking();
+
+	}
 
 }

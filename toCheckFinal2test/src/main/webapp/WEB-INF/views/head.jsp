@@ -135,6 +135,8 @@ function search(){
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<li><a href="totalPer.do?id=${loginId}"> Progress </a></li>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><a href="boardlistWithRanking.do?id=${loginId}"> Ranking </a></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</ul>
 						<div id="mypage">
 						<a href="userinfo.do?id=${loginId}"> Mypage &nbsp;|</a>
