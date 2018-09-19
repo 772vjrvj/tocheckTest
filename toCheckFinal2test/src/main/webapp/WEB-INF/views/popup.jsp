@@ -11,11 +11,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 	table{
-   	  border: 1px solid #c0c0c0;
+   	  border: 1px solid black;
       margin: auto;
+      border-collapse: collapse;
    }
    tr{
-      border: 1px solid #c0c0c0;
+      border: 1px solid black;
       width:80px;
       height:35px;
       text-align: center;
@@ -23,9 +24,9 @@
       padding-bottom:5px;
    }
    td{
-   	  border: 1px solid #c0c0c0;
+   	  border: 1px solid black;
       height: 32px;
-      text-align: left;s
+      text-align: left;
       padding-top: 5px;
       padding-bottom: 5px;
    }
@@ -47,17 +48,17 @@
 </head>
 <body>
 <table>
-	<c:forEach var="i" begin="1" end="25" step="1">
+	<c:forEach var="i" begin="1" end="500" step="1">
 	<c:choose>
 	<c:when test="${i%5 eq 1}">
 		<tr>
-			<td><input type="image" id="${i}" src="icon/${i}.png" width="100px" height="100px" onclick="ff('icon/${i}.png')"/></td>
+			<td><input type="image" src="icon/Shape ${i}.png" width="100px" height="100px" onclick="ff('icon/Shape ${i}.png')"/></td>
 	</c:when>
 	<c:when test="${i%5 eq 2 ||i%5 eq 3 || i%5 eq 4}">
-			<td><input type="image" id="${i}" src="icon/${i}.png" width="100px" height="100px" onclick="ff('icon/${i}.png')"/></td>
+			<td><input type="image" src="icon/Shape ${i}.png" width="100px" height="100px" onclick="ff('icon/Shape ${i}.png')"/></td>
 	</c:when>
 	<c:when test="${i%5 eq 0}">
-		<td><input type="image" id="${i}" src="icon/${i}.png" width="100px" height="100px" onclick="ff('icon/${i}.png')"/></td>
+		<td><input type="image" src="icon/Shape ${i}.png" width="100px" height="100px" onclick="ff('icon/Shape ${i}.png')"/></td>
 	</tr>
 	</c:when>
 	</c:choose>

@@ -197,7 +197,8 @@ function loadLiquidGauge(id, value, color, animateTime, waveHeight) {
 
    <c:choose>
     <c:when test="${fn:length(list1) eq 0}">
-          <div id="ifnull">진행중이 리스트가 없습니다.</div>
+          <div id="ifnull">
+		There are no listings in progress.</div>
     </c:when>
     <c:otherwise>
        <c:forEach var="dto" items="${list1}" varStatus="status">

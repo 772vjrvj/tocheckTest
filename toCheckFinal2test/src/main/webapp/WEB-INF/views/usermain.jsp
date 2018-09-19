@@ -303,15 +303,15 @@ $(".hover").mouseleave(
 	         
 				<figure class="snip1273" style="margin-top: 20px;">
 	                  <img id="motion" style="text-align: center;" src="${dto.photo}">
-	                  <figcaption style="margin-top: 60px;">
+	                  <figcaption style="margin-top: 92px;">
 	                      <a style="display: block;" href="habitCalDetail.do?pKey=${dto.pKey}&id=${loginId}">
 	                      <h5 style="font-size: 30px;">${dto.title}</h5>
 	                      <c:choose>
 	                      <c:when test="${dto.withh eq 'Y'}">
-	                      <p style="color: red; font-size: 30px;">With</p>
+	                      <p style="color: red; font-size: 18px;">With</p>
 	                      </c:when>
 	                      <c:otherwise>
-	                      <p style="color: blue; font-size: 30px;">Alone</p>
+	                      <p style="color: blue; font-size: 18px;">Alone</p>
 	                      </c:otherwise>
 	                      </c:choose>
 	                      </a>

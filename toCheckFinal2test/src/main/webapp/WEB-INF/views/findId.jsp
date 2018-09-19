@@ -49,7 +49,7 @@
          <td><input class="form-control" type="tel" name="phone" placeholder="전화번호를 입력해주세요."/></td>
       </tr>
       <tr>
-         <td><input class="btn btn-default btn-xs" type="submit" value="아이디 찾기"  /></td>
+         <td><input class="btn btn-default btn-xs" type="submit" value="Complete"  /></td>
       </tr>
    </table>
 </form>

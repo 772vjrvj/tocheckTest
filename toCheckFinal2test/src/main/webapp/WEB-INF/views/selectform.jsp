@@ -30,7 +30,7 @@
 <br/>
 <br/>
 <button type="button" class="butn" style="background-color: white;" onclick="location.href='boardListAlone.do'">Alone</button>
-<button type="button" class="butn" style="background-color: #6b6b6b; color:white;" onclick="location.href='boardListWith.do'">With</button>
+<button type="button" class="butn" style="background-color: black; color:white;" onclick="location.href='boardListWith.do'">With</button>
 </div>
 <div style="text-align: center;">
 </div>

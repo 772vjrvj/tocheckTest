@@ -198,7 +198,7 @@
 	            <td colspan="3" style="color:#245682; text-align: center;">${dto.content}</td>            
 	         </tr>
 	   </table>
-	   <img alt="이미지" src="${dto.photo}" >
+	   <img alt="image" src="${dto.photo}" >
 	   <table id="calendartitle" style="border-collapse: collapse; border: white; height: 30px;">
 	      <col width="188px">
 	      <col width="188px">
@@ -208,7 +208,7 @@
 
 	                     <div style="font-size: 16px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
 	                     D-day <span style=" color: red;">${diffdays}</span>&nbsp;&nbsp;Recruit : <span style=" color: red;">${intoPer}</span>/${dto.recruit}</div>
-	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
+	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="Participant" />
 	                      <c:choose>
 	                        <c:when test="${dto.host eq 'N'}">
 	                          <input type="button" class="btn btn-default btn-xs" value="Delete" onclick="location.href='habitCalDeleteWith.do?pKey=${dto.pKey}&id=${loginId}&which=main'"/>
@@ -216,7 +216,7 @@
 	                        <c:otherwise>
 								<input type="button"  class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? 'Complete':'Recruit'}" 
 							 	disabled/>  
-			                     <input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDeleteWithAll.do?pKey=${dto.pKey}&id=${loginId}&which=main'"/>	                        
+			                     <input type="button" class="btn btn-default btn-xs" value="Delete" onclick="location.href='habitCalDeleteWithAll.do?pKey=${dto.pKey}&id=${loginId}&which=main'"/>	                        
 	                        </c:otherwise>
 	                      </c:choose>		
 	                       <p id="list" >

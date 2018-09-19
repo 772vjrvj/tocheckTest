@@ -207,7 +207,7 @@
 	            <td colspan="3" style="color:#245682; text-align: center;">${dto.content}</td>            
 	         </tr>
 	   </table>
-	   <img alt="이미지" src="${dto.photo}" >
+	   <img alt="image" src="${dto.photo}" >
 	   <table id="calendartitle" style="border-collapse: collapse; border: white; height: 30px;">
 	      <col width="188px">
 	      <col width="188px">
@@ -216,20 +216,20 @@
 	            <td colspan="3" style="text-align: right;">
 
 	                     <div style="font-size: 12px; vertical-align:text-top; color: #245682; font-weight: bolder; " id="withNumber">
-	                     D-day:<span style=" color: red;">${diffdays}</span>&nbsp;&nbsp;모집인원:<span style=" color: red;">${intoPer}</span>/${dto.recruit}</div>
-	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="참가자" />
+	                     D-day:<span style=" color: red;">${diffdays}</span>&nbsp;&nbsp;Recruit : <span style=" color: red;">${intoPer}</span>/${dto.recruit}</div>
+	                     <input class="btn btn-default btn-xs" type="button" id="intoper"  value="Participant" />
 							<c:choose>
 								<c:when test="${map.today >= dto.stDate && map.today <= dto.edDate}">
                                    
 								</c:when>
 								<c:when test="${map.today > dto.edDate}">
-                                   	<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${loginId}'"/>
+                                   	<input type="button" class="btn btn-default btn-xs" value="Delete" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${loginId}'"/>
 								</c:when>
 								<c:otherwise>
 								
 	                              <c:choose>
 	                                 <c:when test="${loginId eq dto.id}">
-						                 <input type="button" class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? '마감':'모집중'}" 
+						                 <input type="button" class="btn btn-default btn-xs" value="${intoPer eq dto.recruit ? 'Complete':'Recruit'}" 
 						                 disabled/>  		                                    
 	                                 </c:when>
 	                                 <c:otherwise>   
@@ -246,12 +246,12 @@
 	                                    </c:forEach>
 	                                    <c:choose>
 		                                       <c:when test="${sameValue eq 0}">
-		                                          <input type="button" class="btn btn-default btn-xs"  value="${intoPer eq dto.recruit ? '마감':'참여하기'}" 
+		                                          <input type="button" class="btn btn-default btn-xs"  value="${intoPer eq dto.recruit ? 'Complete':'Join'}" 
 		                                          ${intoPer eq dto.recruit ? 'disabled':''}
 		                                          onclick=${intoPer eq dto.recruit ? "" : "'myFunction2()'"} />                                       
 		                                       	</c:when>
 	                                       		<c:otherwise>
-	                                       			<input type="button" class="btn btn-default btn-xs" value="취소" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${loginId}&which=boardListWith'"/>
+	                                       			<input type="button" class="btn btn-default btn-xs" value="Cancel" onclick="location.href='habitCalDelete.do?pKey=${pKey}&id=${loginId}&which=boardListWith'"/>
 	                                       		</c:otherwise>
 	                                    </c:choose>            
 	                                 </c:otherwise>
@@ -281,7 +281,7 @@
 	         <tr><td style="color: white">&nbsp;</td></tr>
 	         </table>   
 	         <table id="calendar" border="1">
-	         <tr><th style="color: white; text-align: center;">${i}년</th></tr>
+	         <tr><th style="color: white; text-align: center;">${i}</th></tr>
 	         </table>            
 	         
 	         <c:choose>
@@ -306,7 +306,7 @@
 	
 	      <c:forEach var = "j" begin = "${st}" end = "${ed}">
 	         <table id="calendar" border="1" style="text-align: center;">
-	                     <caption style="font-weight:bolder; text-align: center; color:#245682;">${j}월</caption>
+	                     <caption style="font-weight:bolder; text-align: center; color:#245682;">${j} Month</caption>
 	         <tr style="color: white;">
 	            <th >Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
 	         </tr>

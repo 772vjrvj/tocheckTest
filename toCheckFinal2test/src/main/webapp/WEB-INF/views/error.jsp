@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<jsp:include page="style.jsp"/>
 <style type="text/css">
 	#container{
 		width: 600px;
@@ -16,12 +15,14 @@
 	}
 </style>
 </head>
+<jsp:include page="style.jsp"/>
 <body>
 <div id="container">
-	<h2>${msg}</h2>
-	<h3>문제가 계속 된다면 관리자에게 문의 주세요.</h3>
-	<h3>홍길동 Tel)010-1234-5678</h3>
-	<a href="index.jsp" style="font-size: 20px;">메인으로 이동</a>
+	<h2>Not Found your Id or Password!!</h2>
+	<h2>Try Again.</h2>
+	<h2>
+	<a href="index.jsp" style="font-size: 20px;">Main</a>
+	</h2>
 </div>
 </body>
 </html>
