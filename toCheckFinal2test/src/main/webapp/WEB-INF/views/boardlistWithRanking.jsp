@@ -202,7 +202,7 @@ figure div:nth-child(3) {
 		
 			<c:choose>
 			<c:when test="${fn:length(list) eq 0 }">
-       			<div id="ifnull">진행중이 리스트가 없습니다.</div>
+       			<div id="ifnull">There are no completed listings.</div>
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="dto" items="${list}" varStatus="status">

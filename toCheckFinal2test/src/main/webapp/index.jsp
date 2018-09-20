@@ -49,6 +49,12 @@
    	   *{
    	   	   	   font-family: 'Playfair Display', serif;
    	   }
+   	   #butn{
+   	   	 position: absolute;
+   	     width: 400px;
+   	   	 text-align: center;
+   	   	 top:660px;
+   	   }
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -79,15 +85,13 @@
             <tr>
                <td>&nbsp</td>
             </tr>
-            <tr>
-               <td colspan="2">
-                  <input class="btn btn-default btn-xs" id="login" type="submit" value="Login"/> 
-                  <input class="btn btn-default btn-xs" type="button" value="Sign up" onclick="location.href='regist.do'" />
-                  <input class="btn btn-default btn-xs" type="button" value="Forgot Id" onclick="location.href='findId.do'" />
-                  <input class="btn btn-default btn-xs" type="button" value="Forgot Pw" onclick="location.href='findPw_identi.do'" />
-               </td>
-            </tr>
          </table>
+         <div id="butn">
+              <input class="btn btn-default btn-xs" id="login" type="submit" value="Login"/> 
+              <input class="btn btn-default btn-xs" type="button" value="Sign up" onclick="location.href='regist.do'" />
+              <input class="btn btn-default btn-xs" type="button" value="Forgot Id" onclick="location.href='findId.do'" />
+              <input class="btn btn-default btn-xs" type="button" value="Forgot Pw" onclick="location.href='findPw_identi.do'" />
+         </div>
       </form>
 	</div>
 	<address>

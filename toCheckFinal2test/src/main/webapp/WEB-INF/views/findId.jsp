@@ -43,10 +43,10 @@
          <td><h2>Find Id</h2></td>
       </tr>
       <tr>
-         <td><input class="form-control" type="text" name="name" placeholder="이름을 입력해주세요." /></td>
+         <td><input class="form-control" type="text" name="name" placeholder="Input Name" /></td>
       </tr>
       <tr>
-         <td><input class="form-control" type="tel" name="phone" placeholder="전화번호를 입력해주세요."/></td>
+         <td><input class="form-control" type="tel" name="phone" placeholder="Input Tel"/></td>
       </tr>
       <tr>
          <td><input class="btn btn-default btn-xs" type="submit" value="Complete"  /></td>

@@ -43,12 +43,12 @@
 <form action = "findPw_After.do" method="post">
    <table id="findPw">
       <tr>
-         <td>질문</td>
+         <td>Question</td>
          
          <td><input class="form-control" type="text" name="question" value="${dto_find}" readonly="readonly"/></td>
       </tr>
       <tr>
-         <td>답변</td>
+         <td>Answer</td>
          <td><input class="form-control" type="text" name="answer" ></td>
       </tr>
       <tr>

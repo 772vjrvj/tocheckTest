@@ -41,10 +41,10 @@
          <td><h2>Find Password</h2></td>
       </tr>
       <tr>
-         <td><input class="form-control" type="text" name="id" placeholder="아이디를 입력해주세요."/></td>
+         <td><input class="form-control" type="text" name="id" placeholder="Input Id"/></td>
       </tr>
       <tr>
-         <td><input class="form-control" type="tel" name="phone" placeholder="전화번호를 입력해주세요."/></td>
+         <td><input class="form-control" type="tel" name="phone" placeholder="Input Tel"/></td>
       </tr>
       <tr>
          <td><input class="btn btn-default btn-xs" type="submit" value="Complete"/></td>

@@ -41,7 +41,7 @@
    <table>
 	   <tr>
 		   <td>
-		      <h2 id="content">회원님의 비밀번호는  ${dto.password} 입니다.</h2><br/>
+		      <h2 id="content">Your Password is ${dto.password}.</h2><br/>
 		      <input class="btn btn-default btn-xs" type="button" value="Ok" onclick="Chk()"/>
 		      <br/>
 		      &nbsp;

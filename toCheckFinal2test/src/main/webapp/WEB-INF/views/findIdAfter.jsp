@@ -43,7 +43,7 @@
 <table>
 	<tr>
 		<td>
-			<h2 id="content">회원님의 아이디는  ${dto.id} 입니다.</h2><br/>
+			<h2 id="content">Your Id is '${dto.id}'.</h2><br/>
 			<input class="btn btn-default btn-xs" type="button" value="Ok" onclick="Chk()"/>
 			<br/>
 			&nbsp;

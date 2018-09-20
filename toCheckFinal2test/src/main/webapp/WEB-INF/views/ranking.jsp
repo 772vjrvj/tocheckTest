@@ -299,7 +299,7 @@ figure div:nth-child(3) {
 					<c:when test="${(status.count)%4 eq 1}">
 						<tr><td>
 							<div class="progress-fixed">
-							<img alt="이미지" src="${dto.photo}" >
+							<img alt="image" src="${dto.photo}" >
 							<div>${dto.id}</div>
 							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
 					  		<figure>
@@ -316,7 +316,7 @@ figure div:nth-child(3) {
 					<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
 							<td>
 							<div class="progress-fixed">
-							<img alt="이미지" src="${dto.photo}" >
+							<img alt="image" src="${dto.photo}" >
 							<div>${dto.id}</div>
 							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
 					  		<figure>
@@ -333,7 +333,7 @@ figure div:nth-child(3) {
 					<c:when test="${(status.count)%4 eq 0}">
 							<td>
 							<div class="progress-fixed">
-							<img alt="이미지" src="${dto.photo}" >
+							<img alt="image" src="${dto.photo}" >
 							<div>${dto.id}</div>
 							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
 						  		<figure>
