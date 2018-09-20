@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet"><title>Insert title here</title>
 <jsp:include page="style.jsp"/>
 <style type="text/css">
    #text{
@@ -22,6 +23,8 @@
 </style>
 </head>
 <body>
-<div id="text"><a href="index.jsp">정상적으로 로그아웃 되었습니다.</a></div>
+<div id="text"><a href="index.jsp">
+You have been successfully logged out.</a></div>
+<jsp:include page="foot.jsp"/>
 </body>
 </html>

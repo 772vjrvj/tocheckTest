@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>selectform</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <style type="text/css">
@@ -17,6 +17,7 @@
       margin-top: 140px;
    }
    .butn{
+   	  margin-right:30px;
       font-size: 30px;
       width: 300px; 
       height: 300px; 
@@ -28,10 +29,11 @@
 <div id="container">
 <br/>
 <br/>
-<button type="button" class="butn" style="background-color: white;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=N'">Alone</button>
-<button type="button" class="butn" style="background-color: #fd6c8b;" onclick="location.href='boardlist.do?id=${id}&role=${role}&with=Y'">With</button>
+<button type="button" class="butn" style="background-color: white;" onclick="location.href='boardListAlone.do'">Alone</button>
+<button type="button" class="butn" style="background-color: black; color:white;" onclick="location.href='boardListWith.do'">With</button>
 </div>
 <div style="text-align: center;">
 </div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>

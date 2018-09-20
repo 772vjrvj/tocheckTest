@@ -1,26 +1,25 @@
 package com.hk.toCheckFinal.dtos;
 
 public class HcDto {
-
-	private String pKey; //식별키1
-	private String id; //작성자 아이디1
-	private String title; //목표 제목1
-	private String content; //목표 상세내용1
-	private String stDate; //시작일1
-	private String edDate; //종료일1
-	private String term; //진행기간1
-	private String regdate; // 작성일1
-	private String chks; //인증 횟수를 /로 붙여서 모음1
-	private String endList; //완료 여부1
-	private String calWith; // 목표 공유하기1
-	private String withh; //함께하기 여부1
-	private String progress; //진행 여부1
-	private int recruit; //모집 인원1
-	private int intoper; //참여 인원1
-	private int chkss; //chks의 갯수1
-	private String photo; //사진이름1
-	private String idlist; //참가자 리스트1
 	
+	private String pKey; //식별키
+	private String id; //작성자 아이디
+	private String title; //목표 제목
+	private String content; //목표 상세내용
+	private String stDate; //시작일
+	private String edDate; //종료일
+	private String term; //진행기간
+	private String regdate; // 작성일
+	private String endList; //완료 여부
+	private String calWith; // 목표 공유하기
+	private String withh; //함께하기 여부
+	private String progress; //진행 여부
+	private int recruit; //모집 인원
+	private String photo; //사진이름
+	private String host; //방장이름
+	private String hcDelete; //삭제여부
+	private int chkCount; //체크 갯수 세기
+	private String sort; //좀전에 봤던게 main에 나오게 하도록 하기 위한 순서
 	
 	public HcDto() {
 		super();
@@ -28,9 +27,12 @@ public class HcDto {
 	}
 
 
+	
+	
+	
 	public HcDto(String pKey, String id, String title, String content, String stDate, String edDate, String term,
-			String regdate, String chks, String endList, String calWith, String withh, String progress, int recruit,
-			int intoper, int chkss, String photo, String idlist) {
+			String regdate, String endList, String calWith, String withh, String progress, int recruit, String photo,
+			String host, String hcDelete, int chkCount, String sort) {
 		super();
 		this.pKey = pKey;
 		this.id = id;
@@ -40,42 +42,33 @@ public class HcDto {
 		this.edDate = edDate;
 		this.term = term;
 		this.regdate = regdate;
-		this.chks = chks;
 		this.endList = endList;
 		this.calWith = calWith;
 		this.withh = withh;
 		this.progress = progress;
 		this.recruit = recruit;
-		this.intoper = intoper;
-		this.chkss = chkss;
 		this.photo = photo;
-		this.idlist = idlist;
+		this.host = host;
+		this.hcDelete = hcDelete;
+		this.chkCount = chkCount;
+		this.sort = sort;
 	}
 
 
-
-	
-	
-
-
-
-
-
-	public HcDto(String pKey, int intoper, String idlist) {
+	public HcDto(String pKey, String calWith) {
 		super();
 		this.pKey = pKey;
-		this.intoper = intoper;
-		this.idlist = idlist;
-	}
-
-
-	public HcDto(String pKey, String chks, String calWith, int chkss) {
-		super();
-		this.pKey = pKey;
-		this.chks = chks;
 		this.calWith = calWith;
-		this.chkss = chkss;
 	}
+
+
+	public HcDto(String pKey, int chkCount) {
+		super();
+		this.pKey = pKey;
+		this.chkCount = chkCount;
+	}
+
+
 
 
 
@@ -84,9 +77,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setpKey(String pKey) {
 		this.pKey = pKey;
 	}
+
+
+
 
 
 	public String getId() {
@@ -94,9 +93,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
+
+
 
 
 	public String getTitle() {
@@ -104,9 +109,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
+
 
 
 	public String getContent() {
@@ -114,9 +125,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
+
 
 
 	public String getStDate() {
@@ -124,9 +141,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setStDate(String stDate) {
 		this.stDate = stDate;
 	}
+
+
+
 
 
 	public String getEdDate() {
@@ -134,9 +157,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setEdDate(String edDate) {
 		this.edDate = edDate;
 	}
+
+
+
 
 
 	public String getTerm() {
@@ -144,9 +173,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setTerm(String term) {
 		this.term = term;
 	}
+
+
+
 
 
 	public String getRegdate() {
@@ -154,19 +189,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 
 
-	public String getChks() {
-		return chks;
-	}
 
-
-	public void setChks(String chks) {
-		this.chks = chks;
-	}
 
 
 	public String getEndList() {
@@ -174,9 +205,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setEndList(String endList) {
 		this.endList = endList;
 	}
+
+
+
 
 
 	public String getCalWith() {
@@ -184,9 +221,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setCalWith(String calWith) {
 		this.calWith = calWith;
 	}
+
+
+
 
 
 	public String getWithh() {
@@ -194,9 +237,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setWithh(String withh) {
 		this.withh = withh;
 	}
+
+
+
 
 
 	public String getProgress() {
@@ -204,9 +253,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setProgress(String progress) {
 		this.progress = progress;
 	}
+
+
+
 
 
 	public int getRecruit() {
@@ -214,29 +269,15 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setRecruit(int recruit) {
 		this.recruit = recruit;
 	}
 
 
-	public int getIntoper() {
-		return intoper;
-	}
 
-
-	public void setIntoper(int intoper) {
-		this.intoper = intoper;
-	}
-
-
-	public int getChkss() {
-		return chkss;
-	}
-
-
-	public void setChkss(int chkss) {
-		this.chkss = chkss;
-	}
 
 
 	public String getPhoto() {
@@ -244,31 +285,90 @@ public class HcDto {
 	}
 
 
+
+
+
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
 
-	public String getIdlist() {
-		return idlist;
+
+
+
+	public String getHost() {
+		return host;
 	}
 
 
-	public void setIdlist(String idlist) {
-		this.idlist = idlist;
+
+
+
+	public void setHost(String host) {
+		this.host = host;
 	}
+
+
+
+
+
+	public String getHcDelete() {
+		return hcDelete;
+	}
+
+
+
+
+
+	public void setHcDelete(String hcDelete) {
+		this.hcDelete = hcDelete;
+	}
+
+
+
+
+
+	public int getChkCount() {
+		return chkCount;
+	}
+
+
+
+
+
+	public void setChkCount(int chkCount) {
+		this.chkCount = chkCount;
+	}
+
+
+
+
+
+	public String getSort() {
+		return sort;
+	}
+
+
+
+
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+
+
 
 
 	@Override
 	public String toString() {
 		return "HcDto [pKey=" + pKey + ", id=" + id + ", title=" + title + ", content=" + content + ", stDate=" + stDate
-				+ ", edDate=" + edDate + ", term=" + term + ", regdate=" + regdate + ", chks=" + chks + ", endList="
-				+ endList + ", calWith=" + calWith + ", withh=" + withh + ", progress=" + progress + ", recruit="
-				+ recruit + ", intoper=" + intoper + ", chkss=" + chkss + ", photo=" + photo + ", idlist=" + idlist
-				+ "]";
+				+ ", edDate=" + edDate + ", term=" + term + ", regdate=" + regdate + ", endList=" + endList
+				+ ", calWith=" + calWith + ", withh=" + withh + ", progress=" + progress + ", recruit=" + recruit
+				+ ", photo=" + photo + ", host=" + host + ", hcDelete=" + hcDelete + ", chkCount=" + chkCount
+				+ ", sort=" + sort + "]";
 	}
 
-	
 
 	
 	

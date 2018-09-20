@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입 폼</title>
+<title>regist</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -23,13 +23,18 @@
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript"
    src="http://code.jquery.com/jquery-latest.js"></script>
-<jsp:include page="style.jsp"/>
 <style type="text/css">
    #container{
       width: 400px;
       height: 50%;
       margin: 0 auto;
-      margin-top: 140px;   
+      margin-top: 160px;   
+   }
+   #title{
+   	 text-align: center;
+   }
+   table{
+   	 margin-top: 50px;
    }
 </style>
 <script type="text/javascript">
@@ -95,55 +100,64 @@
    }
 </script>
 </head>
+<jsp:include page="style.jsp"/>
 <body>
    <div id="container">
+	  <h1 id="title">Sign Up</h1>
       <form action="regist_after.do" method="post">
          <table id="calendartitle">
             <col width= 400px/>
             <tr>
-               <th style="text-align: center;" colspan="3"><h1>회원 가입</h1></th>
-            </tr>
-            <tr>
-               <td><input width="200px;" class="form-control" class="box" placeholder="아이디" width="300px"
+               <td><input width="200px;" class="form-control" class="box" placeholder="Input Id" width="300px"
                   id="id" type="text" name="id" title="n" required="required"
                   autocomplete="off" />
-                  <input class="btn btn-default btn-xs" type="button" value="아이디 중복체크" onclick="idChk()" /> 
+                  <input class="btn btn-default btn-xs" type="button" value="Id-Chk" onclick="idChk()" /> 
                </td>
             </tr>
             <tr>
-               <td><input class="form-control" class="box" placeholder="비밀번호"
+               <td><input class="form-control" class="box" placeholder="Input Password"
                   type="password" name="password" required="required"
                   onblur="pwCheckFunction()" /></td>
             </tr>
             <tr>
                <td>
                <input class="form-control" class="box"
-                  placeholder="비밀번호 확인" type="password" name="pwCheck"
+                  placeholder="Password Check" type="password" name="pwCheck"
                   required="required" onblur="pwCheckFunction()" />
                   <div style="display: inline-block; font-size: 12px;"
                      id="pwCheckText"></div></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="이름" class="box"
+               <td><input class="form-control" placeholder="Input Name" class="box"
                   type="text" name="name" required="required" autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="주소" class="box"
+               <td><input class="form-control" placeholder="Input Address" class="box"
                   type="text" name="address" required="required" autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="전화번호" class="box"
+               <td><input class="form-control" placeholder="Input Tel" class="box"
                   type="tel" name="phone" required="required" autocomplete="off" /></td>
             </tr>
             <tr>
-               <td><input class="form-control" placeholder="E-mail"
+               <td><input class="form-control" placeholder="Input E-Mail"
                   class="box" type="email" name="email" required="required"
+                  autocomplete="off" /></td>
+            </tr>
+             <tr>
+               <td><input class="form-control" placeholder="Find Password Question"
+                  class="box" type="text" name="question" required="required"
+                  autocomplete="off" /></td>
+            </tr>
+            <tr>
+               <td><input class="form-control" placeholder="Find Password Answer"
+                  class="box" type="text" name="answer" required="required"
                   autocomplete="off" /></td>
             </tr>
             <tr>
                <td colspan="2">
-                  <input class="btn btn-default btn-xs" type="submit" value="가입"> 
-                  <input class="btn btn-default btn-xs" type="button" value="취소" onclick="location.href='index.jsp'"> 
+                  <input class="btn btn-default btn-xs" type="submit" value="Complet"> 
+                  <input class="btn btn-default btn-xs" type="button" value="Cancel" onclick="location.href='index.jsp'"> 
                   &nbsp;
                </td>
             </tr>
@@ -151,4 +165,5 @@
       </form>
    </div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>

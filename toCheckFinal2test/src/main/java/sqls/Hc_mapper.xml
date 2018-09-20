@@ -5,150 +5,293 @@
 
    <mapper namespace="com.hk.toCheckFinal">
 
+		<!--   습관달력 만들기 값 입력 habitCalInsert -->
+		<insert id="habitCalInsert" parameterType="HcDto">
+        INSERT INTO HCBOARD
+        VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'N',#{calWith},#{withh},#{progress},#{recruit},#{photo},'N',#{host},'0','1')
+		</insert>
 
-      <select id="getAllListEvery" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
-         FROM HCBOARD WHERE ENDLIST='N'
-      </select>
-      <select id="getAllList" parameterType="String" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
-         FROM HCBOARD WHERE ID=#{id} AND ENDLIST='N'
-      </select>      
-	  <select id="getAllHcList" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
-         FROM HCBOARD WHERE WITHH ='N' AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
-      </select> 
-      <select id="getAllHcListY" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
-         FROM HCBOARD WHERE WITHH ='Y' AND ENDLIST='N'  ORDER BY REGDATE DESC
-      </select>
-      <select id="getHabitCalList" parameterType="Map" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
-         FROM HCBOARD WHERE PKEY=#{pKey}
-      </select>
+		<!-- sort업데이트 방금 본걸 main에서 맨 앞화면으로 보려고 -->
+		<update id="updateSort" parameterType="HcDto" >
+		UPDATE HCBOARD SET SORT=#{sort} WHERE PKEY=#{pKey}
+		</update>
+
+
+		<!--   함꼐하기 달력 갯수 세기(참여한 사람수) habitCalInsert -->
+        <select id="habitCalIntoPerCount" resultType="Integer" parameterType="String">
+           SELECT COUNT(*) FROM HCBOARD 
+           WHERE PKEY=#{pKey}
+        </select>      		
+		
+		<!--   체크 값 입력 habitCalInsertChk -->
+		<insert id="habitCalInsertChk" parameterType="HcChkDto">
+		INSERT INTO HCCHKBOARD (PKEY,CHK)
+		SELECT #{pKey},#{chk} FROM DUAL
+		WHERE NOT EXISTS(SELECT * FROM HCCHKBOARD  WHERE PKEY=#{pKey} AND CHK=#{chk})     
+		</insert>
+		
+
+		<!--   체크 값 가저오기 habitCalTakeChk -->
+		<select id="habitCalTakeChk" resultType="String" parameterType="String">
+		SELECT CHK
+		FROM HCCHKBOARD
+		WHERE PKEY=#{pKey}   
+		</select>
+
+		<!--   체크 갯수 세기 habitCalChkCount -->
+        <select id="habitCalChkCount" resultType="Integer" parameterType="String">
+		SELECT COUNT(*) FROM HCCHKBOARD 
+		WHERE PKEY=#{pKey}
+        </select> 
+
+		<!-- 		습관달력 삭제 -->
+		<delete id="habitCalChkDelete" parameterType="Map" >
+		DELETE HCCHKBOARD
+		WHERE PKEY=#{pKey} AND CHK=#{chk}
+		</delete>
+
+		<!--함께하기를 만들면 각 날짜의 아이디의 인증 페이지 필요 insertHcInChk -->
+		<insert id="insertHcInChk" parameterType="HcInChkDto">
+		INSERT INTO HCINCHKBOARD
+		VALUES (#{pKey},#{id},#{title},#{inChkDate},'/','/','/','/','/')
+		<!--       VALUES (#{pKey},#{id},#{title},#{inChkDate},#{inChkPhoto},#{inChkTitle},#{inChkContent},#{inChkTime},#{inChkPhoto2}) -->
+		</insert>
+
+		<!-- 혼자 하기에서 공개 비공개 여부 설정 -->
+		<update id="updateCalWith" parameterType="HcDto" >
+		UPDATE HCBOARD SET CALWITH=#{calWith} WHERE PKEY=#{pKey}
+		</update>
+		
+		
+		<!-- 체크 갯수 업데이트 -->
+		<update id="updateChkCount" parameterType="HcDto" >
+		UPDATE HCBOARD SET CHKCOUNT=#{chkCount} WHERE PKEY=#{pKey}
+		</update>
+		
+		<!-- 		ID체크 -->
+		<select id="idChk" parameterType="map" resultType="HcLoginDto">
+		SELECT ID
+		FROM HCMEMBER WHERE ID=#{id}   
+		</select>
+		
+		<!-- 		로그인 -->
+		<select id="getLogin" parameterType="Map" resultType="HcLoginDto">
+		SELECT ID, PASSWORD, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE
+		FROM HCMEMBER WHERE ID=#{id} AND PASSWORD=#{password} AND ENABLED = 'Y'   
+		</select>		
+				
+
+		<!-- 		기간이 종료되지 않은 모든 유저들의 리스트  -->
+		<select id="getAllListEvery" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE ENDLIST='N' AND HCDELETE='N'
+		</select>
       
-      <select id="getAllListEndY" parameterType="String" resultType="HcDto">
-         SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, CHKS, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, INTOPER, CHKSS, PHOTO, IDLIST
-         FROM HCBOARD WHERE ID=#{id} AND ENDLIST='Y'
-      </select>
+		<!--       	리스트 종료 하기(삭제아님) -->
+		<update id="updateEndList" parameterType="HcDto" >
+		UPDATE HCBOARD SET ENDLIST=#{endList} WHERE PKEY=#{pKey}
+		</update>      
+      
+		<!--       	로그인한 유저 한명의 종료되지 않은 리스트 -->
+		<select id="getAllList" parameterType="String" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE ID=#{id} AND ENDLIST='N' AND HCDELETE='N' ORDER BY SORT DESC
+		</select>      
+      	
 
+		<!-- 		탈퇴하기 -->
+		<update id="deleUser" parameterType="String">
+		UPDATE HCMEMBER SET ENABLED='N'
+		WHERE Id=#{value}
+		</update>
+      
+		<!-- 		탈퇴한 회원 모든 리스트 비활성화 -->
+		<update id="deleList" parameterType="String">
+		UPDATE HCBOARD SET HCDELETE='Y'
+		WHERE Id=#{value}
+		</update>
+      
+		<!--       	모든 회원들의 '혼자' 하기 리스트 보기  -->
+		<select id="getAllHcListAlone" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE WITHH ='N' AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+		</select> 
+		
+		<!--       	모든 회원들의 '함께' 하기 리스트 보기  -->
+		<select id="getAllHcListWith" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE WITHH ='Y' AND ENDLIST='N' AND NOT HOST='N'  ORDER BY REGDATE DESC
+		</select>
+      	
+		<!--       	습관달력 한개 구하기 -->
+		<select id="getHabitCalListOne" parameterType="Map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE PKEY=#{pKey} AND ID=#{id}
+		</select>      
+      
+      	<!--       	pKey가 같은 습관달력들 구하기 -->
+		<select id="getHabitCalList" parameterType="String" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE PKEY=#{pKey}
+   		</select>
+      
+		<!-- 		해당 아이디 인증 페이지들 모두 삭제 -->
+		<delete id="deleteHcInChk" parameterType="Map" >
+		DELETE 
+		FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND ID=#{id}
+		</delete>
+
+
+		<!-- 		인증 페이지들 모두 삭제 -->
+		<delete id="deleteHcInChkAll" parameterType="String" >
+		DELETE 
+		FROM HCINCHKBOARD WHERE PKEY=#{pKey}
+		</delete>
+
+		
+		<!-- 		해당 아이디 습관달력 삭제 -->
+		<delete id="habitCalDelete" parameterType="Map" >
+		DELETE HCBOARD
+		WHERE PKEY=#{pKey} AND ID=#{id}
+		</delete>
+
+		<!-- 		습관달력 전부 삭제 -->
+		<delete id="habitCalDeleteAll" parameterType="String" >
+		DELETE HCBOARD
+		WHERE PKEY=#{pKey}
+		</delete>
+ 
+      
+		<!--       	종료일이 지난 모든 리스트들 가저오기 -->
+		<select id="getAllListEndY" parameterType="String" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE ID=#{id} AND ENDLIST='Y'
+		</select>
+
+
+		<!-- 		인증값 가저오기 -->
+		<select id="getHcUserInChk" parameterType="Map" resultType="HcInChkDto">
+		SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME, INCHKPHOTO2
+		FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
+		</select>     
+
+
+		<!-- 		인증 삭제하기 -->
+		<update id="deleteHcUserInChk" parameterType="HcInChkDto">
+		UPDATE HCINCHKBOARD SET INCHKTITLE='/', INCHKCONTENT='/', INCHKPHOTO='/', INCHKTIME='/' ,INCHKPHOTO2='/'
+		WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
+		</update>      
 
       
-      <insert id="habitCalInsert" parameterType="HcDto">
-         INSERT INTO HCBOARD
-         VALUES (#{pKey},#{id},#{title},#{content},#{stDate},#{edDate},#{term},SYSDATE,'0','N',#{calWith},#{withh},'N',#{recruit},'1','0',#{photo},#{id})
-      </insert>
-      <update id="updateCheck" parameterType="HcDto">
-         UPDATE HCBOARD SET CHKS=#{chks}, CALWITH=#{calWith} ,CHKSS=#{chkss}
-         WHERE PKEY=#{pKey}
-      </update>      
-      <update id="updateIntoper" parameterType="HcDto">
-         UPDATE HCBOARD SET INTOPER=#{intoper}, IDLIST=#{idlist}
-         WHERE PKEY=#{pKey}
-      </update>
-      <update id="updateEndList" parameterType="HcDto" >
-         UPDATE HCBOARD SET ENDLIST=#{endList} WHERE PKEY=#{pKey}
-      </update>
+		<!--       	해당일 인증해야 하는 것들 다 가지고 오기 -->
+		<select id="getHcInChk" parameterType="Map" resultType="HcInChkDto">
+		SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME, INCHKPHOTO2
+		FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate}   
+		</select>      
 
+ 
 
-
-
-
-
-      <insert id="insertCalWith" parameterType="HcWithDto">
-         INSERT INTO HCWITHBOARD
-         VALUES (#{id},#{withGoalList})
-      </insert>
-
-      <select id="getCalWith" parameterType="String" resultType="HcWithDto">
-         SELECT ID, WITHGOALLIST
-         FROM HCWITHBOARD WHERE ID=#{id}
-      </select>
-
-
-      <update id="updateCalWith" parameterType="HcWithDto" >
-         UPDATE HCWITHBOARD SET WITHGOALLIST=#{withGoalList} WHERE ID=#{id}
-      </update>
-
-
-
-
-
-
-      <delete id="habitCalDelete" parameterType="Map" >
-         DELETE HCBOARD
-         WHERE PKEY=#{pKey}
-      </delete>
-
-      <select id="idChk" parameterType="map" resultType="HcLoginDto">
-         SELECT ID
-         FROM HCMEMBER WHERE ID=#{id}   
-      </select>
-
-      <insert id="insertHcInChk" parameterType="HcInChkDto">
-         INSERT INTO HCINCHKBOARD
-         VALUES (#{pKey},#{id},#{title},#{inChkDate},'/','/','/','/','/')
-<!--       VALUES (#{pKey},#{id},#{title},#{inChkDate},#{inChkPhoto},#{inChkTitle},#{inChkContent},#{inChkTime},#{inChkPhoto2}) -->
-      </insert>
-      
-      <select id="getHcInChk" parameterType="Map" resultType="HcInChkDto">
-         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME, INCHKPHOTO2
-         FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate}   
-      </select>      
-
-	  <select id="getHcUserInChk" parameterType="Map" resultType="HcInChkDto">
-         SELECT PKEY, ID, TITLE, INCHKDATE, INCHKPHOTO, INCHKTITLE, INCHKCONTENT, INCHKTIME, INCHKPHOTO2
-         FROM HCINCHKBOARD WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
-      </select>      
-
-      <update id="updateHcInChk" parameterType="HcInChkDto">
-         UPDATE HCINCHKBOARD SET INCHKTITLE=#{inChkTitle}, INCHKCONTENT=#{inChkContent}, INCHKPHOTO=#{inChkPhoto, jdbcType=VARCHAR}, INCHKPHOTO2=#{inChkPhoto2, jdbcType=VARCHAR}, INCHKTIME=#{inChkTime}
-         WHERE Id=#{id} AND PKEY=#{pKey} AND INCHKDATE=#{inChkDate}
-      </update>      
-      
-      <delete id="deleteHcInChk" parameterType="Map" >
-         DELETE 
-         FROM HCINCHKBOARD WHERE PKEY=#{pKey}
-      </delete>
-
-	  <update id="deleteHcUserInChk" parameterType="HcInChkDto">
-         UPDATE HCINCHKBOARD SET INCHKTITLE='/', INCHKCONTENT='/', INCHKPHOTO='/', INCHKTIME='/' ,INCHKPHOTO2='/'
-         WHERE PKEY=#{pKey} AND INCHKDATE=#{inChkDate} AND Id=#{id}
-      </update>      
-      
+		<update id="updateHcInChk" parameterType="HcInChkDto">
+		UPDATE HCINCHKBOARD SET INCHKTITLE=#{inChkTitle}, INCHKCONTENT=#{inChkContent}, INCHKPHOTO=#{inChkPhoto, jdbcType=VARCHAR}, INCHKPHOTO2=#{inChkPhoto2, jdbcType=VARCHAR}, INCHKTIME=#{inChkTime}
+ 		WHERE Id=#{id} AND PKEY=#{pKey} AND INCHKDATE=#{inChkDate}
+		</update>      
       
 
-
-      
 <!-- insertUser -->
+
+		<select id="getAllUser" resultType="HcLoginDto">
+		SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE
+		FROM HCMEMBER ORDER BY NAME   
+		</select>
+		
+		<update id="updateRoleUser" parameterType="Map">
+		UPDATE HCMEMBER SET ROLE=#{role}, ENABLED=#{enabled} WHERE ID=#{id}      
+		</update>
+		<!-- 아이디 찾기 -->
+      <select id="findId" parameterType="Map" resultType="HcLoginDto">
+         SELECT ID FROM HCMEMBER 
+         WHERE NAME=#{name} AND PHONE=#{phone}
+      </select>
+      
+      
+      
+      <!-- 비밀번호찾기 본인인증       -->
+      <select id="findPw" parameterType="Map" resultType="HcLoginDto">
+         SELECT ID FROM HCMEMBER 
+         WHERE ID=#{id} AND PHONE=#{phone}
+      </select>
+      
+      
+      
+      <!-- 비밀번호찾기 아이디에 맞는 질문 출력하기       -->
+      <select id="findPw_find" parameterType="String" resultType="HcLoginDto">
+         SELECT QUESTION FROM HCMEMBER 
+         WHERE ID=#{id} 
+      </select>
+      
+      
+      
+      <!-- 비밀번호 찾기 질문에 맞는 답변인지 검사해서 비밀번호 출력해주기       -->
+      <select id="findPw_After" parameterType="Map" resultType="HcLoginDto">
+         SELECT PASSWORD FROM HCMEMBER 
+         WHERE QUESTION=#{question} AND ANSWER=#{answer} 
+      </select> 
+      
+      <!--       회원가입 -->
       <insert id="insertUser" parameterType="HcLoginDto">
-         INSERT INTO HCMEMBER VALUES
-         (HCMEMBER_SEQ.NEXTVAL,#{id},#{name},#{password},#{address},#{phone},#{email},'Y','USER',1000,'0')   
+        INSERT INTO HCMEMBER VALUES
+        (HCMEMBER_SEQ.NEXTVAL,#{id},#{name},#{password},#{address},#{phone},#{email},'Y','USER',#{question},#{answer})   
       </insert>
       
-      
-      <select id="getLogin" parameterType="Map" resultType="HcLoginDto">
-         SELECT ID, PASSWORD, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE
-         FROM HCMEMBER WHERE ID=#{id} AND PASSWORD=#{password} AND ENABLED = 'Y'   
-      </select>
-      <select id="getUser" parameterType="String" resultType="HcLoginDto">
-         SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE, TTPOINT, TDPOINT
-         FROM HCMEMBER WHERE ID=#{value}
-      </select>
+      <!--          유저 정보 변경 -->
       <update id="updateUser" parameterType="HcLoginDto">
-         UPDATE HCMEMBER SET ADDRESS=#{address}, PHONE=#{phone}, EMAIL=#{email}
-         WHERE Id=#{id}
-      </update>
-      <update id="deleUser" parameterType="String">
-         UPDATE HCMEMBER SET ENABLED='N'
-         WHERE Id=#{value}
-      </update>
-      <select id="getAllUser" resultType="HcLoginDto">
-         SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE
-         FROM HCMEMBER ORDER BY NAME   
-      </select>
-      <update id="updateRoleUser" parameterType="Map">
-         UPDATE HCMEMBER SET ROLE=#{role}, ENABLED=#{enabled} WHERE ID=#{id}      
-      </update>   
+      UPDATE HCMEMBER SET ADDRESS=#{address}, PHONE=#{phone}, EMAIL=#{email}, QUESTION=#{question}, ANSWER=#{answer}
+      WHERE Id=#{id}
+      </update>  
+      
+      
+      <!--       유저 정보 얻기 -->
+      <select id="getUser" parameterType="String" resultType="HcLoginDto">
+      SELECT SEQ, ID, NAME, ADDRESS, PHONE, EMAIL, ENABLED, ROLE, QUESTION, ANSWER
+      FROM HCMEMBER WHERE ID=#{id} AND ENABLED='Y'
+      </select> 
+
+
+
+
+
+	
+      <!--       아이디 검색 -->
+      <select id="getSearchID" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE ID LIKE '%'||#{id}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+	
+      <!--       제목 검색 -->
+      <select id="getSearchTitle" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE TITLE LIKE '%'||#{title}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+
+      <!--       기간 검색 -->
+      <select id="getSearchTerm" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE TERM LIKE '%'||#{term}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+      
+      <!--       시작일 검색 -->
+      <select id="getSearchStartDate" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE STDATE LIKE '%'||#{stDate}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select>       
+
+
+		<!--       	랭킹  -->
+		<select id="boardlistWithRanking" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE WITHH ='Y' AND ENDLIST='Y' ORDER BY CHKCOUNT DESC
+		</select>
+
+
 
     </mapper>

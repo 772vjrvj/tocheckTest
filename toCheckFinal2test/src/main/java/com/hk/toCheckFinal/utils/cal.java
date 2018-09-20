@@ -4,8 +4,8 @@ import java.util.Calendar;
 
 public class cal {
 
-
-    public static int calGet1(int yyyy,int mm,int dd){
+	//요일 월-0 화-1 이런식으로 숫자 구해서 보냄
+    public static int dayOfWeek(int yyyy,int mm,int dd){
     	 	
 		Calendar cal=Calendar.getInstance();
 	
@@ -15,8 +15,9 @@ public class cal {
 		return dayOfWeek;
     	
     }
-
-    public static int calGet2(int yyyy,int mm,int dd){
+    
+    //해당일의 마지막날 구하기
+    public static int lastDay(int yyyy,int mm,int dd){
     	
 		Calendar cal=Calendar.getInstance();
 	

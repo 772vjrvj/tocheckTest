@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+<title>Insert title here</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <title>Insert title here</title>
@@ -16,7 +17,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 
 		a:hover, a:visited, a:link{
@@ -79,15 +79,23 @@
 			text-align: center;
 		}
 		li{
-			font-size: 30px;
-		}
-		.myinfo{
-			position: absolute;
-			right:500px;
-			top: 100px;
+			font-size: 28px;
 		}
 		#navi{
-			font-family: 'Raleway', sans-serif;
+			width:1000px;
+			font-family: 'Playfair Display', serif;
+			text-align: center;
+			margin: 0 auto;
+		}
+		#mypage{
+			position: absolute;
+			right:430px;
+			top:100px;
+		}
+		#logout{
+			position: absolute;
+			right:340px;
+			top:100px;
 		}
 </style>
 <script type="text/javascript">
@@ -103,7 +111,11 @@ $(document).ready(function() {
 	  $menu.toggleClass('active');
 	  return false;
 	});});
-	
+
+
+function search(){
+	alert("서버통신실패~~");
+}
 
 </script>
 </head>
@@ -116,16 +128,22 @@ $(document).ready(function() {
 			<div id="navi" class="pattern">
 				<nav id="menu" role="navigation">
 					<ul>
-						<li><a href="main.do?id=${loginId}&role=${loginRole}">Home</a></li>
-						<li><a href="habitCalForm.do?id=${loginId}">Start</a></li>
-						<li><a href="selectform.do?id=${loginId}&role=${HcLoginDto.role}">List</a></li>
-						<li><a href="point.do?id=${loginId}">Point</a></li>
+						<li><a href="main.do?id=${loginId}&role=${loginRole}">Home </a></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><a href="habitCalForm.do?id=${loginId}" onclick="search()"> Start </a></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><a href="selectform.do"> List </a></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><a href="totalPer.do?id=${loginId}"> Progress </a></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<li><a href="boardlistWithRanking.do?id=${loginId}"> Ranking </a></li>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</ul>
+						<div id="mypage">
+						<a href="userinfo.do?id=${loginId}"> Mypage &nbsp;|</a>
+						<a href="logout.do">&nbsp; Logout </a>
+						</div>
 				</nav>
-				<div class="myinfo">
-				<button type="button" class="btn btn-default btn-xs" onclick="location.href='userinfo.do?id=${loginId}'">나의 정보 보기</button>
-		   		<span>&nbsp;</span><button type="button" class="btn btn-default btn-xs" onclick="location.href='logout.do'">로그아웃</button>
-		   		</div>
 			</div>
 		</c:otherwise>
 	</c:choose>

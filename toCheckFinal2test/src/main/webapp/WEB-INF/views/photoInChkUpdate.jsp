@@ -13,17 +13,25 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <style type="text/css">
+table {
+	margin: auto;
+	border-top: solid 1px #c0c0c0;
+}
+
 th {
+	border-bottom: 1px solid #c0c0c0;
 	color: black;
 	text-align: center;
 	height: 35px;
+	padding: 2px;
 }
 
 td {
+	border-bottom: 1px solid #c0c0c0;
 	text-align: center;
 	height: 35px;
+	padding: 2px;
 }
-
 
 h4 {
 	text-align: center;
@@ -40,23 +48,22 @@ h5 {
 #container {
 	width: 1200px;
 	margin: 0 auto;
-	text-align:center; 
+	text-align: center;
 }
 
-#photo{
-	display:inline-block;
-	width:150px;
+#photo {
+	display: inline-block;
+	width: 150px;
 	height: 255px;
 	background-color: white;
-	
 }
-
-   table{
-      margin: auto;
-      border-collapse: collapse;
-      border: solid 1px white;
-   }
+#tit{
+	margin-top: 40px;
+	font-size: 24px;
+	text-align: center;
+}
 </style>
+
 
     <script type="text/javascript">
         $(function() {
@@ -84,56 +91,40 @@ h5 {
 </head>
 <body>
 	<div id="container">
-		<h4>${dto.title}</h4>
-		<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
-		<h4>${diffdays} 일째</h4>
-		<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
-        <br/>
-		<br/>
+	<div id="tit">
+	<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})
+	</div>
 	<form action="photoInChkUpdate.do" method="post" enctype="multipart/form-data">
 	   <br/>
-	   <input type="hidden" name="id" value="${HcLoginDto.id}"/>
-	   <input type="hidden" name="paramview" value="${paramview}"/>
+	   <input type="hidden" name="id" value="${dto.id}"/>
 	   <input type="hidden" name="pKey" value="${dto.pKey}"/>
-	   <input type="hidden" name="inChkPhoto" value="${HcInChkDto.inChkPhoto}"/>
-	   <input type="hidden" name="inChkPhoto2" value="${HcInChkDto.inChkPhoto2}"/>
-	   <table border="1">
-	      <col width="600px">
-	      <tr>
-	         <td colspan="3">
-	         <c:choose>
-	         	<c:when test="${HcLoginDto.id eq loginId}">
-			         <input style="text-align: center;"type="file" name="file" id="imgInp"  value="사진 찾기"/>
-	         	</c:when>
-	         	<c:otherwise>
-	         	
-	         	</c:otherwise>
-	         
-	         </c:choose>
-	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" />         
-	      </tr> 
-	   </table>
+		<input type="hidden" name="inChkPhoto2" value="${HcInChkDto.inChkPhoto2}"/>
 	   
-	   <table border="1">
+	   <table>
 	      <col width="100px">
 	      <col width="400px">
 	      <col width="100px">
+	      <tr>
+	         <td colspan="3">
+			    <label  for="imgInp" style="">File Upload</label><input style="text-align: center; display: none;"type="file" name="file" id="imgInp" title=" "  value="사진 찾기"/>
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" width="100%" height="400px"/>         
+	      </tr> 
 	      <tr >
-	         <th>아이디</th>
-	         <td colspan="3">${HcLoginDto.id}</td>
+	         <th>ID</th>
+	         <td colspan="3">${HcInChkDto.id}</td>
 	      </tr>
 	      <tr >
-	         <th>제목</th>
+	         <th>Title</th>
 	         <td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off" value="${HcInChkDto.inChkTitle}"/></td>
 	
 	      </tr>
 	      <tr>
-	         <th>내용</th>
+	         <th>Content</th>
 	         <td colspan="3"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" >${HcInChkDto.inChkContent}</textarea></td>
 	      </tr>
 	      <tr>
 	         <td colspan="3" style="text-align: right;">
-	            <input class="btn btn-default btn-xs" type="button"  value="삭제하기" onclick="location.href='photoInChkDelete.do?calString=a&pKey=${dto.pKey}&id=${HcInChkDto.id}&paramview=${paramview}'"/><input class="btn btn-default btn-xs" type="submit"  value="수정완료"/>
+	            <input class="btn btn-default btn-xs" type="button"  value="Delete" onclick="location.href='photoInChkDelete.do?pKey=${HcInChkDto.pKey}&id=${HcInChkDto.id}'"/><input class="btn btn-default btn-xs" type="submit"  value="Complete"/>
 	         </td>
 	      </tr>
 	   </table>

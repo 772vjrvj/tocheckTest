@@ -13,17 +13,25 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <style type="text/css">
+table {
+	margin: auto;
+	border-top: solid 1px #c0c0c0;
+}
+
 th {
+	border-bottom: 1px solid #c0c0c0;
 	color: black;
 	text-align: center;
 	height: 35px;
+	padding: 2px;
 }
 
 td {
+	border-bottom: 1px solid #c0c0c0;
 	text-align: center;
 	height: 35px;
+	padding: 2px;
 }
-
 
 h4 {
 	text-align: center;
@@ -43,24 +51,20 @@ h5 {
 	text-align: center;
 }
 
-#photo{
-	display:inline-block;
-	width:150px;
+#photo {
+	display: inline-block;
+	width: 150px;
 	height: 255px;
 	background-color: white;
-	
 }
-
-   table{
-      margin: 0 auto;
-      border-collapse: collapse;
-      border: solid 1px white;
-   }
-   #info{
-	margin-top: 60px;
-	margin-bottom: 60px;
-   }
+#tit{
+	margin-top: 40px;
+	font-size: 24px;
+	text-align: center;
+}
 </style>
+
+
     <script type="text/javascript">
         $(function() {
             $("#imgInp").on('change', function(){
@@ -79,81 +83,58 @@ h5 {
               reader.readAsDataURL(input.files[0]);
             }
         }
+
+
     </script>
+
+
 </head>
 <body>
 	<div id="container">
-	<div id="info">
-			<h4>${dto.title}</h4>
-			<h4>${Year1}년 ${Month1}월 ${Date1}일</h4>
-			<h4>${diffdays} 일째</h4>
-			<h5><span style="color: red">${diffdays}</span>/${dto.term}</h5>
+	<div id="tit">
+	<span style="font-size: 20px;">${dto.title}</span> - ${map.ToYear1}/${map.ToMonth1}/${map.ToDate1} (<span style="color: red">${diffdays}</span>/${dto.term})
 	</div>
-	<form action="photoInChkInsert.do" method="post" enctype="multipart/form-data">
-	   <input type="hidden" name="id" value="${HcLoginDto.id}"/>
-	   <input type="hidden" name="paramview" value="${paramview}"/>
-	   <input type="hidden" name="pKey" value="${dto.pKey}"/>
-	   <table border="1">
-	      <col width="600px">
-	      <tr>
-	         <td colspan="3"><h4>인증 사진 올리기</h4>
-	         <c:choose>
-	         	<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
-			         <input type="file" name="file" id="imgInp"  value="사진 찾기"/>
-	         	</c:when>
-	         	<c:otherwise>
-	         	
-	         	</c:otherwise>
-	         
-	         </c:choose>
-	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" />         
-	      </tr> 
-	   </table>
+	   <br/>
+	   <input type="hidden" name="id" value="${HcInChkDto.id}"/>
+	   <input type="hidden" name="pKey" value="${HcInChkDto.pKey}"/>
+		
 	   
-	   <table border="1">
+	   <table>
 	      <col width="100px">
 	      <col width="400px">
 	      <col width="100px">
+	      <tr>
+	         <td colspan="3">
+	         <img id="blah" src="resources/${HcInChkDto.inChkPhoto2}" alt="your image" width="100%" height="400px" />         
+	      </tr> 
 	      <tr >
-	         <th>아이디</th>
-	         <td colspan="3">${HcLoginDto.id}</td>
+	         <th>ID</th>
+	         <td colspan="3">${HcInChkDto.id}</td>
 	      </tr>
 	      <tr >
-	         <th>제목</th>
-	         	<c:choose>
-	         		<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
-	    		     	<td colspan="3"><input class="contents" type="text" name="inChkTitle" style="width: 490px;" required="required" autocomplete="off"/></td>
-	         		</c:when>
-	         		<c:otherwise>
-			          	<td colspan="3">${HcInChkDto.inChkTitle}</td>
-	         		</c:otherwise>
-	         	</c:choose>
+	         <th>Title</th>
+	         <td colspan="3">${HcInChkDto.inChkTitle}</td>
+	
 	      </tr>
 	      <tr>
-	         <th>내용</th>
-	         	<c:choose>
-	         		<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">	         
-	         			<td colspan="3"><textarea class="contents" style="width: 490px;"  rows="5" cols="55" name="inChkContent" required="required" autocomplete="off" ></textarea></td>
-	         	    </c:when>
-	         		<c:otherwise>
-			          	<td colspan="3" >${HcInChkDto.inChkContent}</td>
-	         		</c:otherwise>	
-	         	</c:choose>         		
+	         <th>Content</th>
+	         <td colspan="3">${HcInChkDto.inChkContent}</td>
 	      </tr>
 	      <tr>
 	         <td colspan="3" style="text-align: right;">
-	         	<c:choose>
-	            	<c:when test="${HcLoginDto.id eq loginId && inChkDate eq today}">
-	            		<input class="btn btn-default btn-xs" type="submit"  value="인증하기"/>
-	            	</c:when>
-	            	<c:otherwise>
-	            	
-	            	</c:otherwise>
-	            </c:choose>
+	            <input class="btn btn-default btn-xs" type="button"  value="Before" onclick="location.href='habitCalDetail.do?pKey=${dto.pKey}&id=${dto.id}'"/>
+           		<c:choose>
+					<c:when test="${HcInChkDto.id eq loginId}">
+		         	<input class="btn btn-default btn-xs" type="button"  value="Update"  onclick="location.href='photoInChkCrud.do?id=${HcInChkDto.id}&inChkDate=${HcInChkDto.inChkDate}&pKey=${HcInChkDto.pKey}&crud=update'"/>
+
+					</c:when>
+					<c:otherwise>
+					
+					</c:otherwise>				
+				</c:choose>
 	         </td>
 	      </tr>
 	   </table>
-	</form>
 	</div>
 </body>
 </html>

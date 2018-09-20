@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>회원가입 폼</title>
+<title>userinfo</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -18,17 +18,27 @@
    #container{
       width: 600px;
       margin: 0 auto;
-      margin-top: 120px;
+      margin-top: 60px;
    }
-   td{
-      text-align: center;   
-      height:35px;
-      font-weight: bolder;
+   table{
+      margin : auto;
+      border-top: 1px solid #c0c0c0;
    }
    th{
+      border-bottom: 1px solid #c0c0c0;
       text-align: center;   
       width: 100px;
       height:35px;
+      padding-top:10px;
+      padding-bottom:10px;
+   }
+   td{
+  	  border-bottom: 1px solid #c0c0c0;
+      text-align: center;   
+      height:35px;
+      font-weight: bolder;
+      padding-top:10px;
+      padding-bottom:10px;
    }
    #firstTd{
       text-align: center;   
@@ -46,59 +56,59 @@
       font-weight: bold;
       margin-bottom: 30px;
    }
-   table{
-      margin : auto;
-      border-collapse: collapse;
-      border: 1px solid white;
-   }
 </style>
 <body>
 <div id="container">
-         <h2 style="text-align: center;">나의 정보</h2>
-   <table border="1">
+         <h2 style="text-align: center;">My Info</h2>
+   <table>
    <col width="100px">
    <col width="500px">
       <tr>
-         <th>목록</th>
-         <th>내용</th>
+         <th>&nbsp;</th>
+         <th>Content</th>
       </tr>
       <tr>
-         <td  id="firstTd">아이디</td>
+         <td  id="firstTd">ID</td>
          <td  id="secondTd" >${HcLoginDto.id}</td>
       </tr>
       <tr>
-         <td id="firstTd">이름</td>
+         <td id="firstTd">Name</td>
          <td id="secondTd">${HcLoginDto.name}</td>
       </tr>
       <tr>
-         <td id="firstTd">주소</td>
+         <td id="firstTd">Address</td>
          <td id="secondTd">${HcLoginDto.address}</td>
       </tr>
       <tr>
-         <td id="firstTd">전화번호</td>
+         <td id="firstTd">Tel</td>
          <td id="secondTd">${HcLoginDto.phone}</td>
       </tr>
       <tr>
-         <td  id="firstTd">이메일</td>
+         <td  id="firstTd">E-mail</td>
          <td  id="secondTd">${HcLoginDto.email}</td>
       </tr>
       <tr>
-         <td id="firstTd">등급</td>
+         <td id="firstTd">Role</td>
          <td id="secondTd">일반회원</td>
       </tr>
       <tr>
-         <td id="firstTd">보유포인트</td>
-         <td id="secondTd">${HcLoginDto.ttpoint}</td>
+         <td id="firstTd">Question</td>
+         <td id="secondTd">${HcLoginDto.question}</td>
+      </tr>
+      <tr>
+         <td id="firstTd">Answer</td>
+         <td id="secondTd">${HcLoginDto.answer}</td>
       </tr>
       <tr>
          <td colspan="2" style="text-align: right; ">
-            <button  class="btn btn-default btn-xs"  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">수정</button>
-            <button  class="btn btn-default btn-xs"  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">탈퇴</button>
-            <button  class="btn btn-default btn-xs"  onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">메인</button>
-            <button class="btn btn-default btn-xs"onclick="location.href='habitCalCompleteList.do?id=${HcLoginDto.id}'">완료한 리스트</button>
+            <button  class="btn btn-default btn-xs"  onclick="location.href='updateform.do?id=${HcLoginDto.id}'">Update</button>
+            <button  class="btn btn-default btn-xs"  onclick="location.href='deluser.do?id=${HcLoginDto.id}'">Delete</button>
+            <button  class="btn btn-default btn-xs"  onclick="location.href='main.do?id=${HcLoginDto.id}&role=${HcLoginDto.role}'">Main</button>
+            <button class="btn btn-default btn-xs"onclick="location.href='habitCalCompleteList.do?id=${HcLoginDto.id}'">Complet List</button>
          </td>
       </tr>
    </table>
 </div>
 </body>
+<jsp:include page="foot.jsp"/>
 </html>
