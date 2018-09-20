@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>With</title>
+<title>boardListWith</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <script type="text/javascript"
@@ -29,72 +29,7 @@
  <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-$(function(){
-    $("select[name=select1]").change(function(){
-    	$("input[name=input2]").val("");
 
-		if($("select[name=select1]").val()=='Start'){
-			
-		    $('#datepicker').datepicker({
-		        //달력 나오게하는 방법 설정  -> button, text, both
-
-		        
-// 		        showOn:"both",
-		        //버튼에 나올 텍스트 설정
-		        buttonText:"Cal",
-		        //년도랑 월 설정하는 select 박스 표시 여부 설정
-		        changeYear:true,
-		        changeMonth:true,
-		        //날짜 표시 형식설정
-		        dateFormat:"yymmdd",
-		        //달력에 요일 표시
-		        dayNamesMin: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'], 
-		        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
-		     });
-		    $("input[name=input2]").attr("readonly",true);
-
-		    
-		 }else{
-			    $('#datepicker').datepicker("destroy"); 
-			    $("input[name=input2]").attr("readonly",false);
-		 }
-			
-    	$("input[name=input2]").focus();
-    	
-    	
-    });    	
-    	
-});
-
-</script>
-<script type="text/javascript">
-function search1(){
-	
-	if($("input[name=input2]").val()==null||$("input[name=input2]").val()==""){
-		
-        alert("값을 입력하세요");
-        $("input[name=input2]").focus();
-        return false;
-
-	}
-		if($("select[name=select1]").val()=="Term"){
-			if(isNaN($("input[name=input2]").val()) == true) {
-				alert("문자는 입력할 수 없습니다. 숫자를 입력하세요");
-				$("input[name=input2]").val("");
-		        $("input[name=input2]").focus();
-		        return false;
-			} else {
-
-			}
-		}	
-	
-	location.href = "search1.do?select1="+$("select[name=select1]").val()
-			+"&input2="+$("input[name=input2]").val()+"&withh=Y";
-}
-
-</script>
 <script type="text/javascript">
 var BG = {}; // BAR GRAPH window object
 
@@ -248,10 +183,6 @@ figure div:nth-child(3) {
 	font-size: large;
 	font-weight: bold;
 }
-.redcol{
-	color: red;
-}
-
 /* 바뀜 */
 
 </style>
@@ -262,22 +193,9 @@ figure div:nth-child(3) {
 	 <jsp:useBean id="Util" class="com.hk.toCheckFinal.utils.Util"/>
 	 
 	<div id="container">
-		<div style="text-align: center;">
-			<select id="select1" name="select1">
-              <option value="ID" >ID</option>
-              <option value="Title">Title</option>
-              <option value="Term" >Term</option>
-              <option value="Start">StartDate</option>
-        	</select>	
-        	<input type="text" id="datepicker" name="input2" style="width: 200px;" autocomplete="off" />
-        	<input type="button" value="search" class="btn btn-default btn-xs" onclick="search1()"/>
-        	</div>
-        	<br/><br/><br/>
+		<div style=" text-align: center;"><h3>-This Month Ranking-</h3></div>
 		<table style=" align-content: center;">
-		<col width="180px">
-		<col width="180px">
-		<col width="180px">
-		<col width="180px">
+
 
         	<br/>		
 
@@ -300,12 +218,13 @@ figure div:nth-child(3) {
 					</c:otherwise>
 					</c:choose>	
 					<c:choose>
-					<c:when test="${(status.count)%4 eq 1}">
+					<c:when test="${(status.count)%3 eq 1}">
 						<tr><td>
 							<div class="progress-fixed">
+							<img alt="이미지" src="img/Trophy-gold.png" >
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(<span class="redcol">${dto.chkCount}</span>/${dto.term})</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -317,12 +236,13 @@ figure div:nth-child(3) {
 							<br/>
 							</td>
 					</c:when>
-					<c:when test="${(status.count)%4 eq 2||(status.count)%4 eq 3}">
+					<c:when test="${(status.count)%3 eq 2||(status.count)%3 eq 3}">
 							<td>
 							<div class="progress-fixed">
+							<img alt="이미지" src="img/Trophy-silver.png" >
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(<span class="redcol">${dto.chkCount}</span>/${dto.term})</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
 					  		<figure>
 					    		<div class="progress-fixed__bar${status.count}"></div>
 					    		<div class="progress-fixed__percent${status.count}"></div>
@@ -334,12 +254,13 @@ figure div:nth-child(3) {
 							<br/>				
 							</td>						
 					</c:when>
-					<c:when test="${(status.count)%4 eq 0}">
+					<c:when test="${(status.count)%3 eq 0}">
 							<td>
 							<div class="progress-fixed">
+							<img alt="이미지" src="img/Trophy-bronze.png" >
 							<img alt="이미지" src="${dto.photo}" >
 							<div>${dto.id}</div>
-							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(<span class="redcol">${dto.chkCount}</span>/${dto.term})</div>
+							<div>${Util.TodayYYMMDD2(dto.stDate).ToYear1}.${Util.TodayYYMMDD2(dto.stDate).ToMonth1}.${Util.TodayYYMMDD2(dto.stDate).ToDate1}(${dto.chkCount}/${dto.term})</div>
 						  		<figure>
 						    		<div class="progress-fixed__bar${status.count}"></div>
 						    		<div class="progress-fixed__percent${status.count}"></div>
@@ -356,9 +277,9 @@ figure div:nth-child(3) {
 			</c:otherwise>
 			</c:choose>
 
-			<c:forEach var = "m" begin = "1" end = "${(4-(fn:length(list1))%4)%4}">
+			<c:forEach var = "m" begin = "1" end = "${(3-(fn:length(list))%3)%3}">
 				<c:choose>
-				<c:when test="${m eq  (4-(fn:length(list1))%4)%4}">
+				<c:when test="${m eq  (3-(fn:length(list))%3)%3}">
 					<td>&nbsp;</td></tr>
 				</c:when>
 				<c:otherwise>

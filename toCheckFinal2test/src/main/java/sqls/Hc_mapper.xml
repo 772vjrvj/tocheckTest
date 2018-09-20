@@ -256,4 +256,42 @@
       FROM HCMEMBER WHERE ID=#{id} AND ENABLED='Y'
       </select> 
 
+
+
+
+
+	
+      <!--       아이디 검색 -->
+      <select id="getSearchID" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE ID LIKE '%'||#{id}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+	
+      <!--       제목 검색 -->
+      <select id="getSearchTitle" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE TITLE LIKE '%'||#{title}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+
+      <!--       기간 검색 -->
+      <select id="getSearchTerm" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE TERM LIKE '%'||#{term}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select> 
+      
+      <!--       시작일 검색 -->
+      <select id="getSearchStartDate" parameterType="map" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE STDATE LIKE '%'||#{stDate}||'%' AND WITHH =#{withh} AND CALWITH ='Y' AND ENDLIST='N' ORDER BY REGDATE DESC
+      </select>       
+
+
+		<!--       	랭킹  -->
+		<select id="boardlistWithRanking" resultType="HcDto">
+		SELECT PKEY, ID, TITLE, CONTENT, STDATE, EDDATE, TERM, REGDATE, ENDLIST, CALWITH, WITHH, PROGRESS, RECRUIT, PHOTO, HOST, HCDELETE, CHKCOUNT, SORT
+		FROM HCBOARD WHERE WITHH ='Y' AND ENDLIST='Y' ORDER BY CHKCOUNT DESC
+		</select>
+
+
+
     </mapper>

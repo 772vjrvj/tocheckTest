@@ -137,4 +137,20 @@ public interface IHcService {
    //비밀번호찾기 질문에 일치하는 답변이지 검사해서 비밀번호 출력하기
    public HcLoginDto findPw_After(String question,String answer);
    
+   
+   //아이디 검색
+   public List<HcDto> getSearchID(String searchId, String withh);
+   
+   //제목 검색
+   public List<HcDto> getSearchTitle(String searchTitle, String withh);
+   
+   //기간 검색
+   public List<HcDto> getSearchTerm(String searchTerm, String withh);
+
+   //시작일 검색
+   public List<HcDto> getSearchStartDate(String searchStartDate, String withh);
+ 
+	//랭킹
+	public List<HcDto> boardlistWithRanking();
+   
 }
