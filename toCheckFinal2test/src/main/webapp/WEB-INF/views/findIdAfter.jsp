@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Find Id</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <table>
 	<tr>
 		<td>
-			<h2 id="content">회원님의 아이디는  ${dto.id} 입니다.</h2><br/>
+			<h2 id="content">Your Id is '${dto.id}'.</h2><br/>
 			<input class="btn btn-default btn-xs" type="button" value="Ok" onclick="Chk()"/>
 			<br/>
 			&nbsp;

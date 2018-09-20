@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>목표 시작하기</title>
+<title>Start</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -130,10 +130,10 @@
       $("select[name=year]").change(function(){
          $("select[name=month]").val("0");
          $("select[name=date]").empty();
-         $("select[name=date]").append('<option value="0">선택</option>');
+         $("select[name=date]").append('<option value="0">Select</option>');
          
          $("select[name=term]").empty();
-         $("select[name=term]").append('<option value="0">선택</option>');
+         $("select[name=term]").append('<option value="0">Select</option>');
 
          $("select[name=month]").focus();
       });
@@ -143,18 +143,18 @@
          $("select[name=date]").empty();   
          
          $("select[name=term]").empty();
-         $("select[name=term]").append('<option value="0">선택</option>');         
+         $("select[name=term]").append('<option value="0">Select</option>');         
          
          if(($("select[name=month]").val())==0){
             $("select[name=date]").empty();
-            $("select[name=date]").append('<option value="0">선택</option>');
+            $("select[name=date]").append('<option value="0">Select</option>');
             $("select[name=month]").focus();
          }else if(($("select[name=month]").val())==2){
 
             if(($("select[name=year]").val())%4==0&&($("select[name=year]").val())%100!=0||($("select[name=year]").val())%400==0){
                var op="";
                for(var i=0;i<=29;i++){
-                  op+="<option value="+i+">"+(i==0?'선택':i)+"</option>";
+                  op+="<option value="+i+">"+(i==0?'Select':i)+"</option>";
                }
                $('select[name=date]').append(op);
                
@@ -162,7 +162,7 @@
                
                var op="";         
                for(var i=0;i<=28;i++){
-                  op+="<option value="+i+">"+(i==0?'선택':i)+"</option>";
+                  op+="<option value="+i+">"+(i==0?'Select':i)+"</option>";
                }
                $('select[name=date]').append(op);            
             }
@@ -170,7 +170,7 @@
 
             var op="";         
             for(var i=0;i<=30;i++){
-               op+="<option value="+i+">"+(i==0?'선택':i)+"</option>";
+               op+="<option value="+i+">"+(i==0?'Select':i)+"</option>";
             }
             
             $('select[name=date]').append(op);      
@@ -179,7 +179,7 @@
 
             var op="";         
             for(var i=0;i<=31;i++){
-               op+="<option value="+i+">"+(i==0?'선택':i)+"</option>";
+               op+="<option value="+i+">"+(i==0?'Select':i)+"</option>";
             }
             
             $('select[name=date]').append(op);      
@@ -191,13 +191,13 @@
          $("select[name=term]").empty();
          $('#endDate').empty();                  
          if($("select[name=date]").val()==0){
-            $("select[name=term]").append('<option value="0">선택</option>');
+            $("select[name=term]").append('<option value="0">Select</option>');
             $("select[name=date]").focus();         
          }else{
             $("select[name=term]").focus();
             var op="";         
             for(var i=0;i<=365;i++){
-               op+="<option value="+i+">"+(i==0?'선택':i)+"</option>";
+               op+="<option value="+i+">"+(i==0?'Select':i)+"</option>";
             }
             $('select[name=term]').append(op);      
          }

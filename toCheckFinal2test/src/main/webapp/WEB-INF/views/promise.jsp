@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
-<title>Insert title here</title>
+<title>Promise</title>
 <style type="text/css">
    #container{
       position: absolute; 

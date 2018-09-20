@@ -389,10 +389,10 @@ public class HcDaoImp implements IHcDao {
    
    //비밀번호찾기 질문에 맞는 답변인지 검사하고  비밀번호 출력해주기
    @Override
-   public HcLoginDto findPw_After(String answer,String withh) {
+   public HcLoginDto findPw_After(String question,String answer) {
       Map<String, String> map = new HashMap<String, String>();
-         map.put("answer", answer);
-         map.put("withh", withh);
+         map.put("question", question);
+         map.put("answer",  answer);
       return sqlSession.selectOne(namespace+"findPw_After",map);
    }
    

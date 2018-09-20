@@ -7,14 +7,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>비밀번호 찾기</title>
+<title>Find Pw</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 </head>
+<script type="text/javascript">
+
+   $(document).ready(function() {
+
+
+      $("form").submit(function(){
+    	  
+         if($("input[name=answer]").val()==""||$("input[name=answer]").val()==null||$("input[name=answer]").val()=="undefined"){
+
+            alert("답을 입력하세요");
+            $("input[name=answer]").focus();
+            return false;
+      	}
+         
+
+      });
+   });
+
+
+</script>
+
+
 <jsp:include page="style.jsp"/>
 <style type="text/css">
    table{
@@ -43,12 +67,12 @@
 <form action = "findPw_After.do" method="post">
    <table id="findPw">
       <tr>
-         <td>질문</td>
+         <td>Question</td>
          
          <td><input class="form-control" type="text" name="question" value="${dto_find}" readonly="readonly"/></td>
       </tr>
       <tr>
-         <td>답변</td>
+         <td>Answer</td>
          <td><input class="form-control" type="text" name="answer" ></td>
       </tr>
       <tr>

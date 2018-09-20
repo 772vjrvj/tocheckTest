@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>style</title>
+<title>Style</title>
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Raleway" rel="stylesheet"><!-- 합쳐지고 최소화된 최신 CSS -->
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

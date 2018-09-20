@@ -1199,8 +1199,9 @@ public class HomeController implements ServletContextAware {
     @RequestMapping(value = "/findId_after.do", method = RequestMethod.POST)
     public String findId(String name, String phone,Locale locale,Model model) {
        logger.info("아이디 찾기 {}.", locale);
-       
-       if(hcService.findId(name, phone).equals(null)) {
+       System.out.println("아이디 찾기");
+       System.out.println(hcService.findId(name, phone));
+       if(hcService.findId(name, phone)==null) {
           System.out.println("아이디 찾기 실패");
            model.addAttribute("msg","이름과 번호가 일치하지 않습니다.");
            return "error";   
@@ -1245,6 +1246,8 @@ public class HomeController implements ServletContextAware {
        logger.info("비밀번호 찾기 {}.", locale);
        String question = httpServletRequest.getParameter("question");
        String answer = httpServletRequest.getParameter("answer");
+       System.out.println("question:"+question);
+       System.out.println("answer:"+answer);
        //답변 일치 검사
        if(hcService.findPw_After(question,answer)==null) {
           System.out.println("답변 불일치");

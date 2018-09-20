@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>photoInChk</title>
+<title>Certification</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>

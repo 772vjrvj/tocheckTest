@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>selectform</title>
+<title>List</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <style type="text/css">
