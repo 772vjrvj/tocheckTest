@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>usermain</title>
+<title>Main</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->

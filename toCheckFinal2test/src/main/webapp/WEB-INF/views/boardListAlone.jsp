@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>boardListAlone</title>
+<title>Alone</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <script type="text/javascript"

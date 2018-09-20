@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<title>Insert title here</title>
+<title>Imotion</title>
 <style type="text/css">
 	table{
    	  border: 1px solid black;

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>boardListAlone</title>
+<title>Complete</title>
 <jsp:include page="head.jsp"/>
 <jsp:include page="style.jsp"/>
 <script type="text/javascript"
@@ -197,7 +197,7 @@ figure div:nth-child(3) {
 		<col width="180px">
 			<c:choose>
 			<c:when test="${fn:length(list1) eq 0 }">
-       			<div id="ifnull">진행중이 리스트가 없습니다.</div>
+       			<div id="ifnull">There are no completed listings.</div>
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="dto" items="${list1}" varStatus="status">

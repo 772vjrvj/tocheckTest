@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>상세보기</title>
+<title>Detail</title>
 <jsp:include page="style.jsp"/>
 <jsp:include page="head.jsp"/>
 <!-- 합쳐지고 최소화된 최신 CSS -->
