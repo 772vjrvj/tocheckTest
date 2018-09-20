@@ -14,7 +14,31 @@
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
 </head>
+<script type="text/javascript">
+
+   $(document).ready(function() {
+
+
+      $("form").submit(function(){
+    	  
+         if($("input[name=answer]").val()==""||$("input[name=answer]").val()==null||$("input[name=answer]").val()=="undefined"){
+
+            alert("답을 입력하세요");
+            $("input[name=answer]").focus();
+            return false;
+      	}
+         
+
+      });
+   });
+
+
+</script>
+
+
 <jsp:include page="style.jsp"/>
 <style type="text/css">
    table{
