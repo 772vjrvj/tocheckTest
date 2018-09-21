@@ -28,7 +28,7 @@
 	<settings>
 		<database>Oracle</database>
 		<capital>false</capital>
-		<table_style></table_style>
+		<table_style>funny</table_style>
 		<notation></notation>
 		<notation_level>0</notation_level>
 		<notation_expand_group>true</notation_expand_group>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-09-20 09:56:42</creation_date>
-			<updated_date>2018-09-20 15:15:35</updated_date>
+			<updated_date>2018-09-21 15:29:14</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>

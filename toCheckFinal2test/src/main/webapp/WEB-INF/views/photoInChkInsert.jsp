@@ -129,7 +129,7 @@ h5 {
 				</tr>
 				<tr>
 					<td colspan="3" style="text-align: right;"><input
-						class="btn btn-default btn-xs" type="submit" value="입력하기" /></td>
+						class="btn btn-default btn-xs" type="submit" value="Complete" /></td>
 				</tr>
 			</table>
 		</form>
